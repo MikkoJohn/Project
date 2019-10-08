@@ -14,12 +14,13 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
       $dbpassword = $row['pass'];
       $dbusertype = $row['user_type'];  /* Check LEGENDS(ACCOUNTTYPE).txt */
       $acct_name = $row['fname'];
+      
                 if($uname == $dbusername && $pass == $dbpassword && $dbusertype == "1")
                     {
                         session_start();
-                        $_SESSION['sess_user'] = $uname;
-                        $_SESSION['sess_type'] = $dbusertype;
-                         $_SESSION['acct_name'] = $acct_name;
+                          $_SESSION['sess_user'] = $uname;
+                          $_SESSION['sess_type'] = $dbusertype;
+                          $_SESSION['acct_name'] = $acct_name;
                             /* Redirect browser */
                             echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
                     }
@@ -27,7 +28,10 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                 elseif ($uname == $dbusername && $pass == $dbpassword && "2" == $dbusertype) 
                     {
                         session_start();
-                        $_SESSION['sess_user'] = $uname;
+                          $_SESSION['sess_user'] = $uname;
+                          $_SESSION['sess_type'] = $dbusertype;
+                          $_SESSION['acct_name'] = $acct_name;
+                       // $_SESSION['sess_user'] = $uname;
                             /* Redirect browser */
                             echo "<script type='text/javascript'>location.href = 'index_prodhead';</script>";
                     }
@@ -35,7 +39,9 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                 elseif ($uname == $dbusername && $pass == $dbpassword && "3" == $dbusertype) 
                     {
                         session_start();
-                        $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_type'] = $dbusertype;
+                         $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_prodass';</script>";
                     }
@@ -43,7 +49,9 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                 elseif ($uname == $dbusername && $pass == $dbpassword && "4" == $dbusertype) 
                     {
                         session_start();
-                        $_SESSION['sess_user'] = $uname;
+                          $_SESSION['sess_user'] = $uname;
+                          $_SESSION['sess_type'] = $dbusertype;
+                          $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_prodplan';</script>";
                     }
@@ -51,7 +59,9 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                 elseif ($uname == $dbusername && $pass == $dbpassword && "5" == $dbusertype) 
                     {
                         session_start();
-                        $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_type'] = $dbusertype;
+                         $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_genserv';</script>";
                     }
@@ -59,15 +69,19 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                 elseif ($uname == $dbusername && $pass == $dbpassword && "6" == $dbusertype) 
                     {
                         session_start();
-                        $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_type'] = $dbusertype;
+                         $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
-                          echo "<script type='text/javascript'>location.href = 'index_operators';</script>";
+                          echo "<script type='text/javascript'>location.href = 'index_sales';</script>";
                     }
 
                 elseif ($uname == $dbusername && $pass == $dbpassword && "7" == $dbusertype) 
                     {
                         session_start();
-                        $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_type'] = $dbusertype;
+                         $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_sales';</script>";
                     }

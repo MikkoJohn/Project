@@ -9,7 +9,7 @@ if(!isset($_SESSION["sess_user"])){
 <?php 
 include('navs/prodass/header.php'); 
 include('navs/prodass/navbar.php');
-
+include 'config.php';
 ?>
 
 
@@ -55,10 +55,11 @@ include('navs/prodass/navbar.php');
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome User!</span>
-                <img class="img-profile rounded-circle">
-              </a>
+                 <!-- <img class="img-profile rounded-circle" src="#"> -->
+               <form method="POST" action="logout.php">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
+                </span>
+                <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">

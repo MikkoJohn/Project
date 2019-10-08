@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION["sess_user"])){
-	header("location:login.php");
+	header("location:index.php");
 } else {
 	
 }
@@ -59,7 +59,7 @@ include 'config.php';
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <form method="POST" action="logout.php">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 large"> Welcome <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['sess_user']);?> 
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 large"> Welcome <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
                 <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
               </a>
