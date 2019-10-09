@@ -1,4 +1,5 @@
-<? ob_start(); ?>
+<? ob_start(); 
+session_start();?>
 <?php
 if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
 	$uname = $_POST['uname'];

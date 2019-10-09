@@ -1,10 +1,19 @@
 <?php 
 session_start();
 if(!isset($_SESSION["sess_user"])){
-	header("location:login.php");
+	header("location:index.php");
+}else if ($_SESSION["sess_type"] != 1){
+  header("location:index?access=denied");
+  session_unset();
+    session_destroy();
+    session_start();
+ 
 } else {
-	
+
 }
+	
+
+
 ?>
 
 
@@ -15,6 +24,9 @@ include('includes/navbar.php');
 include 'config.php';
 //session_start();
 ?>    <!-- Content Wrapper -->
+<?php
+
+?>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <div id="content-wrapper" class="d-flex flex-column">
@@ -101,6 +113,76 @@ include 'config.php';
             <h1 class="h3 mb-0 text-gray-800">ADMIN DASHBOARD</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
+
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Accounts</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
+                    <table id="jo" class="table table-striped table-bordered" width="100%">  
+                        <thead>  
+                          <tr>  
+                              <td><center>Account Name</center></td>
+                              <td><center>Account Designation</center></td>
+                              <td><center>Date</center></td>
+                              <td><center>Action Done</center></td>
+                               </tr>  
+                        </thead> 
+                        <?php
+                        $sql = 'SELECT * FROM user_action';
+                        $stmt = mysqli_stmt_init($conn);
+                        mysqli_stmt_prepare($stmt, $sql);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+                           
+                           while($row = mysqli_fetch_assoc($result)){
+                                echo '
+                                    <tr>
+                                        <td>'.$row['username'].'</td>
+                                        ';
+                            if($row['user_designation'] == 1){
+                              echo '<td>Admin</td>';
+                            }else if($row['user_designation'] == 2){
+                               echo '<td>Production Head</td>';
+                            }else if($row['user_designation'] == 3){
+                               echo '<td>Production Assisstant</td>';
+                            }else if($row['user_designation'] == 4){
+                               echo '<td>Production Planner</td>';
+                            }else if($row['user_designation'] == 5){
+                               echo '<td>Division Supervisor</td>';
+                            }else if($row['user_designation'] == 6){
+                               echo '<td>Sales</td>';
+                            }else if($row['user_designation'] == 7){
+                               echo '<td>Operator</td>';
+                            }
+                                 echo '       
+                                        
+                                        <td>'.$row['action_date'].'</td>
+                                        <td>'.$row['action_done'].'</td>
+                                    </tr>
+                                ';
+                           }
+
+                        ?>
+                    
+                   
+                        
+                </table>
+  <script>  
+ $(document).ready(function(){  
+      $('#jo').DataTable();  
+ });  
+ </script>  
+
+
+
+               
+          </div>
+        </div>
+        </div>
+          
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">

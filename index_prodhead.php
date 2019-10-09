@@ -2,7 +2,13 @@
 session_start();
 if(!isset($_SESSION["sess_user"])){
 	header("location:index.php");
-} else {
+}else if ($_SESSION["sess_type"] != 2){
+  header("location:index?access=denied");
+  session_unset();
+    session_destroy();
+    session_start();
+ 
+}else {
 	
 }
 ?>
@@ -62,7 +68,7 @@ include 'config.php';
                   <span class="mr-2 d-none d-lg-inline text-gray-600 large"> Welcome <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
                 <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
-              </a>
+            
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
