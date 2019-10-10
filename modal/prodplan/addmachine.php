@@ -1,11 +1,14 @@
   <?php  
+  session_start();
     include_once '../../config.php';
      include '../../includes/link.php';
     include '../../includes/header.php';
+        $accname = $_SESSION['acct_name'];
+$acctype = $_SESSION['sess_type'];
   ?>
     <!-- OperatorModal -->
    <!--  --> 
-   <a href="../../index_prodhead" class="btn btn-primary" style="margin:2%">BACK</a>
+   <a href="../../index_prodplan" class="btn btn-primary" style="margin:2%">BACK</a>
    <form method="POST" onsubmit="return confirm('Are you sure?')">
         <div class="container">    
         <div id="loginbox" style="margin-top:10px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
@@ -75,6 +78,8 @@ error_reporting(0);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
+                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Machine')";
+                                mysqli_query($conn,$sql1);
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

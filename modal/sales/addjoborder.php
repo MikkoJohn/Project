@@ -1,7 +1,10 @@
   <?php  
+  session_start();
     include_once '../../config.php';
      include '../../includes/link.php';
     include '../../includes/header.php';
+        $accname = $_SESSION['acct_name'];
+$acctype = $_SESSION['sess_type'];
   ?>
 
    <a href="../../index_sales" class="btn btn-primary" style="margin:2%">BACK</a>
@@ -117,6 +120,8 @@ error_reporting(0);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
+                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Job Order')";
+                                mysqli_query($conn,$sql1);
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

@@ -5,6 +5,8 @@
     include '../../includes/header.php';
 $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
+echo $accname;
+echo $acctype;
   ?>
 
    <a href="../../index_admin" class="btn btn-primary" style="margin:2%">BACK</a>
@@ -95,6 +97,7 @@ error_reporting(0);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
+
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Transmittal')";
                               mysqli_query($conn,$sql1);
                               } 

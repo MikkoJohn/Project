@@ -16,38 +16,43 @@ $acctype = $_SESSION['sess_type'];
                     <div class="panel-title">Add Job Order</div>
                 </div>     
 
-                <div style="padding-top:20px" class="panel-body" >
+                <div style="padding-top:10px" class="panel-body" >
 
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
                       <form method="POST" class="form-horizontal" role="form">         
                            <div class="row">
-                             <div class="col col-sm-4">
+                             <div class="col col-sm-6">
                              <div class="form-group">
                                     <input type="text" class="form-control" name="sales_no" placeholder="Sales No.">
                                   </div>
                               </div>
-                             <div class="col col-sm-4">
+                             <div class="col col-sm-6">
                              <div class="form-group">
                                     <input type="text" class="form-control" name="c_name" placeholder="Client Name">
                                   </div>
                                 </div>
-                            <div class="col col-sm-4">
+                             <div class="col col-sm-6">
+                            <div class="form-group">
+                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name">
+                                  </div>
+                            </div>
+                            <div class="col col-sm-6">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="d_title" placeholder="Item Description and Title">
                                   </div>
                             </div>
-                            <div class="col col-sm-4">
+                            <div class="col col-lg-4">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="c_machine" placeholder="Costing based on Machine">
                                   </div>
                             </div>
-                            <div class="col col-sm-4">
+                            <div class="col col-lg-4">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="f_required" placeholder="Finishing Required">
                                   </div>
                             </div>
-                            <div class="col col-sm-4">
+                            <div class="col col-lg-4">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="p_required" placeholder="Packaging Required">
                                   </div>
@@ -72,18 +77,24 @@ $acctype = $_SESSION['sess_type'];
                                     <input  type="text" class="form-control" name="p_used" placeholder="Paper to be used">
                                   </div>
                                 </div>
-                              <div style="margin:15px" class="et form-group">
-                                    <h5>Estimate Transmittal Data to Warehouse:</h5>
+                              <div style="margin:0px 12px 0px 12px" class="et form-group">
+                                    <h5>Estimated Transmittal Data to Warehouse:</h5>
                                     <input  type="date" class="form-control" name="e_transmittal">
                                   </div>
-                              <div style="margin:15px" class="cr form-group">
+                              <div style="margin:0px 12px 15px 12px" class="cr form-group">
                                     <h5>Client Requested Delivery Date:</h5>
                                     <input  type="date" class="form-control" name="c_delivery">
                                   </div>
-                              <div style="margin:15px" class="cr form-group">
-                                    <h6>Remarks:</h6>
-                                    <input  type="textarea" class="form-control" name="remarks">
+                                <div class="col col-sm-6">
+                                <div class="form-group">                          
+                                    <input  type="textarea" class="form-control" placeholder="Remarks" name="remarks">
                                   </div>
+                                </div>
+                                <div class="col col-sm-6">
+                                <div class="form-group">
+                                    <input  type="textarea" class="form-control" placeholder="Status" name="status">
+                                  </div>
+                                </div>
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="addjo" class="btn btn-success">
                                     </div>
@@ -97,7 +108,7 @@ $acctype = $_SESSION['sess_type'];
                    
    
 <?php if(isset($_POST['addjo'])){
-error_reporting(0);
+//error_reporting(0);
   $sales_no = $_POST['sales_no'];
   $c_name = $_POST['c_name'];
   $d_title = $_POST['d_title'];
@@ -111,12 +122,15 @@ error_reporting(0);
   $e_transmittal = $_POST['e_transmittal'];
   $c_delivery = $_POST['c_delivery'];
   $remarks = $_POST['remarks'];
-  if(empty($sales_no) || empty($c_name) || empty($d_title) || empty($c_machine) || empty($f_required) || empty($p_required) || empty($quantity) || empty($no_pages) || empty($s_output) || empty($p_used) || empty($e_transmittal) || empty($c_delivery) || empty($remarks)){
+  $p_name = $_POST['p_name'];
+  $status = $_POST['status'];
+  $now = date("Y-m-d H:i:s");
+  if(empty($sales_no) || empty($c_name) || empty($d_title) || empty($c_machine) || empty($f_required) || empty($p_required) || empty($quantity) || empty($no_pages) || empty($s_output) || empty($p_used) || empty($e_transmittal) || empty($c_delivery) || empty($remarks) || empty($p_name) || empty($status)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  
-  $stmt = $conn->prepare("INSERT INTO `job_order`(`sales_number`, `client_name`, `item_desc_and_title`, `costing_run`, `finishing_required`, `packaging_required`, `date_to_warehouse`, `requested_delivery`, `quantity`, `size`, `pages`, `paper`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                              $stmt->bind_param('sssssssssssss', $sales_no,$c_name,$d_title,$c_machine,$f_required,$p_required,$e_transmittal,$c_delivery,$quantity,$s_output,$no_pages,$p_used,$remarks);
+  $stmt = $conn->prepare("INSERT INTO `job_order`(`sales_number`, `client_name`, `item_desc_and_title`, `proj_name`, `date_created`, `costing_run`, `finishing_required`, `packaging_required`, `date_to_warehouse`, `requested_delivery`, `quantity`, `size`, `pages`, `paper`, `remarks`, `status`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                              $stmt->bind_param('ssssssssssssssss', $sales_no,$c_name,$d_title,$p_name,$now,$c_machine,$f_required,$p_required,$e_transmittal,$c_delivery,$quantity,$s_output,$no_pages,$p_used,$remarks,$status);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
