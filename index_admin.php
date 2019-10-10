@@ -121,7 +121,7 @@ include 'config.php';
             <div class="card-body">
               <div class="table-responsive">
                 <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-                    <table id="jo" class="table table-striped table-bordered" width="100%">  
+                    <table id="accounts" class="table table-striped table-bordered" width="100%">  
                         <thead>  
                           <tr>  
                               <td><center>Account Name</center></td>
@@ -130,6 +130,7 @@ include 'config.php';
                               <td><center>Action Done</center></td>
                                </tr>  
                         </thead> 
+                        <tbody>
                         <?php
                         $sql = 'SELECT * FROM user_action';
                         $stmt = mysqli_stmt_init($conn);
@@ -140,7 +141,7 @@ include 'config.php';
                            while($row = mysqli_fetch_assoc($result)){
                                 echo '
                                     <tr>
-                                        <td>'.$row['username'].'</td>
+                                       <td>'.$row['username'].'</td>
                                         ';
                             if($row['user_designation'] == 1){
                               echo '<td>Admin</td>';
@@ -167,12 +168,12 @@ include 'config.php';
 
                         ?>
                     
-                   
+                   </tbody>
                         
                 </table>
   <script>  
  $(document).ready(function(){  
-      $('#jo').DataTable();  
+      $('#accounts').DataTable();  
  });  
  </script>  
 
@@ -204,7 +205,7 @@ include 'config.php';
                                </tr>  
                         </thead> 
                         <?php
-                            $sql = 'SELECT IFNULL("-",job_order_control_no)job_order_control_no,item_desc_and_title,client_name,requested_delivery,remarks FROM job_order';
+                            $sql = 'SELECT `job_order_control_no`, `sales_number`, `client_name`, `item_desc_and_title`, `proj_name`, `date_created`, `costing_run`, `finishing_required`, `packaging_required`, `date_to_warehouse`, `requested_delivery`, `quantity`, `size`, `pages`, `paper`, `remarks`, `status` FROM job_order';
                         $stmt = mysqli_stmt_init($conn);
                         mysqli_stmt_prepare($stmt, $sql);
                         mysqli_stmt_execute($stmt);
@@ -212,29 +213,30 @@ include 'config.php';
                            
                            while($row = mysqli_fetch_assoc($result)){
                                 echo '
+                                <tr>
                                       <td><center>'.$row['job_order_control_no'].'</center></td>
-                                      <td><center>'.$row['item_desc_and_title'].'</center></td>
+                                      <td><center>'.$row['proj_name'].'</center></td>
                                       <td><center>'.$row['client_name'].'</center></td>
-                                      <td><center>'.$row['requested_delivery'].'</center></td>
-                                      <td><center>'.$row['remarks'].'</center></td>
+                                      <td><center>'.$row['date_created'].'</center></td>
+                                      <td><center>'.$row['status'].'</center></td>
                                       <td><center>
                           <div class="row">
-                          <div class="col col-sm-6">
-                        <form method="POST" action="editmodal/editmachine.php"> 
-
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                        </form>
-                        </div>
-                        <div class="col col-sm-6">
-                        <form method="POST" action=""> 
-                          <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </form>
-                        </div>
-                        </div>
-                        </center>
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editjoborder.php">
+                       
+                          <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
+                          <button name="view_jo" class="btn btn-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="delete">
+         <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
+                        <button name="delete_jo" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+        </form>  
+        </div>
+        </div></center>
                    </td>
+                   </tr>
                                 ';
                            }
 
@@ -380,7 +382,7 @@ include 'config.php';
                                     </form>
                                     </div>
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="delete.php">
+                                    <form method="POST" action="delete">
          <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
                         <button name="delete_machine" class="btn btn-danger" value="" id="" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
         </form>  
@@ -745,58 +747,6 @@ include 'config.php';
           </div>
         </div>
         </div>
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Job Orders</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-                    <table id="jo" class="table table-striped table-bordered" width="100%">  
-                        <thead>  
-                          <tr>  
-                              <td><center>Account Name</center></td>
-                              <td><center>Account Type</center></td>
-                              <td><center>Date</center></td>
-                              <td><center>Action Made</center></td>
-                              <td><center>Category</center></td>
-                             
-                  
-                               </tr>  
-                        </thead> 
-                        <?php
-                            $sql = 'SELECT IFNULL("-",job_order_control_no)job_order_control_no,item_desc_and_title,client_name,requested_delivery,remarks FROM job_order';
-                        $stmt = mysqli_stmt_init($conn);
-                        mysqli_stmt_prepare($stmt, $sql);
-                        mysqli_stmt_execute($stmt);
-                        $result = mysqli_stmt_get_result($stmt);
-                           
-                           while($row = mysqli_fetch_assoc($result)){
-                                echo '
-                                    <tr>
-                                    <td></td>
-                                    </tr>
-                                ';
-                           }
-
-                        ?>
-                    
-                   
-                        
-                </table>
-  <script>  
- $(document).ready(function(){  
-      $('#jo').DataTable();  
- });  
- </script>  
-
-
-
-               
-          </div>
-        </div>
-        </div>
-          
 
         </div>
         <!-- /.container-fluid -->

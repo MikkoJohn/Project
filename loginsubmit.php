@@ -74,7 +74,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
-                          echo "<script type='text/javascript'>location.href = 'index_sales';</script>";
+                          echo "<script type='text/javascript'>location.href = 'index_operators';</script>";
                     }
 
                 elseif ($uname == $dbusername && $pass == $dbpassword && "7" == $dbusertype) 

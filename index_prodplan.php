@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION["sess_user"])){
-  header("location:login.php");
+  header("location:index");
 }else if ($_SESSION["sess_type"] != 4){
   header("location:index?access=denied");
   session_unset();
