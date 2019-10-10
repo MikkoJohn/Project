@@ -22,14 +22,19 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                            <div class="row">
-                             <div class="col col-sm-6">
+                             <div class="col col-sm-4">
                              <div class="form-group">
                                     <input type="text" class="form-control" name="mname" placeholder="Machine Name">
                                   </div>
                               </div>
-                             <div class="col col-sm-6">
+                             <div class="col col-sm-4">
                              <div class="form-group">
                                     <input type="text" class="form-control" name="c_name" placeholder="Client Name">
+                                  </div>
+                                </div>
+                               <div class="col col-sm-4">
+                             <div class="form-group">
+                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name">
                                   </div>
                                 </div>
                              <div class="col col-sm-12">
@@ -127,19 +132,24 @@ $acctype = $_SESSION['sess_type'];
                                     <input  type="date" class="form-control" placeholder="" name="d_received">
                                   </div>
                                 </div>
-                                <div class="col col-sm-4">
+                                <div class="col col-sm-3">
                                 <div class="form-group">                          
                                     <input  type="number" class="form-control" placeholder="No of Out" name="no_out">
                                   </div>
                                 </div>
-                                <div class="col col-sm-4">
+                                <div class="col col-sm-3">
                                 <div class="form-group">                          
                                     <input  type="number" class="form-control" placeholder="No of Sheet" name="no_sheet">
                                   </div>
                                 </div>
-                                <div class="col col-sm-4">
+                                <div class="col col-sm-3">
                                 <div class="form-group">                          
                                     <input  type="number" class="form-control" placeholder="No of Ream" name="no_ream">
+                                  </div>
+                                </div>
+                                <div class="col col-sm-3">
+                                <div class="form-group">                          
+                                    <input  type="text" class="form-control" placeholder="Status" name="status">
                                   </div>
                                 </div>
                             <div class="col-lg-12 controls">
@@ -159,6 +169,7 @@ $acctype = $_SESSION['sess_type'];
   
   $mname = $_POST['mname'];
   $c_name = $_POST['c_name'];
+  $p_name = $_POST['p_name'];
   $d_date = $_POST['d_date'];
   $c_by = $_POST['c_by'];
   $n_by = $_POST['n_by'];
@@ -180,14 +191,14 @@ $acctype = $_SESSION['sess_type'];
   $no_out = $_POST['no_out'];
   $no_sheet = $_POST['no_sheet'];
   $no_ream = $_POST['no_ream'];
-  
+  $status = $_POST['status'];
   $now = date("Y-m-d H:i:s");
-  if(empty($mname) || empty($c_name) || empty($d_date) || empty($c_by) || empty($n_by) || empty($pages) || empty($quantity) || empty($a_size) || empty($title) || empty($p_cover) || empty($color) || empty($binding) || empty($lamination) || empty($remarks) || empty($s_size) || empty($p_size) || empty($start) || empty($finish) || empty($t_received) || empty($d_received) || empty($no_out) || empty($no_sheet) || empty($no_ream)){
+  if(empty($mname) || empty($c_name) || empty($c_name) || empty($d_date) || empty($c_by) || empty($n_by) || empty($pages) || empty($quantity) || empty($a_size) || empty($title) || empty($p_cover) || empty($color) || empty($binding) || empty($lamination) || empty($remarks) || empty($s_size) || empty($p_size) || empty($start) || empty($finish) || empty($t_received) || empty($d_received) || empty($no_out) || empty($no_sheet) || empty($no_ream) || empty($status)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  
-  $stmt = $conn->prepare("INSERT INTO `job_ticket`(`date_time_created`, `machine_name`, `delivery_date`, `checked_by`, `noted_by`, `client_name`, `title`, `quantity`, `actual_size`, `pages`, `paper_cover`, `color`, `binding`, `lamination`, `remarks`, `stock_size`, `printing_size`, `start`, `finish`, `time_received`, `date_received`, `no_of_out`, `no_of_sheet`, `no_of_ream`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                              $stmt->bind_param('ssssssssssssssssssssssss', $now,$mname,$d_date,$c_by,$n_by,$c_name,$title,$quantity,$a_size,$pages,$p_cover,$color,$binding,$lamination,$remarks,$s_size,$p_size,$start,$finish,$t_received,$d_received,$no_out,$no_sheet,$no_ream);
+  $stmt = $conn->prepare("INSERT INTO `job_ticket`(`date_time_created`, `machine_name`,`proj_name` ,`delivery_date`, `checked_by`, `noted_by`, `client_name`, `title`, `quantity`, `actual_size`, `pages`, `paper_cover`, `color`, `binding`, `lamination`, `remarks`, `stock_size`, `printing_size`, `start`, `finish`, `time_received`, `date_received`, `no_of_out`, `no_of_sheet`, `no_of_ream`,`status`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                              $stmt->bind_param('ssssssssssssssssssssssssss', $now,$mname,$p_name,$d_date,$c_by,$n_by,$c_name,$title,$quantity,$a_size,$pages,$p_cover,$color,$binding,$lamination,$remarks,$s_size,$p_size,$start,$finish,$t_received,$d_received,$no_out,$no_sheet,$no_ream,$status);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';

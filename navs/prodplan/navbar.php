@@ -83,7 +83,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="modal/prodplan/addoperator">
           <i class="#"></i>
           <span>Add Operator</span>
         </a>
@@ -91,7 +91,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="modal/prodplan/addmachine.php">
+        <a class="nav-link" href="modal/prodplan/addmachine">
           <i class="#"></i>
           <span>Add Machine</span></a>
       </li>

@@ -65,6 +65,7 @@ $acctype = $_SESSION['sess_type'];
                                       <option value="5">Division Support</option>
                                       <option value="6">Sales</option>
                                       <option value="7">Operator</option>
+                                      <option value="8">Operator</option>
                                     </select>
                                   </div>
                                 </div>

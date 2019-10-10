@@ -5,8 +5,6 @@
     include '../../includes/header.php';
 $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
-
-
                    ?>
    
    <a href="../../index_admin" class="btn btn-primary" style="margin:2%">BACK</a>
@@ -67,6 +65,7 @@ $acctype = $_SESSION['sess_type'];
                                       <option value="5">Division Support</option>
                                       <option value="6">Sales</option>
                                       <option value="7">Operator</option>
+                                      <option value="8">General Services</option>
                                     </select>
                                   </div>
                                 </div>
