@@ -86,6 +86,15 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_sales';</script>";
                     }
+                elseif ($uname == $dbusername && $pass == $dbpassword && "8" == $dbusertype) 
+                    {
+                        session_start();
+                         $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_type'] = $dbusertype;
+                         $_SESSION['acct_name'] = $acct_name;
+                           /* Redirect browser */
+                          echo "<script type='text/javascript'>location.href = 'index_genserv';</script>";
+                    }
                 
                 } 
                 else 

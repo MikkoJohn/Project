@@ -12,7 +12,8 @@ if(!isset($_SESSION["sess_user"])){
 
 }
 	
-
+$currmonth =date('M');
+$curryear =date('Y');
 
 ?>
 
@@ -67,7 +68,7 @@ include 'config.php';
             </li>
      
 
-            <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">      
@@ -113,6 +114,57 @@ include 'config.php';
             <h1 class="h3 mb-0 text-gray-800">ADMIN DASHBOARD</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
+
+
+         <div class="card shadow mb-4">
+            <div class="card-body">
+
+<div class="row">
+    <div class="col col-lg-3">
+        <div class="icon" style="background-color: blue;">
+            <a href="view_plan.php" style="cursor: pointer;"><i class="fa fa-file-text" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+          </div>       
+     <h4 class="font">Queue for Job Orders</h4>
+   <?php
+
+   ?>             
+                
+    </div>
+    <div class="col col-lg-3">
+        <div class="icon" style="background-color: #ff0048;">
+           <a href="view_done_plan.php" style="cursor: pointer;"><i class="fa fa-check-square-o" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+          </div>       
+                 <h4 class="font">Completed Job Order <?php echo $currmonth; ?></h4>
+              <?php
+
+   ?>         
+    </div>
+    <div class="col col-lg-3">
+        <div class="icon" style="background-color: #44f733;">
+         <a href="view_all_plan.php" style="cursor: pointer;"><i class="fa fa-area-chart" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+          </div>       
+                 <h4 class="font">Total Job Order for <?php echo $curryear; ?></h4>
+    <?php
+
+
+
+    ?>
+    </div>
+    <div class="col col-lg-3">
+        <div class="icon" style="background-color: orange;">
+        <a href="view_all_done.php"><i class="fa fa-calendar-check-o" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+          </div>    
+           <h4 class="font">Total Completed Job Order for <?php echo $curryear; ?></h4>   
+<?php
+
+
+   ?>         
+                
+    </div>
+</div>
+</div>
+</div>
+
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">

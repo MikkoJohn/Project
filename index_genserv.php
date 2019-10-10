@@ -1,14 +1,25 @@
-<?php 
-session_start();
+<?php
+session_start(); 
 if(!isset($_SESSION["sess_user"])){
-  header("location:login.php");
+  header("location:index.php");
+}else if ($_SESSION["sess_type"] != 8){
+  header("location:index?access=denied");
+  session_unset();
+    session_destroy();
+    session_start();
+ 
 } else {
-  
+
 }
+  
 ?>
 <?php 
-include('navs/phheader.php'); 
-include('navs/phnavbar.php');
+include('navs/genserv/header.php'); 
+include('navs/genserv/navbar.php');
+//include('includes/header.php'); 
+//include('includes/navbar.php');
+//include 'includes/link.php';
+include 'config.php';
 
 ?>
 
@@ -55,10 +66,11 @@ include('navs/phnavbar.php');
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome User!</span>
-                <img class="img-profile rounded-circle">
-              </a>
+               <form method="POST" action="logout.php">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
+                </span>
+                <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
+              
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
