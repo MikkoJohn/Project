@@ -122,7 +122,7 @@ include 'config.php';
 <div class="row">
     <div class="col col-lg-3">
         <div class="icon" style="background-color: blue;">
-            <a href="view_plan.php" style="cursor: pointer;"><i class="fas fa-file-alt" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+            <a href="view_plan.php" style="cursor: pointer;"><i class="fas fa-list" style="color:white;font-size: 50px;padding: 10px;"></i></a>
           </div>       
      <h4 class="font">Queue for Job Orders</h4>
    <?php
@@ -156,8 +156,6 @@ include 'config.php';
           </div>    
            <h4 class="font">Total Completed Job Order for <?php echo $curryear; ?></h4>   
 <?php
-
-
    ?>         
                 
     </div>
