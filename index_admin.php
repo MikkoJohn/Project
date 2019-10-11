@@ -77,7 +77,7 @@ include 'config.php';
                <form method="POST" action="logout.php">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
-                <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
+                <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fas fa-sign-out-alt">Log-out</i></button></form>
 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -122,7 +122,7 @@ include 'config.php';
 <div class="row">
     <div class="col col-lg-3">
         <div class="icon" style="background-color: blue;">
-            <a href="view_plan.php" style="cursor: pointer;"><i class="fa fa-file-text" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+            <a href="view_plan.php" style="cursor: pointer;"><i class="fas fa-file-alt" style="color:white;font-size: 50px;padding: 10px;"></i></a>
           </div>       
      <h4 class="font">Queue for Job Orders</h4>
    <?php
@@ -132,7 +132,7 @@ include 'config.php';
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: #ff0048;">
-           <a href="view_done_plan.php" style="cursor: pointer;"><i class="fa fa-check-square-o" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+           <a href="view_done_plan.php" style="cursor: pointer;"><i class="fas fa-tasks" style="color:white;font-size: 50px;padding: 10px;"></i></a>
           </div>       
                  <h4 class="font">Completed Job Order <?php echo $currmonth; ?></h4>
               <?php
@@ -141,7 +141,7 @@ include 'config.php';
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: #44f733;">
-         <a href="view_all_plan.php" style="cursor: pointer;"><i class="fa fa-area-chart" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+         <a href="view_all_plan.php" style="cursor: pointer;"><i class="fas fa-chart-area" style="color:white;font-size: 50px;padding: 10px;"></i></a>
           </div>       
                  <h4 class="font">Total Job Order for <?php echo $curryear; ?></h4>
     <?php
@@ -152,7 +152,7 @@ include 'config.php';
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: orange;">
-        <a href="view_all_done.php"><i class="fa fa-calendar-check-o" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+        <a href="view_all_done.php"><i class="far fa-calendar-check" style="color:white;font-size: 50px;padding: 10px;"></i></a>
           </div>    
            <h4 class="font">Total Completed Job Order for <?php echo $curryear; ?></h4>   
 <?php
