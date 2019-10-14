@@ -1,3 +1,5 @@
+  <script src="../dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../dist/sweetalert.css">
    <a href="index_admin" class="btn btn-primary" style="margin:2%">BACK</a>
 <?php
 session_start();
@@ -73,6 +75,24 @@ if(isset($_POST['delete_machine'])){
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Job Ticket')";
+                              mysqli_query($conn,$sql1);
+                              } 
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
+}else if(isset($_POST['delete_account'])){
+  $acc_id = $_POST['acc_id'];
+
+  $stmt = $conn->prepare("DELETE FROM `tbl_useraccounts` WHERE `ua_id` = ?");
+  
+                              $stmt->bind_param('s',$acc_id);
+
+                              if($stmt->execute()){
+                                echo'<script>swal("Successfully Deleted!","", "success");</script>';
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Account')";
                               mysqli_query($conn,$sql1);
                               } 
                               else {

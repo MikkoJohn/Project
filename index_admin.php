@@ -166,7 +166,7 @@ include 'config.php';
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Accounts</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Account Transactions</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -227,7 +227,89 @@ include 'config.php';
  });  
  </script>  
 
+            <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">User Accounts</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
+                    <table id="accounts" class="table table-striped table-bordered" width="100%">  
+                        <thead>  
+                          <tr>  
+                              <th><center>Account Name</center></th>
+                              <th><center>Account Designation</center></th>
+                              <th><center>Action</center></th>
+                               </tr>  
+                        </thead> 
+                        <tbody>
+                        <?php
+                        $sql = 'SELECT * FROM tbl_useraccounts where user_type != 1';
+                        $stmt = mysqli_stmt_init($conn);
+                        mysqli_stmt_prepare($stmt, $sql);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+                           
+                           while($row = mysqli_fetch_assoc($result)){
+                                echo '
+                                    <tr>
+                                       <td><center>'.$row['uname'].'<center></td>
+                                        ';
+                            if($row['user_type'] == 1){
+                              echo '<td><center>Admin</center></td>';
+                            }else if($row['user_type'] == 2){
+                               echo '<td><center>Production Head</center></td>';
+                            }else if($row['user_type'] == 3){
+                               echo '<td><center>Production Assisstant</center></td>';
+                            }else if($row['user_type'] == 4){
+                               echo '<td><center>Production Planner</center></td>';
+                            }else if($row['user_type'] == 5){
+                               echo '<td><center>Division Supervisor</center></td>';
+                            }else if($row['user_type'] == 6){
+                               echo '<td><center>Sale</center>s</td>';
+                            }else if($row['user_type'] == 7){
+                               echo '<td><center>Operator</center></td>';
+                            }else if($row['user_type'] == 8){
+                               echo '<td><center>General Services</center></td>';
+                            }else if($row['user_type'] == 9){
+                               echo '<td><center>General Services Assistant</center></td>';
+                            }
+                                 echo '       
+                                        <td><center>
+                          <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editaccount.php">
+                       
+                          <input type="hidden" name="acc_id" value="'.$row['ua_id'].'">
+                          <button name="view_account" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="delete">
+         <input type="hidden" name="acc_id" value="'.$row['ua_id'].'">
+                        <button name="delete_account" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+        </form>  
+        </div>
+        </div></center>
 
+
+
+
+                                        </td>
+                                    </tr>
+                                ';
+                           }
+
+                        ?>
+                    
+                   </tbody>
+                        
+                </table>
+  <script>  
+ $(document).ready(function(){  
+      $('#accounts').DataTable();  
+ });  
+ </script>  
 
                
           </div>
