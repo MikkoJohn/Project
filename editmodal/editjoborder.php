@@ -112,7 +112,8 @@ $acctype = $_SESSION['sess_type'];
                           }
                           ?>
                            <div class="col-lg-12 controls">
-                                      <input type="submit" name="updatejo" class="btn btn-warning btn-md">
+                             <button name="updatejo" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>
+                                    
                                     </div>
                                 </div>
                               </div>

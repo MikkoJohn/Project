@@ -159,6 +159,60 @@
                //include ('modal/admin/addoperator.php');
               ?>
       </li>
+
+       <br>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+       Manage Settings
+      </div>
+       
+        <li class="nav-item">
+        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Add Client</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
+
+      <li class="nav-item">
+        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Add Suppliers</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
+
+      <li class="nav-item">
+        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Add Operators</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
+
+      <li class="nav-item">
+        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Add Pre-Press Activities</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
+
+      <li class="nav-item">
+        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Add Press Activities</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
+
+      <li class="nav-item">
+        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Add Post-Press Activities</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
     </ul>
     <!-- End of Sidebar -->
 
