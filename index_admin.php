@@ -122,7 +122,7 @@ include 'config.php';
 <div class="row">
     <div class="col col-lg-3">
         <div class="icon" style="background-color: blue;">
-            <a href="view_plan.php" style="cursor: pointer;"><i class="fas fa-list" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+            <a href="view_plan.php" style="cursor: pointer;"><i class="fas fa-list  " style="color:white;font-size: 50px;padding: 10px;"></i></a>
           </div>       
      <h4 class="font">Queue for Job Orders</h4>
    <?php
@@ -174,10 +174,10 @@ include 'config.php';
                     <table id="accounts" class="table table-striped table-bordered" width="100%">  
                         <thead>  
                           <tr>  
-                              <td><center>Account Name</center></td>
-                              <td><center>Account Designation</center></td>
-                              <td><center>Date</center></td>
-                              <td><center>Action Done</center></td>
+                              <th><center>Account Name</center></th>
+                              <th><center>Account Designation</center></th>
+                              <th><center>Date</center></th>
+                              <th><center>Action Done</center></th>
                                </tr>  
                         </thead> 
                         <tbody>
@@ -245,12 +245,12 @@ include 'config.php';
                     <table id="jo" class="table table-striped table-bordered" width="100%">  
                         <thead>  
                           <tr>  
-                              <td><center>J.O. No.</center></td>
-                              <td><center>Project Name</center></td>
-                              <td><center>Client Name</center></td>
-                              <td><center>Date Created</center></td>
-                              <td><center>Status</center></td>
-                              <td width="15%"><center>Actions</center></td>
+                              <th><center>J.O. No.</center></th>
+                              <th><center>Project Name</center></th>
+                              <th><center>Client Name</center></th>
+                              <th><center>Date Created</center></th>
+                              <th><center>Status</center></th>
+                              <th width="15%"><center>Actions</center></th>
                   
                                </tr>  
                         </thead> 
@@ -315,7 +315,7 @@ include 'config.php';
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="jtickets" width="100%" cellspacing="0">
+                <table class="table table-striped table-bordered" id="jtickets" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th><center>J.T. No.</center></th>
@@ -326,15 +326,42 @@ include 'config.php';
                       <th><center>Actions</center></th>
                     </tr>
                   </thead>
-                 
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
+          <?php
+            $sql="SELECT * FROM job_ticket";
+            $result = mysqli_query($conn,$sql);
+            while($row = mysqli_fetch_assoc($result)){
+                echo '
+                  <tr>
+                      <td><center>'.$row['ticket_no'].'</center></td>
+                      <td><center>'.$row['proj_name'].'</center></td>
+                      <td><center>'.$row['client_name'].'</center></td>
+                      <td><center>'.$row['date_time_created'].'</center></td>
+                      <td><center>'.$row['status'].'</center></td>
+                      <td><center>
+                      <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editjobticket.php">
+                       
+                          <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                          <button name="view_jticket" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="delete">
+         <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                        <button name="delete_jticket" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+        </form>  
+        </div>
+        </div></center>
+                  </td>
+                  </tr>
+
+                ';
+
+
+            }
+          ?>
+                       
                    
                 </table>
           </div>
@@ -352,10 +379,10 @@ include 'config.php';
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="operator" width="100%" cellspacing="0">
+                <table class="table table-striped table-bordered" id="operator" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th><center>Operator ID No</center>.</th>
+                      <th><center>Operator ID No</center></th>
                       <th><center>Operator Name</center></th>
                       <th><center>Division</th>
                       <th><center>Machine Assignment</center></th>
@@ -398,7 +425,7 @@ include 'config.php';
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="machine" width="99%" cellspacing="0">
+                <table class="table table-striped table-bordered" id="machine" width="99%" cellspacing="0">
                   <thead>
                     <tr>
                       <th width="13%"><center>Machine ID No</center></th>
@@ -428,13 +455,13 @@ include 'config.php';
                                     <form method="POST" action="editmodal/editmachine.php">
                        
                           <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
-                          <button name="view_machine" class="btn btn-success" value="" id="" ><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                          <button name="view_machine" class="btn btn-success" style="width:100%;" ><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
                                     </form>
                                     </div>
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
-                        <button name="delete_machine" class="btn btn-danger" value="" id="" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_machine" class="btn btn-danger" style="width:100%;" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
         </form>  
         </div>
         </div>
@@ -460,6 +487,70 @@ include 'config.php';
       $('#machine').DataTable();  
  });  
  </script> 
+
+      <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Materials</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="material" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th><center>Material ID</center></th>
+                      <th><center>Item Name</center></th>
+                      <th><center>Item Description</th>
+                      <th><center>Category</center></th>
+                      <th><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+        <?php
+          $sql = "SELECT * FROM materials";
+          $result = mysqli_query($conn, $sql);
+          while ($row=mysqli_fetch_assoc($result)){
+            echo '
+              <tr>
+                  <td><center>'.$row['material_id'].'</center></td>
+                  <td><center>'.$row['item_name'].'</center></td>
+                  <td><center>'.$row['item_desc'].'</center></td>
+                  <td><center>'.$row['category'].'</center></td>
+                  <td><center>
+                    <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editmaterial.php">
+                       
+                          <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                          <button name="view_material" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="delete">
+         <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="delete_material" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+        </form>  
+        </div>
+        </div></center>
+        </td>
+              </tr>
+            ';
+          }
+        ?>               
+                              
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#material').DataTable();  
+ });  
+ </script> 
+
+
+
+
+
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
