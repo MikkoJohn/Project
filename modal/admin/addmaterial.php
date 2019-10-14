@@ -34,7 +34,13 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="category" placeholder="Category">
+                              <select class="form-control" name="category">
+                                <option selected="true" value="NULL" disabled="disabled">SELECT CATEGORY</option>
+                                  <option value="Paper">Paper</option>
+                                  <option value="Ink">Ink</option>
+                                  <option value="Chemicals">Chemicals</option>
+                                </select>
+                                   
                                   </div>
                             </div>
                             <div class="col col-sm-12">
@@ -44,7 +50,17 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="u_measure" placeholder="Unit Measure">
+                                <select name="u_measure" class="form-control">
+                                  <option selected="true" value="NULL" disabled>SELECT UNIT OF MEASURE</option>
+                                  <option value="Kilogram">Kilogram</option>
+                                  <option value="Centimeter">Centimeter</option>
+                                  <option value="Millimeter">Millimeter</option>
+                                  <option value="Meter">Meter</option>
+                                  <option value="Ream">Ream</option>
+                                  <option value="Liter">Liter</option>
+                                  <option value="Per Piece">Per Piece</option>
+                                  <option value="Per Box">Per Box</option>
+                                </select>
                                   </div>
                             </div>
                              <div class="col col-sm-12">

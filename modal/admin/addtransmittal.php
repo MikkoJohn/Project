@@ -5,8 +5,7 @@
     include '../../includes/header.php';
 $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
-echo $accname;
-echo $acctype;
+
   ?>
 
    <a href="../../index_admin" class="btn btn-primary" style="margin:2%">BACK</a>
@@ -61,7 +60,11 @@ echo $acctype;
                                 </div>
                              <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input  type="text" class="form-control" name="status" placeholder="Status">
+                                <select class="form-control" name="status">
+                                  <option value="Pending">Pending</option>
+                                  <option value="Approved">Approved</option>
+                                </select>
+                                   
                                   </div>
                                 </div>
                             

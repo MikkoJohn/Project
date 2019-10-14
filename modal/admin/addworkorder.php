@@ -35,7 +35,13 @@ $acctype = $_SESSION['sess_type'];
                                     <input type="text" class="form-control" name="instruction" placeholder="Instruction">
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="status" placeholder="Status">
+                                <select class="form-control">
+                                  <option selected="true" value="NULL" disabled="disabled" name="status">SELECT STATUS</option>
+                                  <option value="Pending">Pending</option>
+                                  <option value="Approved">Approved</option>
+                                  <option value="Disapproved">Disapproved</option>
+                                </select>
+                                   
                                   </div>
                             
                             <div class="col-lg-12 controls">

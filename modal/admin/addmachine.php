@@ -1,9 +1,12 @@
   <?php  
-  session_start();
+  
     include_once 'config.php';
     include '../../includes/link.php';
+    session_start();
     $accname = $_SESSION['acct_name'];
     $acctype = $_SESSION['sess_type'];
+    // echo'<script>swal("Successfully Added!","", "success");</script>';
+    // echo'<script>alert("Successfully Added!");</script>';
   ?>
     <!-- OperatorModal -->
    <!--  --> 
@@ -25,7 +28,14 @@
                                     <input type="text" class="form-control" name="mname" placeholder="Machine Name">
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="mdivision" placeholder="Machine Division">
+                                  <select name="mdivision" class="form-control">
+                                    <option selected="true" value="NULL" disabled>SELECT DIVISION</option>
+                                    <option value="Pre-Press">Pre-Press</option>
+                                    <option value="Press">Press</option>
+                                    <option value="Post-Press">Post-Press</option>
+                                  </select>     
+
+                                   <!--  <input type="text" class="form-control" name="mdivision" placeholder="Machine Division"> -->
                                   </div>
                             <div style="margin-top:10px" class="form-group">
                                     <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed">
@@ -43,7 +53,15 @@
                                     <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing Area">
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                    <input  type="text" class="form-control" name="mstatus" placeholder="Machine Status">
+
+                                   <select name="mstatus" class="form-control">
+                                    <option selected="true" value="NULL" disabled>SELECT STATUS</option>
+                                    <option value="Available">Available</option>
+                                    <option value="In Use">In Use</option>
+                                    <option value="Under Maintenance">Under Maintenance</option>
+                                  </select>  
+
+                                    <!-- <input  type="text" class="form-control" name="mstatus" placeholder="Machine Status"> -->
                                   </div>
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="addmachine" class="btn btn-success">

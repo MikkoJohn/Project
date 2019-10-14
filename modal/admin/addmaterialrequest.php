@@ -55,7 +55,11 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                              <div class="col col-sm-12">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="p_status" placeholder="Pending Status">
+                                <select class="form-control" name="p_status">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Approved">Approved</option>
+                                </select>
+                                   
                                   </div>
                             </div>
                              <div class="col col-sm-12">
