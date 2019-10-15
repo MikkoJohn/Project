@@ -85,7 +85,7 @@
       <li class="nav-item">
         <a href="modal/prodhead/addoperator" class="nav-link" data-toggle="modal" data-target="#AddOperator">
           
-          <span>Add Account</span></a>
+          <span>Add Account </span></a>
              
       </li>
 

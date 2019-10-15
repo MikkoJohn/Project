@@ -3,7 +3,7 @@
 
 //load.php
 
-$connect = new PDO('mysql:host=localhost;dbname=testing', 'root', '');
+$connect = new PDO('mysql:host=localhost;dbname=liseme', 'root', '');
 
 $data = array();
 
