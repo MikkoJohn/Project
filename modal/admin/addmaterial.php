@@ -24,17 +24,17 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="i_name" placeholder="Item Name">
+                                    <input type="text" class="form-control" name="i_name" placeholder="Item Name" required>
                                   </div>
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="i_type" placeholder="Item Type">
+                                    <input type="text" class="form-control" name="i_type" placeholder="Item Type" required>
                                   </div>
                                 </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
-                              <select class="form-control" name="category">
+                              <select class="form-control" name="category" required>
                                 <option selected="true" value="NULL" disabled="disabled">SELECT CATEGORY</option>
                                   <option value="Paper">Paper</option>
                                   <option value="Ink">Ink</option>
@@ -45,13 +45,13 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                  <input type="number" class="form-control" name="quantity" placeholder="Quantity">
+                                  <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                <select name="u_measure" class="form-control">
-                                  <option selected="true" value="NULL" disabled>SELECT UNIT OF MEASURE</option>
+                                <select name="u_measure" class="form-control" required>
+                                  <option selected="true" value="NULL" disabled>SELECT UNIT OF MEASUREMENT</option>
                                   <option value="Kilogram">Kilogram</option>
                                   <option value="Centimeter">Centimeter</option>
                                   <option value="Millimeter">Millimeter</option>
@@ -63,11 +63,11 @@ $acctype = $_SESSION['sess_type'];
                                 </select>
                                   </div>
                             </div>
-                             <div class="col col-sm-12">
+                           <!--   <div class="col col-sm-12">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="size" placeholder="Size">
                                   </div>
-                            </div>
+                            </div> -->
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="addmaterial" class="btn btn-success">
                                     </div>
@@ -87,14 +87,14 @@ error_reporting(0);
   $category = $_POST['category'];
   $quantity = $_POST['quantity'];
   $u_measure = $_POST['u_measure'];
-  $size = $_POST['size'];
- 
-  if(empty($i_name) || empty($i_type) || empty($category) || empty($quantity) || empty($u_measure) || empty($size)){
+ // $size = $_POST['size'];
+ $size = "";
+  if(empty($i_name) || empty($i_type) || empty($category) || empty($quantity) || empty($u_measure)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  
   $stmt = $conn->prepare("INSERT INTO `materials`(`item_name`, `item_desc`, `category`, `quantity`, `size`, `unit_of_measure`) VALUES (?,?,?,?,?,?)");
-                              $stmt->bind_param('ssssss', $i_name,$i_type,$category,$quantity,$u_measure,$size);
+                              $stmt->bind_param('ssssss', $i_name,$i_type,$category,$quantity,$size,$u_measure);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';

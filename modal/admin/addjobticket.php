@@ -24,137 +24,159 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="jo_no" placeholder="Job Order No">
+                                    <input type="text" class="form-control" name="jo_no" placeholder="Job Order No" required>
                                   </div>
                               </div>
                              <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="mname" placeholder="Machine Name">
+                                <select class="form-control" name="mname" required>
+                                  <option selected="true" value="NULL" disabled>SELECT MACHINE</option>
+                                <?php
+                            $sql="SELECT * FROM machine";
+                            $result = mysqli_query($conn,$sql);
+                            while($row=mysqli_fetch_assoc($result)){
+                              echo '<option value="'.$row['machine_name'].'">'.$row['machine_name'].'</option>';
+                            }
+                                ?>
+                                </select>
+                                 <!--    <input type="text" class="form-control" name="mname" placeholder="Machine Name"> -->
                                   </div>
                               </div>
                              <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="c_name" placeholder="Client Name">
+                                    <input type="text" class="form-control" name="c_name" placeholder="Client Name" required>
                                   </div>
                                 </div>
                                <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name">
+                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-12">
                             <div class="form-group">
                               <h5>Delivery Date:</h5>
-                                    <input type="date" class="form-control" name="d_date" placeholder="">
+                                    <input type="date" class="form-control" name="d_date" placeholder="" required>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="c_by" placeholder="Checked By">
+                                    <input type="text" class="form-control" name="c_by" placeholder="Checked By" required>
                                   </div>
                             </div>
                             <div class="col col-lg-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="n_by" placeholder="Noted By">
+                                    <input type="text" class="form-control" name="n_by" placeholder="Noted By" required>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="title" placeholder="Title">
+                                    <input type="text" class="form-control" name="title" placeholder="Title" required>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity">
+                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input  type="number" class="form-control" name="a_size" placeholder="Actual Size">
+                                    <input  type="text" class="form-control" name="a_size" placeholder="Actual Size" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input  type="text" class="form-control" name="pages" placeholder="Pages">
+                                    <input  type="number" class="form-control" name="pages" placeholder="Pages" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-4">
                               <div class="form-group">
-                                    <input  type="text" class="form-control" name="p_cover" placeholder="Paper Cover">
+                                    <input  type="text" class="form-control" name="p_cover" placeholder="Paper Cover" required>
                                   </div>
                                 </div>
                               <div class="col col-sm-4">
                               <div class="form-group">
-                                    <input  type="text" class="form-control" name="color" placeholder="Color">
+                                    <input  type="text" class="form-control" name="color" placeholder="Color" required>
+                                  </div>
+                                </div>
+                                <div class="col col-sm-4">
+                                <div class="form-group">    
+                                    <select class="form-control" name="binding" required>
+                                      <option selected="true" value="NULL" disabled>SELECT BINDING METHOD</option>
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                    </select>
+                                    <!-- <input  type="text" class="form-control" placeholder="Binding" name="binding"> -->
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
                                 <div class="form-group">                          
-                                    <input  type="text" class="form-control" placeholder="Binding" name="binding">
+                                    <input  type="text" class="form-control" placeholder="Lamination" name="lamination" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
                                 <div class="form-group">                          
-                                    <input  type="text" class="form-control" placeholder="Lamination" name="lamination">
-                                  </div>
-                                </div>
-                                <div class="col col-sm-4">
-                                <div class="form-group">                          
-                                    <input  type="text" class="form-control" placeholder="Remarks" name="remarks">
+                                    <input  type="text" class="form-control" placeholder="Remarks" name="remarks" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                    <input  type="text" class="form-control" placeholder="Stock Size" name="s_size">
+                                    <input  type="text" class="form-control" placeholder="Stock Size" name="s_size" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">                          
-                                    <input  type="text" class="form-control" placeholder="Printing Size" name="p_size">
+                                    <input  type="text" class="form-control" placeholder="Printing Size" name="p_size" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Start:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="start">
+                                    <input  type="date" class="form-control" placeholder="" name="start" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Finish:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="finish">
+                                    <input  type="date" class="form-control" placeholder="" name="finish" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Time Received:</h5>                          
-                                    <input  type="time" class="form-control" placeholder="" name="t_received">
+                                    <input  type="time" class="form-control" placeholder="" name="t_received" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Date Received:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="d_received">
+                                    <input  type="date" class="form-control" placeholder="" name="d_received" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
                                 <div class="form-group">                          
-                                    <input  type="number" class="form-control" placeholder="No of Out" name="no_out">
+                                    <input  type="number" class="form-control" placeholder="No of Out" name="no_out" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
                                 <div class="form-group">                          
-                                    <input  type="number" class="form-control" placeholder="No of Sheet" name="no_sheet">
+                                    <input  type="number" class="form-control" placeholder="No of Sheet" name="no_sheet" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
                                 <div class="form-group">                          
-                                    <input  type="number" class="form-control" placeholder="No of Ream" name="no_ream">
+                                    <input  type="number" class="form-control" placeholder="No of Ream" name="no_ream" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
                                 <div class="form-group">                          
-                                    <input  type="text" class="form-control" placeholder="Status" name="status">
+                                    <input  type="text" class="form-control" placeholder="Status" name="status" required>
                                   </div>
                                 </div>
                             <div class="col-lg-12 controls">

@@ -23,19 +23,19 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No.">
+                                    <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="j_desc" placeholder="Job Description">
+                                    <input type="text" class="form-control" name="j_desc" placeholder="Job Description"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="s_name" placeholder="Supplier Name">
+                                    <input type="text" class="form-control" name="s_name" placeholder="Supplier Name"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="instruction" placeholder="Instruction">
+                                    <input type="text" class="form-control" name="instruction" placeholder="Instruction"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                <select class="form-control">
+                                <select class="form-control" required>
                                   <option selected="true" value="NULL" disabled="disabled" name="status">SELECT STATUS</option>
                                   <option value="Pending">Pending</option>
                                   <option value="Approved">Approved</option>

@@ -26,7 +26,7 @@ $acctype = $_SESSION['sess_type'];
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
                                   
-                                   <input  type="text" class="form-control" name="fname" value="" placeholder="First Name">                                       
+                                   <input  type="text" class="form-control" name="fname" value="" placeholder="First Name" required>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-4">
@@ -38,25 +38,25 @@ $acctype = $_SESSION['sess_type'];
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
                                   
-                                   <input type="text" class="form-control" name="lname" value="" placeholder="Last Name">                                       
+                                   <input type="text" class="form-control" name="lname" value="" placeholder="Last Name" required>                                       
                                     </div>
                           </div>
                           <div class="col col-md-12">
                             <div style="margin-bottom: 25px" class="input-group">
                                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                   <input id="uname" type="text" class="form-control" name="uname" value="" placeholder="Username">                                       
+                                   <input id="uname" type="text" class="form-control" name="uname" value="" placeholder="Username" required>                                       
                                     </div>
                             </div>
                              <div class="col col-md-12">
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="pass" type="password" class="form-control" name="pass" placeholder="Password">
+                                        <input id="pass" type="password" class="form-control" name="pass" placeholder="Password" required>
                                     </div>
                                   </div>
                               <div class="col col-md-6">
                                 <div style="margin-top:10px" class="form-group">
                                     <!-- Button -->
-                                    <select class="form-control" name="acc">
+                                    <select class="form-control" name="acc" id="add_acc" required>
                                       <option selected="true" value="NULL" disabled="disabled">SELECT DESIGNATION</option>
                                       <!-- <option value="1">Admin</option> -->
                                       <option value="2">Production Head</option>
@@ -66,13 +66,14 @@ $acctype = $_SESSION['sess_type'];
                                       <option value="6">Sales</option>
                                       <option value="7">Operator</option>
                                       <option value="8">General Services</option>
+                                      <option value="9">General Services Assistant</option>
                                     </select>
                                   </div>
                                 </div>
                                 <div class="col col-md-6">
                                 <div style="margin-top:10px" class="form-group">
                                     <!-- Button -->
-                                    <select class="form-control" name="div">
+                                    <select class="form-control" name="div" id="divi">
                                       <option selected="true" value="NULL" disabled="disabled">SELECT DIVISION</option>
                                       <option value="admin">Admin</option>
                                       <option value="prepress">Pre-Press</option>
@@ -91,7 +92,21 @@ $acctype = $_SESSION['sess_type'];
                     </div>  
                 </div>                      
             </div>
-                   
+<script>
+  $(document).ready(function(){
+$('#divi').show();
+  });
+  $(document).ready(function(){
+    $('#add_acc').change(function(){
+      if($(this).val()=="6"){
+        $('#divi').hide();
+      }else {
+        $('#divi').show();
+      }
+    });
+  });
+
+</script>                   
    
 <?php if(isset($_POST['addaccount'])){
 //error_reporting(0);
@@ -101,8 +116,11 @@ $acctype = $_SESSION['sess_type'];
 $fname = $_POST['fname'];
 $mname = $_POST['mname'];
 $lname = $_POST['lname'];
+if(empty($div)){
+  $div = "";
+}else {
 $div = $_POST['div'];
-
+}
 
 //$uname = $_POST['uname'];
   if(empty($uname) || empty($pass) || empty($acc) || empty($fname) || empty($lname)){
@@ -115,7 +133,7 @@ $div = $_POST['div'];
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","","success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Account')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Account')";
                               mysqli_query($conn,$sql1);
                               } 
                               else {

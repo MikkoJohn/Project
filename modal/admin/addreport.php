@@ -24,80 +24,80 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="prod_unit" placeholder="Producing Unit">
+                                    <input type="text" class="form-control" name="prod_unit" placeholder="Producing Unit" required>
                                   </div>
                               </div>
                              <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="operator_unit" placeholder="Operator Unit">
+                                    <input type="text" class="form-control" name="operator_unit" placeholder="Operator Unit" required>
                                   </div>
                                 </div>
                             <div class="col col-sm-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="operator_name" placeholder="Operator Name">
+                                    <input type="text" class="form-control" name="operator_name" placeholder="Operator Name" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
                               <h5>Report Date:</h5>
-                                  <input type="date" class="form-control" name="report_date">
+                                  <input type="date" class="form-control" name="report_date" required>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="job_title" placeholder="Job Title">
+                                    <input type="text" class="form-control" name="job_title" placeholder="Job Title" required>
                                   </div>
                             </div>
                              <div class="col col-sm-4">
                             <div class="form-group">
-                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity">
+                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="type_job" placeholder="Type of Job">
+                                    <input type="text" class="form-control" name="type_job" placeholder="Type of Job" required>
                                   </div>
                             </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="number" class="form-control" name="no_signature" placeholder="No. of Signatures">
+                                    <input type="number" class="form-control" name="no_signature" placeholder="No. of Signatures" required>
                                   </div>
                             </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="type_activity" placeholder="Type of Activity">
+                                    <input type="text" class="form-control" name="type_activity" placeholder="Type of Activity" required>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
                                     <h5>Time Started:</h5>
-                                    <input type="time" class="form-control" name="time_started">
+                                    <input type="time" class="form-control" name="time_started" required>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
                                     <h5>Time Finished:</h5>
-                                    <input type="time" class="form-control" name="time_finished">
+                                    <input type="time" class="form-control" name="time_finished" required>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="status" placeholder="Status">
+                                    <input type="text" class="form-control" name="status" placeholder="Status" required>
                                   </div>
                             </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="spoilage" placeholder="Spoilage">
+                                    <input type="text" class="form-control" name="spoilage" placeholder="Spoilage" required>
                                   </div>
                             </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="good_copies" placeholder="Good Copies">
+                                    <input type="text" class="form-control" name="good_copies" placeholder="Good Copies" required>
                                   </div>
                             </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="remarks" placeholder="Remarks">
+                                    <input type="text" class="form-control" name="remarks" placeholder="Remarks" required>
                                   </div>
                             </div>
                             <div class="col-lg-12 controls">

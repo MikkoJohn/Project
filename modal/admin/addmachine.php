@@ -25,10 +25,10 @@
                             
                       <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" name="mname" placeholder="Machine Name">
+                                    <input type="text" class="form-control" name="mname" placeholder="Machine Name" required>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                  <select name="mdivision" class="form-control">
+                                  <select name="mdivision" class="form-control" required>
                                     <option selected="true" value="NULL" disabled>SELECT DIVISION</option>
                                     <option value="Pre-Press">Pre-Press</option>
                                     <option value="Press">Press</option>
@@ -38,31 +38,31 @@
                                    <!--  <input type="text" class="form-control" name="mdivision" placeholder="Machine Division"> -->
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed">
+                                    <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed" required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="minspeed" placeholder="Minumum Speed">
+                                    <input type="text" class="form-control" name="minspeed" placeholder="Minumum Speed" required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="mmaxsize" placeholder="Machine Max Size">
+                                    <input type="text" class="form-control" name="mmaxsize" placeholder="Machine Max Size" required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="mminsize" placeholder="Machine Min Size">
+                                    <input type="text" class="form-control" name="mminsize" placeholder="Machine Min Size" required>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                    <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing Area">
+                                    <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing Area" required>
                                   </div>
-                             <div style="margin-top:10px" class="form-group">
+                           <!--   <div style="margin-top:10px" class="form-group">
 
                                    <select name="mstatus" class="form-control">
                                     <option selected="true" value="NULL" disabled>SELECT STATUS</option>
                                     <option value="Available">Available</option>
                                     <option value="In Use">In Use</option>
                                     <option value="Under Maintenance">Under Maintenance</option>
-                                  </select>  
+                                  </select>   -->
 
-                                    <!-- <input  type="text" class="form-control" name="mstatus" placeholder="Machine Status"> -->
-                                  </div>
+                                    <!-- <input  type="text" class="form-control" name="mstatus" placeholder="Machine Status">
+                                  </div> -->
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="addmachine" class="btn btn-success">
                                     </div>
@@ -83,8 +83,8 @@ error_reporting(0);
   $mmaxsize = $_POST['mmaxsize'];
   $mminsize = $_POST['mminsize'];
   $mparea = $_POST['mparea'];
-  $mstatus = $_POST['mstatus'];
-  if(empty($mname) || empty($mdivision) || empty($maxspeed) || empty($minspeed) || empty($mmaxsize) || empty($mminsize) || empty($mparea) || empty($mstatus)){
+  $mstatus = "Available";
+  if(empty($mname) || empty($mdivision) || empty($maxspeed) || empty($minspeed) || empty($mmaxsize) || empty($mminsize) || empty($mparea)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  

@@ -24,75 +24,87 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-6">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="sales_no" placeholder="Sales No.">
+                                    <input type="text" class="form-control" name="sales_no" placeholder="Sales No." required>
                                   </div>
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="c_name" placeholder="Client Name">
+                                    <input type="text" class="form-control" name="c_name" placeholder="Client Name" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name">
+                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name" required>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="d_title" placeholder="Item Description and Title">
+                                    <input type="text" class="form-control" name="d_title" placeholder="Item Description and Title" required>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="c_machine" placeholder="Costing based on Machine">
+                                    <input type="text" class="form-control" name="c_machine" placeholder="Costing based on Machine" required>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="f_required" placeholder="Finishing Required">
+                               <!--  <select>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select> -->
+                                    <input type="text" class="form-control" name="f_required" placeholder="Finishing Required" required>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="p_required" placeholder="Packaging Required">
+                                    <input type="text" class="form-control" name="p_required" placeholder="Packaging Required" required>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                              <div class="form-group">
-                                    <input  type="number" class="form-control" name="quantity" placeholder="Quantity">
+                                    <input  type="number" class="form-control" name="quantity" placeholder="Quantity" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
-                                    <input  type="number" class="form-control" name="no_pages" placeholder="No. of Pages">
+                                    <input  type="number" class="form-control" name="no_pages" placeholder="No. of Pages" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                               <div class="form-group">
-                                    <input  type="text" class="form-control" name="s_output" placeholder="Size of Final Output">
+                                    <input  type="text" class="form-control" name="s_output" placeholder="Size of Final Output" required>
                                   </div>
                                 </div>
                               <div class="col col-sm-6">
                               <div class="form-group">
-                                    <input  type="text" class="form-control" name="p_used" placeholder="Paper to be used">
+                                    <input  type="text" class="form-control" name="p_used" placeholder="Paper to be used" required>
                                   </div>
                                 </div>
                               <div style="margin:0px 12px 0px 12px" class="et form-group">
                                     <h5>Estimated Transmittal Data to Warehouse:</h5>
-                                    <input  type="date" class="form-control" name="e_transmittal">
+                                    <input  type="date" class="form-control" name="e_transmittal"  required>
                                   </div>
                               <div style="margin:0px 12px 15px 12px" class="cr form-group">
                                     <h5>Client Requested Delivery Date:</h5>
-                                    <input  type="date" class="form-control" name="c_delivery">
+                                    <input  type="date" class="form-control" name="c_delivery" required>
                                   </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">                          
-                                    <input  type="textarea" class="form-control" placeholder="Remarks" name="remarks">
+                                    <input  type="textarea" class="form-control" placeholder="Remarks" name="remarks" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                    <input  type="textarea" class="form-control" placeholder="Status" name="status">
+                                    <input  type="textarea" class="form-control" placeholder="Status" name="status" required>
                                   </div>
                                 </div>
                             <div class="col-lg-12 controls">
