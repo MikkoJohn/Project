@@ -103,7 +103,32 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                    <input  type="textarea" class="form-control" placeholder="Status" value="'.$row['status'].'" name="status">
+                                    <select class="form-control" name="status">
+                                ';
+                                if($row['status']=="Pending"){
+                                  echo '
+                                 <option selected="true" value="Pending">Pending</option>
+                                 <option value="Acknowledged">Acknowledged</option>
+                                 <option value="Rejected">Rejected</option>
+                                  ';
+                                }else if($row['status'] =="Acknowledged") {
+                                   echo '
+                                 <option value="Pending">Pending</option>
+                                 <option selected="true" value="Acknowledged">Acknowledged</option>
+                                 <option value="Rejected">Rejected</option>
+                                  ';
+                                }else if($row['status'] =="Rejected") {
+                                   echo '
+                                 <option value="Pending">Pending</option>
+                                 <option value="Acknowledged">Acknowledged</option>
+                                 <option selected="true" value="Rejected">Rejected</option>
+                                  ';
+                                }
+                                    // <input  type="text" class="form-control" placeholder="Status" value="'.$row['status'].'" name="status">
+
+
+                                    echo'
+                                    </select>
                                   </div>
                                 </div>
                            
@@ -203,7 +228,32 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                    <input  type="text" class="form-control" placeholder="Status" value="'.$row['status'].'" name="status">
+                                <select class="form-control" name="status">
+                                ';
+                                if($row['status']=="Pending"){
+                                  echo '
+                                 <option selected="true" value="Pending">Pending</option>
+                                 <option value="Acknowledged">Acknowledged</option>
+                                 <option value="Rejected">Rejected</option>
+                                  ';
+                                }else if($row['status'] =="Acknowledged") {
+                                   echo '
+                                 <option value="Pending">Pending</option>
+                                 <option selected="true" value="Acknowledged">Acknowledged</option>
+                                 <option value="Rejected">Rejected</option>
+                                  ';
+                                }else if($row['status'] =="Rejected") {
+                                   echo '
+                                 <option value="Pending">Pending</option>
+                                 <option value="Acknowledged">Acknowledged</option>
+                                 <option selected="true" value="Rejected">Rejected</option>
+                                  ';
+                                }
+                                    // <input  type="text" class="form-control" placeholder="Status" value="'.$row['status'].'" name="status">
+
+
+                                    echo'
+                                    </select>
                                   </div>
                                 </div>
                            
@@ -254,7 +304,7 @@ $acctype = $_SESSION['sess_type'];
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
-                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Updated Job Order')";
+                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Job Order')";
                               mysqli_query($conn,$sql1);
                               } 
                               else {

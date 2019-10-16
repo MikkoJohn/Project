@@ -261,7 +261,7 @@ $stmt = $conn->prepare("UPDATE `machine` SET `machine_name`=?,`machine_division`
                                 echo'<script>swal("Successfully Updated!","", "success");</script>';
                                 //header("Location: ../index_admin"); 
                               //  echo "<script type='text/javascript'>location.href = '../index_admin';</script>";
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Updated Machine')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Machine')";
                               mysqli_query($conn,$sql1);
                               } 
                               else {

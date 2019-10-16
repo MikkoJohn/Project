@@ -419,7 +419,7 @@ error_reporting(0);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
-                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Updated Material')";
+                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Material')";
                               mysqli_query($conn,$sql1);
                               } 
                               else {
