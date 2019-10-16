@@ -104,6 +104,12 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
+                                  <select name="status" class="form-control" required="">
+                                  <option selected="true" value="NULL" disabled="">SELECT STATUS</option>
+                                 <option value="Pending">Pending</option>
+                                 <option value="Acknowledged">Acknowledged</option>
+                                 <option value="Rejected">Rejected</option>
+                                </select> 
                                     <input  type="textarea" class="form-control" placeholder="Status" name="status" required>
                                   </div>
                                 </div>
