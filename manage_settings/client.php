@@ -148,35 +148,36 @@ $acctype = $_SESSION['sess_type'];
               <div class="row">
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Client Name:</h6>
-                  <input type="text" name="c_name" class="form-control" placeholder="Client Name" required>
+                  <input type="text" name="c_name" class="form-control" placeholder="Client Name" >
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Sales Representative:</h6>
-                  <input type="text" name="s_rep" class="form-control"placeholder="Sales Representative" required>
+                  <input type="text" name="s_rep" class="form-control"placeholder="Sales Representative" >
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company:</h6> 
-                  <input type="text" name="company" class="form-control" placeholder="Company" required>
+                  <input type="text" name="company" class="form-control" placeholder="Company" >
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Contact No.:</h6>
-                  <input type="text" name="c_no" class="form-control" placeholder="Contact No." required>
+                  <h6>Telephone No.:</h6>
+                  <input type="number" name="c_no" class="form-control" placeholder="Contact No." pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;" >
+                  
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>E-mail Address:</h6>
-                  <input type="text" name="e_add" class="form-control" placeholder="E-mail Address" required>
+                  <input type="email" name="e_add" class="form-control" placeholder="E-mail Address"  >
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company Address:</h6>
-                  <input type="text" name="c_add" class="form-control" placeholder="Company Address" required>
+                  <input type="text" name="c_add" class="form-control" placeholder="Company Address" >
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>City:</h6>
-                  <input type="text" name="city" class="form-control" placeholder="City" required>
+                  <input type="text" name="city" class="form-control" placeholder="City" >
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Postal Code:</h6>
-                  <input type="text" name="p_code" class="form-control" placeholder="Postal Code" required>
+                  <input type="text" name="p_code" class="form-control" placeholder="Postal Code" >
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
                   <input type="submit" name="add_client" class="btn btn-primary form-control" value="ADD Client">

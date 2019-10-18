@@ -26,19 +26,19 @@ $acctype = $_SESSION['sess_type'];
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
                                   
-                                   <input  type="text" class="form-control" name="fname" value="" placeholder="First Name" required>                                       
+                                   <input  type="text" class="form-control" name="fname" value="" placeholder="First Name" onkeypress="return /[a-z]/i.test(event.key)" required>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
                                  
-                                   <input type="text" class="form-control" name="mname" value="" placeholder="Middle Name">                                       
+                                   <input type="text" class="form-control" name="mname" value="" placeholder="Middle Name"  onkeypress="return /[a-z]/i.test(event.key)">                                       
                                     </div>
                           </div>
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
                                   
-                                   <input type="text" class="form-control" name="lname" value="" placeholder="Last Name" required>                                       
+                                   <input type="text" class="form-control" name="lname" value="" placeholder="Last Name" onkeypress="return /[a-z]/i.test(event.key)" required>                                       
                                     </div>
                           </div>
                           <div class="col col-md-12">
@@ -65,7 +65,7 @@ $acctype = $_SESSION['sess_type'];
                                       <option value="5">Division Support</option>
                                       <option value="6">Sales</option>
                                       <option value="7">Operator</option>
-                                      <option value="8">General Services</option>
+                                      <option value="8">General Services Head</option>
                                       <option value="9">General Services Assistant</option>
                                     </select>
                                   </div>
@@ -100,13 +100,20 @@ $('#divi').show();
     $('#add_acc').change(function(){
       if($(this).val()=="6"){
         $('#divi').hide();
-      }else {
+      }else if($(this).val()=="4"){
+        $('#divi').hide();
+      }else if($(this).val()=="8"){
+        $('#divi').hide();
+      }else if($(this).val()=="9"){
+        $('#divi').hide();
+      }
+      else {
         $('#divi').show();
       }
     });
   });
+</script>    
 
-</script>                   
    
 <?php if(isset($_POST['addaccount'])){
 //error_reporting(0);
@@ -135,6 +142,7 @@ $div = $_POST['div'];
                                 echo'<script>swal("Successfully Added!","","success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Account')";
                               mysqli_query($conn,$sql1);
+                              header("Location: ../../index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

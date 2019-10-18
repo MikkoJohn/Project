@@ -38,19 +38,19 @@
                                    <!--  <input type="text" class="form-control" name="mdivision" placeholder="Machine Division"> -->
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed" required>
+                                    <input type="number" class="form-control" name="maxspeed" placeholder="Maximum Speed" required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="minspeed" placeholder="Minumum Speed" required>
+                                    <input type="number" class="form-control" name="minspeed" placeholder="Minumum Speed" required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="mmaxsize" placeholder="Machine Max Size" required>
+                                    <input type="number" class="form-control" name="mmaxsize" placeholder="Machine Max Size" required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="mminsize" placeholder="Machine Min Size" required>
+                                    <input type="number" class="form-control" name="mminsize" placeholder="Machine Min Size" required>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                    <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing Area" required>
+                                    <input  type="number" class="form-control" name="mparea" placeholder="Maximum Printing Area" required>
                                   </div>
                            <!--   <div style="margin-top:10px" class="form-group">
 
@@ -97,6 +97,7 @@ error_reporting(0);
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Machine')";
                               mysqli_query($conn,$sql1);
+                              header("Location: ../../index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

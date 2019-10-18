@@ -205,7 +205,7 @@ echo '<script>alert("Updated");</script>';
 //echo '<script>swal("Success","","succes");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 
-//echo 'header("Location: operator");';
+echo 'header("Location: operator");';
 }
 
 

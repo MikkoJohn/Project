@@ -76,6 +76,7 @@ $acctype = $_SESSION['sess_type'];
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Work Order')";
                               mysqli_query($conn,$sql1);
+                              header("Location: ../../index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

@@ -13,7 +13,7 @@ $acctype = $_SESSION['sess_type'];
         <div id="loginbox" style="margin-top:0px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
                 <div class="panel-heading">
-                    <div class="panel-title">Add Material</div>
+                    <div class="panel-title">Add Purchase Request</div>
                 </div>     
 
                 <div style="padding-top:20px" class="panel-body" >
@@ -44,7 +44,18 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-sm-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="u_measure" placeholder="Unit Measure">
+                              <select name="u_measure" class="form-control" required>
+                                  <option selected="true" value="NULL" disabled>SELECT UNIT OF MEASUREMENT</option>
+                                  <option value="Kilogram">Kilogram</option>
+                                  <option value="Centimeter">Centimeter</option>
+                                  <option value="Millimeter">Millimeter</option>
+                                  <option value="Meter">Meter</option>
+                                  <option value="Ream">Ream</option>
+                                  <option value="Liter">Liter</option>
+                                  <option value="Per Piece">Per Piece</option>
+                                  <option value="Per Box">Per Box</option>
+                                </select>
+                                   <!--  <input type="text" class="form-control" name="u_measure" placeholder="Unit Measure"> -->
                                   </div>
                             </div>
                              <div class="col col-sm-4">
@@ -71,7 +82,8 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                <select calss="form-control" name="status">
+                                <select class="form-control" name="status">
+                                  <option selected="true" value="NULL">SELECT STATUS</option>
                                   <option value="Pending">Pending</option>
                                   <option value="Approved">Approved</option>
                                 </select>

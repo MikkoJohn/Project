@@ -152,15 +152,15 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>First Name:</h6>
-                  <input type="text" name="fname" class="form-control"placeholder="First Name" required>
+                  <input type="text" name="fname" class="form-control"placeholder="First Name" onkeypress="return /[a-z]/i.test(event.key)" required>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Middle Name:</h6>
-                  <input type="text" name="mname" class="form-control" placeholder="Middle Name" required>
+                  <input type="text" name="mname" class="form-control" placeholder="Middle Name" onkeypress="return /[a-z]/i.test(event.key)" required>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Last Name:</h6>
-                  <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
+                  <input type="text" name="lname" class="form-control" placeholder="Last Name" onkeypress="return /[a-z]/i.test(event.key)" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
@@ -201,7 +201,7 @@ $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, 
                                 mysqli_query($conn,$sql1);
 
 echo "<meta http-equiv='refresh' content='0'>";
-//header("Location: client");
+header("Location: operator");
 }
 
 

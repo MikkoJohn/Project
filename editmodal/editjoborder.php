@@ -23,7 +23,7 @@ $acctype = $_SESSION['sess_type'];
               <?php
           if(isset($_POST['view_jo'])){
                       $_SESSION['jo_id'] = $_POST['jo_id'];
-                      $machine_id = $_POST['jo_id'];
+                      //$machine_id = $_POST['jo_id'];
                         $sql = 'SELECT `job_order_control_no`, `sales_number`, `client_name`, `item_desc_and_title`, `proj_name`, `date_created`, `costing_run`, `finishing_required`, `packaging_required`, `date_to_warehouse`, `requested_delivery`, `quantity`, `size`, `pages`, `paper`, `remarks`, `status` FROM `job_order` WHERE `job_order_control_no` = '.$_SESSION['jo_id'].'';
                         $stmt = mysqli_stmt_init($conn);
                         mysqli_stmt_prepare($stmt, $sql);
@@ -35,56 +35,201 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-6">
                              <div class="form-group">
+                             <h6>Sales No.:</h6>
                                     <input type="text" class="form-control" placeholder="Sales No." name="sales_no" value="'.$row['sales_number'].'">
                                   </div>
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
+                             <h6>Client Name:</h6>
                                     <input type="text" class="form-control" placeholder="Client Name" name="c_name" value="'.$row['client_name'].'">
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
+                            <h6>Project Name:</h6>
                                     <input type="text" class="form-control" placeholder="Project Name" name="p_name" value="'.$row['proj_name'].'">
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
+                            <h6>Item Description and Title:</h6>
                                     <input type="text" class="form-control" placeholder="Item Description and Title" name="d_title" value="'.$row['item_desc_and_title'].'">
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
+                            <h6>Costing Run:</h6>
                                     <input type="text" class="form-control" placeholder="Costing Run" name="c_machine" value="'.$row['costing_run'].'">
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Finishing Required" name="f_required" value="'.$row['finishing_required'].'">
+                            <h6>Finishing Required:</h6>
+                                  <select class="form-control" name="f_required" required>
+                            ';
+                            if($row['finishing_required']=="Perfect Bind"){
+                              echo '    
+                                      <option selected="true" value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Saddle Stitch"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option selected="true" value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Case Bind"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option selected="true" value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Varnish"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option selected="true" value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Lamination"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option selected="true" value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Embossing"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option selected="true" value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Debossing"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option selected="true" value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Horizontal Ringbind"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option selected="true" value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Vertical Ringbind"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option selected="true" value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }
+                            
+ // <input type="text" class="form-control" placeholder="Finishing Required" name="f_required" value="'.$row['finishing_required'].'">
+
+                            echo '
+                              </select>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Packaging Required" name="p_required" value="'.$row['packaging_required'].'">
+                            <h6>Packaging Required:</h6>
+                            <select class="form-control" name="p_required">
+                            ';
+
+                            if($row['packaging_required']=="Corrugated Boxes"){
+                              echo '
+                                <option value="Corrugated Boxes">Corrugated Boxes</option>
+                              ';
+                            }
+                                    // <input type="text" class="form-control" placeholder="Packaging Required" name="p_required" value="'.$row['packaging_required'].'">
+                          echo '
+                                    </select>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                              <div class="form-group">
+                             <h6>Quantity:</h6>
                                     <input  type="number" class="form-control" placeholder="Quantity" name="quantity" value="'.$row['quantity'].'">
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
+                             <h6>No. of Pages:</h6>
                                     <input  type="number" class="form-control" placeholder="No. of Pages" name="no_pages" value="'.$row['pages'].'">
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                               <div class="form-group">
+                              <h6>Size of Final Output:</h6>
                                     <input  type="text" class="form-control" placeholder="Size of Final Output" name="s_output" value="'.$row['size'].'">
                                   </div>
                                 </div>
                               <div class="col col-sm-6">
                               <div class="form-group">
+                              <h6>Paper to be Used:</h6>
                                     <input  type="text" class="form-control" placeholder="Paper to be Used" name="p_used" value="'.$row['paper'].'">
                                   </div>
                                 </div>
@@ -97,12 +242,14 @@ $acctype = $_SESSION['sess_type'];
                                     <input  type="date" class="form-control" name="c_delivery" value="'.$row['requested_delivery'].'">
                                   </div>
                                 <div class="col col-sm-6">
-                                <div class="form-group">                          
+                                <div class="form-group">    
+                                <h6>Remarks:</h6>                      
                                     <input  type="textarea" class="form-control" placeholder="Remarks" name="remarks" value="'.$row['remarks'].'">
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
+                                <h6>Status:</h6>
                                     <select class="form-control" name="status">
                                 ';
                                 if($row['status']=="Pending"){
@@ -155,61 +302,197 @@ $acctype = $_SESSION['sess_type'];
                         mysqli_stmt_execute($stmt);
                         $result = mysqli_stmt_get_result($stmt);
                         while($row = mysqli_fetch_assoc($result)){
-                        echo '        
+                         echo '        
                         <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
                            <div class="row">
                              <div class="col col-sm-6">
                              <div class="form-group">
+                             <h6>Sales No.:</h6>
                                     <input type="text" class="form-control" placeholder="Sales No." name="sales_no" value="'.$row['sales_number'].'">
                                   </div>
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
+                             <h6>Client Name:</h6>
                                     <input type="text" class="form-control" placeholder="Client Name" name="c_name" value="'.$row['client_name'].'">
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
+                            <h6>Project Name:</h6>
                                     <input type="text" class="form-control" placeholder="Project Name" name="p_name" value="'.$row['proj_name'].'">
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
+                            <h6>Item Description and Title:</h6>
                                     <input type="text" class="form-control" placeholder="Item Description and Title" name="d_title" value="'.$row['item_desc_and_title'].'">
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
+                            <h6>Costing Run:</h6>
                                     <input type="text" class="form-control" placeholder="Costing Run" name="c_machine" value="'.$row['costing_run'].'">
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Finishing Required" name="f_required" value="'.$row['finishing_required'].'">
+                            <h6>Finishing Required:</h6>
+                             <select class="form-control" name="f_required" required>
+                            ';
+                            if($row['finishing_required']=="Perfect Bind"){
+                              echo '    
+                                      <option selected="true" value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Saddle Stitch"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option selected="true" value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Case Bind"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option selected="true" value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Varnish"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option selected="true" value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Lamination"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option selected="true" value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Embossing"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option selected="true" value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Debossing"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option selected="true" value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Horizontal Ringbind"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option selected="true" value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }else if($row['finishing_required']=="Vertical Ringbind"){
+                              echo '    
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option selected="true" value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
+                            }
+                            
+ // <input type="text" class="form-control" placeholder="Finishing Required" name="f_required" value="'.$row['finishing_required'].'">
+
+                            echo '
+                              </select>
+                                   
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
+                            <h6>Packaging Required:</h6>
                                     <input type="text" class="form-control" placeholder="Packaging Required" name="p_required" value="'.$row['packaging_required'].'">
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                              <div class="form-group">
+                             <h6>Quantity:</h6>
                                     <input  type="number" class="form-control" placeholder="Quantity" name="quantity" value="'.$row['quantity'].'">
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
+                             <h6>No. of Pages:</h6>
                                     <input  type="number" class="form-control" placeholder="No. of Pages" name="no_pages" value="'.$row['pages'].'">
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                               <div class="form-group">
+                              <h6>Size of Final Output:</h6>
                                     <input  type="text" class="form-control" placeholder="Size of Final Output" name="s_output" value="'.$row['size'].'">
                                   </div>
                                 </div>
                               <div class="col col-sm-6">
                               <div class="form-group">
+                              <h6>Paper to be Used:</h6>
                                     <input  type="text" class="form-control" placeholder="Paper to be Used" name="p_used" value="'.$row['paper'].'">
                                   </div>
                                 </div>
@@ -222,13 +505,15 @@ $acctype = $_SESSION['sess_type'];
                                     <input  type="date" class="form-control" name="c_delivery" value="'.$row['requested_delivery'].'">
                                   </div>
                                 <div class="col col-sm-6">
-                                <div class="form-group">                          
+                                <div class="form-group">    
+                                <h6>Remarks:</h6>                      
                                     <input  type="textarea" class="form-control" placeholder="Remarks" name="remarks" value="'.$row['remarks'].'">
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                <select class="form-control" name="status">
+                                <h6>Status:</h6>
+                                    <select class="form-control" name="status">
                                 ';
                                 if($row['status']=="Pending"){
                                   echo '
@@ -258,6 +543,7 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                            
                             ';
+
 
                           }
                           ?>
@@ -306,6 +592,7 @@ $acctype = $_SESSION['sess_type'];
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Job Order')";
                               mysqli_query($conn,$sql1);
+                              header("Location: ../index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

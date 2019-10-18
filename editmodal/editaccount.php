@@ -183,6 +183,7 @@ $now = date("Y-m-d H:i:s");
                                 echo'<script>swal("Successfully Added!","","success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Account')";
                               mysqli_query($conn,$sql1);
+                              header("Location: ../index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

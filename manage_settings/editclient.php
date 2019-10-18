@@ -194,6 +194,7 @@ $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, 
 
 echo '<script>alert("Updated");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
+header("Location: client");
 //header("Location: client");
 }
 

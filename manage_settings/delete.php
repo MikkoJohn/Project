@@ -50,5 +50,25 @@ if(isset($_POST['delete_client'])){
                               //else { echo"<script>alert('ERROR')</script>"; }
 
                               $stmt->close();
+}else if(isset($_POST['delete_supplier'])){
+  $supplier_id = $_POST['supplier_id'];
+
+  $stmt = $conn->prepare("DELETE FROM `supplier_info` WHERE `supplier_id` = ?");
+  
+                              $stmt->bind_param('s',$supplier_id);
+
+                              if($stmt->execute()){
+                                echo'<script>swal("Successfully Deleted!","", "success");</script>';
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Supplier')";
+                              mysqli_query($conn,$sql1);
+                              header("Location: supplier");
+                              echo"<script>alert('Data Deleted!')</script>";
+                              } 
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
 }
 ?>
