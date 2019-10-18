@@ -95,7 +95,7 @@ if(isset($_POST['delete_machine'])){
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Account')";
                               mysqli_query($conn,$sql1);
                               } 
-                              header(location: )
+                              //header(location: )
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
                               }
