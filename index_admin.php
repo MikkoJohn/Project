@@ -77,7 +77,11 @@ include 'config.php';
                <form method="POST" action="logout.php">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
-                <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fas fa-sign-out-alt">Log-out</i></button></form>
+                <button type="submit" name="logout" style="background-color: white; border-radius:12px; margin-right: 10px; "><i class="fas fa-sign-out-alt">Log-out</i></button></form>
+<!-- //notif bell -->
+<li>
+ <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;"><span class="label label-pill label-danger count" style="border-radius:50px;color:white;background-color:red;font-size: 15px; font-family: arial;"></span> <span class="fa fa-bell" style="font-size:25px;color:#1a0000;"></span></a>
+</li>
 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -976,7 +980,39 @@ include 'config.php';
 
       </div>
       <!-- End of Main Content -->
+<script>
+$(document).ready(function(){
+// updating the view with notifications using ajax
+function load_unseen_notification(view = '')
+{
+ $.ajax({
+  url:"fetch.php",
+  method:"POST",
+  data:{view:view},
+  dataType:"json",
+  success:function(data)
+  {
+   $('.dropdown-menu').html(data.notification);
+   if(data.unseen_notification > 0)
+   {
+    $('.count').html(data.unseen_notification);
+   }
+  }
+ });
+}
+load_unseen_notification();
+// submit form and get new records
 
+// load new notifications
+$(document).on('click', '.dropdown-toggle', function(){
+ $('.count').html('');
+ load_unseen_notification('yes');
+});
+setInterval(function(){
+ load_unseen_notification();;
+}, 5000);
+});
+</script>
  
 <?php  
 include ('includes/script.php');

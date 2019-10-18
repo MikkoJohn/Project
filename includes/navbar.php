@@ -183,7 +183,7 @@
       </li>
 
       <li class="nav-item">
-        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+        <a type="button"  href="manage_settings/operator" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
           <span><center>Add Operators</center></span></a>
               <?php 
                //include ('modal/admin/addoperator.php');
