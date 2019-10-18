@@ -24,12 +24,30 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="prod_unit" placeholder="Producing Unit" required>
+                                    <select class="form-control" name="prod_unit" required>
+                                      <option value="NULL" disabled="" selected="true">SELECT PRODUCING UNIT</option>
+                                      <option value="Pre-Press">Pre-Press</option>
+                                      <option value="Press">Press</option>
+                                      <option value="Post-Press">Post-Press</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control" name="prod_unit" placeholder="Producing Unit" required> -->
                                   </div>
                               </div>
                              <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="operator_unit" placeholder="Operator Unit" required>
+                                <select class="form-control" name="operator_unit" required>
+                                  <option value="NULL" disabled="" selected="true">SELECT OPERATOR UNIT</option>
+                              <?php
+                              $sql2 = "SELECT * FROM machine";
+                              $result = mysqli_query($conn,$sql2);
+                              while($row=mysqli_fetch_assoc($result)){
+                                echo '
+                                    <option value="'.$row['machine_name'].'">'.$row['machine_name'].'</option>
+                                  ';
+                              }
+                              ?>
+                                </select>
+                                    <!-- <input type="text" class="form-control" name="operator_unit" placeholder="Operator Unit" required> -->
                                   </div>
                                 </div>
                             <div class="col col-sm-4">

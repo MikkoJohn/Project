@@ -30,5 +30,25 @@ if(isset($_POST['delete_client'])){
                               //else { echo"<script>alert('ERROR')</script>"; }
 
                               $stmt->close();
+}else if(isset($_POST['delete_operator'])){
+  $operator_id = $_POST['operator_id'];
+
+  $stmt = $conn->prepare("DELETE FROM `operators` WHERE `operator_id` = ?");
+  
+                              $stmt->bind_param('s',$operator_id);
+
+                              if($stmt->execute()){
+                                echo'<script>swal("Successfully Deleted!","", "success");</script>';
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Operator')";
+                              mysqli_query($conn,$sql1);
+                              header("Location: operator");
+                              echo"<script>alert('Data Deleted!')</script>";
+                              } 
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
 }
 ?>

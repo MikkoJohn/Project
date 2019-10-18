@@ -52,7 +52,7 @@ $acctype = $_SESSION['sess_type'];
 
 </head>
 <body>
-  <a href="client" class="btn btn-primary" style="margin-top:1%;margin-left: 1%;">BACK</a>
+  <a href="operator" class="btn btn-primary" style="margin-top:1%;margin-left: 1%;">BACK</a>
 <div class="container">
  <br>
  <?php
@@ -69,7 +69,7 @@ $acctype = $_SESSION['sess_type'];
             <div class="card-header py-3">
               <div class="row">
               <div class="col-lg-6">
-                <h5 class="m-0 font-weight-bold text-primary">Client Info</h5>
+                <h5 class="m-0 font-weight-bold text-primary">Operator Info</h5>
               </div>
               <div class="col-lg-6" align="right">
               
@@ -78,95 +78,94 @@ $acctype = $_SESSION['sess_type'];
             </div>
             <div class="card-body">
             <?php
-                if(isset($_POST['view_client'])){
-                  $_SESSION['client_id'] = $_POST['client_id'];
-                  $sql = "SELECT * FROM client_info WHERE client_id = '".$_SESSION['client_id']."'";
+                if(isset($_POST['view_operator'])){
+                  $_SESSION['operator_id'] = $_POST['operator_id'];
+                  $sql = "SELECT * FROM operators WHERE operator_id = '".$_SESSION['operator_id']."'";
                   $result = mysqli_query($conn,$sql);
                   while($row=mysqli_fetch_assoc($result)){
                     echo '
                 <form method="POST" onsubmit="return confirm("Are you sure?")">
               <div class="row">
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Client Name:</h6>
-                  <input type="text" name="c_name" class="form-control" value="'.$row['client_name'].'" placeholder="Client Name">
+                <div class="col col-md-12" style="margin-bottom: 15px;">
+                  <h6>Account ID No.:</h6>
+                  <input type="text" name="a_id" class="form-control" value="'.$row['account_id_no'].'" placeholder="Account ID No.">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Sales Representative:</h6>
-                  <input type="text" name="s_rep" class="form-control" value="'.$row['sales_representative'].'" placeholder="Sales Representative">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>First Name:</h6>
+                  <input type="text" name="fname" class="form-control" value="'.$row['first_name'].'" placeholder="First Name">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Company:</h6>
-                  <input type="text" name="company" class="form-control" value="'.$row['company'].'" placeholder="Company">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Middle Name:</h6>
+                  <input type="text" name="mname" class="form-control" value="'.$row['middle_name'].'" placeholder="Middle Name">
+                </div>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Last Name:</h6>
+                  <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No.">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>E-mail Address:</h6>
-                  <input type="text" name="e_add" class="form-control" value="'.$row['email_address'].'" placeholder="Email Address">
+                  <h6>Operator Schedule:</h6>
+                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_schedule'].'" placeholder="Operator Schedule">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Company Address:</h6>
-                  <input type="text" name="c_add" class="form-control" value="'.$row['company_address'].'" placeholder="Company Address">
+                  <h6>Username:</h6>
+                  <input type="text" name="uname" class="form-control" value="'.$row['username'].'" placeholder="Username">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>City:</h6>
-                  <input type="text" name="city" class="form-control" value="'.$row['city'].'" placeholder="City">
-                </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Postal Code:</h6>
-                  <input type="text" name="p_code" class="form-control" value="'.$row['postal_code'].'" placeholder="Postal Code">
+                  <h6>Password:</h6>
+                  <input type="password" name="pass" id="o_pass" class="form-control" value="'.$row['password'].'" placeholder="Password">
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
-                  <input type="submit" name="edit_client" class="btn btn-success form-control" value="UPDATE Client">
+                  <input type="submit" name="edit_operator" class="btn btn-primary form-control" value="UPDATE Operator">
                 </div>
               </div>
           </form>
                     ';
                   }
-                }else {
-                  //$_SESSION['client_id'] = $_POST['client_id'];
-                  $sql = "SELECT * FROM client_info WHERE client_id = '".$_SESSION['client_id']."'";
+                }else{
+                  $sql = "SELECT * FROM operators WHERE operator_id = '".$_SESSION['operator_id']."'";
                   $result = mysqli_query($conn,$sql);
                   while($row=mysqli_fetch_assoc($result)){
                     echo '
                 <form method="POST" onsubmit="return confirm("Are you sure?")">
               <div class="row">
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Client Name:</h6>
-                  <input type="text" name="c_name" class="form-control" value="'.$row['client_name'].'" placeholder="Client Name">
+                <div class="col col-md-12" style="margin-bottom: 15px;">
+                  <h6>Account ID No.:</h6>
+                  <input type="text" name="a_id" class="form-control" value="'.$row['account_id_no'].'" placeholder="Account ID No.">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Sales Representative:</h6>
-                  <input type="text" name="s_rep" class="form-control" value="'.$row['sales_representative'].'" placeholder="Sales Representative">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>First Name:</h6>
+                  <input type="text" name="fname" class="form-control" value="'.$row['first_name'].'" placeholder="First Name">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Company:</h6>
-                  <input type="text" name="company" class="form-control" value="'.$row['company'].'" placeholder="Company">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Middle Name:</h6>
+                  <input type="text" name="mname" class="form-control" value="'.$row['middle_name'].'" placeholder="Middle Name">
+                </div>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Last Name:</h6>
+                  <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No.">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>E-mail Address:</h6>
-                  <input type="text" name="e_add" class="form-control" value="'.$row['email_address'].'" placeholder="Email Address">
+                  <h6>Operator Schedule:</h6>
+                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_schedule'].'" placeholder="Operator Schedule">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Company Address:</h6>
-                  <input type="text" name="c_add" class="form-control" value="'.$row['company_address'].'" placeholder="Company Address">
+                  <h6>Username:</h6>
+                  <input type="text" name="uname" class="form-control" value="'.$row['username'].'" placeholder="Username">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>City:</h6>
-                  <input type="text" name="city" class="form-control" value="'.$row['city'].'" placeholder="City">
-                </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Postal Code:</h6>
-                  <input type="text" name="p_code" class="form-control" value="'.$row['postal_code'].'" placeholder="Postal Code">
+                  <h6>Password:</h6>
+                  <input type="password" name="pass" id="o_pass" class="form-control" value="'.$row['password'].'" placeholder="Password">
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
-                  <input type="submit" name="edit_client" class="btn btn-success form-control" value="UPDATE Client">
+                  <input type="submit" name="edit_operator" class="btn btn-primary form-control" value="UPDATE Operator">
                 </div>
               </div>
           </form>
@@ -174,27 +173,39 @@ $acctype = $_SESSION['sess_type'];
                   }
                 }
             ?>
+<script>
+function myFunction() {
+  var x = document.getElementById("o_pass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>               
                 
 <?php
-if(isset($_POST['edit_client'])){
-$c_name = $_POST['c_name'];
-$s_rep = $_POST['s_rep'];
-$company = $_POST['company'];
+if(isset($_POST['edit_operator'])){
+$a_id = $_POST['a_id'];
+$fname = $_POST['fname'];
+$mname = $_POST['mname'];
+$lname = $_POST['lname'];
 $c_no = $_POST['c_no'];
-$e_add = $_POST['e_add'];
-$c_add = $_POST['c_add'];
-$city = $_POST['city'];
-$p_code = $_POST['p_code'];
+$o_sched = $_POST['o_sched'];
+$uname = $_POST['uname'];
+$pass = $_POST['pass'];
 
-$sql = "UPDATE `client_info` SET `client_name`='$c_name',`sales_representative`='$s_rep',`company`='$company',`contact_no`='$c_no',`email_address`='$e_add',`company_address`='$c_add',`city`='$city',`postal_code`='$p_code' WHERE client_id = '".$_SESSION['client_id']."'";
+$sql = "UPDATE `operators` SET `account_id_no`='$a_id',`first_name`='$fname',`middle_name`='$mname',`last_name`='$lname',`contact_no`='$c_no',`username`='$uname',`password`='$pass',`operator_schedule`='$o_sched' WHERE operator_id = '".$_SESSION['operator_id']."'";
 mysqli_query($conn,$sql);
 
-$sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Client')";
+$sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Operator')";
                                 mysqli_query($conn,$sql1);
 
 echo '<script>alert("Updated");</script>';
+//echo '<script>swal("Success","","succes");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
-//header("Location: client");
+
+//echo 'header("Location: operator");';
 }
 
 

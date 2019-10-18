@@ -69,7 +69,7 @@ $acctype = $_SESSION['sess_type'];
             <div class="card-header py-3">
               <div class="row">
               <div class="col-lg-6">
-                <h5 class="m-0 font-weight-bold text-primary">Client Info</h5>
+                <h5 class="m-0 font-weight-bold text-primary">Operator Info</h5>
               </div>
               <div class="col-lg-6" align="right">
                <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Add</button>
@@ -82,36 +82,36 @@ $acctype = $_SESSION['sess_type'];
                     <table id="aa" class="table table-striped table-bordered" width="100%">  
                         <thead>  
                           <tr>  
-                              <th><center>Client Name</center></th>
-                              <th><center>Sales Representative</center></th>
-                              <th><center>Company</center></th>
+                              <th><center>Account ID No</center></th>
+                              <th><center>Operator Name</center></th>
+                              <th><center>Operator Schedule</center></th>
                               <th><center>Action</center></th>
                                </tr>  
                         </thead> 
                         <tbody>
                     <?php
-                      $sql = "SELECT * FROM client_info";
+                      $sql = "SELECT * FROM operators";
                       $result = mysqli_query($conn,$sql);
                       while($row=mysqli_fetch_assoc($result)){
                         echo '
                             <tr>
-                              <td><center>'.$row['client_name'].'</center></td>
-                              <td><center>'.$row['sales_representative'].'</center></td>
-                              <td><center>'.$row['company'].'</center></td>
+                              <td><center>'.$row['account_id_no'].'</center></td>
+                              <td><center>'.$row['first_name'].'</center></td>
+                              <td><center>'.$row['operator_schedule'].'</center></td>
                               <td>
                               <center>
                           <div class="row">
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="editclient">
+                                    <form method="POST" action="editoperator">
                        
-                          <input type="hidden" name="client_id" value="'.$row['client_id'].'">
-                          <button name="view_client" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="modal" data-target="#viewModal"></span> View</button>
+                          <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
+                          <button name="view_operator" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="modal" data-target="#viewModal"></span> View</button>
                                     </form>
                                     </div>
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
-         <input type="hidden" name="client_id" value="'.$row['client_id'].'">
-                        <button name="delete_client" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+         <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
+                        <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
         </form>  
         </div>
         </div></center>
@@ -139,65 +139,65 @@ $acctype = $_SESSION['sess_type'];
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h5>Add Client</h5>
+          <h5>Add Operator</h5>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           
         </div>
         <div class="modal-body">
           <form method="POST" onsubmit="return confirm('Are you sure?')">
               <div class="row">
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Client Name:</h6>
-                  <input type="text" name="c_name" class="form-control" placeholder="Client Name" required>
+                <div class="col col-md-12" style="margin-bottom: 15px;">
+                  <h6>Account ID No.:</h6>
+                  <input type="text" name="a_id" class="form-control" placeholder="Account ID No." required>
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Sales Representative:</h6>
-                  <input type="text" name="s_rep" class="form-control"placeholder="Sales Representative" required>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>First Name:</h6>
+                  <input type="text" name="fname" class="form-control"placeholder="First Name" required>
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Company:</h6> 
-                  <input type="text" name="company" class="form-control" placeholder="Company" required>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Middle Name:</h6>
+                  <input type="text" name="mname" class="form-control" placeholder="Middle Name" required>
+                </div>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Last Name:</h6>
+                  <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" placeholder="Contact No." required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>E-mail Address:</h6>
-                  <input type="text" name="e_add" class="form-control" placeholder="E-mail Address" required>
+                  <h6>Operator Schedule:</h6>
+                  <input type="text" name="o_sched" class="form-control" placeholder="Operator Schedule" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Company Address:</h6>
-                  <input type="text" name="c_add" class="form-control" placeholder="Company Address" required>
+                  <h6>Username:</h6>
+                  <input type="text" name="uname" class="form-control" placeholder="Username" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>City:</h6>
-                  <input type="text" name="city" class="form-control" placeholder="City" required>
-                </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Postal Code:</h6>
-                  <input type="text" name="p_code" class="form-control" placeholder="Postal Code" required>
+                  <h6>Password:</h6>
+                  <input type="password" name="pass" class="form-control" placeholder="Password" required>
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
-                  <input type="submit" name="add_client" class="btn btn-primary form-control" value="ADD Client">
+                  <input type="submit" name="add_operator" class="btn btn-primary form-control" value="ADD Operator">
                 </div>
               </div>
           </form>
 <?php
-if(isset($_POST['add_client'])){
-$c_name = $_POST['c_name'];
-$s_rep = $_POST['s_rep'];
-$company = $_POST['company'];
+if(isset($_POST['add_operator'])){
+$a_id = $_POST['a_id'];
+$fname = $_POST['fname'];
+$mname = $_POST['mname'];
+$lname = $_POST['lname'];
 $c_no = $_POST['c_no'];
-$e_add = $_POST['e_add'];
-$c_add = $_POST['c_add'];
-$city = $_POST['city'];
-$p_code = $_POST['p_code'];
+$o_sched = $_POST['o_sched'];
+$uname = $_POST['uname'];
+$pass = $_POST['pass'];
 
-$sql = "INSERT INTO `client_info`(`client_name`, `sales_representative`, `company`, `contact_no`, `email_address`, `company_address`, `city`, `postal_code`) VALUES ('$c_name','$s_rep','$company','$c_no','$e_add','$c_add','$city','$p_code')";
+$sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`, `operator_schedule`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$o_sched')";
 mysqli_query($conn,$sql);
 
-$sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Client')";
+$sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Operator')";
                                 mysqli_query($conn,$sql1);
 
 echo "<meta http-equiv='refresh' content='0'>";
