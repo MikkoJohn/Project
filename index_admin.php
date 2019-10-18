@@ -336,7 +336,7 @@ include 'config.php';
                               <th><center>Client Name</center></th>
                               <th><center>Date Created</center></th>
                               <th><center>Status</center></th>
-                              <th width="15%"><center>Actions</center></th>
+                              <th width="28%"><center>Actions</center></th>
                   
                                </tr>  
                         </thead> 
@@ -357,17 +357,27 @@ include 'config.php';
                                       <td><center>'.$row['status'].'</center></td>
                                       <td><center>
                           <div class="row">
-                                    <div class="col col-lg-6">
+                                    <div class="col col-lg-4">
                                     <form method="POST" action="editmodal/editjoborder.php">
                        
                           <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
-                          <button name="view_jo" class="btn btn-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                          <button name="view_jo" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
                                     </form>
                                     </div>
-                                    <div class="col col-lg-6">
+
+                        <div class="col col-lg-4">
+                          <form method="POST" action="">
+                          <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
+                          <button name="convert_jo" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Convert</button>
+                                    </form>
+                                    </div>
+
+
+
+                                    <div class="col col-lg-4">
                                     <form method="POST" action="delete">
          <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
-                        <button name="delete_jo" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_jo" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
         </form>  
         </div>
         </div></center>
@@ -381,11 +391,7 @@ include 'config.php';
                    
                         
                 </table>
-  <script>  
- $(document).ready(function(){  
-      $('#jo').DataTable();  
- });  
- </script>  
+
 
 
 
@@ -394,6 +400,11 @@ include 'config.php';
         </div>
         </div>
 
+  <script>  
+ $(document).ready(function(){  
+      $('#jo').DataTable();  
+ });  
+ </script>  
 
             <div class="card shadow mb-4">
             <div class="card-header py-3">

@@ -64,7 +64,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
-                          echo "<script type='text/javascript'>location.href = 'index_genserv';</script>";
+                          echo "<script type='text/javascript'>location.href = '';</script>";
                     }
 
                 elseif ($uname == $dbusername && $pass == $dbpassword && "6" == $dbusertype) 
@@ -94,6 +94,15 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_genserv';</script>";
+                    }
+                elseif ($uname == $dbusername && $pass == $dbpassword && "9" == $dbusertype) 
+                    {
+                        session_start();
+                         $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_type'] = $dbusertype;
+                         $_SESSION['acct_name'] = $acct_name;
+                           /* Redirect browser */
+                          echo "<script type='text/javascript'>location.href = '';</script>";
                     }
                 
                 } 
