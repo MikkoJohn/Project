@@ -104,7 +104,8 @@ error_reporting(0);
 
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Transmittal')";
                               mysqli_query($conn,$sql1);
-                              header("Location: ../../index_admin");
+                              //header("Location: ../../index_admin");
+                              echo "<script type='text/javascript'>location.href = '../../index_prodass';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

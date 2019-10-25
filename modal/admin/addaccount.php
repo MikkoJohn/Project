@@ -115,7 +115,8 @@ $('#divi').show();
 </script>    
 
    
-<?php if(isset($_POST['addaccount'])){
+<?php 
+if(isset($_POST['addaccount'])){
 //error_reporting(0);
 
 
@@ -153,7 +154,9 @@ $div = $_POST['div'];
                                 echo'<script>swal("Successfully Added!","","success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Account')";
                               mysqli_query($conn,$sql1);
-                              header("Location: ../../index_admin");
+                              //header("location: ../../index_admin");
+                    echo "<script type='text/javascript'>location.href = '../../index_admin';</script>";
+                              exit();
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -165,6 +168,7 @@ $div = $_POST['div'];
 
 }
 
+// header("Location:../../index_admin");
 }
 
 

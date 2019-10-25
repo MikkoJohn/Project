@@ -19,7 +19,7 @@ $acctype = $_SESSION['sess_type'];
 
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
-                      <form method="POST" class="form-horizontal" action="../index_admin" role="form">
+                     
               <?php
           if(isset($_POST['view_jo'])){
                       $_SESSION['jo_id'] = $_POST['jo_id'];
@@ -30,7 +30,9 @@ $acctype = $_SESSION['sess_type'];
                         mysqli_stmt_execute($stmt);
                         $result = mysqli_stmt_get_result($stmt);
                         while($row = mysqli_fetch_assoc($result)){
-                        echo '        
+                    if($row['status'] != "Disabled"){
+                        echo '   
+                         <form method="POST" class="form-horizontal" action="../index_admin" role="form">     
                         <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
                            <div class="row">
                              <div class="col col-sm-6">
@@ -281,7 +283,7 @@ $acctype = $_SESSION['sess_type'];
                            
                             ';
 
-                          }
+                          
                           ?>
                            <div class="col-lg-12 controls">
                              <button name="updatejo" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>
@@ -291,54 +293,45 @@ $acctype = $_SESSION['sess_type'];
                               </div>
                             </form>   
                             <?php 
-
-                        }else {
-                        echo '  <form method="POST" class="form-horizontal" action="../index_admin" role="form">';
-                             $_SESSION['jo_id'] = $_POST['jo_id'];
-                    //  $machine_id = $_POST['jo_id'];
-                        $sql = 'SELECT `job_order_control_no`, `sales_number`, `client_name`, `item_desc_and_title`, `proj_name`, `date_created`, `costing_run`, `finishing_required`, `packaging_required`, `date_to_warehouse`, `requested_delivery`, `quantity`, `size`, `pages`, `paper`, `remarks`, `status` FROM `job_order` WHERE `job_order_control_no` = '.$_SESSION['jo_id'].'';
-                        $stmt = mysqli_stmt_init($conn);
-                        mysqli_stmt_prepare($stmt, $sql);
-                        mysqli_stmt_execute($stmt);
-                        $result = mysqli_stmt_get_result($stmt);
-                        while($row = mysqli_fetch_assoc($result)){
-                         echo '        
-                        <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
+                          }else {
+                            echo '   
+                         <form method="POST" class="form-horizontal" action="../index_admin" role="form">     
+                        <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'" disabled>
                            <div class="row">
                              <div class="col col-sm-6">
                              <div class="form-group">
                              <h6>Sales No.:</h6>
-                                    <input type="text" class="form-control" placeholder="Sales No." name="sales_no" value="'.$row['sales_number'].'">
+                                    <input type="text" class="form-control" placeholder="Sales No." name="sales_no" value="'.$row['sales_number'].'" disabled>
                                   </div>
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
                              <h6>Client Name:</h6>
-                                    <input type="text" class="form-control" placeholder="Client Name" name="c_name" value="'.$row['client_name'].'">
+                                    <input type="text" class="form-control" placeholder="Client Name" name="c_name" value="'.$row['client_name'].'" disabled>
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                             <div class="form-group">
                             <h6>Project Name:</h6>
-                                    <input type="text" class="form-control" placeholder="Project Name" name="p_name" value="'.$row['proj_name'].'">
+                                    <input type="text" class="form-control" placeholder="Project Name" name="p_name" value="'.$row['proj_name'].'" disabled>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
                             <h6>Item Description and Title:</h6>
-                                    <input type="text" class="form-control" placeholder="Item Description and Title" name="d_title" value="'.$row['item_desc_and_title'].'">
+                                    <input type="text" class="form-control" placeholder="Item Description and Title" name="d_title" value="'.$row['item_desc_and_title'].'" disabled>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
                             <h6>Costing Run:</h6>
-                                    <input type="text" class="form-control" placeholder="Costing Run" name="c_machine" value="'.$row['costing_run'].'">
+                                    <input type="text" class="form-control" placeholder="Costing Run" name="c_machine" value="'.$row['costing_run'].'" disabled>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
                             <h6>Finishing Required:</h6>
-                             <select class="form-control" name="f_required" required>
+                                  <select class="form-control" name="f_required" required disabled>
                             ';
                             if($row['finishing_required']=="Perfect Bind"){
                               echo '    
@@ -463,57 +456,66 @@ $acctype = $_SESSION['sess_type'];
 
                             echo '
                               </select>
-                                   
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
                             <h6>Packaging Required:</h6>
-                                    <input type="text" class="form-control" placeholder="Packaging Required" name="p_required" value="'.$row['packaging_required'].'">
+                            <select class="form-control" name="p_required" disabled>
+                            ';
+
+                            if($row['packaging_required']=="Corrugated Boxes"){
+                              echo '
+                                <option value="Corrugated Boxes">Corrugated Boxes</option>
+                              ';
+                            }
+                                    // <input type="text" class="form-control" placeholder="Packaging Required" name="p_required" value="'.$row['packaging_required'].'">
+                          echo '
+                                    </select>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                              <div class="form-group">
                              <h6>Quantity:</h6>
-                                    <input  type="number" class="form-control" placeholder="Quantity" name="quantity" value="'.$row['quantity'].'">
+                                    <input  type="number" class="form-control" placeholder="Quantity" name="quantity" value="'.$row['quantity'].'" disabled>
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
                              <h6>No. of Pages:</h6>
-                                    <input  type="number" class="form-control" placeholder="No. of Pages" name="no_pages" value="'.$row['pages'].'">
+                                    <input  type="number" class="form-control" placeholder="No. of Pages" name="no_pages" value="'.$row['pages'].'" disabled>
                                   </div>
                                 </div>
                              <div class="col col-sm-6">
                               <div class="form-group">
                               <h6>Size of Final Output:</h6>
-                                    <input  type="text" class="form-control" placeholder="Size of Final Output" name="s_output" value="'.$row['size'].'">
+                                    <input  type="text" class="form-control" placeholder="Size of Final Output" name="s_output" value="'.$row['size'].'" disabled>
                                   </div>
                                 </div>
                               <div class="col col-sm-6">
                               <div class="form-group">
                               <h6>Paper to be Used:</h6>
-                                    <input  type="text" class="form-control" placeholder="Paper to be Used" name="p_used" value="'.$row['paper'].'">
+                                    <input  type="text" class="form-control" placeholder="Paper to be Used" name="p_used" value="'.$row['paper'].'" disabled>
                                   </div>
                                 </div>
                               <div style="margin:0px 12px 0px 12px" class="et form-group">
                                     <h5>Estimated Transmittal Date to Warehouse:</h5>
-                                    <input  type="date" class="form-control" name="e_transmittal" value="'.$row['date_to_warehouse'].'">
+                                    <input  type="date" class="form-control" name="e_transmittal" value="'.$row['date_to_warehouse'].'" disabled>
                                   </div>
                               <div style="margin:0px 12px 15px 12px" class="cr form-group">
                                     <h5>Client Requested Delivery Date:</h5>
-                                    <input  type="date" class="form-control" name="c_delivery" value="'.$row['requested_delivery'].'">
+                                    <input  type="date" class="form-control" name="c_delivery" value="'.$row['requested_delivery'].'" disabled>
                                   </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">    
                                 <h6>Remarks:</h6>                      
-                                    <input  type="textarea" class="form-control" placeholder="Remarks" name="remarks" value="'.$row['remarks'].'">
+                                    <input  type="textarea" class="form-control" placeholder="Remarks" name="remarks" value="'.$row['remarks'].'" disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h6>Status:</h6>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control" name="status" disabled>
                                 ';
                                 if($row['status']=="Pending"){
                                   echo '
@@ -544,18 +546,28 @@ $acctype = $_SESSION['sess_type'];
                            
                             ';
 
-
                           }
                           ?>
                            <div class="col-lg-12 controls">
-                                     <button name="updatejo" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>  
+                             <button name="updatejo" class="btn btn-warning btn-md" value="UPDATE" disabled><span class="glyphicon glyphicon-edit" aria-hidden="true" ></span> Update</button>
+                                    
                                     </div>
                                 </div>
                               </div>
-                            </form>  
-                       <?php 
-                     }
-                            ?>  
+                            </form>   
+                            <?php 
+                          }
+
+
+                          }
+                        
+                        
+
+
+                          
+                          ?>
+                         
+                           
                         </div>                     
                     </div>  
                 </div>                      
@@ -589,10 +601,11 @@ $acctype = $_SESSION['sess_type'];
                               $stmt->bind_param('ssssssssssssssss', $sales_no,$c_name,$d_title,$p_name,$c_machine,$f_required,$p_required,$e_transmittal,$c_delivery,$quantity,$s_output,$no_pages,$p_used,$remarks,$status,$jo_id);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                echo'<script>swal("Successfully Updated!","", "success");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Job Order')";
                               mysqli_query($conn,$sql1);
-                              header("Location: ../index_admin");
+                              //header("Location: ../index_admin");
+                               echo "<script type='text/javascript'>location.href = '../index_admin';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

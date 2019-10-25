@@ -667,10 +667,11 @@ $acctype = $_SESSION['sess_type'];
                               $stmt->bind_param('ssssssssssssssssssssssssss',$jo_no,$mname,$d_date,$c_by,$n_by,$c_name,$p_name,$title,$quantity,$a_size,$pages,$p_cover,$color,$binding,$lamination,$remarks,$s_size,$p_size,$start,$finish,$t_received,$d_received,$no_out,$no_sheet,$no_ream,$status);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                echo'<script>swal("Successfully Update!","", "success");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Job Ticket')";
                               mysqli_query($conn,$sql1);
-                              header("Location: ../index_admin");
+                             // header("Location: ../index_admin");
+                               echo "<script type='text/javascript'>location.href = '../index_admin';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

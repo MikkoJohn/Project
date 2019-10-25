@@ -180,10 +180,11 @@ $now = date("Y-m-d H:i:s");
                               $stmt->bind_param('ssssss', $uname,$pass,$fname,$mname,$lname,$acc_id);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","","success");</script>';
+                                echo'<script>swal("Successfully Updated!","","success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Account')";
                               mysqli_query($conn,$sql1);
-                              header("Location: ../index_admin");
+                             // header("Location:../index_admin");
+                              echo "<script type='text/javascript'>location.href = '../index_admin';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

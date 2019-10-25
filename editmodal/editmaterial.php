@@ -418,10 +418,11 @@ error_reporting(0);
                               $stmt->bind_param('ssssss', $i_name,$i_type,$category,$quantity,$size,$u_measure);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                echo'<script>swal("Successfully Updated!","", "success");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Material')";
                               mysqli_query($conn,$sql1);
-                              header("Location: ../index_admin");
+                            //  header("Location: ../index_admin");
+                               echo "<script type='text/javascript'>location.href = '../index_admin';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
