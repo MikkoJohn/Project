@@ -98,6 +98,7 @@ if(isset($_POST['delete_machine'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Account')";
                               mysqli_query($conn,$sql1);
+                               header("Location: index_admin");
                               } 
                               //header(location: )
                               else {

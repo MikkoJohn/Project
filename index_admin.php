@@ -3,12 +3,13 @@
 session_start();
 if(!isset($_SESSION["sess_user"])){
 	header("location:index.php");
+  exit();
 }else if ($_SESSION["sess_type"] != 1){
   header("location:index?access=denied");
   session_unset();
     session_destroy();
     session_start();
- 
+ exit();
 } else {
 
 }
