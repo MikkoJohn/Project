@@ -1,3 +1,4 @@
+
 <?php 
 session_start();
 if(!isset($_SESSION["sess_user"])){
@@ -14,6 +15,7 @@ if(!isset($_SESSION["sess_user"])){
 	
 $currmonth =date('M');
 $curryear =date('Y');
+
 
 ?>
 
@@ -72,16 +74,17 @@ include 'config.php';
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">      
-                
+              
                 <!-- <img class="img-profile rounded-circle" src="#"> -->
                <form method="POST" action="logout.php">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
                 <button type="submit" name="logout" style="background-color: white; border-radius:12px; margin-right: 10px; "><i class="fas fa-sign-out-alt">Log-out</i></button></form>
+
 <!-- //notif bell -->
-<li>
+<!-- <li>
  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;"><span class="label label-pill label-danger count" style="border-radius:50px;color:white;background-color:red;font-size: 15px; font-family: arial;"></span> <span class="fa fa-bell" style="font-size:25px;color:#1a0000;"></span></a>
-</li>
+</li> -->
 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -116,6 +119,8 @@ include 'config.php';
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">ADMIN DASHBOARD</h1>
+            <iframe src="notif" style="width: 30%; margin-left: 0px;top:20%;height: 50px;position: ;">
+            </iframe>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
@@ -366,7 +371,7 @@ include 'config.php';
                                     </div>
 
                         <div class="col col-lg-4">
-                          <form method="POST" action="">
+                          <form method="POST" action="convert">
                           <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
                           <button name="convert_jo" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Convert</button>
                                     </form>
@@ -1029,3 +1034,4 @@ setInterval(function(){
 include ('includes/script.php');
 include ('includes/footer.php');
 ?>
+  

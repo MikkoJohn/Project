@@ -21,6 +21,7 @@ if(isset($_POST['delete_machine'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Machine')";
                               mysqli_query($conn,$sql1);
+
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -30,15 +31,18 @@ if(isset($_POST['delete_machine'])){
                               $stmt->close();
 }else if (isset($_POST['delete_jo'])){
   $jo_id = $_POST['jo_id'];
-
-  $stmt = $conn->prepare("DELETE FROM `job_order` WHERE `job_order_control_no` = ?");
+  $status= "Disabled";
+  // $stmt = $conn->prepare("DELETE FROM `job_order` WHERE `job_order_control_no` = ?");
+  $stmt = $conn->prepare("UPDATE `job_order` SET status=? WHERE `job_order_control_no` = ?");
   
-                              $stmt->bind_param('s',$jo_id);
+                              $stmt->bind_param('ss',$status,$jo_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Job Order')";
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Job Order')";
                               mysqli_query($conn,$sql1);
+                              header("Location: index_admin");
+
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
