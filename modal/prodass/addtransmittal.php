@@ -1,12 +1,10 @@
   <?php  
   session_start();
-   include_once '../../config.php';
-     include '../../includes/link.php';
+    include_once 'config.php';
+    include '../../includes/link.php';
     include '../../includes/header.php';
-    
-    $accname = $_SESSION['acct_name'];
+$accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
-
 
   ?>
 
@@ -27,42 +25,47 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="p_by" placeholder="Prepared by">
+                                    <input type="text" class="form-control" name="p_by" placeholder="Prepared by" required>
                                   </div>
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="pre_press" placeholder="Pre-Press">
+                                    <input type="text" class="form-control" name="pre_press" placeholder="Pre-Press" required>
                                   </div>
                                 </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="post_press" placeholder="Post-Press">
+                                    <input type="text" class="form-control" name="post_press" placeholder="Post-Press" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                  <input type="text" class="form-control" name="others" placeholder="Others">
+                                  <input type="text" class="form-control" name="others" placeholder="Others" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="jo_controlno" placeholder="Job Order Control No">
+                                    <input type="text" class="form-control" name="jo_controlno" placeholder="Job Order Control No" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity">
+                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input  type="text" class="form-control" name="desc" placeholder="Description">
+                                    <input  type="text" class="form-control" name="desc" placeholder="Description" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input  type="text" class="form-control" name="status" placeholder="Status">
+                                <select class="form-control" name="status" required>
+                                  <option value="NULL" selected="true" disabled>SELECT STATUS</option>
+                                  <option value="Pending">Pending</option>
+                                  <option value="Approved">Approved</option>
+                                </select>
+                                   
                                   </div>
                                 </div>
                             
@@ -98,8 +101,10 @@ error_reporting(0);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Transmittal')";
-                                mysqli_query($conn,$sql1);
+
+                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Transmittal')";
+                              mysqli_query($conn,$sql1);
+                              header("Location: ../../index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

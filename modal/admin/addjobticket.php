@@ -85,7 +85,7 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                              <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input  type="number" class="form-control" name="pages" placeholder="Pages" required>
+                                    <input  type="number" class="form-control" name="pages" placeholder="No. of Pages" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-4">

@@ -37,7 +37,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index_prodheadoptr.php">
+        <a class="nav-link" href="modal/prodhead/addoperator">
           <i class="#"></i>
           <span>Operators</span>
         </a>
@@ -83,7 +83,7 @@
 <br>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a href="modal/prodhead/addoperator" class="nav-link" data-toggle="modal" data-target="#AddOperator">
+        <a href="modal/prodhead/addaccount" class="nav-link" data-toggle="modal" data-target="#AddOperator">
           
           <span>Add Account </span></a>
              

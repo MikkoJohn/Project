@@ -1,10 +1,9 @@
   <?php  
   session_start();
-    include_once '../../config.php';
-     include '../../includes/link.php';
+    include_once 'config.php';
+    include '../../includes/link.php';
     include '../../includes/header.php';
-        
-    $accname = $_SESSION['acct_name'];
+$accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
   ?>
     <!-- OperatorModal -->
@@ -24,19 +23,25 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No.">
+                                    <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="j_desc" placeholder="Job Description">
+                                    <input type="text" class="form-control" name="j_desc" placeholder="Job Description"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="s_name" placeholder="Supplier Name">
+                                    <input type="text" class="form-control" name="s_name" placeholder="Supplier Name"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="instruction" placeholder="Instruction">
+                                    <input type="text" class="form-control" name="instruction" placeholder="Instruction"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="status" placeholder="Status">
+                                <select class="form-control" required>
+                                  <option selected="true" value="NULL" disabled="disabled" name="status">SELECT STATUS</option>
+                                  <option value="Pending">Pending</option>
+                                  <option value="Approved">Approved</option>
+                                  <option value="Disapproved">Disapproved</option>
+                                </select>
+                                   
                                   </div>
                             
                             <div class="col-lg-12 controls">
@@ -69,8 +74,9 @@ $acctype = $_SESSION['sess_type'];
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Work Order')";
-                                mysqli_query($conn,$sql1);
+                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Work Order')";
+                              mysqli_query($conn,$sql1);
+                              header("Location: ../../index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

@@ -7,7 +7,7 @@ $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
                    ?>
    
-   <a href="../../index_admin" class="btn btn-primary" style="margin:2%">BACK</a>
+   <a href="../../index_prodhead" class="btn btn-primary" style="margin:2%">BACK</a>
 
    <form method="POST" onsubmit="return confirm('Are you sure?')">
         <div class="container">    
