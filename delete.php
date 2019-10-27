@@ -12,16 +12,17 @@ $acctype = $_SESSION['sess_type'];
 $now = date("Y-m-d H:i:s");
 if(isset($_POST['delete_machine'])){
 	$machine_id = $_POST['machine_id'];
-
-	$stmt = $conn->prepare("DELETE FROM `machine` WHERE `machine_id` = ?");
+  $status = "Disabled";
+// $stmt = $conn->prepare("DELETE FROM `machine` WHERE `machine_id` = ?");
+	$stmt = $conn->prepare("UPDATE `machine` SET machine_status = ? WHERE `machine_id` = ?");
   
-                              $stmt->bind_param('s',$machine_id);
+                              $stmt->bind_param('ss',$status,$machine_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Machine')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Machine')";
                               mysqli_query($conn,$sql1);
-
+                                echo 'header("Location: index_admin");';
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -52,15 +53,17 @@ if(isset($_POST['delete_machine'])){
                               $stmt->close();
 }else if (isset($_POST['delete_material'])){
   $material_id = $_POST['material_id'];
-
-  $stmt = $conn->prepare("DELETE FROM `materials` WHERE `material_id` = ?");
+  $status = 1;
+// $stmt = $conn->prepare("DELETE FROM `materials` WHERE `material_id` = ?");
+  $stmt = $conn->prepare("UPDATE `materials` SET status=? WHERE `material_id` = ?");
   
-                              $stmt->bind_param('s',$material_id);
+                              $stmt->bind_param('ss',$status,$material_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Material')";
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Material')";
                               mysqli_query($conn,$sql1);
+                              header("Location: index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -71,15 +74,16 @@ if(isset($_POST['delete_machine'])){
 
 }else if(isset($_POST['delete_jticket'])){
   $ticket_no = $_POST['ticket_no'];
-
-  $stmt = $conn->prepare("DELETE FROM `job_ticket` WHERE `ticket_no` = ?");
-  
-                              $stmt->bind_param('s',$ticket_no);
+  $status = "Disabled";
+  // $stmt = $conn->prepare("DELETE FROM `job_ticket` WHERE `ticket_no` = ?");
+  $stmt = $conn->prepare("UPDATE `job_ticket` SET status=? WHERE `ticket_no` = ?");
+                              $stmt->bind_param('ss',$status,$ticket_no);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Job Ticket')";
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Job Ticket')";
                               mysqli_query($conn,$sql1);
+                                header("Location: index_admin");
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -89,10 +93,33 @@ if(isset($_POST['delete_machine'])){
                               $stmt->close();
 }else if(isset($_POST['delete_account'])){
   $acc_id = $_POST['acc_id'];
-
-  $stmt = $conn->prepare("DELETE FROM `tbl_useraccounts` WHERE `ua_id` = ?");
+  $status = 1;
+$stmt = $conn->prepare("UPDATE `tbl_useraccounts` SET `status` = ? WHERE `ua_id` = ?");
+  // $stmt = $conn->prepare("DELETE FROM `tbl_useraccounts` WHERE `ua_id` = ?");
   
-                              $stmt->bind_param('s',$acc_id);
+                              $stmt->bind_param('ss',$status,$acc_id);
+
+                              if($stmt->execute()){
+                                echo'<script>swal("Successfully Deleted!","", "success");</script>';
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Account')";
+                              mysqli_query($conn,$sql1);
+                               header("Location: index_admin");
+                              } 
+                              //header(location: )
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
+
+}else if(isset($_POST['delete_wo'])){
+  $wo_id = $_POST['work_order_no'];
+  $status = 1;
+$stmt = $conn->prepare("UPDATE `tbl_useraccounts` SET `status` = ? WHERE `ua_id` = ?");
+  // $stmt = $conn->prepare("DELETE FROM `tbl_useraccounts` WHERE `ua_id` = ?");
+  
+                              $stmt->bind_param('ss',$status,$acc_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
@@ -108,4 +135,5 @@ if(isset($_POST['delete_machine'])){
 
                               $stmt->close();
 }
+
 ?>

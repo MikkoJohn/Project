@@ -297,7 +297,7 @@ include 'config.php';
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="acc_id" value="'.$row['ua_id'].'">
-                        <button name="delete_account" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_account" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
         </form>  
         </div>
         </div></center>
@@ -452,7 +452,7 @@ include 'config.php';
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
-                        <button name="delete_jticket" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_jticket" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
         </form>  
         </div>
         </div></center>
@@ -531,11 +531,11 @@ include 'config.php';
                 <table class="table table-striped table-bordered" id="machine" width="99%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th width="13%"><center>Machine ID No</center></th>
+                      <th width="8%"><center>Machine ID No</center></th>
                       <th width="15%"><center>Machine Name</center></th>
                       <th width="15%"><center>Division</th>
                       <th width="10%"><center>Status</center></th>
-                      <th width="13%"><center>Actions</center></th>
+                      <th width="15%"><center>Actions</center></th>
                     </tr> 
                   </thead>
                      <tbody>
@@ -548,10 +548,10 @@ include 'config.php';
 
                         while($row = mysqli_fetch_assoc($result)){
                           echo ' <tr>
-                                    <td><center>'.strtoupper($row['machine_id']).'</td>
-                                    <td><center>'.strtoupper($row['machine_name']).'</td>
-                                    <td><center>'.strtoupper($row['machine_division']).'</td>
-                                    <td><center>'.strtoupper($row['machine_status']).'</td>
+                                    <td><center>'.ucfirst($row['machine_id']).'</td>
+                                    <td><center>'.ucfirst($row['machine_name']).'</td>
+                                    <td><center>'.ucfirst($row['machine_division']).'</td>
+                                    <td><center>'.ucfirst($row['machine_status']).'</td>
                                     <td><center>
                                     <div class="row">
                                     <div class="col col-lg-6">
@@ -564,7 +564,7 @@ include 'config.php';
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
-                        <button name="delete_machine" class="btn btn-danger" style="width:100%;" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_machine" class="btn btn-danger" style="width:100%;" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
         </form>  
         </div>
         </div>
@@ -604,6 +604,7 @@ include 'config.php';
                       <th><center>Item Name</center></th>
                       <th><center>Item Description</th>
                       <th><center>Category</center></th>
+                      <th><center>Status</center></th>
                       <th><center>Actions</center></th>
                     </tr> 
                   </thead>
@@ -617,6 +618,14 @@ include 'config.php';
                   <td><center>'.$row['item_name'].'</center></td>
                   <td><center>'.$row['item_desc'].'</center></td>
                   <td><center>'.$row['category'].'</center></td>
+                  ';
+            if($row['status'] == 1){
+              echo '<td><center>Disabled</center></td>';
+            }else if($row['status'] == 0){
+              echo '<td><center>Active</center></td>';
+            }
+              echo'
+                  
                   <td><center>
                     <div class="row">
                                     <div class="col col-lg-6">
@@ -629,7 +638,7 @@ include 'config.php';
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="material_id" value="'.$row['material_id'].'">
-                        <button name="delete_material" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_material" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
         </form>  
         </div>
         </div></center>
@@ -650,6 +659,73 @@ include 'config.php';
  });  
  </script> 
 
+
+
+   <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Work Order</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="wo" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th><center>Work Order ID</center></th>
+                      <th><center>Job Description</center></th>
+                      <th><center>Supplier Name</th>
+                      <th><center>Status</center></th>
+                      <th><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+        <?php
+          $sql = "SELECT * FROM work_order";
+          $result = mysqli_query($conn, $sql);
+          while ($row=mysqli_fetch_assoc($result)){
+            echo '
+              <tr>
+                  <td><center>'.$row['work_order_no'].'</center></td>
+                  <td><center>'.$row['job_desc'].'</center></td>
+                  <td><center>'.$row['s_name'].'</center></td>
+              ';
+                 if($row['status'] == 1){
+                      echo '<td><center>Disabled</center></td>';
+                    }else{
+                      echo '<td><center>'.$row['status'].'</center></td>';
+                    }
+              echo '
+                 
+                  <td><center>
+                    <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editworkorder">
+                       
+                          <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
+                          <button name="view_wo" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="delete">
+         <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
+                        <button name="delete_wo" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
+        </form>  
+        </div>
+        </div></center>
+        </td>
+              </tr>
+            ';
+          }
+        ?>               
+                              
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#wo').DataTable();  
+ });  
+ </script> 
 
 
 

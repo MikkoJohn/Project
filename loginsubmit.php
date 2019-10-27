@@ -15,8 +15,8 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
       $dbpassword = $row['pass'];
       $dbusertype = $row['user_type'];  /* Check LEGENDS(ACCOUNTTYPE).txt */
       $acct_name = $row['fname'];
-      
-                if($uname == $dbusername && $pass == $dbpassword && $dbusertype == "1")
+      $status = $row['status'];
+                if($uname == $dbusername && $pass == $dbpassword && $dbusertype == "1" && $status == "0")
                     {
                         session_start();
                           $_SESSION['sess_user'] = $uname;
@@ -24,9 +24,10 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                           $_SESSION['acct_name'] = $acct_name;
                             /* Redirect browser */
                             echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
+                            //exit();
                     }
 
-                elseif ($uname == $dbusername && $pass == $dbpassword && "2" == $dbusertype) 
+            else if ($uname == $dbusername && $pass == $dbpassword && "2" == $dbusertype && $status == "0") 
                     {
                         session_start();
                           $_SESSION['sess_user'] = $uname;
@@ -37,7 +38,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                             echo "<script type='text/javascript'>location.href = 'index_prodhead';</script>";
                     }
                 
-                elseif ($uname == $dbusername && $pass == $dbpassword && "3" == $dbusertype) 
+            else if ($uname == $dbusername && $pass == $dbpassword && "3" == $dbusertype && $status == "0") 
                     {
                         session_start();
                          $_SESSION['sess_user'] = $uname;
@@ -47,7 +48,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                           echo "<script type='text/javascript'>location.href = 'index_prodass';</script>";
                     }
 
-                elseif ($uname == $dbusername && $pass == $dbpassword && "4" == $dbusertype) 
+            else if ($uname == $dbusername && $pass == $dbpassword && "4" == $dbusertype) 
                     {
                         session_start();
                           $_SESSION['sess_user'] = $uname;
@@ -57,7 +58,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                           echo "<script type='text/javascript'>location.href = 'index_prodplan';</script>";
                     }
 
-                elseif ($uname == $dbusername && $pass == $dbpassword && "5" == $dbusertype) 
+            else if ($uname == $dbusername && $pass == $dbpassword && "5" == $dbusertype && $status == "0") 
                     {
                         session_start();
                          $_SESSION['sess_user'] = $uname;
@@ -67,7 +68,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                           echo "<script type='text/javascript'>location.href = '';</script>";
                     }
 
-                elseif ($uname == $dbusername && $pass == $dbpassword && "6" == $dbusertype) 
+            else if ($uname == $dbusername && $pass == $dbpassword && "6" == $dbusertype && $status == "0") 
                     {
                         session_start();
                          $_SESSION['sess_user'] = $uname;
@@ -77,7 +78,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                           echo "<script type='text/javascript'>location.href = 'index_operators';</script>";
                     }
 
-                elseif ($uname == $dbusername && $pass == $dbpassword && "7" == $dbusertype) 
+            else if ($uname == $dbusername && $pass == $dbpassword && "7" == $dbusertype && $status == "0") 
                     {
                         session_start();
                          $_SESSION['sess_user'] = $uname;
@@ -86,7 +87,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_sales';</script>";
                     }
-                elseif ($uname == $dbusername && $pass == $dbpassword && "8" == $dbusertype) 
+            else if ($uname == $dbusername && $pass == $dbpassword && "8" == $dbusertype && $status == "0") 
                     {
                         session_start();
                          $_SESSION['sess_user'] = $uname;
@@ -95,7 +96,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_genserv';</script>";
                     }
-                elseif ($uname == $dbusername && $pass == $dbpassword && "9" == $dbusertype) 
+            else if ($uname == $dbusername && $pass == $dbpassword && "9" == $dbusertype && $status == "0") 
                     {
                         session_start();
                          $_SESSION['sess_user'] = $uname;
@@ -104,6 +105,9 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = '';</script>";
                     }
+            else if($status == "1"){
+                     echo "<script type='text/javascript'>alert('Account Deactivated!');</script>";
+                  }
                 
                 } 
                 else 
