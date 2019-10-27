@@ -27,6 +27,7 @@ $acctype = $_SESSION['sess_type'];
                   $sql = "SELECT * FROM job_ticket where ticket_no = '".$_SESSION['ticket_no']."'";
                   $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_assoc($result)){
+              if($row['status'] != "Disabled"){
                     echo '
                        <form method="POST" class="form-horizontal" role="form">         
                            <div class="row">
@@ -315,8 +316,14 @@ $acctype = $_SESSION['sess_type'];
                          </select>  
                                   </div>
                                 </div>
+                                  <div class="col col-sm-12">
+                   <div class="form-group">  
+                           <button name="updatejobticket" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>  
+                                </div>
+                              </div>
+                            </form>  
                     ';
-                  }
+                  
                 }else {
                   // $ticket_no = $_POST['ticket_no'];
                 //  $_SESSION['ticket_no'] = $_POST['ticket_no'];
@@ -328,73 +335,73 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="jo_no" placeholder="Job Order No" value="'.$row['job_order_control_no'].'">
+                                    <input type="text" class="form-control" name="jo_no" placeholder="Job Order No" value="'.$row['job_order_control_no'].'" disabled>
                                   </div>
                               </div>
                              <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="mname" placeholder="Machine Name" value="'.$row['machine_name'].'">
+                                    <input type="text" class="form-control" name="mname" placeholder="Machine Name" value="'.$row['machine_name'].'"disabled>
                                   </div>
                               </div>
                              <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="c_name" placeholder="Client Name" value="'.$row['client_name'].'">
+                                    <input type="text" class="form-control" name="c_name" placeholder="Client Name" value="'.$row['client_name'].'"disabled>
                                   </div>
                                 </div>
                                <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name" value="'.$row['proj_name'].'">
+                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name" value="'.$row['proj_name'].'"disabled>
                                   </div>
                                 </div>
                              <div class="col col-sm-12">
                             <div class="form-group">
                               <h5>Delivery Date:</h5>
-                                    <input type="date" class="form-control" name="d_date" placeholder="" value="'.$row['delivery_date'].'">
+                                    <input type="date" class="form-control" name="d_date" placeholder="" value="'.$row['delivery_date'].'"disabled>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="c_by" placeholder="Checked By" value="'.$row['checked_by'].'">
+                                    <input type="text" class="form-control" name="c_by" placeholder="Checked By" value="'.$row['checked_by'].'"disabled>
                                   </div>
                             </div>
                             <div class="col col-lg-6">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="n_by" placeholder="Noted By" value="'.$row['noted_by'].'">
+                                    <input type="text" class="form-control" name="n_by" placeholder="Noted By" value="'.$row['noted_by'].'"disabled>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="title" placeholder="Title" value="'.$row['title'].'">
+                                    <input type="text" class="form-control" name="title" placeholder="Title" value="'.$row['title'].'"disabled>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="'.$row['quantity'].'">
+                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="'.$row['quantity'].'"disabled>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input  type="number" class="form-control" name="a_size" placeholder="Actual Size" value="'.$row['actual_size'].'">
+                                    <input  type="number" class="form-control" name="a_size" placeholder="Actual Size" value="'.$row['actual_size'].'"disabled>
                                   </div>
                                 </div>
                              <div class="col col-sm-4">
                              <div class="form-group">
-                                    <input  type="text" class="form-control" name="pages" placeholder="Pages" value="'.$row['pages'].'">
+                                    <input  type="text" class="form-control" name="pages" placeholder="Pages" value="'.$row['pages'].'"disabled>
                                   </div>
                                 </div>
                              <div class="col col-sm-4">
                               <div class="form-group">
-                                    <input  type="text" class="form-control" name="p_cover" placeholder="Paper Cover" value="'.$row['paper_cover'].'">
+                                    <input  type="text" class="form-control" name="p_cover" placeholder="Paper Cover" value="'.$row['paper_cover'].'"disabled>
                                   </div>
                                 </div>
                               <div class="col col-sm-4">
                               <div class="form-group">
-                                    <input  type="text" class="form-control" name="color" placeholder="Color" value="'.$row['color'].'">
+                                    <input  type="text" class="form-control" name="color" placeholder="Color" value="'.$row['color'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
                                 <div class="form-group"> 
-                                 <select class="form-control" name="binding">
+                                 <select class="form-control" name="binding"disabled>
                                 ';
                             if($row['binding'] == "Perfect Bind"){
                               echo '
@@ -533,66 +540,66 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                                 <div class="col col-sm-4">
                                 <div class="form-group">                          
-                                    <input  type="text" class="form-control" placeholder="Lamination" name="lamination" value="'.$row['lamination'].'">
+                                    <input  type="text" class="form-control" placeholder="Lamination" name="lamination" value="'.$row['lamination'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
                                 <div class="form-group">                          
-                                    <input  type="text" class="form-control" placeholder="Remarks" name="remarks" value="'.$row['remarks'].'">
+                                    <input  type="text" class="form-control" placeholder="Remarks" name="remarks" value="'.$row['remarks'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                    <input  type="text" class="form-control" placeholder="Stock Size" name="s_size" value="'.$row['stock_size'].'">
+                                    <input  type="text" class="form-control" placeholder="Stock Size" name="s_size" value="'.$row['stock_size'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">                          
-                                    <input  type="text" class="form-control" placeholder="Printing Size" name="p_size" value="'.$row['printing_size'].'">
+                                    <input  type="text" class="form-control" placeholder="Printing Size" name="p_size" value="'.$row['printing_size'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Start:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="start" value="'.$row['start'].'">
+                                    <input  type="date" class="form-control" placeholder="" name="start" value="'.$row['start'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Finish:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="finish" value="'.$row['finish'].'">
+                                    <input  type="date" class="form-control" placeholder="" name="finish" value="'.$row['finish'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Time Received:</h5>                          
-                                    <input  type="time" class="form-control" placeholder="" name="t_received" value="'.$row['time_received'].'">
+                                    <input  type="time" class="form-control" placeholder="" name="t_received" value="'.$row['time_received'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Date Received:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="d_received" value="'.$row['date_received'].'">
+                                    <input  type="date" class="form-control" placeholder="" name="d_received" value="'.$row['date_received'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
                                 <div class="form-group">                          
-                                    <input  type="number" class="form-control" placeholder="No of Out" name="no_out" value="'.$row['no_of_out'].'">
+                                    <input  type="number" class="form-control" placeholder="No of Out" name="no_out" value="'.$row['no_of_out'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
                                 <div class="form-group">                          
-                                    <input  type="number" class="form-control" placeholder="No of Sheet" name="no_sheet" value="'.$row['no_of_sheet'].'">
+                                    <input  type="number" class="form-control" placeholder="No of Sheet" name="no_sheet" value="'.$row['no_of_sheet'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
                                 <div class="form-group">                          
-                                    <input  type="number" class="form-control" placeholder="No of Ream" name="no_ream" value="'.$row['no_of_ream'].'">
+                                    <input  type="number" class="form-control" placeholder="No of Ream" name="no_ream" value="'.$row['no_of_ream'].'"disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
                                 <div class="form-group">
-                                <select name="status" class="form-control" required="">
+                                <select name="status" class="form-control" required=""disabled>
                                 ';
                                 if($row['status']=="Pending"){
                                   echo '
@@ -611,18 +618,20 @@ $acctype = $_SESSION['sess_type'];
                          </select>  
                                   </div>
                                 </div>
-                    ';
-                  }
-
-                }
-
-                ?>
-                <div class="col col-sm-12">
+                                 <div class="col col-sm-12">
                    <div class="form-group">  
-                           <button name="updatejobticket" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>  
+                           <button name="updatejobticket" class="btn btn-warning btn-md" value="UPDATE"disabled><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>  
                                 </div>
                               </div>
-                            </form>     
+                            </form> 
+                    ';
+                  }
+}
+                }
+              }
+
+                ?>
+                   
                         </div>                     
                     </div>  
                 </div>                      

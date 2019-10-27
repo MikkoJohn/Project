@@ -25,24 +25,25 @@ $acctype = $_SESSION['sess_type'];
                         <div class="row">   
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
-                                  
+                                  <h6>First Name:</h6>
                                    <input  type="text" class="form-control" name="fname" value="" placeholder="First Name" onkeypress="return /[a-z]/i.test(event.key)" required>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
-                                 
+                                 <h6>Middle Name:</h6>
                                    <input type="text" class="form-control" name="mname" value="" placeholder="Middle Name"  onkeypress="return /[a-z]/i.test(event.key)">                                       
                                     </div>
                           </div>
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
-                                  
+                                  <h6>Last Name</h6>
                                    <input type="text" class="form-control" name="lname" value="" placeholder="Last Name" onkeypress="return /[a-z]/i.test(event.key)" required>                                       
                                     </div>
                           </div>
                           <div class="col col-md-12">
                             <div style="margin-bottom: 25px" class="input-group">
+
                                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                    <input id="uname" type="text" class="form-control" name="uname" value="" placeholder="Username" required>                                       
                                     </div>
@@ -126,6 +127,7 @@ if(isset($_POST['addaccount'])){
 $fname = $_POST['fname'];
 $mname = $_POST['mname'];
 $lname = $_POST['lname'];
+$status= 0;
 if(empty($div)){
   $div = "";
 }else {
@@ -138,6 +140,14 @@ $div = $_POST['div'];
 
    } else {
 
+$sqls = "SELECT * FROM `tbl_useraccounts` WHERE `uname`='".$uname."'";
+$resulta = $conn->query($sqls);
+if($resulta->num_rows >= 1) {
+    echo'<script>swal("Error!","Username already exist!" ,"warning");</script>';
+} else {
+ // ....
+  //echo "<script>alert('inserted');</script>";
+
    // $usernames = mysqli_real_escape_string($uname);
    // $res = mysqli_query($conn,"SELECT * FROM tbl_useraccounts WHERE uname =".$usernames." ");
    // if($res->num_rows){
@@ -147,8 +157,8 @@ $div = $_POST['div'];
    // }
 
 
-  $stmt = $conn->prepare("INSERT INTO `tbl_useraccounts`(`uname`, `pass`, `user_type`, `fname`, `mname`, `lname`, `division`) VALUES (?,?,?,?,?,?,?)");
-                              $stmt->bind_param('sssssss', $uname,$pass,$acc,$fname,$mname,$lname,$div);
+  $stmt = $conn->prepare("INSERT INTO `tbl_useraccounts`(`uname`, `pass`, `user_type`, `fname`, `mname`, `lname`, `division`,`status`) VALUES (?,?,?,?,?,?,?,?)");
+                              $stmt->bind_param('ssssssss', $uname,$pass,$acc,$fname,$mname,$lname,$div,$status);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Added!","","success");</script>';
@@ -168,6 +178,7 @@ $div = $_POST['div'];
 
 }
 
+}
 // header("Location:../../index_admin");
 }
 

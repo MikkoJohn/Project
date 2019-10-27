@@ -45,7 +45,7 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                  <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
+                                  <input type="number" class="form-control" name="quantity" min="0" placeholder="Quantity" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">

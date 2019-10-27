@@ -31,7 +31,7 @@ $acctype = $_SESSION['sess_type'];
                         mysqli_stmt_execute($stmt);
                         $result = mysqli_stmt_get_result($stmt);
                         while($row = mysqli_fetch_assoc($result)){
-
+                    if($row['machine_status'] != "Disabled"){
                          echo ' 
                             <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
 
@@ -106,34 +106,21 @@ $acctype = $_SESSION['sess_type'];
 
                                     </select>
                                   </div>
+                                   <button name="updatemachine" class="btn btn-warning btn-md" value="UPDATE" id="" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>
+                                </div>
+                            </form>   
                           ';
 
 }
-
-
-                        ?> 
-                            <button name="updatemachine" class="btn btn-warning btn-md" value="UPDATE" id="" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>
-                                </div>
-                            </form>   
-                          <?php 
-                            }else {
-                              // $_SESSION['machine_id'] = $_POST['machine_id'];
-                   //   $machine_id = $_POST['machine_id'];
-                        $sql = 'SELECT `machine_id`,`machine_name`, `machine_division`, `maximum_size`, `minimum_size`, `maximum_printing_area`, `max_speed`, `min_speed`, `machine_status` FROM `machine` WHERE `machine_id` = '.$_SESSION['machine_id'].'';
-                        $stmt = mysqli_stmt_init($conn);
-                        mysqli_stmt_prepare($stmt, $sql);
-                        mysqli_stmt_execute($stmt);
-                        $result = mysqli_stmt_get_result($stmt);
-                        while($row = mysqli_fetch_assoc($result)){
-
-                         echo ' 
+                        else {
+                              echo ' 
                             <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
 
                          <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" name="mname" value="'.$row['machine_name'].'" placeholder="Machine Name">
+                                    <input type="text" class="form-control" name="mname" value="'.$row['machine_name'].'" placeholder="Machine Name" disabled>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                              <select name="mdivision" class="form-control" value="'.$row['machine_division'].'">
+                              <select name="mdivision" class="form-control" value="'.$row['machine_division'].'" disabled>
                              ';
                              if($row['machine_division'] == "Pre-Press"){
                                   echo '
@@ -153,35 +140,28 @@ $acctype = $_SESSION['sess_type'];
                                         <option value="Press">Press</option>
                                         <option selected="true" value="Post-Press">Post-Press</option>
                                   ';
-                             }else{
-                                echo '
-                                        <option selected="true" value="NULL" disabled>SELECT MACHINE STATUS</option>
-                                        <option value="Available">Available</option>
-                                        <option value="In Use">In Use</option>
-                                        <option value="Under Maintenance">Under Maintenance</option>
-                                  ';
-                              }
+                             }
 
                             echo '
                               </select>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed" value="'.$row['max_speed'].'">
+                                    <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed" value="'.$row['max_speed'].'" disabled>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="minspeed" placeholder="Minimum Speed" value="'.$row['min_speed'].'">
+                                    <input type="text" class="form-control" name="minspeed" placeholder="Minimum Speed" value="'.$row['min_speed'].'" disabled>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="mmaxsize" placeholder="Machine Maximum Size" value="'.$row['maximum_size'].'">
+                                    <input type="text" class="form-control" name="mmaxsize" placeholder="Machine Maximum Size" value="'.$row['maximum_size'].'" disabled>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="mminsize" placeholder="Machine Minimum Size" value="'.$row['minimum_size'].'">
+                                    <input type="text" class="form-control" name="mminsize" placeholder="Machine Minimum Size" value="'.$row['minimum_size'].'" disabled>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                    <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing area" value="'.$row['maximum_printing_area'].'">
+                                    <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing area" value="'.$row['maximum_printing_area'].'" disabled>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                <select class="form-control" name="mstatus" value="'.$row['machine_status'].'">
+                                <select class="form-control" name="mstatus" value="'.$row['machine_status'].'" disabled>
                                 ';
                               if($row['machine_status'] == "Available"){
                                    echo '
@@ -201,34 +181,24 @@ $acctype = $_SESSION['sess_type'];
                                         <option value="In Use">In Use</option>
                                         <option selected="true" value="Under Maintenance">Under Maintenance</option>
                                   ';
-                              }else{
-                                echo '
-                                        <option selected="true" value="NULL" disabled>SELECT MACHINE STATUS</option>
-                                        <option value="Available">Available</option>
-                                        <option value="In Use">In Use</option>
-                                        <option value="Under Maintenance">Under Maintenance</option>
-                                  ';
                               }
 
                             echo '
 
                                     </select>
                                   </div>
+                                    <button name="updatemachine" class="btn btn-warning btn-md" value="UPDATE" id="" disabled><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>
+                                </div>
+                            </form>  
                           ';
 
 
-
-}
-?>
- <div class="col col-sm-12">
-                   <div class="form-group"> 
- <button name="updatemachine" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>    
-                                </div>
-                            </form>   
-<?php
-
+                          
                             }
-                          ?>  
+                          }
+                        }
+?>
+
                         </div>                     
                     </div>  
                 </div>                      

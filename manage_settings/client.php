@@ -85,6 +85,7 @@ $acctype = $_SESSION['sess_type'];
                               <th><center>Client Name</center></th>
                               <th><center>Sales Representative</center></th>
                               <th><center>Company</center></th>
+                              <th><center>Status</center></th>
                               <th><center>Action</center></th>
                                </tr>  
                         </thead> 
@@ -98,6 +99,13 @@ $acctype = $_SESSION['sess_type'];
                               <td><center>'.$row['client_name'].'</center></td>
                               <td><center>'.$row['sales_representative'].'</center></td>
                               <td><center>'.$row['company'].'</center></td>
+                              ';
+                      if($row['status'] == 0){
+                          echo '<td><center>Active</center></td>';
+                      }else if($row['status'] == 1){
+                        echo '<td><center>Disabled</center></td>';
+                      }
+                      echo '
                               <td>
                               <center>
                           <div class="row">
@@ -111,7 +119,7 @@ $acctype = $_SESSION['sess_type'];
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="client_id" value="'.$row['client_id'].'">
-                        <button name="delete_client" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_client" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
         </form>  
         </div>
         </div></center>
@@ -148,36 +156,36 @@ $acctype = $_SESSION['sess_type'];
               <div class="row">
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Client Name:</h6>
-                  <input type="text" name="c_name" class="form-control" placeholder="Client Name" >
+                  <input type="text" name="c_name" class="form-control" placeholder="Client Name" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Sales Representative:</h6>
-                  <input type="text" name="s_rep" class="form-control"placeholder="Sales Representative" >
+                  <input type="text" name="s_rep" class="form-control"placeholder="Sales Representative" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company:</h6> 
-                  <input type="text" name="company" class="form-control" placeholder="Company" >
+                  <input type="text" name="company" class="form-control" placeholder="Company" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Telephone No.:</h6>
-                  <input type="number" name="c_no" class="form-control" placeholder="Contact No." pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;" >
+                  <input type="number" name="c_no" class="form-control" placeholder="Contact No." pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" required>
                   
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>E-mail Address:</h6>
-                  <input type="email" name="e_add" class="form-control" placeholder="E-mail Address"  >
+                  <input type="email" name="e_add" class="form-control" placeholder="E-mail Address" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company Address:</h6>
-                  <input type="text" name="c_add" class="form-control" placeholder="Company Address" >
+                  <input type="text" name="c_add" class="form-control" placeholder="Company Address" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>City:</h6>
-                  <input type="text" name="city" class="form-control" placeholder="City" >
+                  <input type="text" name="city" class="form-control" placeholder="City" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Postal Code:</h6>
-                  <input type="text" name="p_code" class="form-control" placeholder="Postal Code" >
+                  <input type="text" name="p_code" class="form-control" placeholder="Postal Code" required>
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
                   <input type="submit" name="add_client" class="btn btn-primary form-control" value="ADD Client">
@@ -194,8 +202,8 @@ $e_add = $_POST['e_add'];
 $c_add = $_POST['c_add'];
 $city = $_POST['city'];
 $p_code = $_POST['p_code'];
-
-$sql = "INSERT INTO `client_info`(`client_name`, `sales_representative`, `company`, `contact_no`, `email_address`, `company_address`, `city`, `postal_code`) VALUES ('$c_name','$s_rep','$company','$c_no','$e_add','$c_add','$city','$p_code')";
+$status = 0;
+$sql = "INSERT INTO `client_info`(`client_name`, `sales_representative`, `company`, `contact_no`, `email_address`, `company_address`, `city`, `postal_code`,`satus`) VALUES ('$c_name','$s_rep','$company','$c_no','$e_add','$c_add','$city','$p_code',$status)";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Client')";

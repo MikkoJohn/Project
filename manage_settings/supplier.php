@@ -85,6 +85,7 @@ $acctype = $_SESSION['sess_type'];
                               <th><center>Supplier Name</center></th>
                               <th><center>E-mail Address</center></th>
                               <th><center>Major Products</center></th>
+                              <th><center>Status</center></th>
                               <th><center>Action</center></th>
                                </tr>  
                         </thead> 
@@ -98,6 +99,14 @@ $acctype = $_SESSION['sess_type'];
                               <td><center>'.$row['supplier_name'].'</center></td>
                               <td><center>'.$row['email_address'].'</center></td>
                               <td><center>'.$row['major_products'].'</center></td>
+                               '; 
+                    if($row['status'] == 0){
+                      echo '<td><center>Active</center></td>';
+                    }else if($row['status'] == 1){
+                      echo '<td><center>Disabled</center></td>';
+                    }
+                             
+                            echo '
                               <td>
                               <center>
                           <div class="row">
@@ -111,7 +120,7 @@ $acctype = $_SESSION['sess_type'];
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="supplier_id" value="'.$row['supplier_id'].'">
-                        <button name="delete_supplier" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_supplier" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
         </form>  
         </div>
         </div></center>
@@ -139,7 +148,7 @@ $acctype = $_SESSION['sess_type'];
       <!-- Modal content-->
       <div class="modal-content" style="width: 100%;">
         <div class="modal-header">
-          <h5>Add Operator</h5>
+          <h5>Add Supplier</h5>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           
         </div>
@@ -156,11 +165,11 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-3" style="margin-bottom: 15px;">
                   <h6>Telephone No:</h6>
-                  <input type="text" name="telephone" class="form-control" placeholder="Telephone" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;" required>
+                  <input type="number" name="telephone" class="form-control" placeholder="Telephone" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;" required>
                 </div>
                 <div class="col col-md-3" style="margin-bottom: 15px;">
                   <h6>E-mail Address:</h6>
-                  <input type="text" name="e_add" class="form-control" placeholder="E-mail Address" required>
+                  <input type="email" name="e_add" class="form-control" placeholder="E-mail Address" required>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Branch:</h6>
@@ -168,7 +177,7 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Telephone No.:</h6>
-                  <input type="text" name="tel_no" class="form-control" placeholder="Telephone No." pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;" required>
+                  <input type="number" name="tel_no" class="form-control" placeholder="Telephone No." pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;" required>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Warehouse:</h6>
@@ -211,7 +220,7 @@ $acctype = $_SESSION['sess_type'];
                   <input type="text" name="sec_serv" class="form-control" placeholder="Secondary Services" required>
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
-                  <input type="submit" name="add_supplier" class="btn btn-primary form-control" value="ADD Operator">
+                  <input type="submit" name="add_supplier" class="btn btn-primary form-control" value="ADD SUPPLIER">
                 </div>
               </div>
           </form>
@@ -233,9 +242,9 @@ $c_person2 = $_POST['c_person2'];
 $position2 = $_POST['position2'];
 $major_prod = $_POST['major_prod'];
 $sec_serv = $_POST['sec_serv'];
+$status = 0;
 
-
-$sql = "INSERT INTO `supplier_info`(`supplier_name`, `head_office_address`, `telephone`, `email_address`, `branch`, `tel_no`, `warehouse`, `form_of_business`, `kind_of_business`, `tin_no`, `contact_person`, `position`, `contact_person2`, `position2`, `major_products`, `secondary_services`) VALUES VALUES ('$s_name','$ho_add','$telephone','$e_add','$branch','$tel_no','$warehouse','$form_of_business','$kind_of_business','$tin_no','$contact_person','$position','$contact_person2','$position2','$major_prod','$sec_serv')";
+$sql = "INSERT INTO `supplier_info`(`supplier_name`, `head_office_address`, `telephone`, `email_address`, `branch`, `tel_no`, `warehouse`, `form_of_business`, `kind_of_business`, `tin_no`, `contact_person`, `position`, `contact_person2`, `position2`, `major_products`, `secondary_services`,`status`) VALUES ('$s_name','$ho_add','$telephone','$e_add','$branch','$tel_no','$warehouse','$form_of_business','$kind_of_business','$tin_no','$contact_person','$position','$contact_person2','$position2','$major_prod','$sec_serv','$status')";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Supplier')";

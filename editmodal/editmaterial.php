@@ -24,10 +24,10 @@ $acctype = $_SESSION['sess_type'];
             if(isset($_POST['view_material'])){
                $_SESSION['material_id'] = $_POST['material_id'];
                       $material_id = $_POST['material_id'];
-            $sql="SELECT * FROM materials WHERE material_id = '".$material_id."'";
+            $sql="SELECT * FROM materials WHERE material_id = '".$_SESSION['material_id']."'";
             $result = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_assoc($result)){
-
+if($row['status'] == 0){
 
                   echo '
                       <form method="POST" class="form-horizontal" role="form">         
@@ -206,8 +206,8 @@ $acctype = $_SESSION['sess_type'];
                             </form> 
                           
                           ';
-                        }
-                      }else {
+                        
+                      }else if($row['status'] == 1){
                //$_SESSION['material_id'] = $_POST['material_id'];
                       //$material_id = $_POST['material_id'];
             $sql="SELECT * FROM materials WHERE material_id = '".$_SESSION['material_id']."'";
@@ -219,17 +219,17 @@ echo '
                            <div class="row">
                              <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="i_name" placeholder="Item Name" value="'.$row['item_name'].'">
+                                    <input type="text" class="form-control" name="i_name" placeholder="Item Name" value="'.$row['item_name'].'" disabled>
                                   </div>
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="i_type" placeholder="Item Description" value="'.$row['item_desc'].'">
+                                    <input type="text" class="form-control" name="i_type" placeholder="Item Description" value="'.$row['item_desc'].'"disabled>
                                   </div>
                                 </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
-                              <select class="form-control" name="category">
+                              <select class="form-control" name="category"disabled>
                               ';
                           if($row['category'] =="Ink"){
                               echo '
@@ -265,12 +265,12 @@ echo '
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                  <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="'.$row['quantity'].'">
+                                  <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="'.$row['quantity'].'"disabled>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                              <select class="form-control" name="u_measure" value="'.$row['unit_of_measure'].'">
+                              <select class="form-control" name="u_measure" value="'.$row['unit_of_measure'].'"disabled>
                               ';
                           if($row['unit_of_measure'] == "Kilogram"){
                             echo '
@@ -380,11 +380,11 @@ echo '
                             </div>
                              <div class="col col-sm-12">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="size" placeholder="Size" value="'.$row['size'].'">
+                                    <input type="text" class="form-control" name="size" placeholder="Size" value="'.$row['size'].'"disabled>
                                   </div>
                             </div>
                             <div class="col-lg-12 controls">
-                                     <button name="updatematerial" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>  
+                                     <button name="updatematerial" class="btn btn-warning btn-md" value="UPDATE"disabled><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>  
                                     </div>
                                 </div>
                               </div>
@@ -393,6 +393,8 @@ echo '
                           ';
                         }
                       }
+                    }
+                  }
                             ?>    
                         </div>                     
                     </div>  
@@ -414,8 +416,8 @@ error_reporting(0);
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  
-  $stmt = $conn->prepare("UPDATE `materials` SET `item_name`=?,`item_desc`=?,`category`=?,`quantity`=?,`size`=?,`unit_of_measure`=?");
-                              $stmt->bind_param('ssssss', $i_name,$i_type,$category,$quantity,$size,$u_measure);
+  $stmt = $conn->prepare("UPDATE `materials` SET `item_name`=?,`item_desc`=?,`category`=?,`quantity`=?,`size`=?,`unit_of_measure`=? WHERE material_id = ?");
+                              $stmt->bind_param('sssssss',$i_name,$i_type,$category,$quantity,$size,$u_measure,$_SESSION['material_id']);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Updated!","", "success");</script>';

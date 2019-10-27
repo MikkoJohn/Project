@@ -69,7 +69,7 @@ $acctype = $_SESSION['sess_type'];
             <div class="card-header py-3">
               <div class="row">
               <div class="col-lg-6">
-                <h5 class="m-0 font-weight-bold text-primary">Client Info</h5>
+                <h5 class="m-0 font-weight-bold text-primary">View/Edit Client</h5>
               </div>
               <div class="col-lg-6" align="right">
               
@@ -83,6 +83,7 @@ $acctype = $_SESSION['sess_type'];
                   $sql = "SELECT * FROM client_info WHERE client_id = '".$_SESSION['client_id']."'";
                   $result = mysqli_query($conn,$sql);
                   while($row=mysqli_fetch_assoc($result)){
+                if($row['status'] == 0){
                     echo '
                 <form method="POST" onsubmit="return confirm("Are you sure?")">
               <div class="row">
@@ -124,54 +125,51 @@ $acctype = $_SESSION['sess_type'];
               </div>
           </form>
                     ';
-                  }
-                }else {
-                  //$_SESSION['client_id'] = $_POST['client_id'];
-                  $sql = "SELECT * FROM client_info WHERE client_id = '".$_SESSION['client_id']."'";
-                  $result = mysqli_query($conn,$sql);
-                  while($row=mysqli_fetch_assoc($result)){
-                    echo '
+                  }else{
+                     echo '
                 <form method="POST" onsubmit="return confirm("Are you sure?")">
               <div class="row">
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Client Name:</h6>
-                  <input type="text" name="c_name" class="form-control" value="'.$row['client_name'].'" placeholder="Client Name">
+                  <input type="text" name="c_name" class="form-control" value="'.$row['client_name'].'" placeholder="Client Name" disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Sales Representative:</h6>
-                  <input type="text" name="s_rep" class="form-control" value="'.$row['sales_representative'].'" placeholder="Sales Representative">
+                  <input type="text" name="s_rep" class="form-control" value="'.$row['sales_representative'].'" placeholder="Sales Representative" disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company:</h6>
-                  <input type="text" name="company" class="form-control" value="'.$row['company'].'" placeholder="Company">
+                  <input type="text" name="company" class="form-control" value="'.$row['company'].'" placeholder="Company" disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
-                  <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No.">
+                  <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No." disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>E-mail Address:</h6>
-                  <input type="text" name="e_add" class="form-control" value="'.$row['email_address'].'" placeholder="Email Address">
+                  <input type="text" name="e_add" class="form-control" value="'.$row['email_address'].'" placeholder="Email Address" disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company Address:</h6>
-                  <input type="text" name="c_add" class="form-control" value="'.$row['company_address'].'" placeholder="Company Address">
+                  <input type="text" name="c_add" class="form-control" value="'.$row['company_address'].'" placeholder="Company Address" disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>City:</h6>
-                  <input type="text" name="city" class="form-control" value="'.$row['city'].'" placeholder="City">
+                  <input type="text" name="city" class="form-control" value="'.$row['city'].'" placeholder="City" disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Postal Code:</h6>
-                  <input type="text" name="p_code" class="form-control" value="'.$row['postal_code'].'" placeholder="Postal Code">
+                  <input type="text" name="p_code" class="form-control" value="'.$row['postal_code'].'" placeholder="Postal Code" disabled>
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
-                  <input type="submit" name="edit_client" class="btn btn-success form-control" value="UPDATE Client">
+                  <input type="submit" name="edit_client" class="btn btn-success form-control" value="UPDATE Client" disabled>
                 </div>
               </div>
           </form>
                     ';
                   }
+                }
+                
                 }
             ?>
                 

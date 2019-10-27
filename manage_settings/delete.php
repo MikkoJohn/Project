@@ -12,14 +12,15 @@ $acctype = $_SESSION['sess_type'];
 $now = date("Y-m-d H:i:s");
 if(isset($_POST['delete_client'])){
 	$client_id = $_POST['client_id'];
-
-	$stmt = $conn->prepare("DELETE FROM `client_info` WHERE `client_id` = ?");
+  $status = 1;
+// $stmt = $conn->prepare("DELETE FROM `client_info` WHERE `client_id` = ?");
+	$stmt = $conn->prepare("UPDATE `client_info` SET status = ? WHERE `client_id` = ?");
   
-                              $stmt->bind_param('s',$client_id);
+                              $stmt->bind_param('ss',$status,$client_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Client')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Client')";
                               mysqli_query($conn,$sql1);
                               header("Location: client");
                               echo"<script>alert('Data Deleted!')</script>";
@@ -32,14 +33,15 @@ if(isset($_POST['delete_client'])){
                               $stmt->close();
 }else if(isset($_POST['delete_operator'])){
   $operator_id = $_POST['operator_id'];
-
-  $stmt = $conn->prepare("DELETE FROM `operators` WHERE `operator_id` = ?");
+  $status = 1;
+// $stmt = $conn->prepare("DELETE FROM `operators` WHERE `operator_id` = ?");
+  $stmt = $conn->prepare("UPDATE `operators` SET status=? WHERE `operator_id` = ?");
   
-                              $stmt->bind_param('s',$operator_id);
+                              $stmt->bind_param('ss',$status,$operator_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Operator')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Operator')";
                               mysqli_query($conn,$sql1);
                               header("Location: operator");
                               echo"<script>alert('Data Deleted!')</script>";
@@ -52,14 +54,15 @@ if(isset($_POST['delete_client'])){
                               $stmt->close();
 }else if(isset($_POST['delete_supplier'])){
   $supplier_id = $_POST['supplier_id'];
-
-  $stmt = $conn->prepare("DELETE FROM `supplier_info` WHERE `supplier_id` = ?");
+  $status = 1;
+// $stmt = $conn->prepare("DELETE FROM `supplier_info` WHERE `supplier_id` = ?");
+  $stmt = $conn->prepare("UPDATE `supplier_info` SET status = ? WHERE `supplier_id` = ?");
   
-                              $stmt->bind_param('s',$supplier_id);
+                              $stmt->bind_param('ss',$status,$supplier_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Supplier')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Supplier')";
                               mysqli_query($conn,$sql1);
                               header("Location: supplier");
                               echo"<script>alert('Data Deleted!')</script>";

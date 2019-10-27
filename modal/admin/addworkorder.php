@@ -29,7 +29,19 @@ $acctype = $_SESSION['sess_type'];
                                     <input type="text" class="form-control" name="j_desc" placeholder="Job Description"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="s_name" placeholder="Supplier Name"required>
+                              <select class="form-control" name="s_name" required>
+                              <option selected="true" value="NULL" disabled="true">SELECT SUPPLIER NAME</option>
+                              <?php
+                              $sql = "SELECT supplier_name FROM supplier_info";
+                              $result = mysqli_query($conn,$sql);
+                              while($row = mysqli_fetch_assoc($result)){
+                                echo '
+                                  <option value="'.$row['supplier_name'].'">'.$row['supplier_name'].'</option>
+                                ';
+                              }
+                              ?>
+                              </select>
+                                    <!-- <input type="text" class="form-control" name="s_name" placeholder="Supplier Name"required> -->
                                   </div>
                             <div style="margin-top:10px" class="form-group">
                                     <input type="text" class="form-control" name="instruction" placeholder="Instruction"required>

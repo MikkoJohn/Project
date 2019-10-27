@@ -85,6 +85,7 @@ $acctype = $_SESSION['sess_type'];
                               <th><center>Account ID No</center></th>
                               <th><center>Operator Name</center></th>
                               <th><center>Operator Schedule</center></th>
+                              <th><center>Status</center></th>
                               <th><center>Action</center></th>
                                </tr>  
                         </thead> 
@@ -98,7 +99,14 @@ $acctype = $_SESSION['sess_type'];
                               <td><center>'.$row['account_id_no'].'</center></td>
                               <td><center>'.$row['first_name'].'</center></td>
                               <td><center>'.$row['operator_schedule'].'</center></td>
-                              <td>
+                            '; 
+                    if($row['status'] == 0){
+                      echo '<td><center>Active</center></td>';
+                    }else if($row['status'] == 1){
+                      echo '<td><center>Disabled</center></td>';
+                    }
+                             
+                            echo ' <td>
                               <center>
                           <div class="row">
                                     <div class="col col-lg-6">
@@ -111,7 +119,7 @@ $acctype = $_SESSION['sess_type'];
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
-                        <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
         </form>  
         </div>
         </div></center>
@@ -162,13 +170,17 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Last Name:</h6>
                   <input type="text" name="lname" class="form-control" placeholder="Last Name" onkeypress="return /[a-z]/i.test(event.key)" required>
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" placeholder="Contact No." required>
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
                   <input type="text" name="o_sched" class="form-control" placeholder="Operator Schedule" required>
+                </div>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Shift:</h6>
+                  <input type="text" name="o_shift" class="form-control" placeholder="Operator Shift" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Username:</h6>
@@ -193,15 +205,16 @@ $c_no = $_POST['c_no'];
 $o_sched = $_POST['o_sched'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
-
-$sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`, `operator_schedule`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$o_sched')";
+$o_shift = $_POST['o_shift'];
+$status= 0;
+$sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`, `operator_schedule`,`operator_shift`,`status`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$o_sched','$o_shift','$status')";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Operator')";
                                 mysqli_query($conn,$sql1);
 
 echo "<meta http-equiv='refresh' content='0'>";
-header("Location: operator");
+//header("Location: operator");
 }
 
 
