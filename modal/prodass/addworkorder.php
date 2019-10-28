@@ -73,7 +73,8 @@ $acctype = $_SESSION['sess_type'];
                               $stmt->bind_param('ssssss', $j_controlno,$j_desc,$s_name,$instruction,$now,$status);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                               echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Work Order')";
                               mysqli_query($conn,$sql1);
                               //header("Location: ../../index_admin");

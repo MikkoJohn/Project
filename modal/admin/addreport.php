@@ -160,7 +160,8 @@ error_reporting(0);
                               $stmt->bind_param('sssssssssssssss', $prod_unit,$operator_unit,$operator_name,$report_date,$job_title,$quantity,$type_job,$no_signature,$type_activity,$time_started,$time_finished,$status,$spoilage,$good_copies,$remarks);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                                 echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Report')";
                               mysqli_query($conn,$sql1);
                               //header("Location: ../../index_admin");

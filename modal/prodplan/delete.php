@@ -11,11 +11,12 @@ $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
 $now = date("Y-m-d H:i:s");
  if(isset($_POST['delete_operator'])){
-  $operator_id = $_POST['operator_id'];
-
-  $stmt = $conn->prepare("DELETE FROM `operators` WHERE `operator_id` = ?");
+    $operator_id = $_POST['operator_id'];
+  $status = 1;
+// $stmt = $conn->prepare("DELETE FROM `operators` WHERE `operator_id` = ?");
+  $stmt = $conn->prepare("UPDATE `operators` SET status=? WHERE `operator_id` = ?");
   
-                              $stmt->bind_param('s',$operator_id);
+                              $stmt->bind_param('ss',$status,$operator_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';

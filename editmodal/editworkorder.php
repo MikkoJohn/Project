@@ -180,7 +180,8 @@ $acctype = $_SESSION['sess_type'];
                               $stmt->bind_param('ssssss',$j_controlno,$j_desc,$s_name,$instruction,$status,$_SESSION['wo_id']);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Updated!","","success");</script>';
+                                // echo'<script>swal("Successfully Updated!","","success");</script>';
+                               echo '<script>alert("Successfully Updated!");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Work Order')";
                               mysqli_query($conn,$sql1);
                              // header("Location:../index_admin");

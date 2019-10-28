@@ -169,7 +169,8 @@ $acctype = $_SESSION['sess_type'];
                               $stmt->bind_param('sssssssssssssssss', $sales_no,$c_name,$d_title,$p_name,$now,$c_machine,$f_required,$p_required,$e_transmittal,$c_delivery,$quantity,$s_output,$no_pages,$p_used,$remarks,$status,$jo_status);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                                 echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Job Order')";
                               mysqli_query($conn,$sql1);
                               header("Location: ../../index_admin");

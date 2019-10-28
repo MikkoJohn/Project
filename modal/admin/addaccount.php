@@ -161,7 +161,8 @@ if($resulta->num_rows >= 1) {
                               $stmt->bind_param('ssssssss', $uname,$pass,$acc,$fname,$mname,$lname,$div,$status);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","","success");</script>';
+                                // echo'<script>swal("Successfully Added!","","success");</script>';
+                                echo '<script>alert("Successfully Added!");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Account')";
                               mysqli_query($conn,$sql1);
                               //header("location: ../../index_admin");

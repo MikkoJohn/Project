@@ -111,7 +111,7 @@ $acctype = $_SESSION['sess_type'];
                                     <div class="col col-lg-6">
                                     <form method="POST" action="delete">
          <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
-                        <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+                        <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
         </form>  
         </div>
         </div></center>
@@ -199,7 +199,7 @@ mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Operator')";
                                 mysqli_query($conn,$sql1);
-
+echo '<script>alert("Successfully Added!");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 //header("Location: operator");
 }

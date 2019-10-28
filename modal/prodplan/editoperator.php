@@ -201,7 +201,7 @@ mysqli_query($conn,$sql);
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Operator')";
                                 mysqli_query($conn,$sql1);
 
-echo '<script>alert("Updated");</script>';
+eecho '<script>alert("Successfully Updated!");</script>';
 //echo '<script>swal("Success","","succes");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 

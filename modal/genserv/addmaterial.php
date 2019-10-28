@@ -81,7 +81,8 @@ error_reporting(0);
                               $stmt->bind_param('ssssss', $i_name,$i_type,$category,$quantity,$u_measure,$size);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                                 echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Material')";
                               mysqli_query($conn,$sql1);
                               echo "<script type='text/javascript'>location.href = '../../index_genserv';</script>";

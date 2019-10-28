@@ -180,7 +180,8 @@ $now = date("Y-m-d H:i:s");
                               $stmt->bind_param('ssssss', $uname,$pass,$fname,$mname,$lname,$acc_id);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Updated!","","success");</script>';
+                                // echo'<script>swal("Successfully Updated!","","success");</script>';
+                                echo '<script>alert("Successfully Updated!");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Account')";
                               mysqli_query($conn,$sql1);
                              // header("Location:../index_admin");

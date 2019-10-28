@@ -100,8 +100,8 @@ error_reporting(0);
                               $stmt->bind_param('sssssiss', $p_by,$pre_press,$post_press,$others,$jo_controlno,$quantity,$desc,$status);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
-
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                                echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Transmittal')";
                               mysqli_query($conn,$sql1);
                             //  header("Location: ../../index_admin");

@@ -22,8 +22,9 @@ if(isset($_POST['delete_client'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Client')";
                               mysqli_query($conn,$sql1);
+                              echo"<script>alert('Data Disabled!')</script>";
                               header("Location: client");
-                              echo"<script>alert('Data Deleted!')</script>";
+                             
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -43,8 +44,9 @@ if(isset($_POST['delete_client'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Operator')";
                               mysqli_query($conn,$sql1);
+                               echo"<script>alert('Data Disabled!')</script>";
                               header("Location: operator");
-                              echo"<script>alert('Data Deleted!')</script>";
+                              
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -64,8 +66,9 @@ if(isset($_POST['delete_client'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Supplier')";
                               mysqli_query($conn,$sql1);
+                               echo"<script>alert('Data Disabled!')</script>";
                               header("Location: supplier");
-                              echo"<script>alert('Data Deleted!')</script>";
+                              
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

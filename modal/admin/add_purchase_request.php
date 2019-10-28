@@ -24,6 +24,7 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-6">
                              <div class="form-group">
+
                                     <input type="text" class="form-control" name="m_id" placeholder="Material ID">
                                   </div>
                               </div>
@@ -123,7 +124,8 @@ error_reporting(0);
                               $stmt->bind_param('sssssssssss', $now,$m_id,$i_name,$i_desc,$quantity,$u_measure,$u_price,$total,$td_date,$ad_date,$status);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                                 echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Purchase Request')";
                               mysqli_query($conn,$sql1);
                               echo "<script type='text/javascript'>location.href = '../../index_admin';</script>";

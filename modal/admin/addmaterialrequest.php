@@ -99,7 +99,8 @@ error_reporting(0);
                               $stmt->bind_param('sssssssss', $jo_controlno,$no_reams,$p_size,$k_paper,$quantity,$now,$d_date,$p_status,$remarks);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                               echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Material Request')";
                               mysqli_query($conn,$sql1);
                              // header("Location: ../../index_admin");

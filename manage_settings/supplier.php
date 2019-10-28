@@ -249,7 +249,7 @@ mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Supplier')";
                                 mysqli_query($conn,$sql1);
-
+echo '<script>alert("Successfully Added!");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 //header("Location: client");
 }

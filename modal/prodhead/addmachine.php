@@ -1,6 +1,6 @@
   <?php  
   
-    include_once 'config.php';
+    include_once '../../config.php';
     include '../../includes/link.php';
     session_start();
     $accname = $_SESSION['acct_name'];
@@ -94,7 +94,8 @@ error_reporting(0);
                               $stmt->bind_param('ssssssss', $mname,$mdivision,$mmaxsize,$mminsize,$mparea,$maxspeed,$minspeed,$mstatus);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                                echo '<script>alert("Successfully Added!");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Machine')";
                               mysqli_query($conn,$sql1);
                              // header("Location: ../../index_admin");

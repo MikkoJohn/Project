@@ -47,8 +47,8 @@ $acctype = $_SESSION['sess_type'];
                                     <input type="text" class="form-control" name="instruction" placeholder="Instruction"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                <select class="form-control" required>
-                                  <option selected="true" value="NULL" disabled="disabled" name="status">SELECT STATUS</option>
+                                <select class="form-control" name="status" required>
+                                  <option selected="true" value="NULL" disabled="disabled" >SELECT STATUS</option>
                                   <option value="Pending">Pending</option>
                                   <option value="Approved">Approved</option>
                                   <option value="Disapproved">Disapproved</option>
@@ -85,7 +85,8 @@ $acctype = $_SESSION['sess_type'];
                               $stmt->bind_param('ssssss', $j_controlno,$j_desc,$s_name,$instruction,$now,$status);
 
                               if($stmt->execute()){
-                                echo'<script>swal("Successfully Added!","", "success");</script>';
+                                // echo'<script>swal("Successfully Added!","", "success");</script>';
+                                 echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Work Order')";
                               mysqli_query($conn,$sql1);
                              // header("Location: ../../index_admin");
