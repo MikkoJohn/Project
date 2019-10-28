@@ -63,7 +63,7 @@ include 'config.php';
             <li class="nav-item dropdown no-arrow">
                  <!-- <img class="img-profile rounded-circle" src="#"> -->
                <form method="POST" action="logout.php">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome!  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
                 <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
               <!-- Dropdown - User Information -->

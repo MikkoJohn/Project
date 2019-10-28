@@ -22,7 +22,8 @@ if(isset($_POST['delete_machine'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Machine')";
                               mysqli_query($conn,$sql1);
-                                echo 'header("Location: index_admin");';
+                               echo"<script>alert('Data Disabled!')</script>";
+                                 echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -42,7 +43,8 @@ if(isset($_POST['delete_machine'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Job Order')";
                               mysqli_query($conn,$sql1);
-                              header("Location: index_admin");
+                              echo"<script>alert('Data Disabled!')</script>";
+                               echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
 
                               } 
                               else {
@@ -63,7 +65,9 @@ if(isset($_POST['delete_machine'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Material')";
                               mysqli_query($conn,$sql1);
-                              header("Location: index_admin");
+                              echo"<script>alert('Data Disabled!')</script>";
+                              // header("Location: index_admin");
+                               echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -83,7 +87,9 @@ if(isset($_POST['delete_machine'])){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Job Ticket')";
                               mysqli_query($conn,$sql1);
-                                header("Location: index_admin");
+                               echo"<script>alert('Data Disabled!')</script>";
+                                // header("Location: index_admin");
+                                echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
@@ -103,7 +109,9 @@ $stmt = $conn->prepare("UPDATE `tbl_useraccounts` SET `status` = ? WHERE `ua_id`
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Account')";
                               mysqli_query($conn,$sql1);
-                               header("Location: index_admin");
+                                echo"<script>alert('Data Disabled!')</script>";
+                               // header("Location: index_admin");
+                                 echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
                               } 
                               //header(location: )
                               else {
@@ -116,16 +124,18 @@ $stmt = $conn->prepare("UPDATE `tbl_useraccounts` SET `status` = ? WHERE `ua_id`
 }else if(isset($_POST['delete_wo'])){
   $wo_id = $_POST['work_order_no'];
   $status = 1;
-$stmt = $conn->prepare("UPDATE `tbl_useraccounts` SET `status` = ? WHERE `ua_id` = ?");
+$stmt = $conn->prepare("UPDATE `work_order` SET `status` = ? WHERE `work_order_no` = ?");
   // $stmt = $conn->prepare("DELETE FROM `tbl_useraccounts` WHERE `ua_id` = ?");
   
                               $stmt->bind_param('ss',$status,$acc_id);
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Deleted Account')";
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Work Order')";
                               mysqli_query($conn,$sql1);
-                               header("Location: index_admin");
+                               echo"<script>alert('Data Disabled!')</script>";
+                               // header("Location: index_admin");
+                                echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
                               } 
                               //header(location: )
                               else {

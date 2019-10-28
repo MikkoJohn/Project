@@ -75,7 +75,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
-                          echo "<script type='text/javascript'>location.href = 'index_operators';</script>";
+                          echo "<script type='text/javascript'>location.href = 'index_sales';</script>";
                     }
 
             else if ($uname == $dbusername && $pass == $dbpassword && "7" == $dbusertype && $status == "0") 
@@ -85,7 +85,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
-                          echo "<script type='text/javascript'>location.href = 'index_sales';</script>";
+                          echo "<script type='text/javascript'>location.href = 'index_operators';</script>";
                     }
             else if ($uname == $dbusername && $pass == $dbpassword && "8" == $dbusertype && $status == "0") 
                     {
