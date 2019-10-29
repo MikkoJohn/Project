@@ -244,11 +244,12 @@ include 'config.php';
             <div class="card-body">
               <div class="table-responsive">
                 <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-                    <table id="accounts" class="table table-striped table-bordered" width="100%">  
+                    <table id="accountsa" class="table table-striped table-bordered" width="100%">  
                         <thead>  
                           <tr>  
                               <th><center>Account Name</center></th>
                               <th><center>Account Designation</center></th>
+                              <th><center>Status</center></th>
                               <th><center>Action</center></th>
                                </tr>  
                         </thead> 
@@ -284,6 +285,12 @@ include 'config.php';
                             }else if($row['user_type'] == 9){
                                echo '<td><center>General Services Assistant</center></td>';
                             }
+
+                            if($row['status'] =="1"){
+                              echo '<td><center>Disabled</center></td>';
+                            }else if($row['status'] =="0"){
+                              echo '<td><center>Active</center></td>';
+                            }
                                  echo '       
                                         <td><center>
                           <div class="row">
@@ -295,10 +302,24 @@ include 'config.php';
                                     </form>
                                     </div>
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="delete">
-         <input type="hidden" name="acc_id" value="'.$row['ua_id'].'">
+                            ';
+
+      if($row['status'] == "0"){
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="acc_id" value="'.$row['ua_id'].'">
                         <button name="delete_account" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
-        </form>  
+                  </form>  
+                ';
+      }else if($row['status'] == "1"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="acc_id" value="'.$row['ua_id'].'">
+                        <button name="enable_account" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      }
+       echo '
         </div>
         </div></center>
 
@@ -317,7 +338,7 @@ include 'config.php';
                 </table>
   <script>  
  $(document).ready(function(){  
-      $('#accounts').DataTable();  
+      $('#accountsa ').DataTable();  
  });  
  </script>  
 
@@ -342,7 +363,7 @@ include 'config.php';
                               <th><center>Client Name</center></th>
                               <th><center>Date Created</center></th>
                               <th><center>Status</center></th>
-                              <th width="28%"><center>Actions</center></th>
+                              <th width="30%"><center>Actions</center></th>
                   
                                </tr>  
                         </thead> 
@@ -380,11 +401,25 @@ include 'config.php';
 
 
 
-                                    <div class="col col-lg-4">
-                                    <form method="POST" action="delete">
-         <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
-                        <button name="delete_jo" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
+                                    <div class="col col-lg-4">';
+
+ if($row['status'] == "Disabled"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
+                        <button name="enable_jo" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      } else{
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
+                        <button name="delete_jo" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }
+
+echo '
         </div>
         </div></center>
                    </td>
@@ -449,11 +484,24 @@ include 'config.php';
                           <button name="view_jticket" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
                                     </form>
                                     </div>
-                                    <div class="col col-lg-6">
-                                    <form method="POST" action="delete">
-         <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
-                        <button name="delete_jticket" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
+                                    <div class="col col-lg-6">';
+          
+           if($row['status'] == "Disabled"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                        <button name="enable_jticket" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      }else {
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                        <button name="delete_jticket" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }
+      echo '
         </div>
         </div></center>
                   </td>
@@ -476,7 +524,7 @@ include 'config.php';
  });  
  </script>  
              
-                <div class="card shadow mb-4">
+<div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Operators</h6>
             </div>
@@ -485,41 +533,77 @@ include 'config.php';
                 <table class="table table-striped table-bordered" id="operator" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th><center>Operator ID No</center></th>
-                      <th><center>Operator Name</center></th>
-                      <th><center>Division</th>
-                      <th><center>Machine Assignment</center></th>
-                      <th><center>Schedule</center></th>
+                      <th><center>J.T. No.</center></th>
+                      <th><center>Project Name</center></th>
+                      <th><center>Client Name</center></th>
+                      <th><center>Date Created</center></th>
+                      <th><center>Status</center></th>
                       <th><center>Actions</center></th>
-                    </tr> 
-                  </thead>
-                        <a data-toggle="modal" data-target="#ViewOperator">
-                          <button type="button" class="btn btn-warning btn-xs">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true">  View</span></button>
-                            
-                            </a>
-                        <a data-toggle="modal" data-target="#EditOperator">
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"> Edit</span></button>
-                          </a>
-                          <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                      </td>
-                     
                     </tr>
+                  </thead>
+          <?php
+            $sql="SELECT * FROM job_ticket";
+            $result = mysqli_query($conn,$sql);
+            while($row = mysqli_fetch_assoc($result)){
+                echo '
+                  <tr>
+                      <td><center>'.$row['ticket_no'].'</center></td>
+                      <td><center>'.$row['proj_name'].'</center></td>
+                      <td><center>'.$row['client_name'].'</center></td>
+                      <td><center>'.$row['date_time_created'].'</center></td>
+                      <td><center>'.$row['status'].'</center></td>
+                      <td><center>
+                      <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editjobticket.php">
+                       
+                          <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                          <button name="view_jticket" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">';
+          
+           if($row['status'] == "Disabled"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                        <button name="enable_jticket" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      }else {
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                        <button name="delete_jticket" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }
+      echo '
+        </div>
+        </div></center>
+                  </td>
+                  </tr>
+
+                ';
+
+
+            }
+          ?>
+                       
                    
-                  
-                    </tbody>
                 </table>
           </div>
         </div>
-        </div>
-
-   <script>  
+      </div>
+    <script>  
  $(document).ready(function(){  
       $('#operator').DataTable();  
  });  
- </script> 
+ </script>  
+             
+                          
+
+
 
 
  <div class="card shadow mb-4">
@@ -561,11 +645,25 @@ include 'config.php';
                           <button name="view_machine" class="btn btn-success" style="width:100%;" ><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
                                     </form>
                                     </div>
-                                    <div class="col col-lg-6">
-                                    <form method="POST" action="delete">
-         <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
-                        <button name="delete_machine" class="btn btn-danger" style="width:100%;" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
+                                    <div class="col col-lg-6">';
+         
+      if($row['machine_status'] == "Disabled"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
+                        <button name="enable_machine" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      } else{
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
+                        <button name="delete_machine" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+              }
+
+      echo '
         </div>
         </div>
                                     </td>
@@ -636,10 +734,24 @@ include 'config.php';
                                     </form>
                                     </div>
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="delete">
-         <input type="hidden" name="material_id" value="'.$row['material_id'].'">
-                        <button name="delete_material" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
+                                   ';
+                                     if($row['status'] == "0"){
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="delete_material" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }else if($row['status'] == "1"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="enable_material" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      }
+
+      echo '
         </div>
         </div></center>
         </td>
@@ -704,10 +816,24 @@ include 'config.php';
                                     </form>
                                     </div>
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="delete">
-         <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
-                        <button name="delete_wo" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
+                                   ';
+    if($row['status'] == "1"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
+                        <button name="enable_wo" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      } else{
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
+                        <button name="delete_wo" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }
+
+      echo '
         </div>
         </div></center>
         </td>
@@ -728,345 +854,7 @@ include 'config.php';
  </script> 
 
 
-
-
-
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Paper</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Item No.</th>
-                      <th>Item Name</th>
-                      <th>Unit</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Item No.</th>
-                      <th>Item Name</th>
-                      <th>Unit</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>Pending</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>2011/07/25</td>
-                      <td>On Going</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Ashton Cox</td>
-                      <td>Junior Technical Author</td>
-                      <td>San Francisco</td>
-                      <td>2009/01/12</td>
-                      <td>On Going</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    </tbody>
-                </table>
-          </div>
-        </div>
-        </div>
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Ink</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Item No.</th>
-                      <th>Item Name</th>
-                      <th>Unit</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Item No.</th>
-                      <th>Item Name</th>
-                      <th>Unit</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>Pending</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>2011/07/25</td>
-                      <td>On Going</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Ashton Cox</td>
-                      <td>Junior Technical Author</td>
-                      <td>San Francisco</td>
-                      <td>2009/01/12</td>
-                      <td>On Going</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    </tbody>
-                </table>
-          </div>
-        </div>
-      </div>
-      <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Chemicals</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Item No.</th>
-                      <th>Item Name</th>
-                      <th>Unit</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Item No.</th>
-                      <th>Item Name</th>
-                      <th>Unit</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>Pending</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>2011/07/25</td>
-                      <td>On Going</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Ashton Cox</td>
-                      <td>Junior Technical Author</td>
-                      <td>San Francisco</td>
-                      <td>2009/01/12</td>
-                      <td>On Going</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    </tbody>
-                </table>
-          </div>
-        </div>
-    </div>
-    <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Reports</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Report ID No.</th>
-                      <th>Project Name</th>
-                      <th>Division</th>
-                      <th>Date Created</th>
-                      <th>Remarks</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Report ID No.</th>
-                      <th>Project Name</th>
-                      <th>Division</th>
-                      <th>Date Created</th>
-                      <th>Remarks</th>
-                      <th>Actions</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>Pending</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                          <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>2011/07/25</td>
-                      <td>On Going</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                          <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Ashton Cox</td>
-                      <td>Junior Technical Author</td>
-                      <td>San Francisco</td>
-                      <td>2009/01/12</td>
-                      <td>On Going</td>
-                      <td>
-                        <center>
-                          <button type="button" class="btn btn-warning btn-xs" onclick="fill_office_form('<?= $r['off_id'] ?>');">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                          <button type="button" class="btn btn-success btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> View</button>
-                          <button type="button" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                        </center>
-                      </td>
-                    </tr>
-                    </tbody>
-                </table>
-          </div>
-        </div>
-        </div>
+<!--  -->
 
         </div>
         <!-- /.container-fluid -->
