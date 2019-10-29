@@ -10,9 +10,9 @@ include '../config.php';
 $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
 $now = date("Y-m-d H:i:s");
-if(isset($_POST['delete_client'])){
+if(isset($_POST['enable_client'])){
 	$client_id = $_POST['client_id'];
-  $status = 1;
+  $status = 0;
 // $stmt = $conn->prepare("DELETE FROM `client_info` WHERE `client_id` = ?");
 	$stmt = $conn->prepare("UPDATE `client_info` SET status = ? WHERE `client_id` = ?");
   
@@ -20,9 +20,9 @@ if(isset($_POST['delete_client'])){
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Client')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Enabled Client')";
                               mysqli_query($conn,$sql1);
-                              echo"<script>alert('Data Disabled!')</script>";
+                              echo"<script>alert('Data Enabled!')</script>";
                               //header("Location: client");
                              echo "<script type='text/javascript'>location.href = 'client';</script>";
                               } 
@@ -32,9 +32,9 @@ if(isset($_POST['delete_client'])){
                               //else { echo"<script>alert('ERROR')</script>"; }
 
                               $stmt->close();
-}else if(isset($_POST['delete_operator'])){
+}else if(isset($_POST['enable_operator'])){
   $operator_id = $_POST['operator_id'];
-  $status = 1;
+  $status = 0;
 // $stmt = $conn->prepare("DELETE FROM `operators` WHERE `operator_id` = ?");
   $stmt = $conn->prepare("UPDATE `operators` SET status=? WHERE `operator_id` = ?");
   
@@ -42,9 +42,9 @@ if(isset($_POST['delete_client'])){
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Operator')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Enabled Operator')";
                               mysqli_query($conn,$sql1);
-                               echo"<script>alert('Data Disabled!')</script>";
+                               echo"<script>alert('Data Enabled!')</script>";
                               //header("Location: operator");
                               echo "<script type='text/javascript'>location.href = 'operator';</script>";
                               } 
@@ -54,9 +54,9 @@ if(isset($_POST['delete_client'])){
                               //else { echo"<script>alert('ERROR')</script>"; }
 
                               $stmt->close();
-}else if(isset($_POST['delete_supplier'])){
+}else if(isset($_POST['enable_supplier'])){
   $supplier_id = $_POST['supplier_id'];
-  $status = 1;
+  $status = 0;
 // $stmt = $conn->prepare("DELETE FROM `supplier_info` WHERE `supplier_id` = ?");
   $stmt = $conn->prepare("UPDATE `supplier_info` SET status = ? WHERE `supplier_id` = ?");
   
@@ -64,9 +64,9 @@ if(isset($_POST['delete_client'])){
 
                               if($stmt->execute()){
                                 echo'<script>swal("Successfully Deleted!","", "success");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Disabled Supplier')";
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Enabled Supplier')";
                               mysqli_query($conn,$sql1);
-                               echo"<script>alert('Data Disabled!')</script>";
+                               echo"<script>alert('Data Enabled!')</script>";
                              // header("Location: supplier");
                               echo "<script type='text/javascript'>location.href = 'supplier';</script>";
                               } 

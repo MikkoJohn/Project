@@ -117,11 +117,23 @@ $acctype = $_SESSION['sess_type'];
                           <button name="view_supplier" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="modal" data-target="#viewModal"></span> View</button>
                                     </form>
                                     </div>
-                                    <div class="col col-lg-6">
+                                    <div class="col col-lg-6">';
+
+        if($row['status'] =="0"){
+            echo '
                                     <form method="POST" action="delete">
          <input type="hidden" name="supplier_id" value="'.$row['supplier_id'].'">
                         <button name="delete_supplier" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
+        </form> ';
+      }else if($row['status'] =="1"){
+            echo '
+                                    <form method="POST" action="enable">
+         <input type="hidden" name="supplier_id" value="'.$row['supplier_id'].'">
+                        <button name="enable_supplier" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
+        </form> ';
+      }
+
+        echo ' 
         </div>
         </div></center>
 

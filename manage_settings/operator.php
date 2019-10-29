@@ -117,13 +117,25 @@ $acctype = $_SESSION['sess_type'];
                                     </form>
                                     </div>
                                     <div class="col col-lg-6">
+                                    ';
+          if($row['status'] == "0"){ 
+                echo '
                                     <form method="POST" action="delete">
          <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
                         <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
-        </div>
-        </div></center>
+        </form>';
+      }else if($row['status'] == "1"){ 
+                echo '
+                                    <form method="POST" action="enable">
+         <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
+                        <button name="enable_operator" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
+        </form>';
+      }
 
+
+        echo '
+                            </div>
+                            </div></center>
                               </td>
                             </tr>
                         ';
@@ -142,7 +154,7 @@ $acctype = $_SESSION['sess_type'];
 
 
   <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
@@ -164,7 +176,7 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Middle Name:</h6>
-                  <input type="text" name="mname" class="form-control" placeholder="Middle Name" onkeypress="return /[a-z]/i.test(event.key)" required>
+                  <input type="text" name="mname" class="form-control" placeholder="Middle Name" onkeypress="return /[a-z]/i.test(event.key)">
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Last Name:</h6>

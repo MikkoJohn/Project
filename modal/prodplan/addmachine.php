@@ -1,6 +1,6 @@
   <?php  
   
-    include_once 'config.php';
+    include_once '../../config.php';
     include '../../includes/link.php';
     session_start();
     $accname = $_SESSION['acct_name'];

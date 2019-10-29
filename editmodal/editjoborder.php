@@ -35,13 +35,19 @@ $acctype = $_SESSION['sess_type'];
                          <form method="POST" class="form-horizontal" action="../index_admin" role="form">     
                         <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
                            <div class="row">
-                             <div class="col col-sm-6">
+                           <div class="col col-sm-4">
+                             <div class="form-group">
+                             <h6>Job Order No.:</h6>
+                                    <input type="text" class="form-control" placeholder="Job Order Control No." name="jo_no" value="'.$row['job_order_control_no'].'">
+                                  </div>
+                              </div>
+                             <div class="col col-sm-4">
                              <div class="form-group">
                              <h6>Sales No.:</h6>
                                     <input type="text" class="form-control" placeholder="Sales No." name="sales_no" value="'.$row['sales_number'].'">
                                   </div>
                               </div>
-                             <div class="col col-sm-6">
+                             <div class="col col-sm-4">
                              <div class="form-group">
                              <h6>Client Name:</h6>
                                     <input type="text" class="form-control" placeholder="Client Name" name="c_name" value="'.$row['client_name'].'">
@@ -298,13 +304,18 @@ $acctype = $_SESSION['sess_type'];
                          <form method="POST" class="form-horizontal" action="../index_admin" role="form">     
                         <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'" disabled>
                            <div class="row">
-                             <div class="col col-sm-6">
+                           <div class="form-group">
+                             <h6>Job Order No.:</h6>
+                                    <input type="text" class="form-control" placeholder="Job Order Control No." name="jo_no" value="'.$row['job_order_control_no'].'">
+                                  </div>
+                              </div>
+                             <div class="col col-sm-4">
                              <div class="form-group">
                              <h6>Sales No.:</h6>
                                     <input type="text" class="form-control" placeholder="Sales No." name="sales_no" value="'.$row['sales_number'].'" disabled>
                                   </div>
                               </div>
-                             <div class="col col-sm-6">
+                             <div class="col col-sm-4">
                              <div class="form-group">
                              <h6>Client Name:</h6>
                                     <input type="text" class="form-control" placeholder="Client Name" name="c_name" value="'.$row['client_name'].'" disabled>
@@ -543,13 +554,13 @@ $acctype = $_SESSION['sess_type'];
                                     </select>
                                   </div>
                                 </div>
-                           
+                            <div class="col-lg-12 controls">
+                             <button name="updatejo" class="btn btn-warning btn-md" value="UPDATE" disabled><span class="glyphicon glyphicon-edit" aria-hidden="true" ></span> Update</button>
                             ';
 
                           }
                           ?>
-                           <div class="col-lg-12 controls">
-                             <button name="updatejo" class="btn btn-warning btn-md" value="UPDATE" disabled><span class="glyphicon glyphicon-edit" aria-hidden="true" ></span> Update</button>
+                          
                                     
                                     </div>
                                 </div>
@@ -576,6 +587,7 @@ $acctype = $_SESSION['sess_type'];
    
 <?php if(isset($_POST['updatejo'])){
 //error_reporting(0);
+  $jo_no = $_POST['jo_no'];
   $jo_id = $_POST['jo_id'];
   $sales_no = $_POST['sales_no'];
   $c_name = $_POST['c_name'];
@@ -597,8 +609,8 @@ $acctype = $_SESSION['sess_type'];
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  
-  $stmt = $conn->prepare("UPDATE `job_order` SET `sales_number`=?,`client_name`=?,`item_desc_and_title`=?,`proj_name`=?,`costing_run`=?,`finishing_required`=?,`packaging_required`=?,`date_to_warehouse`=?,`requested_delivery`=?,`quantity`=?,`size`=?,`pages`=?,`paper`=?,`remarks`=?,`status`=? WHERE `job_order_control_no` = ?");
-                              $stmt->bind_param('ssssssssssssssss', $sales_no,$c_name,$d_title,$p_name,$c_machine,$f_required,$p_required,$e_transmittal,$c_delivery,$quantity,$s_output,$no_pages,$p_used,$remarks,$status,$jo_id);
+  $stmt = $conn->prepare("UPDATE `job_order` SET `job_order_control_no=?`,`sales_number`=?,`client_name`=?,`item_desc_and_title`=?,`proj_name`=?,`costing_run`=?,`finishing_required`=?,`packaging_required`=?,`date_to_warehouse`=?,`requested_delivery`=?,`quantity`=?,`size`=?,`pages`=?,`paper`=?,`remarks`=?,`status`=? WHERE `job_order_control_no` = ?");
+                              $stmt->bind_param('sssssssssssssssss', $jo_no,$sales_no,$c_name,$d_title,$p_name,$c_machine,$f_required,$p_required,$e_transmittal,$c_delivery,$quantity,$s_output,$no_pages,$p_used,$remarks,$status,$jo_id);
 
                               if($stmt->execute()){
                                 // echo'<script>swal("Successfully Updated!","", "success");</script>';

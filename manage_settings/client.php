@@ -116,14 +116,25 @@ $acctype = $_SESSION['sess_type'];
                           <button name="view_client" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="modal" data-target="#viewModal"></span> View</button>
                                     </form>
                                     </div>
-                                    <div class="col col-lg-6">
+                                    <div class="col col-lg-6">';
+            if($row['status'] == 0){
+                      echo '
                                     <form method="POST" action="delete">
          <input type="hidden" name="client_id" value="'.$row['client_id'].'">
                         <button name="delete_client" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
-        </div>
-        </div></center>
+        </form>  ';
+      }else if($row['status'] == 1){
+                      echo '
+                                    <form method="POST" action="enable">
+         <input type="hidden" name="client_id" value="'.$row['client_id'].'">
+                        <button name="enable_client" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Enable</button>
+        </form>  ';
+      }
 
+
+echo '        
+                              </div>
+                              </div></center>
                               </td>
                             </tr>
                         ';
@@ -141,11 +152,11 @@ $acctype = $_SESSION['sess_type'];
 
 
 
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+  <div class="modal fade" id="myModal" role="dialog"style="width: 100%;">
+    <div class="modal-dialog modal-lg" style="width: 100%;">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" style="width: 100%;">
         <div class="modal-header">
           <h5>Add Client</h5>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -203,7 +214,7 @@ $c_add = $_POST['c_add'];
 $city = $_POST['city'];
 $p_code = $_POST['p_code'];
 $status = 0;
-$sql = "INSERT INTO `client_info`(`client_name`, `sales_representative`, `company`, `contact_no`, `email_address`, `company_address`, `city`, `postal_code`,`satus`) VALUES ('$c_name','$s_rep','$company','$c_no','$e_add','$c_add','$city','$p_code',$status)";
+$sql = "INSERT INTO `client_info`(`client_name`, `sales_representative`, `company`, `contact_no`, `email_address`, `company_address`, `city`, `postal_code`,`status`) VALUES ('$c_name','$s_rep','$company','$c_no','$e_add','$c_add','$city','$p_code',$status)";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Client')";
