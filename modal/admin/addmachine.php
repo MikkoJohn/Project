@@ -19,15 +19,16 @@
                     <div class="panel-title">Add Machine</div>
                 </div>     
 
-                <div style="padding-top:20px" class="panel-body" >
+                <div style="padding-top:0px" class="panel-body" >
 
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
-                      <form method="POST" class="form-horizontal" role="form">         
-                             <div style="margin-top:0px" class="form-group">
+                      <form method="POST" class="" role="form">         
+                             <div style="margin-top:0px" class="col-sm-12">
+                                  <h6>Machine Name:</h6>
                                     <input type="text" class="form-control" name="mname" placeholder="Machine Name" required>
                                   </div>
-                             <div style="margin-top:10px" class="form-group">
+                             <div style="margin-top:15px" class="col col-sm-12">
                                   <select name="mdivision" class="form-control" required>
                                     <option selected="true" value="NULL" disabled>SELECT DIVISION</option>
                                     <option value="Pre-Press">Pre-Press</option>
@@ -37,21 +38,28 @@
 
                                    <!--  <input type="text" class="form-control" name="mdivision" placeholder="Machine Division"> -->
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+
+                            <div style="margin-top:10px" class="col col-sm-6">
+                                <h6>Maximum Speed:</h6>
                                     <input type="number" class="form-control" name="maxspeed" placeholder="Maximum Speed" required>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="col col-sm-6">
+                                <h6>Minimum Speed:</h6>
                                     <input type="number" class="form-control" name="minspeed" placeholder="Minumum Speed" required>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="col col-sm-6">
+                                <h6>Machine Max Size:</h6>
                                     <input type="number" class="form-control" name="mmaxsize" placeholder="Machine Max Size" required>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="col col-sm-6">
+                                <h6>Machine Min Size</h6>
                                     <input type="number" class="form-control" name="mminsize" placeholder="Machine Min Size" required>
                                   </div>
-                             <div style="margin-top:10px" class="form-group">
+                             <div style="margin-top:10px; margin-bottom: 15px;" class="col col-sm-12">
+                                <h6>Maximum Printing Area</h6>
                                     <input  type="number" class="form-control" name="mparea" placeholder="Maximum Printing Area" required>
                                   </div>
+
                            <!--   <div style="margin-top:10px" class="form-group">
 
                                    <select name="mstatus" class="form-control">

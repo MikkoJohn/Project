@@ -25,6 +25,7 @@ $acctype = $_SESSION['sess_type'];
                       $sql = 'SELECT * FROM tbl_useraccounts where ua_id ='.$_SESSION['acc_id'].' ';
                       $result=mysqli_query($conn,$sql);
                       while($row=mysqli_fetch_assoc($result)){
+                       if($row['status'] == "0"){ 
                         echo '
                         <form method="POST" class="form-horizontal" role="form">  
                         <div class="row">   
@@ -73,56 +74,43 @@ $acctype = $_SESSION['sess_type'];
                             </form>     
                         ';
                       }
-                      ?>
-<script>
-function myFunction() {
-  var x = document.getElementById("pass");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script>        
-                      <?php
-                    }else{
+                    else
+                    {
                       //$_SESSION['acc_id'] = $_POST['acc_id'];
-                      $sql = 'SELECT * FROM tbl_useraccounts where ua_id ='.$_SESSION['acc_id'].' ';
-                      $result=mysqli_query($conn,$sql);
-                      while($row=mysqli_fetch_assoc($result)){
+                     
                         echo '
                         <form method="POST" class="form-horizontal" role="form">  
                         <div class="row">   
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
                                   <input type="hidden" name="acc_id" value="'.$row['ua_id'].'">
-                                   <input  type="text" class="form-control" name="fname" placeholder="First Name" value="'.$row['fname'].'">                                       
+                                   <input  type="text" class="form-control" name="fname" placeholder="First Name" value="'.$row['fname'].'" disabled>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
                                  
-                                   <input type="text" class="form-control" name="mname" placeholder="Middle Name" value="'.$row['mname'].'">                                       
+                                   <input type="text" class="form-control" name="mname" placeholder="Middle Name" value="'.$row['mname'].'" disabled>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-4">
                                <div style="margin-bottom: 25px" class="input-group">
                                   
-                                   <input type="text" class="form-control" name="lname" placeholder="Last Name" value="'.$row['lname'].'">                                       
+                                   <input type="text" class="form-control" name="lname" placeholder="Last Name" value="'.$row['lname'].'" disabled>                                       
                                     </div>
                           </div>
                           <div class="col col-md-12">
                             <div style="margin-bottom: 25px" class="input-group">
                                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                   <input id="uname" type="text" class="form-control" name="uname" placeholder="Username" value="'.$row['uname'].'">                                       
+                                   <input id="uname" type="text" class="form-control" name="uname" placeholder="Username" value="'.$row['uname'].'" disabled>                                       
                                     </div>
                             </div>
                              <div class="col col-md-12">
                             <div style="margin-bottom: 15px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="pass" type="password" class="form-control" name="pass" placeholder="Password" value="'.$row['pass'].'">
+                                        <input id="pass" type="password" class="form-control" name="pass" placeholder="Password" value="'.$row['pass'].'" disabled>
                                     </div>
-                                    <input type="checkbox" onclick="myFunction()">Show Password
+                                    <input type="checkbox" onclick="myFunction()" disabled>Show Password
                                   </div>
                                   <br>
                               ';
@@ -130,7 +118,7 @@ function myFunction() {
                               echo '
                                     
                                     <div class="col-lg-12 controls" style="margin-top: 15px">
-                                      <button name="updateaccount" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>
+                                      <button name="updateaccount" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true" disabled></span> Update</button>
                                     
                                     </div>
                                 </div>
@@ -139,7 +127,9 @@ function myFunction() {
                         ';
                       }
                     }
+                  }
                       ?>
+        
 <script>
 function myFunction() {
   var x = document.getElementById("pass");
@@ -149,8 +139,7 @@ function myFunction() {
     x.type = "password";
   }
 }
-</script>        
-
+</script>     
                    
                         </div>                     
                     </div>  

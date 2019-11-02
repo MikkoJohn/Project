@@ -1,10 +1,10 @@
   <?php  
-      session_start();
-    include_once 'config.php';
-    include '../../includes/link.php';
-    include '../../includes/header.php';
-$accname = $_SESSION['acct_name'];
-$acctype = $_SESSION['sess_type'];
+        session_start();
+      include_once 'config.php';
+      include '../../includes/link.php';
+      include '../../includes/header.php';
+  $accname = $_SESSION['acct_name'];
+  $acctype = $_SESSION['sess_type'];
   ?>
 
    <a href="../../index_admin" class="btn btn-primary" style="margin:2%">BACK</a>
@@ -24,11 +24,13 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-3">
                              <div class="form-group">
+                                <h6>Job Order No.:</h6>
                                     <input type="text" class="form-control" name="jo_no" placeholder="Job Order No" required>
                                   </div>
                               </div>
                              <div class="col col-sm-3">
                              <div class="form-group">
+                              <h6>Select Machine:</h6>
                                 <select class="form-control" name="mname" required>
                                   <option selected="true" value="NULL" disabled>SELECT MACHINE</option>
                                 <?php
@@ -44,62 +46,74 @@ $acctype = $_SESSION['sess_type'];
                               </div>
                              <div class="col col-sm-3">
                              <div class="form-group">
+                              <h6>Client Name:</h6>
                                     <input type="text" class="form-control" name="c_name" placeholder="Client Name" required>
                                   </div>
                                 </div>
                                <div class="col col-sm-3">
                              <div class="form-group">
+                              <h6>Project Name:</h6>
                                     <input type="text" class="form-control" name="p_name" placeholder="Project Name" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-12">
                             <div class="form-group">
                               <h5>Delivery Date:</h5>
+
                                     <input type="date" class="form-control" name="d_date" placeholder="" required>
                                   </div>
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
+                              <h6>Checked By:</h6>
                                     <input type="text" class="form-control" name="c_by" placeholder="Checked By" required>
                                   </div>
                             </div>
                             <div class="col col-lg-6">
                             <div class="form-group">
+                              <h6>Noted By:</h6>
                                     <input type="text" class="form-control" name="n_by" placeholder="Noted By" required>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
+                              <h6>Title:</h6>
                                     <input type="text" class="form-control" name="title" placeholder="Title" required>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
+                            <h6>Quantity:</h6>
                                     <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                              <div class="form-group">
+                              <h6>Actual Size:</h6>
                                     <input  type="text" class="form-control" name="a_size" placeholder="Actual Size" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-4">
                              <div class="form-group">
+                              <h6>No. of Pages:</h6>
                                     <input  type="number" class="form-control" name="pages" placeholder="No. of Pages" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-4">
                               <div class="form-group">
+                                <h6>Paper Cover:</h6>
                                     <input  type="text" class="form-control" name="p_cover" placeholder="Paper Cover" required>
                                   </div>
                                 </div>
                               <div class="col col-sm-4">
                               <div class="form-group">
+                                <h6>Color:</h6>
                                     <input  type="text" class="form-control" name="color" placeholder="Color" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
                                 <div class="form-group">    
+                                  <h6>Select Binding Method:</h6>
                                     <select class="form-control" name="binding" required>
                                       <option selected="true" value="NULL" disabled>SELECT BINDING METHOD</option>
                                       <option value="Perfect Bind">Perfect Bind</option>
@@ -116,22 +130,26 @@ $acctype = $_SESSION['sess_type'];
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
-                                <div class="form-group">                          
+                                <div class="form-group">    
+                                <h6>Lamination:</h6>                      
                                     <input  type="text" class="form-control" placeholder="Lamination" name="lamination" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
-                                <div class="form-group">                          
+                                <div class="form-group">  
+                                <h6>Remarks:</h6>                        
                                     <input  type="text" class="form-control" placeholder="Remarks" name="remarks" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
+                                  <h6>Stock Size:</h6>
                                     <input  type="text" class="form-control" placeholder="Stock Size" name="s_size" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
-                                <div class="form-group">                          
+                                <div class="form-group">
+                                <h6>Printing Size:</h6>                          
                                     <input  type="text" class="form-control" placeholder="Printing Size" name="p_size" required>
                                   </div>
                                 </div>
@@ -160,22 +178,26 @@ $acctype = $_SESSION['sess_type'];
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
-                                <div class="form-group">                          
+                                <div class="form-group"> 
+                                <h6>No. of Out:</h6>                         
                                     <input  type="number" class="form-control" placeholder="No of Out" name="no_out" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
-                                <div class="form-group">                          
+                                <div class="form-group">
+                                <h6>No. of Sheet:</h6>                          
                                     <input  type="number" class="form-control" placeholder="No of Sheet" name="no_sheet" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
-                                <div class="form-group">                          
+                                <div class="form-group">   
+                                <h6>No. of Ream:</h6>                       
                                     <input  type="number" class="form-control" placeholder="No of Ream" name="no_ream" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
-                                <div class="form-group">   
+                                <div class="form-group">  
+                                <h6>Select Status:</h6> 
                                 <select name="status" class="form-control" required="">
                                   <option selected="true" value="NULL" disabled="">SELECT STATUS</option>
                                  <option value="Pending">Pending</option>

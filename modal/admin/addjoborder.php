@@ -57,7 +57,20 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="c_machine" placeholder="Costing based on Machine" required>
+                              <select class="form-control" name="c_machine" required>
+                                <option value="NULL" selected="true" disabled>Costing Based on Machine</option>
+          <?php
+                $sql_machine = "SELECT machine_name FROM machine";
+                $result = mysqli_query($conn,$sql_machine);
+                while($row = mysqli_fetch_assoc($result)){
+                  echo '
+                        <option value="'.$row['machine_name'].'">'.$row['machine_name'].'</option>
+                  ';
+                }
+
+           ?>
+           </select>
+                                   <!--  <input type="text" class="form-control" name="c_machine" placeholder="Costing based on Machine" required> -->
                                   </div>
                             </div>
                             <div class="col col-lg-4">
@@ -103,16 +116,30 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                               <div class="col col-sm-6">
                               <div class="form-group">
-                                    <input  type="text" class="form-control" name="p_used" placeholder="Paper to be used" required>
+                  <select class="form-control" name="p_used" required>
+                                <option value="NULL" selected="true" disabled>Paper to be used</option>
+          <?php
+                $sql_machine = "SELECT machine_name FROM machine";
+                $result = mysqli_query($conn,$sql_machine);
+                while($row = mysqli_fetch_assoc($result)){
+                  echo '
+                        <option value="'.$row['machine_name'].'">'.$row['machine_name'].'</option>
+                  ';
+                }
+
+           ?>
+           </select>
+
+                                   <!--  <input  type="text" class="form-control" name="p_used" placeholder="Paper to be used" required> -->
                                   </div>
                                 </div>
                               <div style="margin:0px 12px 0px 12px" class="et form-group">
                                     <h5>Estimated Transmittal Data to Warehouse:</h5>
-                                    <input  type="date" class="form-control" name="e_transmittal"  required>
+                                    <input  type="date" id="start" class="form-control" name="e_transmittal"  required>
                                   </div>
                               <div style="margin:0px 12px 15px 12px" class="cr form-group">
                                     <h5>Client Requested Delivery Date:</h5>
-                                    <input  type="date" class="form-control" name="c_delivery" required>
+                                    <input  type="date" id="finish" class="form-control" name="c_delivery" required>
                                   </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">                          
@@ -183,8 +210,15 @@ $acctype = $_SESSION['sess_type'];
 
                               $stmt->close();
 }
-
 }
-
-
 ?>
+
+
+
+<script>
+  $(document).ready(function(){
+   $('#start').change(function(){
+    document.getElementById('finish').setAttribute("min",$('#start').val());
+   });
+  });
+</script> 

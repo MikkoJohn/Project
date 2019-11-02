@@ -128,7 +128,7 @@ $acctype = $_SESSION['sess_type'];
                 echo '
                                     <form method="POST" action="enable">
          <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
-                        <button name="enable_operator" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
+                        <button name="enable_operator" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Enable</button>
         </form>';
       }
 
@@ -184,7 +184,7 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
-                  <input type="text" name="c_no" class="form-control" placeholder="Contact No." required>
+                  <input type="number" name="c_no" class="form-control" placeholder="Contact No." pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" required>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>

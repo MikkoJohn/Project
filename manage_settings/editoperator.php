@@ -79,7 +79,7 @@ $acctype = $_SESSION['sess_type'];
             <div class="card-body">
             <?php
                 if(isset($_POST['view_operator'])){
-                  $_SESSION['supplier_id'] = $_POST['supplier_id'];
+                  $_SESSION['operator_id'] = $_POST['operator_id'];
                   $sql = "SELECT * FROM operators WHERE operator_id = '".$_SESSION['operator_id']."'";
                   $result = mysqli_query($conn,$sql);
                   while($row=mysqli_fetch_assoc($result)){
@@ -124,7 +124,7 @@ $acctype = $_SESSION['sess_type'];
                   <input type="password" name="pass" id="o_pass" class="form-control" value="'.$row['password'].'" placeholder="Password">
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
-                  <input type="submit" name="edit_operator" class="btn btn-primary form-control" value="UPDATE Operator">
+                  <input type="submit" name="edit_operator" class="btn btn-success form-control" value="UPDATE Operator">
                 </div>
               </div>
           </form>
@@ -170,7 +170,7 @@ $acctype = $_SESSION['sess_type'];
                   <input type="password" name="pass" id="o_pass" class="form-control" value="'.$row['password'].'" placeholder="Password" disabled>
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
-                  <input type="submit" name="edit_operator" class="btn btn-primary form-control" value="UPDATE Operator" disabled>
+                  <input type="submit" name="edit_operator" class="btn btn-success form-control" value="UPDATE Operator" disabled>
                 </div>
               </div>
           </form>
@@ -211,7 +211,7 @@ echo '<script>alert("Successfully Updated!");</script>';
 //echo '<script>swal("Success","","succes");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 
-echo 'header("Location: operator");';
+  echo "<script type='text/javascript'>location.href = 'operator';</script>";
 } 
 
 

@@ -67,8 +67,26 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                            <h6>Costing Run:</h6>
-                                    <input type="text" class="form-control" placeholder="Costing Run" name="c_machine" value="'.$row['costing_run'].'">
+                            <h6>Costing Based on Machine:</h6>
+                            ';
+
+                          echo ' <select class="form-control" name="c_machine" required>
+                                <option value="'.$row['costing_run'].'" selected="true">'.$row['costing_run'].'</option>';
+          
+                $sql_machine = "SELECT machine_name FROM machine WHERE machine_name != '".$row['costing_run']."'";
+                $result = mysqli_query($conn,$sql_machine);
+                while($row = mysqli_fetch_assoc($result)){
+                  echo '
+                        <option value="'.$row['machine_name'].'">'.$row['machine_name'].'</option>
+                  ';
+                }
+
+          
+         echo   '</select>';
+
+
+                            echo '
+                                   
                                   </div>
                             </div>
                             <div class="col col-lg-4">
@@ -304,9 +322,10 @@ $acctype = $_SESSION['sess_type'];
                          <form method="POST" class="form-horizontal" action="../index_admin" role="form">     
                         <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'" disabled>
                            <div class="row">
+                           <div class="col col-sm-4">
                            <div class="form-group">
                              <h6>Job Order No.:</h6>
-                                    <input type="text" class="form-control" placeholder="Job Order Control No." name="jo_no" value="'.$row['job_order_control_no'].'">
+                                    <input type="text" class="form-control" placeholder="Job Order Control No." name="jo_no" value="'.$row['job_order_control_no'].'" disabled>
                                   </div>
                               </div>
                              <div class="col col-sm-4">
@@ -335,8 +354,20 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                            <h6>Costing Run:</h6>
-                                    <input type="text" class="form-control" placeholder="Costing Run" name="c_machine" value="'.$row['costing_run'].'" disabled>
+                             <h6>Costing Based on Machine:</h6>
+                            ';
+
+                          echo ' <select class="form-control" name="c_machine" disabled>
+                                <option value="'.$row['costing_run'].'" selected="true">'.$row['costing_run'].'</option>';
+          
+            
+
+          
+         echo   '</select>';
+
+
+                            echo '
+                                   
                                   </div>
                             </div>
                             <div class="col col-lg-4">

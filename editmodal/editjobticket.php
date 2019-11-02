@@ -33,21 +33,39 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-3">
                              <div class="form-group">
+                             <h6>Job Order No.:</h6>
                                     <input type="text" class="form-control" name="jo_no" placeholder="Job Order No" value="'.$row['job_order_control_no'].'">
                                   </div>
                               </div>
                              <div class="col col-sm-3">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="mname" placeholder="Machine Name" value="'.$row['machine_name'].'">
+                             <h6>Machine Name:</h6>
+                             <select class="form-control" name="mname">
+                             <option value="'.$row['machine_name'].'" selected="true">'.$row['machine_name'].'</option>
+                             ';
+
+                    $sql_machine = "SELECT machine_name FROM machine WHERE machine_name != '".$row['machine_name']."'";
+                    $result_machine = mysqli_query($conn,$sql_machine);
+                    while($rows = mysqli_fetch_assoc($result_machine)){
+                      echo '
+                            <option value="'.$rows['machine_name'].'">'.$rows['machine_name'].'</option>
+                      ';
+                    }
+
+                                    // <input type="text" class="form-control" name="mname" placeholder="Machine Name" value="'.$row['machine_name'].'">
+                  echo '
+                    </select>
                                   </div>
                               </div>
                              <div class="col col-sm-3">
                              <div class="form-group">
+                             <h6>Client Name:</h6>
                                     <input type="text" class="form-control" name="c_name" placeholder="Client Name" value="'.$row['client_name'].'">
                                   </div>
                                 </div>
                                <div class="col col-sm-3">
                              <div class="form-group">
+                             <h6>Project Name:</h6>
                                     <input type="text" class="form-control" name="p_name" placeholder="Project Name" value="'.$row['proj_name'].'">
                                   </div>
                                 </div>
@@ -59,46 +77,55 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
+                            <h6>Checked By:</h6>
                                     <input type="text" class="form-control" name="c_by" placeholder="Checked By" value="'.$row['checked_by'].'">
                                   </div>
                             </div>
                             <div class="col col-lg-6">
                             <div class="form-group">
+                            <h6>Noted By:</h6>
                                     <input type="text" class="form-control" name="n_by" placeholder="Noted By" value="'.$row['noted_by'].'">
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
+                            <h6>Title:</h6>
                                     <input type="text" class="form-control" name="title" placeholder="Title" value="'.$row['title'].'">
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
+                            <h6>Quantity:</h6>
                                     <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="'.$row['quantity'].'">
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                              <div class="form-group">
+                             <h6>Actual Size:</h6>
                                     <input  type="number" class="form-control" name="a_size" placeholder="Actual Size" value="'.$row['actual_size'].'">
                                   </div>
                                 </div>
                              <div class="col col-sm-4">
                              <div class="form-group">
+                             <h6>Pages:</h6>
                                     <input  type="text" class="form-control" name="pages" placeholder="Pages" value="'.$row['pages'].'">
                                   </div>
                                 </div>
                              <div class="col col-sm-4">
                               <div class="form-group">
+                              <h6>Paper Cover:</h6>
                                     <input  type="text" class="form-control" name="p_cover" placeholder="Paper Cover" value="'.$row['paper_cover'].'">
                                   </div>
                                 </div>
                               <div class="col col-sm-4">
                               <div class="form-group">
+                              <h6>Color:</h6>
                                     <input  type="text" class="form-control" name="color" placeholder="Color" value="'.$row['color'].'">
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
-                                <div class="form-group">                          
+                                <div class="form-group"> 
+                                <h6>Select Binding Method:</h6>                         
                                    <select class="form-control" name="binding">
                                 ';
                             if($row['binding'] == "Perfect Bind"){
@@ -227,6 +254,20 @@ $acctype = $_SESSION['sess_type'];
                                       <option selected="true" value="Vertical Ringbind">Vertical Ringbind</option>
                                   
                               ';
+                            }else {
+                               echo '
+                                      <option selected="true" value="NULL" disabled>SELECT BINDING METHOD</option>
+                                      <option value="Perfect Bind">Perfect Bind</option>
+                                      <option value="Saddle Stitch">Saddle Stitch</option>
+                                      <option value="Case Bind">Case Bind</option>
+                                      <option value="Varnish">Varnish</option>
+                                      <option value="Lamination">Lamination</option>
+                                      <option value="Embossing">Embossing</option>
+                                      <option value="Debossing">Debossing</option>
+                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
+                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                                  
+                              ';
                             }
 
 
@@ -237,35 +278,61 @@ $acctype = $_SESSION['sess_type'];
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
-                                <div class="form-group">                          
+                                <div class="form-group">
+                                <h6>Lamination:</h6>                          
                                     <input  type="text" class="form-control" placeholder="Lamination" name="lamination" value="'.$row['lamination'].'">
                                   </div>
                                 </div>
                                 <div class="col col-sm-4">
-                                <div class="form-group">                          
+                                <div class="form-group">    
+                                <h6>Remarks:</h6>                      
                                     <input  type="text" class="form-control" placeholder="Remarks" name="remarks" value="'.$row['remarks'].'">
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                    <input  type="text" class="form-control" placeholder="Stock Size" name="s_size" value="'.$row['stock_size'].'">
+                                <h6>Stock Size:</h6>
+                                ';
+                          if($row['stock_size'] =="0"){
+                            echo '
+                                <input  type="text" class="form-control" placeholder="Stock Size" name="s_size" value="">
+                            ';
+                          }else {
+                             echo '
+                                <input  type="text" class="form-control" placeholder="Stock Size" name="s_size" value="'.$row['stock_size'].'">
+                            ';
+                          }
+                                    
+                          echo '
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
-                                <div class="form-group">                          
+                                <div class="form-group"> 
+                                <h6>Printing Size:</h6>   
+                                  ';
+                          if($row['stock_size'] =="0"){
+                            echo '              
+                                    <input  type="text" class="form-control" placeholder="Printing Size" name="p_size" value="">
+                            ';
+                          }else {
+                             echo '              
                                     <input  type="text" class="form-control" placeholder="Printing Size" name="p_size" value="'.$row['printing_size'].'">
+                            ';
+                          }
+
+                            echo '
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Start:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="start" value="'.$row['start'].'">
+                                    <input  type="date" id="start" class="form-control" placeholder="" name="start" value="'.$row['start'].'">
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Finish:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="finish" value="'.$row['finish'].'">
+                                    <input  type="date" id="finish" class="form-control" placeholder="" name="finish" value="'.$row['finish'].'">
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
@@ -281,22 +348,59 @@ $acctype = $_SESSION['sess_type'];
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
-                                <div class="form-group">                          
+                                <div class="form-group"> 
+                                <h6>No. of Out:</h6> 
+                                ';                
+                        if($row['no_of_sheet'] == "0"){
+                          echo '                  
+                                    <input  type="number" class="form-control" placeholder="No of Out" name="no_out" value="">
+                        ';
+                      }else {
+                        echo '                  
                                     <input  type="number" class="form-control" placeholder="No of Out" name="no_out" value="'.$row['no_of_out'].'">
-                                  </div>
+                        ';
+                      }
+
+                        echo '
+                                </div>
                                 </div>
                                 <div class="col col-sm-3">
-                                <div class="form-group">                          
+                                <div class="form-group"> 
+                                <h6>No. of Sheet:</h6>  
+                                ';                
+                        if($row['no_of_sheet'] == "0"){
+                          echo '
+                                <input  type="number" class="form-control" placeholder="No of Sheet" name="no_sheet" value="">
+                          ';
+                        }else {
+                        echo '      
                                     <input  type="number" class="form-control" placeholder="No of Sheet" name="no_sheet" value="'.$row['no_of_sheet'].'">
+                              ';
+                        }
+
+                          echo '
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
-                                <div class="form-group">                          
+                                <div class="form-group">
+                                <h6>No. of Ream:</h6>  
+                      ';
+                      if($row['no_of_ream'] == "0"){
+                          echo '
+                                    <input  type="number" class="form-control" placeholder="No of Ream" name="no_ream" value="">
+                      ';
+                    }else {
+                       echo '
                                     <input  type="number" class="form-control" placeholder="No of Ream" name="no_ream" value="'.$row['no_of_ream'].'">
+                      ';
+                    }
+
+                        echo '
                                   </div>
                                 </div>
                                 <div class="col col-sm-3">
-                                <div class="form-group">                          
+                                <div class="form-group">   
+                                <h6>Select Status:</h6>                       
                                      <select name="status" class="form-control" required="">
                                 ';
                                 if($row['status']=="Pending"){
@@ -308,6 +412,12 @@ $acctype = $_SESSION['sess_type'];
                                    echo '
                                  <option value="Pending">Pending</option>
                                  <option selected="true" value="Acknowledged">Acknowledged</option>
+                                  ';
+                                }else{
+                                   echo '
+                                <option selected="true" value="NULL" disabled>SELECT STATUS</option>
+                                 <option value="Pending">Pending</option>
+                                 <option value="Acknowledged">Acknowledged</option>
                                   ';
                                 }
 
@@ -324,7 +434,9 @@ $acctype = $_SESSION['sess_type'];
                             </form>  
                     ';
                   
-                }else {
+                }
+
+              else {
                   // $ticket_no = $_POST['ticket_no'];
                 //  $_SESSION['ticket_no'] = $_POST['ticket_no'];
                   $sql = "SELECT * FROM job_ticket where ticket_no = '".$_SESSION['ticket_no']."'";
@@ -695,3 +807,37 @@ $acctype = $_SESSION['sess_type'];
 
 
 ?>
+<script>
+  $(document).ready(function(){
+var end = $('#start').val();
+$('#start').show();
+  });
+  $(document).ready(function(){
+   // alert(end);
+   $('#start').change(function(){
+    document.getElementById('finish').setAttribute("min",$('#start').val());
+      // if($('#start').val()== $('#finish').val()){
+      //   $('#start').hide();
+
+      // }else{
+      //    $('#start').show();
+      // }
+   });
+  });
+// $('document').ready(function(){
+//   $('#finish').change(function(){
+//  if($(this).val()=="2019-11-01"){
+//   $('#start').hide();
+//  }
+// // document.getElementById('finish').setAttribute("min",end);
+// }
+// });
+
+  // $('document').ready(function(){
+    
+  //   var end = $('#start').val();
+    
+  //   alert(end);
+  // });
+
+</script>    

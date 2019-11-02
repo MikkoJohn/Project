@@ -16,24 +16,26 @@ $acctype = $_SESSION['sess_type'];
                     <div class="panel-title">Add Material</div>
                 </div>     
 
-                <div style="padding-top:20px" class="panel-body" >
+                <div style="padding-top:10px" class="panel-body" >
 
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
                       <form method="POST" class="form-horizontal" role="form">         
                            <div class="row">
                              <div class="col col-sm-12">
-                             <div class="form-group">
+                             
+                                <h6>Item Name:</h6>
                                     <input type="text" class="form-control" name="i_name" placeholder="Item Name" required>
-                                  </div>
+                                  
                               </div>
-                             <div class="col col-sm-6">
-                             <div class="form-group">
+                             <div class="col col-sm-12">
+                            
+                              <h6>Item Type:</h6>
                                     <input type="text" class="form-control" name="i_type" placeholder="Item Type" required>
-                                  </div>
+                            
                                 </div>
-                            <div class="col col-sm-6">
-                            <div class="form-group">
+                            <div class="col col-sm-12" style="margin-top: 15px;">
+                           
                               <select class="form-control" name="category" required>
                                 <option selected="true" value="NULL" disabled="disabled">SELECT CATEGORY</option>
                                   <option value="Paper">Paper</option>
@@ -41,15 +43,16 @@ $acctype = $_SESSION['sess_type'];
                                   <option value="Chemicals">Chemicals</option>
                                 </select>
                                    
-                                  </div>
+                               
                             </div>
-                            <div class="col col-sm-12">
-                            <div class="form-group">
+                            <!-- <div class="col col-sm-12"> -->
+                            <!-- <div class="form-group">
                                   <input type="number" class="form-control" name="quantity" min="0" placeholder="Quantity" required>
                                   </div>
-                            </div>
-                            <div class="col col-sm-12">
-                            <div class="form-group">
+                            </div> -->
+                            <div class="col col-lg-12" style="margin-top: 15px;">
+                           
+
                                 <select name="u_measure" class="form-control" required>
                                   <option selected="true" value="NULL" disabled>SELECT UNIT OF MEASUREMENT</option>
                                   <option value="Kilogram">Kilogram</option>
@@ -61,14 +64,14 @@ $acctype = $_SESSION['sess_type'];
                                   <option value="Per Piece">Per Piece</option>
                                   <option value="Per Box">Per Box</option>
                                 </select>
-                                  </div>
+                               
                             </div>
                            <!--   <div class="col col-sm-12">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="size" placeholder="Size">
                                   </div>
                             </div> -->
-                            <div class="col-lg-12 controls">
+                            <div class="col-lg-12 controls" style="margin-top: 15px;">
                                       <input type="submit" name="addmaterial" class="btn btn-success">
                                     </div>
                                 </div>
@@ -81,15 +84,15 @@ $acctype = $_SESSION['sess_type'];
                    
    
 <?php if(isset($_POST['addmaterial'])){
-error_reporting(0);
+// error_reporting(0);
   $i_name = $_POST['i_name'];
   $i_type = $_POST['i_type'];
   $category = $_POST['category'];
-  $quantity = $_POST['quantity'];
+  $quantity = 0;
   $u_measure = $_POST['u_measure'];
  // $size = $_POST['size'];
  $size = "";
-  if(empty($i_name) || empty($i_type) || empty($category) || empty($quantity) || empty($u_measure)){
+  if(empty($i_name) || empty($i_type) || empty($category) || empty($u_measure)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  

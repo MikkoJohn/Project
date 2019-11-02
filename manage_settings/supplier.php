@@ -128,8 +128,8 @@ $acctype = $_SESSION['sess_type'];
       }else if($row['status'] =="1"){
             echo '
                                     <form method="POST" action="enable">
-         <input type="hidden" name="supplier_id" value="'.$row['supplier_id'].'">
-                        <button name="enable_supplier" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
+         <input type="hidden" name="  " value="'.$row['supplier_id'].'">
+                        <button name="enable_supplier" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Enable</button>
         </form> ';
       }
 
@@ -256,7 +256,7 @@ $major_prod = $_POST['major_prod'];
 $sec_serv = $_POST['sec_serv'];
 $status = 0;
 
-$sql = "INSERT INTO `supplier_info`(`supplier_name`, `head_office_address`, `telephone`, `email_address`, `branch`, `tel_no`, `warehouse`, `form_of_business`, `kind_of_business`, `tin_no`, `contact_person`, `position`, `contact_person2`, `position2`, `major_products`, `secondary_services`,`status`) VALUES ('$s_name','$ho_add','$telephone','$e_add','$branch','$tel_no','$warehouse','$form_of_business','$kind_of_business','$tin_no','$contact_person','$position','$contact_person2','$position2','$major_prod','$sec_serv','$status')";
+$sql = "INSERT INTO `supplier_info`(`supplier_name`, `head_office_address`, `telephone`, `email_address`, `branch`, `tel_no`, `warehouse`, `form_of_business`, `kind_of_business`, `tin_no`, `contact_person`, `position`, `contact_person2`, `position2`, `major_products`, `secondary_services`,`status`) VALUES ('$s_name','$ho_add','$telephone','$e_add','$branch','$tel_no','$warehouse','$form_of_bus','$kind_of_bus','$tin_no','$c_person','$position','$c_person2','$position2','$major_prod','$sec_serv','$status')";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Supplier')";
@@ -264,7 +264,9 @@ $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, 
 echo '<script>alert("Successfully Added!");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 //header("Location: client");
+//session_destroy();
 }
+
 
 
 ?>
