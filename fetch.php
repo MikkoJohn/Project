@@ -35,5 +35,6 @@ $data = array(
    'unseen_notification'  => $count
 );
 echo json_encode($data);
+// echo '<script>alert("New Job Order");</script>';
 }
 ?>

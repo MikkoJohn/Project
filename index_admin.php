@@ -26,6 +26,7 @@ include('includes/header.php');
 include('includes/navbar.php');
 //include 'includes/link.php';
 include 'config.php';
+//echo "<meta http-equiv='refresh' content='0'>";
 //session_start();
 ?>    <!-- Content Wrapper -->
 <?php
@@ -132,7 +133,7 @@ include 'config.php';
 <div class="row">
     <div class="col col-lg-3">
         <div class="icon" style="background-color: blue;">
-            <a href="view_plan.php" style="cursor: pointer;"><i class="fas fa-list  " style="color:white;font-size: 50px;padding: 10px;"></i></a>
+           <i class="fas fa-list  " style="color:white;font-size: 50px;padding: 10px;"></i>
           </div>       
      <h4 class="font">Queue for Job Orders</h4>
    <?php
@@ -142,7 +143,7 @@ include 'config.php';
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: #ff0048;">
-           <a href="view_done_plan.php" style="cursor: pointer;"><i class="fas fa-tasks" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+           <i class="fas fa-tasks" style="color:white;font-size: 50px;padding: 10px;"></i>
           </div>       
                  <h4 class="font">Completed Job Order <?php echo $currmonth; ?></h4>
               <?php
@@ -151,18 +152,22 @@ include 'config.php';
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: #44f733;">
-         <a href="view_all_plan.php" style="cursor: pointer;"><i class="fas fa-chart-area" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+         <i class="fas fa-chart-area" style="color:white;font-size: 50px;padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <?php
+$sql_totaljo = 'SELECT COUNT(*)total FROM job_order WHERE DATE_FORMAT(date_created,"%Y") = "'.$curryear.'"';
+$results = mysqli_query($conn,$sql_totaljo);
+                        while ($rows = mysqli_fetch_assoc($results)){
+                          echo ''.$rows['total'].'';
+                        }
+    ?>
+         </i>
           </div>       
                  <h4 class="font">Total Job Order for <?php echo $curryear; ?></h4>
-    <?php
-
-
-
-    ?>
+  
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: orange;">
-        <a href="view_all_done.php"><i class="far fa-calendar-check" style="color:white;font-size: 50px;padding: 10px;"></i></a>
+        <i class="far fa-calendar-check" style="color:white;font-size: 50px;padding: 10px;"></i>
           </div>    
            <h4 class="font">Total Completed Job Order for <?php echo $curryear; ?></h4>   
 <?php
@@ -526,7 +531,7 @@ echo '
              
 <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Operators</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Operators </h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -700,8 +705,8 @@ echo '
                     <tr>
                       <th><center>Material ID</center></th>
                       <th><center>Item Name</center></th>
-                      <th><center>Item Description</th>
-                      <th><center>Category</center></th>
+                      <th><center>Quantity</center></th>
+                      <th width="23%"><center>Add</th>
                       <th><center>Status</center></th>
                       <th><center>Actions</center></th>
                     </tr> 
@@ -714,8 +719,20 @@ echo '
               <tr>
                   <td><center>'.$row['material_id'].'</center></td>
                   <td><center>'.$row['item_name'].'</center></td>
-                  <td><center>'.$row['item_desc'].'</center></td>
-                  <td><center>'.$row['category'].'</center></td>
+                  <td><center>'.$row['quantity'].'</center></td>
+                   <td><center>
+                   <div class="row">
+                   <div class="col col-sm-8">
+                    <form method="POST" action="addquantity">
+                          <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
+                          <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity">
+                    </div>
+                    <div class="col col-sm-4">
+                          <button name="add_quantity" class="btn btn-info" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Add</button>
+                                    </form>
+                    </div>
+                    </div>
+                   </center></td>
                   ';
             if($row['status'] == 1){
               echo '<td><center>Disabled</center></td>';
@@ -758,6 +775,8 @@ echo '
               </tr>
             ';
           }
+
+
         ?>               
                               
                 </table>
@@ -864,6 +883,7 @@ echo '
 <script>
 $(document).ready(function(){
 // updating the view with notifications using ajax
+
 function load_unseen_notification(view = '')
 {
  $.ajax({
@@ -888,6 +908,7 @@ load_unseen_notification();
 $(document).on('click', '.dropdown-toggle', function(){
  $('.count').html('');
  load_unseen_notification('yes');
+
 });
 setInterval(function(){
  load_unseen_notification();;
