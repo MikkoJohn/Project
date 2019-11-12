@@ -24,6 +24,7 @@ if(isset($_POST['convert_jo'])){
   $no_pages = $row['pages'];
   $f_required = $row['finishing_required'];
   $quantity = $row['quantity'];
+  
 $sqls = "SELECT * FROM `job_ticket` WHERE `job_order_control_no`='".$job_no."'";
 $resulta = $conn->query($sqls);
 if($resulta->num_rows >= 1) {
@@ -32,12 +33,12 @@ if($resulta->num_rows >= 1) {
     echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
 } else {
 
-  $stmt = $conn->prepare("INSERT INTO job_ticket (client_name,quantity,job_order_control_no,proj_name,pages,binding) VALUES (?,?,?,?,?,?) ");
+  $stmt = $conn->prepare("INSERT INTO job_ticket (client_name, date_time_created, quantity,job_order_control_no,proj_name,pages,binding) VALUES (?,?,?,?,?,?,?) ");
   //$status= "Disabled";
   // $stmt = $conn->prepare("DELETE FROM `job_order` WHERE `job_order_control_no` = ?");
   //$stmt = $conn->prepare("UPDATE `job_order` SET status=? WHERE `job_order_control_no` = ?");
   
-                              $stmt->bind_param('ssssss',$client_name,$quantity,$job_no,$proj_name,$no_pages,$f_required);
+                              $stmt->bind_param('sssssss',$client_name,$now,$quantity,$job_no,$proj_name,$no_pages,$f_required);
 
                               if($stmt->execute()){
                                // echo'<script>swal("Successfully Deleted!","", "success");</script>';

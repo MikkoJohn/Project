@@ -3,8 +3,12 @@
 
 //load.php
 
-$connect = new PDO('mysql:host=localhost;dbname=liseme', 'root', '');
-
+$connect = new PDO('mysql:host=localhost;dbname=thesis_db', 'root', '');
+if(!$connect){
+	echo 'not connected';
+}else {
+	echo 'connected';
+}
 $data = array();
 
 $query = "SELECT * FROM events ORDER BY id";
@@ -27,4 +31,5 @@ foreach($result as $row)
 
 echo json_encode($data);
 
+echo 'asdasddas';
 ?>

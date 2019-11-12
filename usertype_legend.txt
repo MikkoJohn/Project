@@ -7,3 +7,4 @@ sales           = 6
 operator        = 7
 General Services Head = 8
 General Services Assistant = 9
+Finance = 10

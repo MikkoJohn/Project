@@ -121,7 +121,7 @@ include 'config.php';
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">ADMIN DASHBOARD</h1>
-            <iframe src="notif" style="width: 30%; margin-left: 0px;top:20%;height: 50px;position: ;">
+            <iframe src="notif.php" style="width: 30%; margin-left: 0px;top:20%;height: 50px;position: ;">
             </iframe>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
@@ -529,85 +529,6 @@ echo '
  });  
  </script>  
              
-<div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Operators </h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="operator" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th><center>J.T. No.</center></th>
-                      <th><center>Project Name</center></th>
-                      <th><center>Client Name</center></th>
-                      <th><center>Date Created</center></th>
-                      <th><center>Status</center></th>
-                      <th><center>Actions</center></th>
-                    </tr>
-                  </thead>
-          <?php
-            $sql="SELECT * FROM job_ticket";
-            $result = mysqli_query($conn,$sql);
-            while($row = mysqli_fetch_assoc($result)){
-                echo '
-                  <tr>
-                      <td><center>'.$row['ticket_no'].'</center></td>
-                      <td><center>'.$row['proj_name'].'</center></td>
-                      <td><center>'.$row['client_name'].'</center></td>
-                      <td><center>'.$row['date_time_created'].'</center></td>
-                      <td><center>'.$row['status'].'</center></td>
-                      <td><center>
-                      <div class="row">
-                                    <div class="col col-lg-6">
-                                    <form method="POST" action="editmodal/editjobticket.php">
-                       
-                          <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
-                          <button name="view_jticket" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
-                                    </form>
-                                    </div>
-                                    <div class="col col-lg-6">';
-          
-           if($row['status'] == "Disabled"){
-        echo '
-                  <form method="POST" action="enable">   
-                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
-                        <button name="enable_jticket" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
-                  </form>  
-                ';
-      }else {
-           echo '
-                  <form method="POST" action="delete">   
-                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
-                        <button name="delete_jticket" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
-                  </form>  
-                ';
-      }
-      echo '
-        </div>
-        </div></center>
-                  </td>
-                  </tr>
-
-                ';
-
-
-            }
-          ?>
-                       
-                   
-                </table>
-          </div>
-        </div>
-      </div>
-    <script>  
- $(document).ready(function(){  
-      $('#operator').DataTable();  
- });  
- </script>  
-             
-                          
-
 
 
 

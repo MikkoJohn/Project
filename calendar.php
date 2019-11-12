@@ -100,6 +100,9 @@
   </script>
  </head>
  <body>
+  <?php 
+
+  ?>
   <br />
   <h2 align="center"><a href="#">Jquery Fullcalandar Integration with PHP and Mysql</a></h2>
   <br />
