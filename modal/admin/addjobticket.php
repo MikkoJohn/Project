@@ -116,15 +116,16 @@
                                   <h6>Select Binding Method:</h6>
                                     <select class="form-control" name="binding" required>
                                       <option selected="true" value="NULL" disabled>SELECT BINDING METHOD</option>
-                                      <option value="Perfect Bind">Perfect Bind</option>
-                                      <option value="Saddle Stitch">Saddle Stitch</option>
-                                      <option value="Case Bind">Case Bind</option>
-                                      <option value="Varnish">Varnish</option>
-                                      <option value="Lamination">Lamination</option>
-                                      <option value="Embossing">Embossing</option>
-                                      <option value="Debossing">Debossing</option>
-                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
-                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                          <?php
+                $sql_act = "SELECT activity FROM post_press";
+                $res = mysqli_query($conn,$sql_act);
+                while($row = mysqli_fetch_assoc($res)){
+                    echo '
+                      <option value="'.$row['activity'].'">'.$row['activity'].'</option>
+                    ';
+                }
+
+                          ?>
                                     </select>
                                     <!-- <input  type="text" class="form-control" placeholder="Binding" name="binding"> -->
                                   </div>

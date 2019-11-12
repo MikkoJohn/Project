@@ -22,22 +22,29 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                            <div class="row">
-                             <div class="col col-sm-6">
+                           <!--   <div class="col col-sm-6">
                              <div class="form-group">
 
                                     <input type="text" class="form-control" name="m_id" placeholder="Material ID">
                                   </div>
-                              </div>
+                              </div> -->
                              <div class="col col-sm-6">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="i_name" placeholder="Item Name">
+                              <select class="form-control" name="i_name">
+                                  <option value="NULL" selected="true" disabled>SELECT ITEM NAME</option>
+                    <?php 
+                  $sql_item = "SELECT item_name,material_id,item_desc"
+
+                    ?>
+                              </select>
+                                   <!--  <input type="text" class="form-control" name="i_name" placeholder="Item Name"> -->
                                   </div>
                                 </div>
-                            <div class="col col-sm-6">
-                            <div class="form-group">
+                            <!-- <div class="col col-sm-6"> -->
+                           <!--  <div class="form-group">
                                     <input type="text" class="form-control" name="i_desc" placeholder="Item Desc">
                                   </div>
-                            </div>
+                            </div> -->
                             <div class="col col-sm-6">
                             <div class="form-group">
                                   <input type="number" class="form-control" name="quantity" placeholder="Quantity">

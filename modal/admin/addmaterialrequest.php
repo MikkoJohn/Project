@@ -24,7 +24,19 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                              <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="jo_controlno" placeholder="Job Control No." required>
+                                  <select class="form-control" name="jo_controlno" required>
+                                    <option value="null" selected="true" disabled>SELECT JOB CONTROL NO</option>
+                                <?php
+                    $sql_jono ="SELECT job_order_control_no FROM job_order";
+                    $res = mysqli_query($conn,$sql_jono);
+                    while($row = mysqli_fetch_assoc($res)){
+                      echo '
+                          <option value="'.$row['job_order_control_no'].'">'.$row['job_order_control_no'].'</option>
+                      ';
+                    } 
+                                ?>
+                                  </select>
+                                    <!-- <input type="text" class="form-control" name="jo_controlno" placeholder="Job Control No." required> -->
                                   </div>
                               </div>
                              <div class="col col-sm-6">

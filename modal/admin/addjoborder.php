@@ -119,11 +119,11 @@ $acctype = $_SESSION['sess_type'];
                   <select class="form-control" name="p_used" required>
                                 <option value="NULL" selected="true" disabled>Paper to be used</option>
           <?php
-                $sql_machine = "SELECT machine_name FROM machine";
+                $sql_machine = "SELECT item_name FROM materials WHERE category = 'Paper'";
                 $result = mysqli_query($conn,$sql_machine);
                 while($row = mysqli_fetch_assoc($result)){
                   echo '
-                        <option value="'.$row['machine_name'].'">'.$row['machine_name'].'</option>
+                        <option value="'.$row['item_name'].'">'.$row['item_name'].'</option>
                   ';
                 }
 

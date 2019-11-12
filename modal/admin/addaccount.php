@@ -119,8 +119,6 @@ $('#divi').show();
 <?php 
 if(isset($_POST['addaccount'])){
 //error_reporting(0);
-
-
  $uname = $_POST['uname'];
   $pass = $_POST['pass'];
   $acc = $_POST['acc'];
@@ -143,29 +141,17 @@ $div = $_POST['div'];
 $sqls = "SELECT * FROM `tbl_useraccounts` WHERE `uname`='".$uname."'";
 $resulta = $conn->query($sqls);
 if($resulta->num_rows >= 1) {
-    echo'<script>swal("Error!","Username already exist!" ,"warning");</script>';
+    echo'<script>alert("Username already exist!");</script>';
 } else {
- // ....
-  //echo "<script>alert('inserted');</script>";
-
-   // $usernames = mysqli_real_escape_string($uname);
-   // $res = mysqli_query($conn,"SELECT * FROM tbl_useraccounts WHERE uname =".$usernames." ");
-   // if($res->num_rows){
-   //    echo '<script>alert("exist")</script>';
-   // }else{
-   //    echo '<script>alert("add")</script>';
-   // }
-
 
   $stmt = $conn->prepare("INSERT INTO `tbl_useraccounts`(`uname`, `pass`, `user_type`, `fname`, `mname`, `lname`, `division`,`status`) VALUES (?,?,?,?,?,?,?,?)");
                               $stmt->bind_param('ssssssss', $uname,$pass,$acc,$fname,$mname,$lname,$div,$status);
 
                               if($stmt->execute()){
-                                // echo'<script>swal("Successfully Added!","","success");</script>';
                                 echo '<script>alert("Successfully Added!");</script>';
                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Account')";
                               mysqli_query($conn,$sql1);
-                              //header("location: ../../index_admin");
+
                     echo "<script type='text/javascript'>location.href = '../../index_admin';</script>";
                               exit();
                               } 
@@ -176,7 +162,6 @@ if($resulta->num_rows >= 1) {
 
                               $stmt->close();
                               
-
 }
 
 }
