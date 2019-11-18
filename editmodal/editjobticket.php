@@ -42,9 +42,15 @@ $acctype = $_SESSION['sess_type'];
                              <div class="form-group">
                              <h6>Machine Name:</h6>
                              <select class="form-control" name="mname" required>
-                             <option value="'.$row['machine_name'].'" selected="true">'.$row['machine_name'].'</option>
                              ';
 
+                             if($row['machine_name'] == ""){
+                                   echo '<option value="NULL" selected="true" disabled>SELECT MACHINE NAME</option>
+                             ';
+                           }else {
+                              echo '<option value="'.$row['machine_name'].'">'.$row['machine_name'].'</option>
+                             ';
+                           }
                     $sql_machine = "SELECT machine_name FROM machine WHERE machine_name != '".$row['machine_name']."'";
                     $result_machine = mysqli_query($conn,$sql_machine);
                     while($rows = mysqli_fetch_assoc($result_machine)){
@@ -459,8 +465,8 @@ if(isset($_POST['updatejo'])){
   $now = date("Y-m-d H:i:s");
 
  
-  $sql_jo = "UPDATE `job_ticket` SET `job_order_control_no`='$jo_no',`machine_name`='$mname',`delivery_date`='$d_date',`checked_by`='$c_by',`noted_by`='$n_by',`client_name`='$c_name',`proj_name`='$p_name',`title`='$title',`quantity`='$quantity',`actual_size`='$a_size',`pages`='$pages',`paper_cover`='$p_cover',`color`='$color',`binding`='$binding',`lamination`='$lamination',`remarks`='$remarks',`stock_size`='$s_size',`printing_size`='$p_size',`start`='$start',`finish`='$finish',`time_received`='$t_received',`date_received`='$d_received',`no_of_out`='$no_out',`no_of_sheet`='$no_sheet',`no_of_ream`='$no_ream',`status`='$status' WHERE ticket_no = '".$_SESSION['ticket_no']."'";
-                 mysqli_query($conn,$sql_jo);
+  $sql_jt = "UPDATE `job_ticket` SET `job_order_control_no`='$jo_no',`machine_name`='$mname',`delivery_date`='$d_date',`checked_by`='$c_by',`noted_by`='$n_by',`client_name`='$c_name',`proj_name`='$p_name',`title`='$title',`quantity`='$quantity',`actual_size`='$a_size',`pages`='$pages',`paper_cover`='$p_cover',`color`='$color',`binding`='$binding',`lamination`='$lamination',`remarks`='$remarks',`stock_size`='$s_size',`printing_size`='$p_size',`start`='$start',`finish`='$finish',`time_received`='$t_received',`date_received`='$d_received',`no_of_out`='$no_out',`no_of_sheet`='$no_sheet',`no_of_ream`='$no_ream',`status`='$status' WHERE ticket_no = '".$_SESSION['ticket_no']."'";
+                 mysqli_query($conn,$sql_jt);
                                
                                  echo '<script>alert("Successfully Updated!");</script>';
                                  

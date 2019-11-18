@@ -37,7 +37,7 @@ $acctype = $_SESSION['sess_type'];
                            <div class="row">
                            <div class="col col-sm-4">
                              <div class="form-group">
-                             <h6>Job Order No.:</h6>
+                             <h6>Job Order Control No.:</h6>
                                     <input type="text" class="form-control" placeholder="Job Order Control No." name="jo_no" value="'.$row['job_order_control_no'].'">
                                   </div>
                               </div>
