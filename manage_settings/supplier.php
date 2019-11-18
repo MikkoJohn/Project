@@ -128,7 +128,7 @@ $acctype = $_SESSION['sess_type'];
       }else if($row['status'] =="1"){
             echo '
                                     <form method="POST" action="enable">
-         <input type="hidden" name="  " value="'.$row['supplier_id'].'">
+         <input type="hidden" name="supplier_id" value="'.$row['supplier_id'].'">
                         <button name="enable_supplier" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Enable</button>
         </form> ';
       }

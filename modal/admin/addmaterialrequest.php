@@ -65,7 +65,7 @@ $acctype = $_SESSION['sess_type'];
                                     <input type="date" class="form-control" name="d_date" placeholder="Delivery Date" required>
                                   </div>
                             </div>
-                             <div class="col col-sm-12">
+                           <!--   <div class="col col-sm-12">
                             <div class="form-group">
                                 <select class="form-control" name="p_status" required>
                                     <option selected="true" value="NULL" disabled=""></option>
@@ -74,7 +74,7 @@ $acctype = $_SESSION['sess_type'];
                                 </select>
                                    
                                   </div>
-                            </div>
+                            </div> -->
                              <div class="col col-sm-12">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="remarks" placeholder="Remarks" required>
@@ -100,7 +100,7 @@ error_reporting(0);
   $k_paper = $_POST['k_paper'];
   $quantity = $_POST['quantity'];
   $d_date = $_POST['d_date'];
-  $p_status = $_POST['p_status'];
+  $p_status = "Pending";
   $remarks = $_POST['remarks'];
    $now = date("Y-m-d");
   if(empty($jo_controlno) || empty($no_reams) || empty($p_size) || empty($k_paper) || empty($quantity) || empty($d_date) || empty($p_status) || empty($remarks)){

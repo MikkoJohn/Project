@@ -33,8 +33,13 @@ $acctype = $_SESSION['sess_type'];
                               <select class="form-control" name="i_name">
                                   <option value="NULL" selected="true" disabled>SELECT ITEM NAME</option>
                     <?php 
-                  $sql_item = "SELECT item_name,material_id,item_desc"
-
+                  $sql_item = "SELECT item_name FROM materials";
+                  $res_item = mysqli_query($conn,$sql_item);
+                  while($rows = mysqli_fetch_assoc($res_item)){
+                      echo '
+                           <option value="'.$rows['item_name'].'">'.$rows['item_name'].'</option>
+                      ';
+                  }
                     ?>
                               </select>
                                    <!--  <input type="text" class="form-control" name="i_name" placeholder="Item Name"> -->

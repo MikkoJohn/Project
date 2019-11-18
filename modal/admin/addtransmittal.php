@@ -58,7 +58,7 @@ $acctype = $_SESSION['sess_type'];
                                     <input  type="text" class="form-control" name="desc" placeholder="Description" required>
                                   </div>
                                 </div>
-                             <div class="col col-sm-12">
+                           <!--   <div class="col col-sm-12">
                              <div class="form-group">
                                 <select class="form-control" name="status" required>
                                   <option value="NULL" selected="true" disabled>SELECT STATUS</option>
@@ -67,7 +67,7 @@ $acctype = $_SESSION['sess_type'];
                                 </select>
                                    
                                   </div>
-                                </div>
+                                </div> -->
                             
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="addtransmittal" class="btn btn-success">
@@ -90,9 +90,9 @@ error_reporting(0);
   $jo_controlno = $_POST['jo_controlno'];
   $quantity = $_POST['quantity'];
   $desc = $_POST['desc'];
-  $status = $_POST['status'];
+  $status = "Pending";
  
-  if(empty($p_by) || empty($pre_press) || empty($post_press) || empty($others) || empty($jo_controlno) || empty($quantity) || empty($desc) || empty($status)){
+  if(empty($p_by) || empty($pre_press) || empty($post_press) || empty($others) || empty($jo_controlno) || empty($quantity) || empty($desc)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  

@@ -153,8 +153,8 @@
       </div>
        
         <li class="nav-item">
-        <a type="button"   data-toggle="modal" data-target="#" style="background: #4a89ff; width: 100%; color: #006699 ">
-          <span><center>Calendar Schedule</center></span></a>
+          <a type="button"  href="calendar/index" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Calendar for Job Ticket</center></span></a>
               <?php 
                //include ('modal/admin/addoperator.php');
               ?>
@@ -199,7 +199,7 @@
       </li>
 
       <li class="nav-item">
-        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+        <a type="button"  href="modal/admin/addpress" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
           <span><center>Add Press Activities</center></span></a>
               <?php 
                //include ('modal/admin/addoperator.php');
@@ -207,8 +207,16 @@
       </li>
 
       <li class="nav-item">
-        <a type="button"  href="" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+        <a type="button"  href="modal/admin/addpostpress" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
           <span><center>Add Post-Press Activities</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
+
+      <li class="nav-item">
+        <a type="button"  href="modal/admin/view_transaction" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>View Transaction</center></span></a>
               <?php 
                //include ('modal/admin/addoperator.php');
               ?>

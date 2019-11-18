@@ -22,14 +22,10 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                            <div class="row">
-                             <div class="col col-sm-6">
+                           
+                             <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="sales_no" placeholder="Sales No." required>
-                                  </div>
-                              </div>
-                             <div class="col col-sm-6">
-                             <div class="form-group">
-                                <select class="form-control" name="c_name">
+                                <select class="form-control" name="c_name" onmousedown="if(this.options.length>3){this.size=3;}" onchange='this.size=0;' onblur="this.size=0;">
                                   <option value="NULL" selected="true" disabled>SELECT CLIENT</option>
             <?php
                   $client_sql="SELECT * FROM client_info";
@@ -45,12 +41,17 @@ $acctype = $_SESSION['sess_type'];
                                   <!--   <input type="text" class="form-control" name="c_name" placeholder="Client Name" required> -->
                                   </div>
                                 </div>
-                             <div class="col col-sm-6">
+                                  <div class="col col-sm-4">
+                             <div class="form-group">
+                                    <input type="text" class="form-control" name="sales_no" placeholder="Sales No." required>
+                                  </div>
+                              </div>
+                             <div class="col col-sm-4">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="p_name" placeholder="Project Name" required>
                                   </div>
                             </div>
-                            <div class="col col-sm-6">
+                            <div class="col col-sm-4">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="d_title" placeholder="Item Description and Title" required>
                                   </div>

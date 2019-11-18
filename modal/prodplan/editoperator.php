@@ -102,13 +102,21 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Last Name:</h6>
                   <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-3" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No.">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-3" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
                   <input type="text" name="o_sched" class="form-control" value="'.$row['operator_schedule'].'" placeholder="Operator Schedule">
+                </div>
+                 <div class="col col-md-3" style="margin-bottom: 15px;">
+                  <h6>Operator Shift:</h6>
+                  <input type="text" name="o_shift" class="form-control" value="'.$row['operator_shift'].'" placeholder="Operator Shift">
+                </div>
+                 <div class="col col-md-3" style="margin-bottom: 15px;">
+                  <h6>Division:</h6>
+                  <input type="text" name="div" class="form-control" value="'.$row['division'].'" placeholder="Division">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Username:</h6>
@@ -148,13 +156,17 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Last Name:</h6>
                   <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No.">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
                   <input type="text" name="o_sched" class="form-control" value="'.$row['operator_schedule'].'" placeholder="Operator Schedule">
+                </div>
+                 <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Schedule:</h6>
+                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_shift'].'" placeholder="Operator Schedule">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Username:</h6>
@@ -201,7 +213,7 @@ mysqli_query($conn,$sql);
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Operator')";
                                 mysqli_query($conn,$sql1);
 
-eecho '<script>alert("Successfully Updated!");</script>';
+echo '<script>alert("Successfully Updated!");</script>';
 //echo '<script>swal("Success","","succes");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 

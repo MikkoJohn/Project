@@ -23,7 +23,20 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required>
+                              <select class="form-control" name="j_controlno" placeholder="" required>
+                                <option value="NULL" selected="true" disabled>SELECT JOB ORDER CONTROL NO.</option>
+                              <?php
+                    $sql_jono = "SELECT job_order_control_no FROM job_order";
+                    $res_jono = mysqli_query($conn,$sql_jono);
+                    while($rows = mysqli_fetch_assoc($res_jono)){
+                      echo '
+                              <option value="'.$rows['job_order_control_no'].'" >'.$rows['job_order_control_no'].'</option>
+                      ';
+                    }
+
+                              ?>
+                              </select>
+                                    <!-- <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required> -->
                                   </div>
                              <div style="margin-top:10px" class="form-group">
                                     <input type="text" class="form-control" name="j_desc" placeholder="Job Description"required>
@@ -46,7 +59,7 @@ $acctype = $_SESSION['sess_type'];
                             <div style="margin-top:10px" class="form-group">
                                     <input type="text" class="form-control" name="instruction" placeholder="Instruction"required>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+<!--                             <div style="margin-top:10px" class="form-group">
                                 <select class="form-control" name="status" required>
                                   <option selected="true" value="NULL" disabled="disabled" >SELECT STATUS</option>
                                   <option value="Pending">Pending</option>
@@ -54,7 +67,7 @@ $acctype = $_SESSION['sess_type'];
                                   <option value="Disapproved">Disapproved</option>
                                 </select>
                                    
-                                  </div>
+                                  </div> -->
                             
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="addworkorder" class="btn btn-success">
@@ -73,10 +86,10 @@ $acctype = $_SESSION['sess_type'];
   $j_desc = $_POST['j_desc'];
   $s_name = $_POST['s_name'];
   $instruction = $_POST['instruction'];
-  $status = $_POST['status'];
+  $status = "Pending";
   $now = date("Y-m-d");
-  if(empty($j_controlno) || empty($j_desc) || empty($s_name) || empty($instruction) || empty($status)){
-    echo'<script>swal("Please fill blank fields!","", "warning");</script>';
+  if(empty($j_controlno) || empty($j_desc) || empty($s_name) || empty($instruction)){
+    echo'<script>alert("Please fill blank fields!");</script>';
   }else {
  
   //$sql= "INSERT INTO tbl_useraccounts ('uname','pass','user_type') VALUES ()";

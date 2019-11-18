@@ -182,20 +182,12 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Last Name:</h6>
                   <input type="text" name="lname" class="form-control" placeholder="Last Name" onkeypress="return /[a-z]/i.test(event.key)" required>
                 </div>
-                <div class="col col-md-4" style="margin-bottom: 15px;">
+                <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="number" name="c_no" class="form-control" placeholder="Contact No." pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" required>
                 </div>
-                <div class="col col-md-3" style="margin-bottom: 15px;">
-                  <h6>Operator Schedule:</h6>
-                  <input type="text" name="o_sched" class="form-control" placeholder="Operator Schedule" required>
-                </div>
-                <div class="col col-md-3" style="margin-bottom: 15px;">
-                  <h6>Operator Shift:</h6>
-                  <input type="text" name="o_shift" class="form-control" placeholder="Operator Shift" required>
-                </div>
-                <div class="col col-md-3" style="margin-bottom: 15px;">
-                  <h6>Operator Shift:</h6>
+                <div class="col col-md-6" style="margin-bottom: 15px;">
+                  <h6>Division:</h6>
                   <input type="text" name="division" class="form-control" placeholder="Division" required>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
@@ -218,11 +210,9 @@ $fname = $_POST['fname'];
 $mname = $_POST['mname'];
 $lname = $_POST['lname'];
 $c_no = $_POST['c_no'];
-$o_sched = $_POST['o_sched'];
 $division = $_POST['division'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
-$o_shift = $_POST['o_shift'];
 $status= 0;
 
 $sql_select = "SELECT * FROM `operators` WHERE `account_id_no`='".$a_id."' AND `username`='".$uname."'";
@@ -231,7 +221,7 @@ if($resulta->num_rows >= 1) {
     echo'<script>alert("Account ID no. and Username already exist!");</script>';
 } else {
 
-$sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`, `operator_schedule`,`operator_shift`,`division`,`status`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$o_sched','$o_shift','$division','$status')";
+$sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`,`division`,`status`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$division','$status')";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Operator')";

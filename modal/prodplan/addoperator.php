@@ -102,17 +102,23 @@ $acctype = $_SESSION['sess_type'];
                               <center>
                           <div class="row">
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="editoperator">
-                       
-                          <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
-                          <button name="view_operator" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="modal" data-target="#viewModal"></span> View</button>
-                                    </form>
-                                    </div>
-                                    <div class="col col-lg-6">
+                                   ';
+          if($row['status'] == "0"){ 
+                echo '
                                     <form method="POST" action="delete">
          <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
-                        <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
+                        <button name="delete_operator" class="btn btn-danger" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
+        </form>';
+      }else if($row['status'] == "1"){ 
+                echo '
+                                    <form method="POST" action="enable">
+         <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
+                        <button name="enable_operator" class="btn btn-primary" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Enable</button>
+        </form>';
+      }
+
+
+        echo '
         </div>
         </div></center>
 
