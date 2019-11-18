@@ -408,7 +408,7 @@ $results = mysqli_query($conn,$sql_totaljo);
 
                                     <div class="col col-lg-4">';
 
- if($row['status'] == "Disabled"){
+ if($row['status'] == "Disabled" || $row['status'] == "Rejected"){
         echo '
                   <form method="POST" action="enable">   
                      <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
@@ -646,11 +646,33 @@ echo '
                    <div class="col col-sm-8">
                     <form method="POST" action="addquantity">
                           <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
-                          <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity">
+                  ';
+                  if($row['status'] == 1){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
+                            ';
+                    }else if($row['status'] == 0){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity">
+                            ';
+                    }
+                echo '
                     </div>
                     <div class="col col-sm-4">
+                    ';
+                    if($row['status'] == 1){
+                    echo '
+                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
+                      ';
+                    }else if($row['status'] == 0){
+                  echo '
                           <button name="add_quantity" class="btn btn-info" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Add</button>
-                                    </form>
+                      ';
+                    }
+            echo '
+                      
+
+                      </form>
                     </div>
                     </div>
                    </center></td>
