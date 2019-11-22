@@ -83,6 +83,7 @@ $acctype = $_SESSION['sess_type'];
                   $sql = "SELECT * FROM operators WHERE operator_id = '".$_SESSION['operator_id']."'";
                   $result = mysqli_query($conn,$sql);
                   while($row=mysqli_fetch_assoc($result)){
+            if($row['status'] == "0"){
                     echo '
                 <form method="POST" onsubmit="return confirm("Are you sure?")">
               <div class="row">
@@ -132,9 +133,8 @@ $acctype = $_SESSION['sess_type'];
               </div>
           </form>
                     ';
-                  }
-                }else{
-                  $sql = "SELECT * FROM operators WHERE operator_id = '".$_SESSION['operator_id']."'";
+                  }else {
+                   $sql = "SELECT * FROM operators WHERE operator_id = '".$_SESSION['operator_id']."'";
                   $result = mysqli_query($conn,$sql);
                   while($row=mysqli_fetch_assoc($result)){
                     echo '
@@ -142,46 +142,49 @@ $acctype = $_SESSION['sess_type'];
               <div class="row">
                 <div class="col col-md-12" style="margin-bottom: 15px;">
                   <h6>Account ID No.:</h6>
-                  <input type="text" name="a_id" class="form-control" value="'.$row['account_id_no'].'" placeholder="Account ID No.">
+                  <input type="text" name="a_id" class="form-control" value="'.$row['account_id_no'].'" placeholder="Account ID No." disabled>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>First Name:</h6>
-                  <input type="text" name="fname" class="form-control" value="'.$row['first_name'].'" placeholder="First Name">
+                  <input type="text" name="fname" class="form-control" value="'.$row['first_name'].'" placeholder="First Name" disabled>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Middle Name:</h6>
-                  <input type="text" name="mname" class="form-control" value="'.$row['middle_name'].'" placeholder="Middle Name">
+                  <input type="text" name="mname" class="form-control" value="'.$row['middle_name'].'" placeholder="Middle Name" disabled>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Last Name:</h6>
-                  <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name">
+                  <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name" disabled>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
-                  <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No.">
+                  <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No." disabled>
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
-                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_schedule'].'" placeholder="Operator Schedule">
+                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_schedule'].'" placeholder="Operator Schedule" disabled>
                 </div>
                  <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
-                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_shift'].'" placeholder="Operator Schedule">
+                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_shift'].'" placeholder="Operator Schedule" disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Username:</h6>
-                  <input type="text" name="uname" class="form-control" value="'.$row['username'].'" placeholder="Username">
+                  <input type="text" name="uname" class="form-control" value="'.$row['username'].'" placeholder="Username" disabled>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Password:</h6>
-                  <input type="password" name="pass" id="o_pass" class="form-control" value="'.$row['password'].'" placeholder="Password">
+                  <input type="password" name="pass" id="o_pass" class="form-control" value="'.$row['password'].'" placeholder="Password" disabled>
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
-                  <input type="submit" name="edit_operator" class="btn btn-primary form-control" value="UPDATE Operator">
+                  <input type="submit" name="edit_operator" class="btn btn-primary form-control" value="UPDATE Operator" disabled>
                 </div>
               </div>
           </form>
                     ';
+                  }
+                }
+                 
                   }
                 }
             ?>

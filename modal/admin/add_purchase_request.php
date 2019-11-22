@@ -95,11 +95,11 @@ $acctype = $_SESSION['sess_type'];
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
-                                <select class="form-control" name="status">
+                             <!--    <select class="form-control" name="status">
                                   <option selected="true" value="NULL">SELECT STATUS</option>
                                   <option value="Pending">Pending</option>
                                   <option value="Approved">Approved</option>
-                                </select>
+                                </select> -->
                                    
                                   </div>
                             </div>
@@ -126,9 +126,9 @@ error_reporting(0);
   $total = $_POST['total'];
   $td_date = $_POST['td_date'];
   $ad_date = $_POST['ad_date'];
-  $status = $_POST['status'];
+  $status = "Pending";
   $now = date("Y-m-d H:i:sa");
-  if(empty($m_id) || empty($i_name) || empty($i_desc) || empty($quantity) || empty($u_measure) || empty($u_price || $total || $td_date || $ad_date || $status)){
+  if(empty($m_id) || empty($i_name)  || empty($quantity) || empty($u_measure) || empty($u_price) || empty($total) || empty($td_date) || empty($ad_date)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  

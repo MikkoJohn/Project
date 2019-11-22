@@ -157,13 +157,13 @@
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Start:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="start" required>
+                                    <input  type="date" class="form-control" placeholder="" id="start" name="start" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Finish:</h5>                          
-                                    <input  type="date" class="form-control" placeholder="" name="finish" required>
+                                    <input  type="date" class="form-control" placeholder="" id="finish" name="finish" required>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
@@ -217,7 +217,8 @@
                     </div>  
                 </div>                      
             </div>
-                   
+
+                  
    
 <?php if(isset($_POST['addjticket'])){
 //error_reporting(0);
@@ -275,3 +276,12 @@
 
 
 ?>
+
+
+ <script>
+  $(document).ready(function(){
+   $('#start').change(function(){
+    document.getElementById('finish').setAttribute("min",$('#start').val());
+   });
+  });
+</script> 

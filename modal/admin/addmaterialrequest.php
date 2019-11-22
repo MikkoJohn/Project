@@ -41,21 +41,25 @@ $acctype = $_SESSION['sess_type'];
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
+                              <label>No. of Reams</label>
                                     <input type="number" class="form-control" name="no_reams" placeholder="No. of Reams" required>
                                   </div>
                                 </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
+                               <label>Paper Size</label>
                                     <input type="text" class="form-control" name="p_size" placeholder="Paper Size" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
+                               <label>Kind of Paper</label>
                                   <input type="text" class="form-control" name="k_paper" placeholder="Kind of Paper" required>
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
+                               <label>Quantity</label>
                                     <input type="number" class="form-control" name="quantity" placeholder="Quantity" min="0" required>
                                   </div>
                             </div>             
@@ -77,6 +81,7 @@ $acctype = $_SESSION['sess_type'];
                             </div> -->
                              <div class="col col-sm-12">
                             <div class="form-group">
+                               <label>Remarks</label>
                                     <input type="text" class="form-control" name="remarks" placeholder="Remarks" required>
                                   </div>
                             </div>

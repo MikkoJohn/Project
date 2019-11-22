@@ -101,6 +101,12 @@ $acctype = $_SESSION['sess_type'];
                               <td>
                               <center>
                           <div class="row">
+                                <div class="col col-lg-6">
+                                    <form method="POST" action="editoperator">
+                          <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
+                          <button name="view_operator" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="modal" data-target="#viewModal"></span> View</button>
+                                    </form>
+                                    </div>
                                     <div class="col col-lg-6">
                                    ';
           if($row['status'] == "0"){ 

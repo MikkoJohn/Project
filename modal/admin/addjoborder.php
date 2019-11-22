@@ -205,7 +205,8 @@ $acctype = $_SESSION['sess_type'];
                         echo "<script type='text/javascript'>location.href = '../../index_admin';</script>";
                               } 
                               else {
-                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                                // echo'<script>swal("Error!","Sales Number already Exist" ,"warning");</script>';
+                                echo'<script>alert("Sales Number already Exist");</script>';
                               }
                               //else { echo"<script>alert('ERROR')</script>"; }
 
