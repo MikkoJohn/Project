@@ -96,6 +96,12 @@
           <span>Add Machine</span></a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="modal/prodplan/addmachine">
+          <i class="#"></i>
+          <span>Add Assignment</span></a>
+      </li>
+
     </ul>
     <!-- End of Sidebar -->
 
