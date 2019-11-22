@@ -36,9 +36,11 @@ $acctype = $_SESSION['sess_type'];
                             <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
 
                          <div style="margin-top:0px" class="form-group">
+                            <label>Machine Name:</label>
                                     <input type="text" class="form-control" name="mname" value="'.$row['machine_name'].'" placeholder="Machine Name">
                                   </div>
                              <div style="margin-top:10px" class="form-group">
+                             <label>Machine Division:</label>
                               <select name="mdivision" class="form-control" value="'.$row['machine_division'].'">
                              ';
                              if($row['machine_division'] == "Pre-Press"){
@@ -65,21 +67,27 @@ $acctype = $_SESSION['sess_type'];
                               </select>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                             <label>Maximum Speed:</label>
                                     <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed" value="'.$row['max_speed'].'">
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                            <label>Minimum Speed:</label>
                                     <input type="text" class="form-control" name="minspeed" placeholder="Minimum Speed" value="'.$row['min_speed'].'">
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                            <label>Machine Maximum Size:</label>
                                     <input type="text" class="form-control" name="mmaxsize" placeholder="Machine Maximum Size" value="'.$row['maximum_size'].'">
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                            <label>Machine Minimum Size</label>
                                     <input type="text" class="form-control" name="mminsize" placeholder="Machine Minimum Size" value="'.$row['minimum_size'].'">
                                   </div>
                              <div style="margin-top:10px" class="form-group">
+                             <label>Maximum Printing Area</label>
                                     <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing area" value="'.$row['maximum_printing_area'].'">
                                   </div>
                              <div style="margin-top:10px" class="form-group">
+                             <label>Status:</label>
                                 <select class="form-control" name="mstatus" value="'.$row['machine_status'].'">
                                 ';
                               if($row['machine_status'] == "Available"){
@@ -99,6 +107,12 @@ $acctype = $_SESSION['sess_type'];
                                         <option value="Available">Available</option>
                                         <option value="In Use">In Use</option>
                                         <option selected="true" value="Under Maintenance">Under Maintenance</option>
+                                  ';
+                              }else{
+                                   echo '
+                                        <option value="Available">Available</option>
+                                        <option value="In Use">In Use</option>
+                                        <option value="Under Maintenance">Under Maintenance</option>
                                   ';
                               }
 

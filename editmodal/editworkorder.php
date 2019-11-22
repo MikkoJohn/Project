@@ -29,10 +29,10 @@ $acctype = $_SESSION['sess_type'];
                         echo '
                        <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required>
+                                    <input type="text" class="form-control" value="'.$row['job_controlno'].'" name="j_controlno" placeholder="Job Order Control No." required>
                                   </div>
                              <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="j_desc" placeholder="Job Description"required>
+                                    <input type="text" class="form-control" name="j_desc" value="'.$row['job_desc'].'" placeholder="Job Description"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
                               <select class="form-control" name="s_name" required>
@@ -41,9 +41,9 @@ $acctype = $_SESSION['sess_type'];
                               ';
                               $sql3 = "SELECT supplier_name FROM supplier_info WHERE supplier_name !='".$row['s_name']."'";
                               $result3 = mysqli_query($conn,$sql3);
-                              while($row = mysqli_fetch_assoc($result3)){
+                              while($rows = mysqli_fetch_assoc($result3)){
                                 echo '
-                                  <option value="'.$row['supplier_name'].'">'.$row['supplier_name'].'</option>
+                                  <option value="'.$rows['supplier_name'].'">'.$rows['supplier_name'].'</option>
                                 ';
                               }
 
@@ -51,10 +51,10 @@ $acctype = $_SESSION['sess_type'];
                                    
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="instruction" placeholder="Instruction"required>
+                                    <input type="text" class="form-control" value="'.$row['instruction'].'" name="instruction" placeholder="Instruction"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                <select class="form-control" required>
+                                <select class="form-control" name="status" required>
                                   ';
                             if($row['status'] =="Pending"){
                               echo '
@@ -73,6 +73,12 @@ $acctype = $_SESSION['sess_type'];
                                   <option selected="true" value="Pending">Pending</option>
                                   <option value="Approved">Approved</option>
                                   <option selected="true" value="Disapproved">Disapproved</option>
+                              ';
+                            }else if($row['status'] =="0"){
+                               echo '
+                                  <option selected="true" value="Pending">Pending</option>
+                                  <option value="Approved">Approved</option>
+                                  <option value="Disapproved">Disapproved</option>
                               ';
                             }
                               echo '
@@ -90,21 +96,21 @@ $acctype = $_SESSION['sess_type'];
                          echo '
                        <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." disabled>
-                                  </div>
+                                  <input type="text" class="form-control" value="'.$row['job_controlno'].'"  placeholder="Job Order Control No." disabled>
                              <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="j_desc" placeholder="Job Description"disabled>
+                                    <input type="text" class="form-control" value="'.$row['job_desc'].'" placeholder="Job Description" disabled>
+                                  </div>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                              <select class="form-control" name="s_name" disabled>
+                              <select class="form-control" valaue="'.$row['s_name'].'"  name="s_name" disabled>
                               <option selected="true" value="'.$row['s_name'].'">'.$row['s_name'].'</option>
                               
                               ';
-                              $sql3 = "SELECT supplier_name FROM supplier_info WHERE supplier_name !='".$row['s_name']."'";
-                              $result3 = mysqli_query($conn,$sql3);
-                              while($row = mysqli_fetch_assoc($result3)){
+                              $sql5 = "SELECT supplier_name FROM supplier_info WHERE supplier_name !='".$row['s_name']."'";
+                              $result5 = mysqli_query($conn,$sql5);
+                              while($rowss = mysqli_fetch_assoc($result5)){
                                 echo '
-                                  <option value="'.$row['supplier_name'].'">'.$row['supplier_name'].'</option>
+                                  <option value="'.$rowss['supplier_name'].'">'.$rowss['supplier_name'].'</option>
                                 ';
                               }
 
@@ -112,10 +118,11 @@ $acctype = $_SESSION['sess_type'];
                                    
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="instruction" placeholder="Instruction"disabled>
+                                 
+                                    <input type="text" class="form-control" value="'.$row['instruction'].'" name="instruction" placeholder="Instruction" disabled>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                <select class="form-control" disabled>
+                                <select class="form-control" name="status" disabled>
                                   ';
                             if($row['status'] =="Pending"){
                               echo '
@@ -135,11 +142,22 @@ $acctype = $_SESSION['sess_type'];
                                   <option value="Approved">Approved</option>
                                   <option selected="true" value="Disapproved">Disapproved</option>
                               ';
-                            }  
+                            }else if($row['status'] =="0"){
+                               echo '
+                                  <option selected="true" value="Pending">Pending</option>
+                                  <option value="Approved">Approved</option>
+                                  <option value="Disapproved">Disapproved</option>
+                              ';
+                            }else if($row['status'] =="1"){
+                               echo '
+                                  <option selected="true">Disabled</option>
+                              ';
+                            }
                               echo '
                                 </select>
                                    
                                   </div>
+                            
                             
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="updateworkorder" class="btn btn-success" disabled>
@@ -161,7 +179,7 @@ $acctype = $_SESSION['sess_type'];
             </div>
            
    
-<?php if(isset($_POST['updateaccount'])){
+<?php if(isset($_POST['updateworkorder'])){
 //error_reporting(0);
   $j_controlno = $_POST['j_controlno'];
   $j_desc = $_POST['j_desc'];
@@ -171,31 +189,21 @@ $acctype = $_SESSION['sess_type'];
   //$now = date("Y-m-d");
 
 //$uname = $_POST['uname'];
-  if(empty($uname) || empty($pass)  || empty($fname) || empty($lname)){
-    echo'<script>swal("Please fill blank fields!","", "warning");</script>';
 
-   } else {
-
-  $stmt = $conn->prepare("UPDATE `work_order` SET `job_controlno`=?,`job_desc`=?,`s_name`=?,`instruction`=?,`status`=? WHERE work_order_no=?");
-                              $stmt->bind_param('ssssss',$j_controlno,$j_desc,$s_name,$instruction,$status,$_SESSION['wo_id']);
-
-                              if($stmt->execute()){
-                                // echo'<script>swal("Successfully Updated!","","success");</script>';
-                               echo '<script>alert("Successfully Updated!");</script>';
-                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Work Order')";
-                              mysqli_query($conn,$sql1);
-                             // header("Location:../index_admin");
-                              echo "<script type='text/javascript'>location.href = '../index_admin';</script>";
-                              } 
-                              else {
-                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
-                              }
-                              //else { echo"<script>alert('ERROR')</script>"; }
-
-                              $stmt->close();
+  $stmt = "UPDATE `work_order` SET `job_controlno`='$j_controlno',`job_desc`='$j_desc',`s_name`='$s_name',`instruction`='$instruction',`status`='$status' WHERE work_order_no='".$_SESSION['wo_id']."'";
+       mysqli_query($conn,$stmt);                      
+                          
+          echo '<script>alert("Successfully Updated!");</script>';
+          $sqla="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Work Order')";
+          mysqli_query($conn,$sqla); 
+    echo "<script type='text/javascript'>location.href = '../index_admin';</script>";
+                              
+                            
+                         
+                            
                               
 
-}
+
 
 }
 

@@ -118,7 +118,7 @@ $acctype = $_SESSION['sess_type'];
                               echo '
                                     
                                     <div class="col-lg-12 controls" style="margin-top: 15px">
-                                      <button name="updateaccount" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true" disabled></span> Update</button>
+                                      <button name="updateaccount" class="btn btn-warning btn-md" value="UPDATE" disabled><span class="glyphicon glyphicon-edit" aria-hidden="true" disabled></span> Update</button>
                                     
                                     </div>
                                 </div>

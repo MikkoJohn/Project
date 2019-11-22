@@ -34,16 +34,19 @@ if($row['status'] == 0){
                            <div class="row">
                              <div class="col col-sm-12">
                              <div class="form-group">
+                             <label>Item Name:</label>
                                     <input type="text" class="form-control" name="i_name" placeholder="Item Name" value="'.$row['item_name'].'">
                                   </div>
                               </div>
                              <div class="col col-sm-6">
                              <div class="form-group">
+                             <label>Item Description:</label>
                                     <input type="text" class="form-control" name="i_type" placeholder="Item Description" value="'.$row['item_desc'].'">
                                   </div>
                                 </div>
                             <div class="col col-sm-6">
                             <div class="form-group">
+                            <label>Category:</label>
                               <select class="form-control" name="category">
                               ';
                           if($row['category'] =="Ink"){
@@ -80,11 +83,13 @@ if($row['status'] == 0){
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
+                            <label>Quantity:</label>
                                   <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="'.$row['quantity'].'">
                                   </div>
                             </div>
                             <div class="col col-sm-12">
                             <div class="form-group">
+                            <label>Unit of Measure:</label>
                               <select class="form-control" name="u_measure" value="'.$row['unit_of_measure'].'">
                               ';
                           if($row['unit_of_measure'] == "Kilogram"){
@@ -195,6 +200,7 @@ if($row['status'] == 0){
                             </div>
                              <div class="col col-sm-12">
                             <div class="form-group">
+                            <label>Size:</label>
                                     <input type="text" class="form-control" name="size" placeholder="Size" value="'.$row['size'].'">
                                   </div>
                             </div>
