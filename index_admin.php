@@ -761,8 +761,10 @@ echo '
                   <td><center>'.$row['job_desc'].'</center></td>
                   <td><center>'.$row['s_name'].'</center></td>
               ';
-                 if($row['status'] == 1){
+                 if($row['status'] == "1"){
                       echo '<td><center>Disabled</center></td>';
+                    }else if($row['status'] == "0"){
+                        echo '<td><center>Pending</center></td>';
                     }else{
                       echo '<td><center>'.$row['status'].'</center></td>';
                     }

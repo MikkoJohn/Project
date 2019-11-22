@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2019 at 02:27 AM
+-- Generation Time: Nov 22, 2019 at 04:30 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -182,12 +182,13 @@ CREATE TABLE `job_order` (
 INSERT INTO `job_order` (`job_order_control_no`, `sales_number`, `client_name`, `item_desc_and_title`, `proj_name`, `date_created`, `costing_run`, `finishing_required`, `packaging_required`, `date_to_warehouse`, `requested_delivery`, `quantity`, `size`, `pages`, `paper`, `remarks`, `status`, `jo_status`) VALUES
 (3, 1, 'lkj', 'lkj', 'lkj', '2019-10-09 01:23:41', 'lkjlkj', 'Debossing', 'jh', '2019-10-10', '2019-10-25', '123', '123', '123123', 'jhgjhg', 'asdkl', 'Disabled', 1),
 (4, 12, 'iuy', 'yi', 'iu', '2019-10-18 10:34:05', 'uy', 'Vertical Ringbind', 'yiuy', '2019-10-18', '2019-10-24', '76', 'qw', '7', 'iuy', 'qwe', 'Pending', 1),
-(5, 0, 'Miks', 'kljh', 'asd', '2019-10-25 15:41:10', 'kjh', 'Saddle Stitch', 'Corrugated Boxes', '2019-10-23', '2019-10-16', '123', '12', '12', 'qwe', 'asdad', 'Pending', 1),
-(6, 0, 'AAAA', 'assd', 'asd', '2019-11-02 17:19:42', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-11-01', '2019-11-22', '123', '123', '123', '12', 'asdas', 'Pending', 1),
+(5, 11, 'Miks', 'kljh', 'asd', '2019-10-25 15:41:10', 'kjh', 'Saddle Stitch', 'Corrugated Boxes', '2019-10-23', '2019-10-16', '123', '12', '12', 'qwe', 'asdad', 'Pending', 1),
+(6, 5, 'AAAA', 'assd', 'asd', '2019-11-02 17:19:42', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-11-01', '2019-11-22', '123', '123', '123', '12', 'asdas', 'Pending', 1),
 (7, 123, 'Miks', 'qwe', 'qwe', '2019-11-02 17:22:16', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-11-01', '2019-11-13', '123', '123', '123', '12', '123', 'Pending', 1),
-(8, 0, 'Miks', 'asd', 'asd', '2019-11-02 17:24:39', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-01', '123', '1', '13', 'Generator', '123', 'Pending', 1),
-(9, 0, 'Miks', 'asd', 'asd', '2019-11-02 17:28:49', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-02', '1', '1', '1', 'lk', 'asd', 'Pending', 1),
-(10, 9, 'Miks', 'aaa', 'aaa', '2019-11-04 20:40:46', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-01', '9', '9', '9', 'lk', 'asd', 'Pending', 1);
+(8, 3, 'Miks', 'asd', 'asd', '2019-11-02 17:24:39', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-01', '123', '1', '13', 'Generator', '123', 'Pending', 1),
+(9, 4, 'Miks', 'asd', 'asd', '2019-11-02 17:28:49', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-02', '1', '1', '1', 'lk', 'asd', 'Pending', 1),
+(10, 9, 'Miks', 'aaa', 'aaa', '2019-11-04 20:40:46', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-01', '9', '9', '9', 'lk', 'asd', 'Pending', 1),
+(13, 111111, 'Miks', 'qwe', 'qweqwe', '2019-11-22 08:13:38', 'jhjhg', 'Lamination', 'Corrugated Boxes', '2019-01-01', '2019-01-01', '123', '123123', '123', 'Lapis', '123', 'Acknowledged', 0);
 
 -- --------------------------------------------------------
 
@@ -235,7 +236,8 @@ INSERT INTO `job_ticket` (`ticket_no`, `job_order_control_no`, `date_time_create
 (2, 3, '0000-00-00 00:00:00', 'qwe', '2019-11-14', 'asdas', 'dasdasd', 'lkj', 'lkj', 'asdasd', '123', '123', '123123', '123', '123', 'Debossing', 'asd', 'asd', 123, 123, '2019-11-19', '2019-11-22', '01:00', '2020-01-01', 12, 12, 12, 'Pending'),
 (3, 4, '0000-00-00 00:00:00', '', '0000-00-00', '', '', 'iuy', 'iu', '', '76', '', '7', '', '', 'Vertical Ringbind', '', '', 0, 0, '0000-00-00', '0000-00-00', '', '0000-00-00', 0, 0, 0, ''),
 (4, 5, '0000-00-00 00:00:00', '', '0000-00-00', '', '', 'Miks', 'asd', '', '123', '', '12', '', '', 'Saddle Stitch', '', '', 0, 0, '0000-00-00', '0000-00-00', '', '0000-00-00', 0, 0, 0, ''),
-(5, 0, '2019-11-01 13:06:30', '$mname', '2019-01-01', '$c_by', '$n_by', 'asd', 'TRY', '$title', '123', '123', '$pages', '$p_cover', '$color', 'Lamination', '$lamination', '$remarks', 123, 123, '2019-11-25', '2019-11-29', '01:00', '2019-01-01', 1, 1, 1, 'Pending');
+(5, 0, '2019-11-01 13:06:30', '$mname', '2019-01-01', '$c_by', '$n_by', 'asd', 'TRY', '$title', '123', '123', '$pages', '$p_cover', '$color', 'Lamination', '$lamination', '$remarks', 123, 123, '2019-11-25', '2019-11-29', '01:00', '2019-01-01', 1, 1, 1, 'Pending'),
+(6, 13, '2019-11-22 08:17:36', 'jhjhg', '0000-00-00', '', '', 'Miks', 'qweqwe', '', '123', '', '123', '', '', 'Lamination', '', '', 0, 0, '0000-00-00', '0000-00-00', '', '0000-00-00', 0, 0, 0, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -260,17 +262,17 @@ CREATE TABLE `machine` (
 --
 
 INSERT INTO `machine` (`machine_id`, `machine_name`, `machine_division`, `maximum_size`, `minimum_size`, `maximum_printing_area`, `max_speed`, `min_speed`, `machine_status`) VALUES
-(19, 'lk', 'lk', 'lk', 'lkl', 'klk', 'lk', 'lk', 'Disabled'),
-(20, 'qwe', 'qwe', '0', '0', '0', '0', '0', 'Disabled'),
-(21, ',mn', ',mn', '0', '0', '0', '0', '0', 'Enabled'),
-(22, 'jhjhg', 'jhgjhg', '0', '0', '0', '0', '0', 'gjhg'),
-(23, 'vbvbvbbv', 'vb', '0', '0', '0', '0', '0', 'bvvb'),
-(24, 'gengen', 'asd', '0', '0', '0', '0', '0', 'vy'),
-(25, 'zxcyy', 'zxc', 'zxc', 'zxc', 'zxc', 'zxc', 'zxc', 'zxc'),
-(26, 'Machine', 'mach', '34', '231', '123', '12', '12', 'asda'),
-(27, 'Printer', 'Printing', '123', '123', '123', '123', '123', 'Good'),
-(28, 'Generator', 'Electricity', '12', '12', '12', '123', '100', 'asd'),
-(29, 'Generator', 'asd', '12', '12', '12', 'kjh', '12', 'asd'),
+(19, 'lk', 'Pre-Press', 'lk', 'lkl', 'klk', 'lk', 'lk', 'Disabled'),
+(20, 'qwe', 'Pre-Press', '0', '0', '0', '0', '0', 'Enabled'),
+(21, 'qweqwe', 'Pre-Press', '23', '23', '23', '23', '23', 'Available'),
+(22, 'jhjhg', 'Pre-Press', '0', '0', '0', '0', '0', 'gjhg'),
+(23, 'vbvbvbbv', 'Pre-Press', '0', '0', '0', '0', '0', 'bvvb'),
+(24, 'gengen', 'Pre-Press', '0', '0', '0', '0', '0', 'vy'),
+(25, 'zxcyy', 'Pre-Press', 'zxc', 'zxc', 'zxc', 'zxc', 'zxc', 'zxc'),
+(26, 'Machine', 'Pre-Press', '34', '231', '123', '12', '12', 'asda'),
+(27, 'Printer', 'Pre-Press', '123', '123', '123', '123', '123', 'Good'),
+(28, 'Generator', 'Pre-Press', '12', '12', '12', '123', '100', 'asd'),
+(29, 'Generator', 'Pre-Press', '12', '12', '12', 'kjh', '12', 'asd'),
 (30, 'Generator', 'Pre-Press', '123', '123', '12', '123', '100', 'In Use'),
 (31, 'Generatorsss', 'Pre-Press', '123', '123', '123', '123', '123', 'null'),
 (32, '12', 'Pre-Press', '1', '1', '1', '12', '1', 'Available'),
@@ -1165,7 +1167,15 @@ INSERT INTO `user_action` (`user_action_id`, `username`, `user_designation`, `ac
 (243, 'Miks', '1', '2019-11-18 09:21:08', 'Updated Job Ticket'),
 (244, 'Miks', '1', '2019-11-18 09:21:31', 'Updated Job Ticket'),
 (245, 'Miks', '1', '2019-11-18 09:21:57', 'Updated Job Ticket'),
-(246, 'Miks', '1', '2019-11-18 09:23:01', 'Updated Job Ticket');
+(246, 'Miks', '1', '2019-11-18 09:23:01', 'Updated Job Ticket'),
+(247, 'Miks', '1', '2019-11-22 08:13:38', 'Add Job Order'),
+(248, 'Miks', '1', '2019-11-22 08:17:36', 'Converted Job Order'),
+(249, 'Miks', '1', '2019-11-22 08:22:19', 'Updated Machine'),
+(250, 'Miks', '1', '2019-11-22 08:57:42', 'Disabled Work Order'),
+(251, 'Miks', '1', '2019-11-22 08:59:21', 'Enabled Work Order'),
+(252, 'Miks', '1', '2019-11-22 08:59:31', 'Enabled Machine'),
+(253, 'Miks', '1', '2019-11-22 08:59:38', 'Enabled Work Order'),
+(254, 'Miks', '1', '2019-11-22 09:06:38', 'Updated Work Order');
 
 -- --------------------------------------------------------
 
@@ -1188,15 +1198,15 @@ CREATE TABLE `work_order` (
 --
 
 INSERT INTO `work_order` (`work_order_no`, `job_controlno`, `job_desc`, `s_name`, `instruction`, `date_created`, `status`) VALUES
-(1, 1, 'qwe', 'qw', '2019-10-07', '0000-00-00', '1'),
-(2, 1, 'qwe', 'iuy', 'iuy', '2019-10-07', '1'),
+(1, 1, 'qwe', 'qw', 'asd', '2019-10-07', '1'),
+(2, 1, 'qwe', 'iuy', 'iuy', '2019-10-07', 'Approved'),
 (3, 2, 'qwe', 'qwe', 'qwe', '2019-10-07', '0'),
-(4, 123, '123', '123', '123', '2019-10-07', '123'),
-(5, 123, 'askdj', 'kj', 'kj', '2019-10-09', 'kj'),
-(6, 8989, 'jajaja', 'jajaj', 'jajaj', '2019-10-09', 'ajja'),
-(7, 0, 'jkl', 'jk', 'jklj', '2019-10-09', 'kjkl'),
-(8, 0, 'hkj', 'hkjh', 'kjh', '2019-10-09', 'kjh'),
-(9, 0, 'kjh', 'kjh', 'jhkjh', '2019-10-09', 'kkjh'),
+(4, 123, '123', '123', '123', '2019-10-07', '0'),
+(5, 123, 'askdj', 'kj', 'kj', '2019-10-09', 'Pending'),
+(6, 8989, 'jajaja', 'jajaj', 'jajaj', '2019-10-09', 'Pending'),
+(7, 0, 'jkl', 'jk', 'jklj', '2019-10-09', 'Pending'),
+(8, 0, 'hkj', 'hkjh', 'kjh', '2019-10-09', 'Pending'),
+(9, 0, 'kjh', 'kjh', 'jhkjh', '2019-10-09', 'Pending'),
 (10, 0, 'kjh', 'asd', 'asd', '2019-10-28', 'Pending');
 
 --
@@ -1219,7 +1229,8 @@ ALTER TABLE `events`
 -- Indexes for table `job_order`
 --
 ALTER TABLE `job_order`
-  ADD PRIMARY KEY (`job_order_control_no`);
+  ADD PRIMARY KEY (`job_order_control_no`),
+  ADD UNIQUE KEY `sales_number` (`sales_number`);
 
 --
 -- Indexes for table `job_ticket`
@@ -1341,13 +1352,13 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `job_order`
 --
 ALTER TABLE `job_order`
-  MODIFY `job_order_control_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `job_order_control_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `job_ticket`
 --
 ALTER TABLE `job_ticket`
-  MODIFY `ticket_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ticket_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `machine`
@@ -1431,7 +1442,7 @@ ALTER TABLE `trasmittal`
 -- AUTO_INCREMENT for table `user_action`
 --
 ALTER TABLE `user_action`
-  MODIFY `user_action_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+  MODIFY `user_action_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- AUTO_INCREMENT for table `work_order`
