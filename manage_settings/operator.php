@@ -188,7 +188,14 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Division:</h6>
-                  <input type="text" name="division" class="form-control" placeholder="Division" required>
+                   <select class="form-control" name="division" id="divi">
+                                      <option selected="true" value="NULL" disabled="disabled">SELECT DIVISION</option>
+                                      <!-- <option value="admin">Admin</option> -->
+                                      <option value="prepress">Pre-Press</option>
+                                      <option value="press">Press</option>
+                                      <option value="postpress">Post-Pres</option>
+                                    </select>
+                  <!-- <input type="text" name="division" class="form-control" placeholder="Division" required> -->
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Username:</h6>
@@ -204,6 +211,7 @@ $acctype = $_SESSION['sess_type'];
               </div>
           </form>
 <?php
+
 if(isset($_POST['add_operator'])){
 $a_id = $_POST['a_id'];
 $fname = $_POST['fname'];
@@ -214,7 +222,7 @@ $division = $_POST['division'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
 $status= 0;
-
+$user_type = "7";
 $sql_select = "SELECT * FROM `operators` WHERE `account_id_no`='".$a_id."' AND `username`='".$uname."'";
 $resulta = $conn->query($sql_select);
 if($resulta->num_rows >= 1) {
@@ -223,6 +231,9 @@ if($resulta->num_rows >= 1) {
 
 $sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`,`division`,`status`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$division','$status')";
 mysqli_query($conn,$sql);
+
+$sql_user = "INSERT INTO `tbl_useraccounts`(`uname`, `pass`, `user_type`, `fname`, `mname`, `lname`, `division`,`status`) VALUES ('$uname','$pass','$user_type','$fname','$mname','$lname','$division','$status')";
+mysqli_query($conn,$sql_user);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Operator')";
                                 mysqli_query($conn,$sql1);

@@ -205,7 +205,7 @@ $c_no = $_POST['c_no'];
 $o_sched = $_POST['o_sched'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
-
+$user_type = "7";
 $sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`, `operator_schedule`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$o_sched')";
 mysqli_query($conn,$sql);
 
