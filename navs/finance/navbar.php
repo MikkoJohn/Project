@@ -2,7 +2,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index_operators.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index_genserv.php">
         <!-- <div class="sidebar-brand-icon rotate-n-15"> -->
         <!-- <div class="sidebar-brand"> -->
          <!-- <i class="#"></i> -->
@@ -26,41 +26,66 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Operator
+        Finance
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="index_operators.php">
+        <a class="nav-link" href="index_genserv.php">
           <i class="#"></i>
           <span>Home</span>
         </a>
       </li>
+     <!--  <li class="nav-item">
+        <a class="nav-link" href="index_genservmat.php">
+          <i class="#"></i>
+          <span>Materials</span>
+        </a>
+      </li> -->
+     <!--  <li class="nav-item">
+        <a class="nav-link collapsed" href="index_genservrep.php" data-toggle="collapse" data-target="#collapsePH" aria-expanded="true" aria-controls="collapsePH">
+          <i class="#"></i>
+          <span>Reports</span>
+        </a>
+        <div id="collapsePH" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Division:</h6>
+            <a class="collapse-item" href="reports/reports_prepress.php">Prepress</a>
+            <a class="collapse-item" href="reports/reports_press.php">Press</a>
+            <a class="collapse-item" href="reports/reports_postpress.php">Postpress</a>
+          </div>
+        </div>
+      </li> -->
+
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="index_operatorcal.php">
+     <!--  <li class="nav-item">
+        <a class="nav-link" href="index_genservcal.php">
           <i class="#"></i>
           <span>Calendar</span>
         </a>
-      </li>
+      </li> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <!-- <div class="sidebar-heading">
         Addons
       </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#AddReport">
+        <a class="nav-link collapsed" href="index_genservmat.php" data-toggle="collapse" data-target="#collapsePH" aria-expanded="true" aria-controls="collapsePH">
           <i class="#"></i>
-          <span>Add Report</span>
-              <?php 
-                // include ('modal/admin/addreport.php');
-              ?>
-      </li>
+          <span>Add Material</span>
+        </a>
+        <div id="collapsePH" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Category:</h6>
+            <a class="collapse-item" href="reports/reports_prepress.php">Paper</a>
+            <a class="collapse-item" href="reports/reports_press.php">Ink</a>
+            <a class="collapse-item" href="reports/reports_postpress.php">Chemicals</a>
+          </div>
+        </div>
+      </li> -->
     </ul>
     <!-- End of Sidebar -->
 

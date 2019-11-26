@@ -103,7 +103,16 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
                            /* Redirect browser */
-                          echo "<script type='text/javascript'>location.href = '';</script>";
+                          echo "<script type='text/javascript'>location.href = 'index_genserv_ass';</script>";
+                    }
+            else if ($uname == $dbusername && $pass == $dbpassword && "10" == $dbusertype && $status == "0") 
+                    {
+                        session_start();
+                         $_SESSION['sess_user'] = $uname;
+                         $_SESSION['sess_type'] = $dbusertype;
+                         $_SESSION['acct_name'] = $acct_name;
+                           /* Redirect browser */
+                          echo "<script type='text/javascript'>location.href = 'index_finance';</script>";
                     }
             else if($status == "1"){
                      echo "<script type='text/javascript'>alert('Account Deactivated!');</script>";
