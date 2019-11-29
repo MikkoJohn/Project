@@ -103,21 +103,208 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Last Name:</h6>
                   <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name">
                 </div>
-                <div class="col col-md-3" style="margin-bottom: 15px;">
+                <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No.">
                 </div>
-                <div class="col col-md-3" style="margin-bottom: 15px;">
+                <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
-                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_schedule'].'" placeholder="Operator Schedule">
+                  <select name="o_sched" class="form-control"  required>
+                  ';
+                  if($row['operator_schedule'] =="Monday"){
+                    echo '
+                        <option selected="true" value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Tuesday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option selected="true" value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Wednesday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option selected="true" value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Thursday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option selected="true" value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Friday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option selected="true" value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Saturday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option selected="true" value="Saturday">Saturday</option>
+                    ';
+                  }
+
+                  echo '
+                  </select>
                 </div>
-                 <div class="col col-md-3" style="margin-bottom: 15px;">
+                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Shift:</h6>
-                  <input type="text" name="o_shift" class="form-control" value="'.$row['operator_shift'].'" placeholder="Operator Shift">
+                  <select name="o_shift" class="form-control" required>
+                  ';
+                  if($row['operator_shift']=="8AM-5PM"){
+                    echo '<option value="8AM-5PM">8:00AM-5:00PM</option>';
+                  }
+                  echo '
+                  </select>
                 </div>
-                 <div class="col col-md-3" style="margin-bottom: 15px;">
+                 <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Overtime:</h6>
+                  <select name="o_ot" class="form-control" required>
+                  ';
+                  if($row['operator_ot'] =="8-9 AM"){
+                    echo '
+                          <option selected="true" value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="9-10 AM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option selected="true" value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="10-11 AM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option selected="true" value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="11-12 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option selected="true" value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="1-2 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option selected="true" value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="2-3 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option selected="true" value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="3-4 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option selected="true" value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="4-5 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option selected="true" value="4-5 PM">4-5 PM</option>
+                    ';
+                  }
+
+
+                  echo '
+                  </select>
+                </div>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Division:</h6>
-                  <input type="text" name="div" class="form-control" value="'.$row['division'].'" placeholder="Division">
+                  <select name="o_div" class="form-control" value="'.$row['division'].'">
+                  ';
+                if($row['division'] =="Pre-Press"){
+                    echo '
+                      <option selected="true" value="Pre-Press">Pre-Press</option>
+                      <option value="Press">Press</option>
+                      <option value="Post-Press">Post-Press</option>
+                    ';
+                }else if($row['division'] =="Press"){
+                    echo '
+                      <option value="Pre-Press">Pre-Press</option>
+                      <option selected="true" value="Press">Press</option>
+                      <option value="Post-Press">Post-Press</option>
+                    ';
+                }else if($row['division'] =="Post-Press"){
+                    echo '
+                      <option value="Pre-Press">Pre-Press</option>
+                      <option value="Press">Press</option>
+                      <option selected="true" value="Post-Press">Post-Press</option>
+                    ';
+                }
+
+
+                  echo '
+                  </select>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Username:</h6>
@@ -156,17 +343,208 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Last Name:</h6>
                   <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name" disabled>
                 </div>
-                <div class="col col-md-4" style="margin-bottom: 15px;">
+                <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No." disabled>
                 </div>
-                <div class="col col-md-4" style="margin-bottom: 15px;">
+                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
-                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_schedule'].'" placeholder="Operator Schedule" disabled>
+                  <select name="o_sched" class="form-control"  disabled>
+                  ';
+                  if($row['operator_schedule'] =="Monday"){
+                    echo '
+                        <option selected="true" value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Tuesday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option selected="true" value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Wednesday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option selected="true" value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Thursday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option selected="true" value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Friday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option selected="true" value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    ';
+                  }else if($row['operator_schedule'] =="Saturday"){
+                    echo '
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option selected="true" value="Saturday">Saturday</option>
+                    ';
+                  }
+
+                  echo '
+                  </select>
                 </div>
                  <div class="col col-md-4" style="margin-bottom: 15px;">
-                  <h6>Operator Schedule:</h6>
-                  <input type="text" name="o_sched" class="form-control" value="'.$row['operator_shift'].'" placeholder="Operator Schedule" disabled>
+                  <h6>Operator Shift:</h6>
+                  <select name="o_shift" class="form-control" disabled>
+                  ';
+                  if($row['operator_shift']=="8AM-5PM"){
+                    echo '<option value="8AM-5PM">8:00AM-5:00PM</option>';
+                  }
+                  echo '
+                  </select>
+                </div>
+                 <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Overtime:</h6>
+                  <select name="o_ot" class="form-control" disabled>
+                  ';
+                  if($row['operator_ot'] =="8-9 AM"){
+                    echo '
+                          <option selected="true" value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="9-10 AM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option selected="true" value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="10-11 AM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option selected="true" value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="11-12 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option selected="true" value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="1-2 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option selected="true" value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="2-3 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option selected="true" value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="3-4 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option selected="true" value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
+                  }else if($row['operator_ot'] =="4-5 PM"){
+                    echo '
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option selected="true" value="4-5 PM">4-5 PM</option>
+                    ';
+                  }
+
+
+                  echo '
+                  </select>
+                </div>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Division:</h6>
+                  <select name="o_div" class="form-control" value="'.$row['division'].'" disabled>
+                  ';
+                if($row['division'] =="Pre-Press"){
+                    echo '
+                      <option selected="true" value="Pre-Press">Pre-Press</option>
+                      <option value="Press">Press</option>
+                      <option value="Post-Press">Post-Press</option>
+                    ';
+                }else if($row['division'] =="Press"){
+                    echo '
+                      <option value="Pre-Press">Pre-Press</option>
+                      <option selected="true" value="Press">Press</option>
+                      <option value="Post-Press">Post-Press</option>
+                    ';
+                }else if($row['division'] =="Post-Press"){
+                    echo '
+                      <option value="Pre-Press">Pre-Press</option>
+                      <option value="Press">Press</option>
+                      <option selected="true" value="Post-Press">Post-Press</option>
+                    ';
+                }
+
+
+                  echo '
+                  </select>
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Username:</h6>
@@ -207,10 +585,13 @@ $mname = $_POST['mname'];
 $lname = $_POST['lname'];
 $c_no = $_POST['c_no'];
 $o_sched = $_POST['o_sched'];
+$o_shift = $_POST['o_shift'];
+$o_ot = $_POST['o_ot'];
+$o_div = $_POST['o_div'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
 
-$sql = "UPDATE `operators` SET `account_id_no`='$a_id',`first_name`='$fname',`middle_name`='$mname',`last_name`='$lname',`contact_no`='$c_no',`username`='$uname',`password`='$pass',`operator_schedule`='$o_sched' WHERE operator_id = '".$_SESSION['operator_id']."'";
+$sql = "UPDATE `operators` SET `account_id_no`='$a_id',`first_name`='$fname',`middle_name`='$mname',`last_name`='$lname',`contact_no`='$c_no',`username`='$uname',`password`='$pass',`operator_schedule`='$o_sched',`operator_shift`='$o_shift',`operator_ot`='$o_ot',`division`='$o_div' WHERE operator_id = '".$_SESSION['operator_id']."'";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Operator')";
@@ -220,7 +601,7 @@ echo '<script>alert("Successfully Updated!");</script>';
 //echo '<script>swal("Success","","succes");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 
-echo 'header("Location: addoperator");';
+ echo "<script type='text/javascript'>location.href = 'add_operator';</script>";
 } 
 
 
