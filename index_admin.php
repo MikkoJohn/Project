@@ -179,25 +179,27 @@ $results = mysqli_query($conn,$sql_totaljo);
 </div>
 
 
-          <div class="card shadow mb-4">
+
+  <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Account Transactions</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Account Transaction</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-                    <table id="accounts" class="table table-striped table-bordered" width="100%">  
+                    <table id="jos" class="table table-striped table-bordered" width="100%">  
                         <thead>  
                           <tr>  
                               <th><center>Account Name</center></th>
                               <th><center>Account Designation</center></th>
                               <th><center>Date</center></th>
                               <th><center>Action Done</center></th>
+                              
+                  
                                </tr>  
                         </thead> 
-                        <tbody>
                         <?php
-                        $sql = 'SELECT * FROM user_action';
+                            $sql = 'SELECT * FROM user_action';
                         $stmt = mysqli_stmt_init($conn);
                         mysqli_stmt_prepare($stmt, $sql);
                         mysqli_stmt_execute($stmt);
@@ -205,7 +207,7 @@ $results = mysqli_query($conn,$sql_totaljo);
                            
                            while($row = mysqli_fetch_assoc($result)){
                                 echo '
-                                    <tr>
+                                <tr>
                                        <td>'.$row['username'].'</td>
                                         ';
                             if($row['user_designation'] == 1){
@@ -222,25 +224,43 @@ $results = mysqli_query($conn,$sql_totaljo);
                                echo '<td>Sales</td>';
                             }else if($row['user_designation'] == 7){
                                echo '<td>Operator</td>';
+                            }else if($row['user_designation'] == 8){
+                               echo '<td>General Services Head</td>';
+                            }else if($row['user_designation'] == 9){
+                               echo '<td>General Services Assisstant</td>';
+                            }else if($row['user_designation'] == 10){
+                               echo '<td>Finance</td>';
                             }
                                  echo '       
                                         
                                         <td>'.$row['action_date'].'</td>
                                         <td>'.$row['action_done'].'</td>
-                                    </tr>
+                   </tr>
                                 ';
                            }
 
                         ?>
                     
-                   </tbody>
+                   
                         
                 </table>
+
+
+
+
+               
+          </div>
+        </div>
+        </div>
+
   <script>  
  $(document).ready(function(){  
-      $('#accounts').DataTable();  
+      $('#jos').DataTable();  
  });  
  </script>  
+
+
+
 
             <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -289,6 +309,8 @@ $results = mysqli_query($conn,$sql_totaljo);
                                echo '<td><center>General Services</center></td>';
                             }else if($row['user_type'] == 9){
                                echo '<td><center>General Services Assistant</center></td>';
+                            }else if($row['user_type'] == 10){
+                               echo '<td><center>Finance</center></td>';
                             }
 
                             if($row['status'] =="1"){

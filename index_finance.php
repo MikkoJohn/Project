@@ -139,7 +139,7 @@ include 'config.php';
                  
                   <td><center>
                     <div class="row">
-                                    <div class="col col-lg-6">
+                                    <div class="col col-lg-4">
                                     <form method="POST" action="modal/finance/editworkorder">
                                        <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
                                       <button name="view_wo" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
@@ -150,19 +150,34 @@ include 'config.php';
 
           if($row['status'] == "1"){
             echo '
-                                    <div class="col col-lg-6">
+                                    <div class="col col-lg-4">
                                     <form method="POST" action="modal/finance/editworkorder">
                                        <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
                                       <button name="view_wo" class="btn btn-primary" style="width:100%;" disabled>Approve</button>
                                     </form>
                                     </div>
+
+                                     <div class="col col-lg-4">
+                                    <form method="POST" action="modal/finance/approve">
+                                       <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
+                                      <button name="approve" class="btn btn-danger" style="width:100%;" disabled>Disapprove</button>
+                                    </form>
+                                    </div>
                                    ';
           }else {
              echo '
-                                    <div class="col col-lg-6">
-                                    <form method="POST" action="modal/finance/editworkorder">
+                                    <div class="col col-lg-4">
+                                    <form method="POST" action="modal/finance/approve">
                                        <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
-                                      <button name="view_wo" class="btn btn-primary" style="width:100%;">Approve</button>
+                                      <button name="approve" class="btn btn-primary" style="width:100%;">Approve</button>
+                                    </form>
+                                    </div>
+
+
+                                      <div class="col col-lg-4">
+                                    <form method="POST" action="modal/finance/approve">
+                                       <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
+                                      <button name="disapprove" class="btn btn-danger" style="width:100%;">Disapprove</button>
                                     </form>
                                     </div>
                                    ';
