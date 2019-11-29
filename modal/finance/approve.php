@@ -8,7 +8,7 @@ $acctype = $_SESSION['sess_type'];
 
 
 
-if(isset($_POST['updateworkorder'])){
+if(isset($_POST['approve'])){
 //error_reporting(0);
 	 $_SESSION['wo_id'] = $_POST['wo_id'];
 
@@ -23,15 +23,27 @@ if(isset($_POST['updateworkorder'])){
           echo '<script>alert("Successfully Updated!");</script>';
           $sqla="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Approved Work Order')";
           mysqli_query($conn,$sqla); 
-    echo "<script type='text/javascript'>location.href = '../index_finance';</script>";
+    echo "<script type='text/javascript'>location.href = '../../index_finance';</script>";
                               
-                            
-                         
-                            
+               
+}else if(isset($_POST['disapprove'])){
+//error_reporting(0);
+   $_SESSION['wo_id'] = $_POST['wo_id'];
+
+  $status = "Disapproved";
+  //$now = date("Y-m-d");
+
+//$uname = $_POST['uname'];
+
+  $stmt = "UPDATE `work_order` SET `status`='$status' WHERE work_order_no='".$_SESSION['wo_id']."'";
+       mysqli_query($conn,$stmt);                      
+                          
+          echo '<script>alert("Successfully Updated!");</script>';
+          $sqla="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Disapproved Work Order')";
+          mysqli_query($conn,$sqla); 
+    echo "<script type='text/javascript'>location.href = '../../index_finance';</script>";
                               
-
-
-
+               
 }
 
 
