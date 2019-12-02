@@ -25,7 +25,7 @@ $acctype = $_SESSION['sess_type'];
           if(isset($_POST['view_machine'])){
                       $_SESSION['machine_id'] = $_POST['machine_id'];
                       $machine_id = $_POST['machine_id'];
-                        $sql = 'SELECT `machine_id`,`machine_name`, `machine_division`, `maximum_size`, `minimum_size`, `maximum_printing_area`, `max_speed`, `min_speed`, `machine_status` FROM `machine` WHERE `machine_id` = '.$_SESSION['machine_id'].'';
+                        $sql = 'SELECT * FROM `machine` WHERE `machine_id` = '.$_SESSION['machine_id'].'';
                         $stmt = mysqli_stmt_init($conn);
                         mysqli_stmt_prepare($stmt, $sql);
                         mysqli_stmt_execute($stmt);
@@ -35,11 +35,11 @@ $acctype = $_SESSION['sess_type'];
                          echo ' 
                             <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
 
-                         <div style="margin-top:0px" class="form-group">
+                         <div style="margin-top:0px" class="form-group col-md-6">
                             <label>Machine Name:</label>
                                     <input type="text" class="form-control" name="mname" value="'.$row['machine_name'].'" placeholder="Machine Name">
                                   </div>
-                             <div style="margin-top:10px" class="form-group">
+                             <div style="margin-top:0px" class="form-group col-md-6">
                              <label>Machine Division:</label>
                               <select name="mdivision" class="form-control" value="'.$row['machine_division'].'">
                              ';
@@ -66,27 +66,43 @@ $acctype = $_SESSION['sess_type'];
                             echo '
                               </select>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
                              <label>Maximum Speed:</label>
                                     <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed" value="'.$row['max_speed'].'">
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
                             <label>Minimum Speed:</label>
                                     <input type="text" class="form-control" name="minspeed" placeholder="Minimum Speed" value="'.$row['min_speed'].'">
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
                             <label>Machine Maximum Size:</label>
                                     <input type="text" class="form-control" name="mmaxsize" placeholder="Machine Maximum Size" value="'.$row['maximum_size'].'">
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
                             <label>Machine Minimum Size</label>
                                     <input type="text" class="form-control" name="mminsize" placeholder="Machine Minimum Size" value="'.$row['minimum_size'].'">
                                   </div>
-                             <div style="margin-top:10px" class="form-group">
+                             <div style="margin-top:10px" class="form-group col-md-6">
                              <label>Maximum Printing Area</label>
                                     <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing area" value="'.$row['maximum_printing_area'].'">
-                                  </div>
-                             <div style="margin-top:10px" class="form-group">
+                                    </div>
+                      <div style="margin-top:10px" class="form-group col-md-6">
+                       <label>Operator</label>
+                      <select name="o_name" class="form-control">
+                        <option value="'.$row['operator_name'].'">'.$row['operator_name'].'</option>
+                                  ';
+            $sql_ope = "SELECT * FROM operators WHERE first_name != '".$row['operator_name']."'";
+            $resu = mysqli_query($conn,$sql_ope);
+            while($rowo = mysqli_fetch_assoc($resu)){
+              echo '
+          <option value="'.$rowo['first_name'].'">'.$rowo['first_name'].'</option>
+              ';
+            }
+
+          echo '
+          </select>
+          </div>
+                             <div style="margin-top:10px" class="form-group col-md-12">
                              <label>Status:</label>
                                 <select class="form-control" name="mstatus" value="'.$row['machine_status'].'">
                                 ';
@@ -130,10 +146,12 @@ $acctype = $_SESSION['sess_type'];
                               echo ' 
                             <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
 
-                         <div style="margin-top:0px" class="form-group">
+                         <div style="margin-top:0px" class="form-group col-md-6">
+                         <label>Machine Name</label>
                                     <input type="text" class="form-control" name="mname" value="'.$row['machine_name'].'" placeholder="Machine Name" disabled>
                                   </div>
-                             <div style="margin-top:10px" class="form-group">
+                             <div style="margin-top:0px" class="form-group col-md-6">
+                             <label>Machine Division</label>
                               <select name="mdivision" class="form-control" value="'.$row['machine_division'].'" disabled>
                              ';
                              if($row['machine_division'] == "Pre-Press"){
@@ -159,22 +177,32 @@ $acctype = $_SESSION['sess_type'];
                             echo '
                               </select>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
+                            <label>Maximum Speed</label>
                                     <input type="text" class="form-control" name="maxspeed" placeholder="Maximum Speed" value="'.$row['max_speed'].'" disabled>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
+                            <label>Minimum Speed</label>
                                     <input type="text" class="form-control" name="minspeed" placeholder="Minimum Speed" value="'.$row['min_speed'].'" disabled>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
+                            <label>Machine Maximum Size</label>
                                     <input type="text" class="form-control" name="mmaxsize" placeholder="Machine Maximum Size" value="'.$row['maximum_size'].'" disabled>
                                   </div>
-                            <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
+                            <label>Machine Minimum Size</label>
                                     <input type="text" class="form-control" name="mminsize" placeholder="Machine Minimum Size" value="'.$row['minimum_size'].'" disabled>
                                   </div>
-                             <div style="margin-top:10px" class="form-group">
+                             <div style="margin-top:10px" class="form-group col-md-6">
+                             <label>Maximum Printing Area</label>
                                     <input  type="text" class="form-control" name="mparea" placeholder="Maximum Printing area" value="'.$row['maximum_printing_area'].'" disabled>
                                   </div>
-                             <div style="margin-top:10px" class="form-group">
+                            <div style="margin-top:10px" class="form-group col-md-6">
+                             <label>Operator Name</label>
+                  <input  type="text" class="form-control" value="'.$row['operator_name'].'" disabled>
+                                  </div>
+
+                             <div style="margin-top:10px" class="form-group col-md-12">
                                 <select class="form-control" name="mstatus" value="'.$row['machine_status'].'" disabled>
                                 ';
                               if($row['machine_status'] == "Available"){
@@ -230,6 +258,7 @@ if(isset($_POST['updatemachine'])){
   $mmaxsize = $_POST['mmaxsize'];
   $mminsize = $_POST['mminsize'];
   $mparea = $_POST['mparea'];
+  $o_name = $_POST['o_name'];
   $mstatus = $_POST['mstatus'];
   $now = date("Y-m-d H:i:s");
   if(empty($mname) || empty($mdivision) || empty($maxspeed) || empty($minspeed) || empty($mmaxsize) || empty($mminsize) || empty($mparea) || empty($mstatus)){
@@ -237,9 +266,9 @@ if(isset($_POST['updatemachine'])){
   }else {
  
   //$sql= "INSERT INTO tbl_useraccounts ('uname','pass','user_type') VALUES ()";
-$stmt = $conn->prepare("UPDATE `machine` SET `machine_name`=?,`machine_division`=?,`maximum_size`=?,`minimum_size`=?,`maximum_printing_area`=?,`max_speed`=?,`min_speed`=?,`machine_status`=? WHERE `machine_id` = ?");
+$stmt = $conn->prepare("UPDATE `machine` SET `machine_name`=?,`machine_division`=?,`maximum_size`=?,`minimum_size`=?,`maximum_printing_area`=?,`max_speed`=?,`min_speed`=?,`machine_status`=?,`operator_name`=? WHERE `machine_id` = ?");
   
-                              $stmt->bind_param('sssssssss', $mname,$mdivision,$mmaxsize,$mminsize,$mparea,$maxspeed,$minspeed,$mstatus,$machine_id);
+                              $stmt->bind_param('ssssssssss', $mname,$mdivision,$mmaxsize,$mminsize,$mparea,$maxspeed,$minspeed,$mstatus,$o_name,$machine_id);
 
                               if($stmt->execute()){
                                 // echo'<script>swal("Successfully Updated!","", "success");</script>';

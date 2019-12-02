@@ -2,13 +2,13 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-  <link rel="stylesheet" href="fontawesome/css/fontawesome.min.css">
+  <!-- <link rel="stylesheet" href="fontawesome/css/fontawesome.min.css"> -->
   <script src="../../jquery/jquery.min.js"></script>
 <script src="../../datatables/jquery.dataTables.min.js"></script>
     <script src="../../datatables/dataTables.bootstrap4.min.js"></script>
 
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css"> 
   <script src="../bootstrap/dist/js/bootstrap.min.js"></script> -->
 

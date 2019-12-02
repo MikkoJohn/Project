@@ -221,6 +221,14 @@
                //include ('modal/admin/addoperator.php');
               ?>
       </li>
+
+       <li class="nav-item">
+        <a type="button"  href="modal/admin/addrunschedule" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Project Run Schedule</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
     </ul>
     <!-- End of Sidebar -->
 

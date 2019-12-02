@@ -104,7 +104,7 @@
   <br>
 
   <br />
-  <h2 align="center"><a href="#">Calendar for Job Ticket</a></h2>
+  <h2 align="center">Calendar</h2>
   <br />
   <div class="container">
    <div id="calendar"></div>
