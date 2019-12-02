@@ -23,25 +23,53 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required>
+                      <label>Job Order Control No.:</label>
+                        <select class="form-control" name="j_controlno" required>
+                  <?php
+              $sql_jo = "SELECT * FROM job_order";
+              $res = mysqli_query($conn,$sql_jo);
+              while($row_jo = mysqli_fetch_assoc($res)){
+                echo '
+    <option value="'.$row_jo['job_order_control_no'].'">'.$row_jo['job_order_control_no'].'</option>
+                ';
+              }
+
+                  ?>
+                        </select>
+                                    <!-- <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required> -->
                                   </div>
                              <div style="margin-top:10px" class="form-group">
+                            <label>Job Description:</label>
                                     <input type="text" class="form-control" name="j_desc" placeholder="Job Description"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                    <input type="text" class="form-control" name="s_name" placeholder="Supplier Name"required>
+                              <label>Supplier Info:</label>
+                      <select class="form-control" name="s_name" required>
+                  <?php
+              $sql_s = "SELECT * FROM supplier_info";
+              $res = mysqli_query($conn,$sql_s);
+              while($row_s = mysqli_fetch_assoc($res)){
+                echo '
+    <option value="'.$row_s['supplier_name'].'">'.$row_s['supplier_name'].'</option>
+                ';
+              }
+
+                  ?>
+                        </select>
+                                    <!-- <input type="text" class="form-control" name="s_name" placeholder="Supplier Name"required> -->
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                            <label>Instruction:</label>
                                     <input type="text" class="form-control" name="instruction" placeholder="Instruction"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                <select class="form-control" required>
+                               <!--  <select class="form-control" required>
                                   <option selected="true" value="NULL" disabled="disabled" name="status">SELECT STATUS</option>
                                   <option value="Pending">Pending</option>
                                   <option value="Approved">Approved</option>
                                   <option value="Disapproved">Disapproved</option>
                                 </select>
-                                   
+                                    -->
                                   </div>
                             
                             <div class="col-lg-12 controls">
@@ -61,7 +89,7 @@ $acctype = $_SESSION['sess_type'];
   $j_desc = $_POST['j_desc'];
   $s_name = $_POST['s_name'];
   $instruction = $_POST['instruction'];
-  $status = $_POST['status'];
+  $status = "Pending";
   $now = date("Y-m-d");
   if(empty($j_controlno) || empty($j_desc) || empty($s_name) || empty($instruction) || empty($status)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';

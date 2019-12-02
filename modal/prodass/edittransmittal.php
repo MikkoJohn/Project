@@ -14,68 +14,98 @@ $acctype = $_SESSION['sess_type'];
         <div id="loginbox" style="margin-top:0px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
                 <div class="panel-heading">
-                    <div class="panel-title">Add Transmittal</div>
+                    <div class="panel-title">View/Edit Transmittal</div>
                 </div>     
 
                 <div style="padding-top:20px" class="panel-body" >
 
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            
-                      <form method="POST" class="form-horizontal" role="form">         
-                           <div class="row">
+                      <form method="POST" class="form-horizontal" role="form"> 
+                      <div class="row">  
+            <?php
+            if(isset($_POST['view_transmittal'])){
+
+               $_SESSION['transmittal_id'] = $_POST['transmittal_id'];
+                // echo $_SESSION['transmittal_id'];
+                // echo 'asdasdad';
+     $sql = "SELECT * FROM trasmittal where transmittal_id = '".$_SESSION['transmittal_id']."'";
+                  $result = mysqli_query($conn, $sql);
+                  while($row = mysqli_fetch_assoc($result)){
+                    echo '                           
                              <div class="col col-sm-12">
                              <div class="form-group">
                     <label>Prepared By:</label>
-                                    <input type="text" class="form-control" name="p_by" placeholder="Prepared by" required>
+                                    <input type="text" class="form-control" name="p_by" placeholder="Prepared by" value='.$row['prep_by'].' required>
                                   </div>
                               </div>
                              <div class="col col-sm-4">
                              <div class="form-group">
                               <label>Pre-Press:</label>
-                                    <input type="text" class="form-control" name="pre_press" placeholder="Pre-Press" required>
+                                    <input type="text" class="form-control"  value='.$row['pre_press'].' name="pre_press" placeholder="Pre-Press" required>
                                   </div>
                                 </div>
                             <div class="col col-sm-4">
                             <div class="form-group">
                             <label>Post-Press:</label>
-                                    <input type="text" class="form-control" name="post_press" placeholder="Post-Press" required>
+                                    <input type="text" class="form-control" value='.$row['post_press'].' name="post_press" placeholder="Post-Press" required>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                             <div class="form-group">
                       <label>Others:</label>
-                                  <input type="text" class="form-control" name="others" placeholder="Others" required>
+                                  <input type="text" class="form-control"  value='.$row['others'].' name="others" placeholder="Others" required>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                             <div class="form-group">
                       <label>Job Order Control No.:</label>
-                                    <input type="text" class="form-control" name="jo_controlno" placeholder="Job Order Control No" required>
+                                    <input type="text" class="form-control"  value='.$row['jo_no'].' name="jo_controlno" placeholder="Job Order Control No" required>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                             <div class="form-group">
                               <label>Quantity:</label>
-                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
+                                    <input type="number" class="form-control"  value='.$row['quantity'].' name="quantity" placeholder="Quantity" required>
                                   </div>
                             </div>
                             <div class="col col-sm-4">
                              <div class="form-group">
                             <label>Description:</label>
-                                    <input  type="text" class="form-control" name="desc" placeholder="Description" required>
+                                    <input  type="text" class="form-control"  value='.$row['description'].' name="desc" placeholder="Description" required>
                                   </div>
                                 </div>
-                            <!--  <div class="col col-sm-12">
+                             <div class="col col-sm-12">
                              <div class="form-group">
                                 <select class="form-control" name="status" required>
-                                  <option value="NULL" selected="true" disabled>SELECT STATUS</option>
-                                  <option value="Pending">Pending</option>
+                              ';
+                    if($row['status'] == "Pending"){
+                      echo '
+                           <option selected="true" value="Pending">Pending</option>
                                   <option value="Approved">Approved</option>
+                      ';
+                    }else if($row['status'] == "Approved") {
+                      echo '
+                             <option value="Pending">Pending</option>
+                                  <option selected="true" value="Approved">Approved</option>
+                      '; 
+                    }else {
+                      echo '
+                      <option selected="true"  value="'.$row['status'].'">'.$row['status'].'</option>
+                             <option value="Pending">Pending</option>
+                                  <option value="Approved">Approved</option>
+                      '; 
+                    }
+
+                  echo '
                                 </select>
                                    
                                   </div>
-                                </div> -->
-                            
+                                </div> 
+                            ';
+                      }//end ng while
+
+                    }//end ng if
+                      ?>
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="addtransmittal" class="btn btn-success">
                                     </div>
@@ -99,29 +129,15 @@ error_reporting(0);
   $desc = $_POST['desc'];
   $status = "Pending";
  
-  if(empty($p_by) || empty($pre_press) || empty($post_press) || empty($others) || empty($jo_controlno) || empty($quantity) || empty($desc) || empty($status)){
-    echo'<script>swal("Please fill blank fields!","", "warning");</script>';
-  }else {
- 
-  $stmt = $conn->prepare("INSERT INTO `trasmittal`(`prep_by`, `pre_press`, `post_press`, `others`, `jo_no`, `quantity`, `description`, `status`) VALUES (?,?,?,?,?,?,?,?)");
-                              $stmt->bind_param('sssssiss', $p_by,$pre_press,$post_press,$others,$jo_controlno,$quantity,$desc,$status);
-
-                              if($stmt->execute()){
-                                // echo'<script>swal("Successfully Added!","", "success");</script>';
-                                echo '<script>alert("Successfully Added!");</script>';
-                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Transmittal')";
+  
+  $sql_tr= "UPDATE `trasmittal` SET `prep_by`='$p_by',`pre_press`='$pre_press',`post_press`='$post_press',`others`='$others',`jo_no`='$jo_controlno',`quantity`='$quantity',`description`='$desc',`status`='$status' WHERE transmittal_id = '".$_SESSION['transmittal_id']."'";
+  mysqli_query($conn,$sql_tr);
+                                echo '<script>alert("Successfully Updated!");</script>';
+                                 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Updated Transmittal')";
                               mysqli_query($conn,$sql1);
                               //header("Location: ../../index_admin");
                               echo "<script type='text/javascript'>location.href = '../../index_prodass';</script>";
-                              } 
-                              else {
-                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
-                              }
-                              //else { echo"<script>alert('ERROR')</script>"; }
-
-                              $stmt->close();
-}
-
+                      
 }
 
 

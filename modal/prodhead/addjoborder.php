@@ -1,13 +1,13 @@
   <?php  
-      session_start();
-    include_once 'config.php';
-    include '../../includes/link.php';
+          include_once '../../config.php';
+  include '../../includes/link.php';
     include '../../includes/header.php';
-$accname = $_SESSION['acct_name'];
+    session_start();
+   $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
   ?>
 
-   <a href="../../index_admin" class="btn btn-primary" style="margin:2%">BACK</a>
+   <a href="../../index_prodhead" class="btn btn-primary" style="margin:2%">BACK</a>
    <form method="POST" onsubmit="return confirm('Are you sure?')">
         <div class="container" style="width: 100%;">    
         <div id="loginbox" style="margin-top:0px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
@@ -212,7 +212,7 @@ $acctype = $_SESSION['sess_type'];
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Job Order')";
                               mysqli_query($conn,$sql1);
                             //  header("Location:../../index_admin");
-                        echo "<script type='text/javascript'>location.href = '../../index_admin';</script>";
+                        echo "<script type='text/javascript'>location.href = '../../index_prodhead';</script>";
                               } 
                               else {
                                 // echo'<script>swal("Error!","Sales Number already Exist" ,"warning");</script>';

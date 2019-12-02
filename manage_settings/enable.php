@@ -24,7 +24,7 @@ if(isset($_POST['enable_client'])){
                               mysqli_query($conn,$sql1);
                               echo"<script>alert('Data Enabled!')</script>";
                               //header("Location: client");
-                             echo "<script type='text/javascript'>location.href = 'client_id';</script>";
+                             echo "<script type='text/javascript'>location.href = 'client';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';

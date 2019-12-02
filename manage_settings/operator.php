@@ -229,8 +229,8 @@ if($resulta->num_rows >= 1) {
     echo'<script>alert("Account ID no. and Username already exist!");</script>';
 } else {
 
-$sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`,`division`,`status`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$division','$status')";
-mysqli_query($conn,$sql);
+$sql_add = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`,`division`,`status`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$division','$status')";
+mysqli_query($conn,$sql_add);
 
 $sql_user = "INSERT INTO `tbl_useraccounts`(`uname`, `pass`, `user_type`, `fname`, `mname`, `lname`, `division`,`status`) VALUES ('$uname','$pass','$user_type','$fname','$mname','$lname','$division','$status')";
 mysqli_query($conn,$sql_user);

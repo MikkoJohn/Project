@@ -22,14 +22,10 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                            <div class="row">
-                             <div class="col col-sm-6">
+                           
+                             <div class="col col-sm-12">
                              <div class="form-group">
-                                    <input type="text" class="form-control" name="sales_no" placeholder="Sales No." required>
-                                  </div>
-                              </div>
-                             <div class="col col-sm-6">
-                             <div class="form-group">
-                                <select class="form-control" name="c_name">
+                                <select class="form-control" name="c_name" onmousedown="if(this.options.length>3){this.size=3;}" onchange='this.size=0;' onblur="this.size=0;">
                                   <option value="NULL" selected="true" disabled>SELECT CLIENT</option>
             <?php
                   $client_sql="SELECT * FROM client_info";
@@ -45,34 +41,53 @@ $acctype = $_SESSION['sess_type'];
                                   <!--   <input type="text" class="form-control" name="c_name" placeholder="Client Name" required> -->
                                   </div>
                                 </div>
-                             <div class="col col-sm-6">
+                                  <div class="col col-sm-4">
+                             <div class="form-group">
+                                    <input type="text" class="form-control" name="sales_no" placeholder="Sales No." required>
+                                  </div>
+                              </div>
+                             <div class="col col-sm-4">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="p_name" placeholder="Project Name" required>
                                   </div>
                             </div>
-                            <div class="col col-sm-6">
+                            <div class="col col-sm-4">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="d_title" placeholder="Item Description and Title" required>
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" name="c_machine" placeholder="Costing based on Machine" required>
+                              <select class="form-control" name="c_machine" required>
+                                <option value="NULL" selected="true" disabled>Costing Based on Machine</option>
+          <?php
+                $sql_machine = "SELECT machine_name FROM machine";
+                $result = mysqli_query($conn,$sql_machine);
+                while($row = mysqli_fetch_assoc($result)){
+                  echo '
+                        <option value="'.$row['machine_name'].'">'.$row['machine_name'].'</option>
+                  ';
+                }
+
+           ?>
+           </select>
+                                   <!--  <input type="text" class="form-control" name="c_machine" placeholder="Costing based on Machine" required> -->
                                   </div>
                             </div>
                             <div class="col col-lg-4">
                             <div class="form-group">
                                 <select class="form-control" name="f_required" required>
                                       <option selected="true" value="NULL" disabled>SELECT FINISHING REQUIRED</option>
-                                      <option value="Perfect Bind">Perfect Bind</option>
-                                      <option value="Saddle Stitch">Saddle Stitch</option>
-                                      <option value="Case Bind">Case Bind</option>
-                                      <option value="Varnish">Varnish</option>
-                                      <option value="Lamination">Lamination</option>
-                                      <option value="Embossing">Embossing</option>
-                                      <option value="Debossing">Debossing</option>
-                                      <option value="Horinzontal Ringbind">Horinzontal Ringbind</option>
-                                      <option value="Vertical Ringbind">Vertical Ringbind</option>
+                          <?php
+                $sql_finish = "SELECT activity FROM post_press";
+                $res = mysqli_query($conn, $sql_finish);
+                while($rowf=mysqli_fetch_assoc($res)){
+                  echo '
+                    <option value="'.$rowf['activity'].'">'.$rowf['activity'].'</option>
+                  ';
+                }
+
+                          ?>
                                     </select>
                              <!--        <input type="text" class="form-control" name="f_required" placeholder="Finishing Required" required> -->
                                   </div>
@@ -81,7 +96,16 @@ $acctype = $_SESSION['sess_type'];
                             <div class="form-group">
                               <select class="form-control" name="p_required" required>
                                 <option selected="true" value="NULL" disabled>SELECT PACKAGING REQUIRED</option>
-                                <option value="Corrugated Boxes">Corrugated Boxes</option>
+          <?php
+                $sql_finish = "SELECT activity FROM post_press";
+                $res = mysqli_query($conn, $sql_finish);
+                while($rowf=mysqli_fetch_assoc($res)){
+                  echo '
+                    <option value="'.$rowf['activity'].'">'.$rowf['activity'].'</option>
+                  ';
+                }
+
+                          ?>
                               </select>
                                     <!-- <input type="text" class="form-control" name="p_required" placeholder="Packaging Required" required> -->
                                   </div>
@@ -103,23 +127,37 @@ $acctype = $_SESSION['sess_type'];
                                 </div>
                               <div class="col col-sm-6">
                               <div class="form-group">
-                                    <input  type="text" class="form-control" name="p_used" placeholder="Paper to be used" required>
+                  <select class="form-control" name="p_used" required>
+                                <option value="NULL" selected="true" disabled>Paper to be used</option>
+          <?php
+                $sql_machine = "SELECT item_name FROM materials WHERE category = 'Paper'";
+                $result = mysqli_query($conn,$sql_machine);
+                while($row = mysqli_fetch_assoc($result)){
+                  echo '
+                        <option value="'.$row['item_name'].'">'.$row['item_name'].'</option>
+                  ';
+                }
+
+           ?>
+           </select>
+
+                                   <!--  <input  type="text" class="form-control" name="p_used" placeholder="Paper to be used" required> -->
                                   </div>
                                 </div>
                               <div style="margin:0px 12px 0px 12px" class="et form-group">
                                     <h5>Estimated Transmittal Data to Warehouse:</h5>
-                                    <input  type="date" class="form-control" name="e_transmittal"  required>
+                                    <input  type="date" id="start" class="form-control" name="e_transmittal"  required>
                                   </div>
                               <div style="margin:0px 12px 15px 12px" class="cr form-group">
                                     <h5>Client Requested Delivery Date:</h5>
-                                    <input  type="date" class="form-control" name="c_delivery" required>
+                                    <input  type="date" id="finish" class="form-control" name="c_delivery" required>
                                   </div>
-                                <div class="col col-sm-6">
+                                <div class="col col-sm-12">
                                 <div class="form-group">                          
                                     <input  type="textarea" class="form-control" placeholder="Remarks" name="remarks" required>
                                   </div>
                                 </div>
-                                <div class="col col-sm-6">
+                               <!--  <div class="col col-sm-6">
                                 <div class="form-group">
                                   <select name="status" class="form-control" required>
                                   <option selected="true" value="NULL" disabled="">SELECT STATUS</option>
@@ -129,7 +167,7 @@ $acctype = $_SESSION['sess_type'];
                                 </select> 
                                  
                                   </div>
-                                </div>
+                                </div> -->
                             <div class="col-lg-12 controls">
                                       <input type="submit" name="addjo" class="btn btn-success">
                                     </div>
@@ -158,7 +196,7 @@ $acctype = $_SESSION['sess_type'];
   $c_delivery = $_POST['c_delivery'];
   $remarks = $_POST['remarks'];
   $p_name = $_POST['p_name'];
-  $status = $_POST['status'];
+  $status = "Pending";
   $now = date("Y-m-d H:i:s");
   $jo_status = 0;
   if(empty($sales_no) || empty($c_name) || empty($d_title) || empty($c_machine) || empty($f_required) || empty($p_required) || empty($quantity) || empty($no_pages) || empty($s_output) || empty($p_used) || empty($e_transmittal) || empty($c_delivery) || empty($remarks) || empty($p_name) || empty($status)){
@@ -173,17 +211,26 @@ $acctype = $_SESSION['sess_type'];
                                  echo '<script>alert("Successfully Added!");</script>';
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Add Job Order')";
                               mysqli_query($conn,$sql1);
-                              header("Location: ../../index_admin");
+                            //  header("Location:../../index_admin");
+                        echo "<script type='text/javascript'>location.href = '../../index_admin';</script>";
                               } 
                               else {
-                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                                // echo'<script>swal("Error!","Sales Number already Exist" ,"warning");</script>';
+                                echo'<script>alert("Sales Number already Exist");</script>';
                               }
                               //else { echo"<script>alert('ERROR')</script>"; }
 
                               $stmt->close();
 }
-
 }
-
-
 ?>
+
+
+
+<script>
+  $(document).ready(function(){
+   $('#start').change(function(){
+    document.getElementById('finish').setAttribute("min",$('#start').val());
+   });
+  });
+</script> 

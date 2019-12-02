@@ -1,13 +1,13 @@
   <?php  
-        session_start();
-      include_once 'config.php';
-      include '../../includes/link.php';
-      include '../../includes/header.php';
-  $accname = $_SESSION['acct_name'];
-  $acctype = $_SESSION['sess_type'];
+    session_start();
+    include_once '../../config.php';
+    include '../../includes/link.php';
+    include '../../includes/header.php';
+$accname = $_SESSION['acct_name'];
+$acctype = $_SESSION['sess_type'];
   ?>
 
-   <a href="../../index_admin" class="btn btn-primary" style="margin:2%">BACK</a>
+   <a href="../../index_prodass" class="btn btn-primary" style="margin:2%">BACK</a>
    <form method="POST" onsubmit="return confirm('Are you sure?')">
         <div class="container" style="width: 100%;">    
         <div id="loginbox" style="margin-top:0px;" class="mainbox col-lg-12 col-lg-offset-2 col-lg-8">                    

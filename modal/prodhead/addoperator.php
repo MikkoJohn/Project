@@ -101,19 +101,14 @@ $acctype = $_SESSION['sess_type'];
                               <td>
                               <center>
                           <div class="row">
-                                    <div class="col col-lg-6">
+                                    <div class="col col-lg-12">
                                     <form method="POST" action="editoperator">
                        
                           <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
                           <button name="view_operator" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="modal" data-target="#viewModal"></span> View</button>
                                     </form>
                                     </div>
-                                    <div class="col col-lg-6">
-                                    <form method="POST" action="delete">
-         <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
-                        <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
-        </form>  
-        </div>
+                                    
         </div></center>
 
                               </td>

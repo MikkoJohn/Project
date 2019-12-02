@@ -1,9 +1,10 @@
   <?php  
-  session_start();
-    include_once '../../config.php';
-    include '../../includes/link.php';
+
+       include_once '../../config.php';
+  include '../../includes/link.php';
     include '../../includes/header.php';
-$accname = $_SESSION['acct_name'];
+    session_start();
+   $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
                    ?>
    

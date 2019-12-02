@@ -24,11 +24,26 @@
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
                       <form method="POST" class="" role="form">         
-                             <div style="margin-top:0px" class="col-sm-12">
+                             <div style="margin-top:0px" class="col-sm-6">
                                   <h6>Machine Name:</h6>
                                     <input type="text" class="form-control" name="mname" placeholder="Machine Name" required>
                                   </div>
+                            <div style="margin-top:0px" class="col-sm-6">
+                                  <h6>Operator Name:</h6>
+                          <select class="form-control" name="o_name">
+              <?php
+              $sql_o = "SELECT * FROM operators";
+              $res = mysqli_query($conn, $sql_o);
+              while($row = mysqli_fetch_assoc($res)){
+                echo '
+                    <option value="'.$row['first_name'].'">'.$row['first_name'].'</option>
+                ';
+              }
+              ?>
+                          </select>
+                                  </div>
                              <div style="margin-top:15px" class="col col-sm-12">
+                              <h6>Division:</h6>
                                   <select name="mdivision" class="form-control" required>
                                     <option selected="true" value="NULL" disabled>SELECT DIVISION</option>
                                     <option value="Pre-Press">Pre-Press</option>
@@ -91,6 +106,7 @@ error_reporting(0);
   $mmaxsize = $_POST['mmaxsize'];
   $mminsize = $_POST['mminsize'];
   $mparea = $_POST['mparea'];
+  $o_name = $_POST['o_name'];
   $mstatus = "Available";
   if(empty($mname) || empty($mdivision) || empty($maxspeed) || empty($minspeed) || empty($mmaxsize) || empty($mminsize) || empty($mparea)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
@@ -98,8 +114,8 @@ error_reporting(0);
  
   //$sql= "INSERT INTO tbl_useraccounts ('uname','pass','user_type') VALUES ()";
 
-  $stmt = $conn->prepare("INSERT INTO `machine`(`machine_name`, `machine_division`, `maximum_size`, `minimum_size`, `maximum_printing_area`, `max_speed`, `min_speed`, `machine_status`) VALUES (?,?,?,?,?,?,?,?)");
-                              $stmt->bind_param('ssssssss', $mname,$mdivision,$mmaxsize,$mminsize,$mparea,$maxspeed,$minspeed,$mstatus);
+  $stmt = $conn->prepare("INSERT INTO `machine`(`machine_name`, `machine_division`, `maximum_size`, `minimum_size`, `maximum_printing_area`, `max_speed`, `min_speed`, `machine_status`,`operator_name`) VALUES (?,?,?,?,?,?,?,?,?)");
+                              $stmt->bind_param('sssssssss', $mname,$mdivision,$mmaxsize,$mminsize,$mparea,$maxspeed,$minspeed,$mstatus,$o_name);
 
                               if($stmt->execute()){
                                 // echo'<script>swal("Successfully Added!","", "success");</script>';
