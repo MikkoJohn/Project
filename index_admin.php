@@ -32,6 +32,7 @@ include 'config.php';
 <?php
 
 ?>
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <div id="content-wrapper" class="d-flex flex-column">
@@ -420,14 +421,27 @@ $results = mysqli_query($conn,$sql_totaljo);
                                     </div>
 
                         <div class="col col-lg-4">
+      ';
+     if($row['status'] == "Disabled" || $row['status'] == "Rejected"){    
+      echo '
+                          <form method="POST" action="convert">
+                          <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
+                          <button name="convert_jo" class="btn btn-info" disabled><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Convert</button>
+                                    </form>
+
+    ';
+  }else {
+     echo '
                           <form method="POST" action="convert">
                           <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
                           <button name="convert_jo" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Convert</button>
                                     </form>
+
+    ';
+  }
+
+          echo '
                                     </div>
-
-
-
                                     <div class="col col-lg-4">';
 
  if($row['status'] == "Disabled" || $row['status'] == "Rejected"){
@@ -506,7 +520,7 @@ echo '
                       <div class="row">
                                     <div class="col col-lg-6">
                                     <form method="POST" action="editmodal/editjobticket.php">
-                       
+                  
                           <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
                           <button name="view_jticket" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
                                     </form>
@@ -646,10 +660,11 @@ echo '
                 <table class="table table-striped table-bordered" id="material" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th><center>Material ID</center></th>
+                      <th width="2%"><center>Material ID</center></th>
                       <th><center>Item Name</center></th>
                       <th><center>Quantity</center></th>
-                      <th width="23%"><center>Add</th>
+                      <th width="20%"><center>Add</th>
+                        <th width="23%"><center>Release</th>
                       <th><center>Status</center></th>
                       <th><center>Actions</center></th>
                     </tr> 
@@ -665,7 +680,7 @@ echo '
                   <td><center>'.$row['quantity'].'</center></td>
                    <td><center>
                    <div class="row">
-                   <div class="col col-sm-8">
+                   <div class="col col-sm-6">
                     <form method="POST" action="addquantity">
                           <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
                   ';
@@ -675,12 +690,12 @@ echo '
                             ';
                     }else if($row['status'] == 0){
                         echo '
-                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity">
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
                             ';
                     }
                 echo '
                     </div>
-                    <div class="col col-sm-4">
+                    <div class="col col-sm-6">
                     ';
                     if($row['status'] == 1){
                     echo '
@@ -695,9 +710,42 @@ echo '
                       
 
                       </form>
+                
                     </div>
                     </div>
                    </center></td>
+              <td>
+              <div class="row">
+                   <div class="col col-sm-6">
+                  <form method="POST" action="releasequantity">
+                    <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
+
+              ';
+                  if($row['status'] == 1){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
+                            ';
+                    }else if($row['status'] == 0){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
+                            ';
+                    }
+                echo '
+                    </div>
+                    <div class="col col-sm-6">
+                    ';
+                    if($row['status'] == 1){
+                    echo '
+                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
+                      ';
+                    }else if($row['status'] == 0){
+                  echo '
+                          <button name="add_quantity" class="btn btn-danger" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Release</button>
+                      ';
+                    }
+            echo '
+                  </form>
+              </td>
                   ';
             if($row['status'] == 1){
               echo '<td><center>Disabled</center></td>';
@@ -839,6 +887,552 @@ echo '
  });  
  </script> 
 
+<!-- ///////////////// -->
+
+
+ <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Project Run Schedule</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="proj_run" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th><center>Job Order Control No.</center></th>
+                      <th><center>Machine Code</center></th>
+                      <th><center>Operator Name</center></th>
+                      <th><center>Machine Status</th>
+                      <th><center>Run Status</center></th>
+                      <th><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+        <?php
+          $sql = "SELECT * FROM project_run_schedule";
+          $result = mysqli_query($conn, $sql);
+          while ($row=mysqli_fetch_assoc($result)){
+            echo '
+              <tr>
+                  <td><center>'.$row['job_order_control_no'].'</center></td>
+                  <td><center>'.$row['machine_id'].'</center></td>
+                  <td><center>'.$row['operator_name'].'</center></td>
+                  <td><center>'.$row['machine_status'].'</center></td>
+              ';
+                 if($row['pending_status'] == "1"){
+                      echo '<td><center>Disabled</center></td>';
+                    }else if($row['pending_status'] == "0"){
+                        echo '<td><center>Pending</center></td>';
+                    }else{
+                      echo '<td><center>'.$row['pending_status'].'</center></td>';
+                    }
+              echo '
+                 
+                  <td><center>
+                    <div class="row">
+                    <div class="col col-lg-6">
+              <form method="POST" action="editmodal/editrunschedule">
+                       
+                          <input type="hidden" name="run_id" value="'.$row['project_run_no'].'">
+                          <button name="view_run" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                   ';
+    if($row['pending_status'] == "1"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="run_id" value="'.$row['project_run_no'].'">
+                        <button name="enable_run" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      } else{
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="run_id" value="'.$row['project_run_no'].'">
+                        <button name="delete_run" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }
+
+      echo '
+        </div>
+        </div></center>
+        </td>
+              </tr>
+            ';
+          }
+        ?>               
+                              
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#proj_run').DataTable();  
+ });  
+ </script> 
+<!--                 -->
+
+
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Paper</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="paper" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="2%"><center>Material ID</center></th>
+                      <th><center>Item Name</center></th>
+                      <th><center>Quantity</center></th>
+                      <th width="19%"><center>Add</th>
+                        <th width="21%"><center>Release</th>
+                      <th><center>Status</center></th>
+                      <th><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+        <?php
+          $sql = "SELECT * FROM materials WHERE category = 'Paper'";
+          $result = mysqli_query($conn, $sql);
+          while ($row=mysqli_fetch_assoc($result)){
+            echo '
+              <tr>
+                  <td><center>'.$row['material_id'].'</center></td>
+                  <td><center>'.$row['item_name'].'</center></td>
+                  <td><center>'.$row['quantity'].'</center></td>
+                   <td><center>
+                   <div class="row">
+                   <div class="col col-sm-6">
+                    <form method="POST" action="addquantity">
+                          <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
+                  ';
+                  if($row['status'] == 1){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
+                            ';
+                    }else if($row['status'] == 0){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
+                            ';
+                    }
+                echo '
+                    </div>
+                    <div class="col col-sm-6">
+                    ';
+                    if($row['status'] == 1){
+                    echo '
+                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
+                      ';
+                    }else if($row['status'] == 0){
+                  echo '
+                          <button name="add_quantity" class="btn btn-info" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Add</button>
+                      ';
+                    }
+            echo '
+                      
+
+                      </form>
+                
+                    </div>
+                    </div>
+                   </center></td>
+              <td>
+              <div class="row">
+                   <div class="col col-sm-6">
+                  <form method="POST" action="releasequantity">
+                    <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
+
+              ';
+                  if($row['status'] == 1){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
+                            ';
+                    }else if($row['status'] == 0){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
+                            ';
+                    }
+                echo '
+                    </div>
+                    <div class="col col-sm-6">
+                    ';
+                    if($row['status'] == 1){
+                    echo '
+                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
+                      ';
+                    }else if($row['status'] == 0){
+                  echo '
+                          <button name="add_quantity" class="btn btn-danger" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Release</button>
+                      ';
+                    }
+            echo '
+                  </form>
+              </td>
+                  ';
+            if($row['status'] == 1){
+              echo '<td><center>Disabled</center></td>';
+            }else if($row['status'] == 0){
+              echo '<td><center>Active</center></td>';
+            }
+              echo'
+                  
+                  <td><center>
+                    <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editmaterial.php">
+                       
+                          <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                          <button name="view_material" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                   ';
+                                     if($row['status'] == "0"){
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="delete_material" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }else if($row['status'] == "1"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="enable_material" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      }
+
+      echo '
+        </div>
+        </div></center>
+        </td>
+              </tr>
+            ';
+          }
+
+
+        ?>               
+                              
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#paper').DataTable();  
+ });  
+ </script> 
+
+
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Ink</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="ink" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="2%"><center>Material ID</center></th>
+                      <th><center>Item Name</center></th>
+                      <th><center>Quantity</center></th>
+                      <th width="19%"><center>Add</th>
+                        <th width="21%"><center>Release</th>
+                      <th><center>Status</center></th>
+                      <th><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+        <?php
+          $sql = "SELECT * FROM materials WHERE category = 'Ink'";
+          $result = mysqli_query($conn, $sql);
+          while ($row=mysqli_fetch_assoc($result)){
+            echo '
+              <tr>
+                  <td><center>'.$row['material_id'].'</center></td>
+                  <td><center>'.$row['item_name'].'</center></td>
+                  <td><center>'.$row['quantity'].'</center></td>
+                   <td><center>
+                   <div class="row">
+                   <div class="col col-sm-6">
+                    <form method="POST" action="addquantity">
+                          <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
+                  ';
+                  if($row['status'] == 1){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
+                            ';
+                    }else if($row['status'] == 0){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
+                            ';
+                    }
+                echo '
+                    </div>
+                    <div class="col col-sm-6">
+                    ';
+                    if($row['status'] == 1){
+                    echo '
+                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
+                      ';
+                    }else if($row['status'] == 0){
+                  echo '
+                          <button name="add_quantity" class="btn btn-info" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Add</button>
+                      ';
+                    }
+            echo '
+                      
+
+                      </form>
+                
+                    </div>
+                    </div>
+                   </center></td>
+              <td>
+              <div class="row">
+                   <div class="col col-sm-6">
+                  <form method="POST" action="releasequantity">
+                    <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
+
+              ';
+                  if($row['status'] == 1){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
+                            ';
+                    }else if($row['status'] == 0){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
+                            ';
+                    }
+                echo '
+                    </div>
+                    <div class="col col-sm-6">
+                    ';
+                    if($row['status'] == 1){
+                    echo '
+                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
+                      ';
+                    }else if($row['status'] == 0){
+                  echo '
+                          <button name="add_quantity" class="btn btn-danger" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Release</button>
+                      ';
+                    }
+            echo '
+                  </form>
+              </td>
+                  ';
+            if($row['status'] == 1){
+              echo '<td><center>Disabled</center></td>';
+            }else if($row['status'] == 0){
+              echo '<td><center>Active</center></td>';
+            }
+              echo'
+                  
+                  <td><center>
+                    <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editmaterial.php">
+                       
+                          <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                          <button name="view_material" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                   ';
+                                     if($row['status'] == "0"){
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="delete_material" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }else if($row['status'] == "1"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="enable_material" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      }
+
+      echo '
+        </div>
+        </div></center>
+        </td>
+              </tr>
+            ';
+          }
+
+
+        ?>               
+                              
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#ink').DataTable();  
+ });  
+ </script> 
+
+
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Chemicals</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="chemicals" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="2%"><center>Material ID</center></th>
+                      <th><center>Item Name</center></th>
+                      <th><center>Quantity</center></th>
+                      <th width="19%"><center>Add</th>
+                        <th width="21%"><center>Release</th>
+                      <th><center>Status</center></th>
+                      <th><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+        <?php
+          $sql = "SELECT * FROM materials WHERE category = 'Chemicals'";
+          $result = mysqli_query($conn, $sql);
+          while ($row=mysqli_fetch_assoc($result)){
+            echo '
+              <tr>
+                  <td><center>'.$row['material_id'].'</center></td>
+                  <td><center>'.$row['item_name'].'</center></td>
+                  <td><center>'.$row['quantity'].'</center></td>
+                   <td><center>
+                   <div class="row">
+                   <div class="col col-sm-6">
+                    <form method="POST" action="addquantity">
+                          <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
+                  ';
+                  if($row['status'] == 1){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
+                            ';
+                    }else if($row['status'] == 0){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
+                            ';
+                    }
+                echo '
+                    </div>
+                    <div class="col col-sm-6">
+                    ';
+                    if($row['status'] == 1){
+                    echo '
+                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
+                      ';
+                    }else if($row['status'] == 0){
+                  echo '
+                          <button name="add_quantity" class="btn btn-info" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Add</button>
+                      ';
+                    }
+            echo '
+                      
+
+                      </form>
+                
+                    </div>
+                    </div>
+                   </center></td>
+              <td>
+              <div class="row">
+                   <div class="col col-sm-6">
+                  <form method="POST" action="releasequantity">
+                    <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
+
+              ';
+                  if($row['status'] == 1){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
+                            ';
+                    }else if($row['status'] == 0){
+                        echo '
+                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
+                            ';
+                    }
+                echo '
+                    </div>
+                    <div class="col col-sm-6">
+                    ';
+                    if($row['status'] == 1){
+                    echo '
+                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
+                      ';
+                    }else if($row['status'] == 0){
+                  echo '
+                          <button name="add_quantity" class="btn btn-danger" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Release</button>
+                      ';
+                    }
+            echo '
+                  </form>
+              </td>
+                  ';
+            if($row['status'] == 1){
+              echo '<td><center>Disabled</center></td>';
+            }else if($row['status'] == 0){
+              echo '<td><center>Active</center></td>';
+            }
+              echo'
+                  
+                  <td><center>
+                    <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editmaterial.php">
+                       
+                          <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                          <button name="view_material" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                   ';
+                                     if($row['status'] == "0"){
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="delete_material" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }else if($row['status'] == "1"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="material_id" value="'.$row['material_id'].'">
+                        <button name="enable_material" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      }
+
+      echo '
+        </div>
+        </div></center>
+        </td>
+              </tr>
+            ';
+          }
+
+
+        ?>               
+                              
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#chemicals').DataTable();  
+ });  
+ </script> 
 
 <!--  -->
 

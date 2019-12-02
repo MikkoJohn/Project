@@ -26,41 +26,40 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Production Head
+        General Services Head Assistant
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="modal/prodhead/addaccount">
-          <i class="#"></i>
-          <span>Add Accounts</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="modal/prodhead/addoperator">
-          <i class="#"></i>
-          <span>Operators</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="modal/prodhead/addmaterialestimation">
-          <i class="#"></i>
-          <span>Material Estimation</span>
-        </a>
-      </li>
-
      <!--  <li class="nav-item">
-        <a class="nav-link" href="index_prodheadmac">
+        <a class="nav-link" href="index_prodass.php">
           <i class="#"></i>
-          <span>Machines</span>
+          <span>Home</span>
         </a>
       </li> -->
-
-   
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="index_prodass.php">
+          <i class="#"></i>
+          <span>Supplier</span>
+        </a>
+      </li> -->
+     <!--  <li class="nav-item">
+        <a class="nav-link collapsed" href="index_prodheadrep.php" data-toggle="collapse" data-target="#collapsePH" aria-expanded="true" aria-controls="collapsePH">
+          <i class="#"></i>
+          <span>Reports</span>
+        </a>
+        <div id="collapsePH" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Division:</h6>
+            <a class="collapse-item" href="reports/reports_prepress.php">Prepress</a>
+            <a class="collapse-item" href="reports/reports_press.php">Press</a>
+            <a class="collapse-item" href="reports/reports_postpress.php">Postpress</a>
+          </div>
+        </div>
+      </li> -->
 
       <!-- Nav Item - Utilities Collapse Menu -->
-     <li class="nav-item">
-        <a class="nav-link" href="modal/prodhead/index">
+      <li class="nav-item">
+        <a class="nav-link" href="modal/prodass/index">
           <i class="#"></i>
           <span>Calendar</span>
         </a>
@@ -73,35 +72,27 @@
       <div class="sidebar-heading">
         Addons
       </div>
-<br>
+
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a href="modal/prodhead/addaccount" class="nav-link">
-          
-          <span>Add Accounts</span></a>
-             
+        <a class="nav-link" href="modal/prodass/addjobticket">
+          <i class="#"></i>
+          <span>Add Material</span>
+        </a>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="modal/prodhead/addmachine">
+        <a class="nav-link" href="modal/prodass/addworkorder">
           <i class="#"></i>
-          <span>Add Machine</span></a>
+          <span>Add Supplier</span></a>
       </li>
-
-
-      <li class="nav-item">
-        <a class="nav-link" href="modal/prodhead/addjobticket">
+     <!--  <li class="nav-item">
+        <a class="nav-link" href="modal/prodass/addtransmittal">
           <i class="#"></i>
-          <span>Add Job Ticket</span></a>
-      </li>
+          <span>Add Transmittal</span></a>
+      </li> -->
 
-
-       <li class="nav-item">
-        <a class="nav-link" href="modal/prodhead/addjoborder">
-          <i class="#"></i>
-          <span>Add Job Order</span></a>
-      </li>
     </ul>
     <!-- End of Sidebar -->
 

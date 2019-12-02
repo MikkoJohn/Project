@@ -17,10 +17,10 @@
                   </div><br>
                   <form class="user" action="" method="POST">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" autocomplete="off" name="uname" aria-describedby="unameHelp" placeholder="Enter Username">
+                      <input type="text" autocomplete="off" class="form-control form-control-user" autocomplete="off" name="uname" aria-describedby="unameHelp" placeholder="Enter Username">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" autocomplete="off" name="pass"  placeholder="Enter Password">
+                      <input type="password" autocomplete="off" class="form-control form-control-user" autocomplete="off" name="pass"  placeholder="Enter Password">
                     </div>
                     <div class="form-group">
                       <!--<div class="custom-control custom-checkbox small">

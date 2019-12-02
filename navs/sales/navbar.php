@@ -1,4 +1,4 @@
-  <!-- Sidebar -->
+ <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
@@ -30,14 +30,14 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+     <!--  <li class="nav-item">
         <a class="nav-link" href="index_prodhead.php">
           <i class="#"></i>
           <span>Home</span>
         </a>
-      </li>
+      </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="index_prodheadcal.php">
+        <a class="nav-link" href="modal/sales/index">
           <i class="#"></i>
           <span>Calendar</span>
         </a>
@@ -53,9 +53,16 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="modal/sales/addjoborder.php">
+        <a class="nav-link" href="modal/sales/addjoborder">
           <i class="#"></i>
           <span>Add Job Order</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="modal/sales/addclient">
+          <i class="#"></i>
+          <span>Add Client</span>
         </a>
       </li>
     </ul>

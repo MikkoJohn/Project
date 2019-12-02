@@ -30,19 +30,19 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+     <!--  <li class="nav-item">
         <a class="nav-link" href="index_prodass.php">
           <i class="#"></i>
           <span>Home</span>
         </a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
         <a class="nav-link" href="index_prodass.php">
           <i class="#"></i>
-          <span>Job Orders</span>
+          <span>Supplier</span>
         </a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+     <!--  <li class="nav-item">
         <a class="nav-link collapsed" href="index_prodheadrep.php" data-toggle="collapse" data-target="#collapsePH" aria-expanded="true" aria-controls="collapsePH">
           <i class="#"></i>
           <span>Reports</span>
@@ -55,11 +55,11 @@
             <a class="collapse-item" href="reports/reports_postpress.php">Postpress</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="index_prodasscal.php">
+        <a class="nav-link" href="modal/prodass/index">
           <i class="#"></i>
           <span>Calendar</span>
         </a>
@@ -75,7 +75,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="modal/prodass/addjobticket">
           <i class="#"></i>
           <span>Add Job Ticket</span>
         </a>
@@ -83,12 +83,12 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="modal/prodass/addworkorder.php">
+        <a class="nav-link" href="modal/prodass/addworkorder">
           <i class="#"></i>
           <span>Add Work Order</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="modal/prodass/addtransmittal.php">
+        <a class="nav-link" href="modal/prodass/addtransmittal">
           <i class="#"></i>
           <span>Add Transmittal</span></a>
       </li>

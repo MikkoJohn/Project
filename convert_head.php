@@ -6,7 +6,7 @@ session_start();
 include 'config.php';
 //include('includes/header.php'); 
 //include('includes/navbar.php');
- include 'includes/link.php';
+ // include 'includes/link.php';
 $accname = $_SESSION['acct_name'];
 $acctype = $_SESSION['sess_type'];
 $now = date("Y-m-d H:i:s");
@@ -17,7 +17,7 @@ if(isset($_POST['convert_jo'])){
   $row = mysqli_fetch_assoc($result);
  
   if($row != 0)
-	  {
+    {
   $client_name = $row['client_name'];
   $title = $row['item_desc_and_title'];
   $job_no = $row['job_order_control_no'];
@@ -32,7 +32,7 @@ $resulta = $conn->query($sqls);
 if($resulta->num_rows >= 1) {
     // echo'<script>swal("Error!","Job Order already converted!" ,"warning");</script>';
     echo '<script>alert("Job Order already converted!");</script>';
-    echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
+    echo "<script type='text/javascript'>location.href = 'index_prodhead';</script>";
 } else {
 
   $stmt = $conn->prepare("INSERT INTO job_ticket (client_name, title, machine_name, date_time_created, quantity,job_order_control_no,proj_name,pages,binding,status) VALUES (?,?,?,?,?,?,?,?,?,?) ");
@@ -48,10 +48,11 @@ if($resulta->num_rows >= 1) {
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Converted Job Order')";
                               mysqli_query($conn,$sql1);
                              // header("Location: index_admin");
-                               echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
+                               echo "<script type='text/javascript'>location.href = 'index_prodhead';</script>";
                               } 
                               else {
-                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                                echo'<script>alert("Error!");';
+                                echo "<script type='text/javascript'>location.href = 'index_prodhead';</script>";
                               }
                               //else { echo"<script>alert('ERROR')</script>"; }
 

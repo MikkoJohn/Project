@@ -30,16 +30,11 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="index_prodhead.php">
-          <i class="#"></i>
-          <span>Home</span>
-        </a>
-      </li>
+     
       <li class="nav-item">
         <a class="nav-link" href="modal/prodhead/addoperator.php">
           <i class="#"></i>
-          <span>Operators</span>
+          <span>Operatorss</span>
         </a>
       </li>
 

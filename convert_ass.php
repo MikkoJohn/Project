@@ -32,7 +32,7 @@ $resulta = $conn->query($sqls);
 if($resulta->num_rows >= 1) {
     // echo'<script>swal("Error!","Job Order already converted!" ,"warning");</script>';
     echo '<script>alert("Job Order already converted!");</script>';
-    echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
+    echo "<script type='text/javascript'>location.href = 'index_prodass';</script>";
 } else {
 
   $stmt = $conn->prepare("INSERT INTO job_ticket (client_name, title, machine_name, date_time_created, quantity,job_order_control_no,proj_name,pages,binding,status) VALUES (?,?,?,?,?,?,?,?,?,?) ");
@@ -48,7 +48,7 @@ if($resulta->num_rows >= 1) {
                               $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Converted Job Order')";
                               mysqli_query($conn,$sql1);
                              // header("Location: index_admin");
-                               echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
+                               echo "<script type='text/javascript'>location.href = 'index_prodass';</script>";
                               } 
                               else {
                                 echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
