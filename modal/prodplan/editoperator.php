@@ -272,6 +272,18 @@ $acctype = $_SESSION['sess_type'];
                           <option value="3-4 PM">3-4 PM</option>
                           <option selected="true" value="4-5 PM">4-5 PM</option>
                     ';
+                  }else {
+                     echo '
+                     <option  selected="true" value="">SELECT OVERTIME</option>
+                          <option value="8-9 AM">8-9 AM</option>
+                          <option value="9-10 AM">9-10 AM</option>
+                          <option value="10-11 AM">10-11 AM</option>
+                          <option value="11-12 PM">11-12 PM</option>
+                          <option value="1-2 PM">1-2 PM</option>
+                          <option value="2-3 PM">2-3 PM</option>
+                          <option value="3-4 PM">3-4 PM</option>
+                          <option value="4-5 PM">4-5 PM</option>
+                    ';
                   }
 
 

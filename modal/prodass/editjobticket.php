@@ -158,6 +158,15 @@ $acctype = $_SESSION['sess_type'];
                         <option value="4 Color - Black, Yellow">4 Color - "Black, Yellow"</option>
                         <option selected="true" value="5 Color - CMYK">5 Color - "CMYK"</option>
                     ';
+                  }else {
+                     echo '
+                        <option selected="true" value="NULL" disabled>SELECT COLOR</option>
+                        <option value="1 Color - Black">1 Color - "Black"</option>
+                        <option value="2 Color - Black, Cyan">2 Color - "Black, Cyan"</option>
+                        <option value="3 Color - Black, Magenta">3 Color - "Black, Magenta"</option>
+                        <option value="4 Color - Black, Yellow">4 Color - "Black, Yellow"</option>
+                        <option value="5 Color - CMYK">5 Color - "CMYK"</option>
+                    ';
                   }
 
                echo '
@@ -178,7 +187,7 @@ $acctype = $_SESSION['sess_type'];
                       <option value="'.$row_act['activity'].'">'.$row_act['activity'].'</option>
                     ';
 
-
+                  }
 
                                 echo '
 
@@ -262,13 +271,13 @@ $acctype = $_SESSION['sess_type'];
                                  <div class="col col-sm-6">
                             <div class="form-group">
                             <h6>Checked By:</h6>
-                                    <input type="text" class="form-control" name="c_by" placeholder="Checked By" value="'.$row['checked_by'].'" required>
+                                    <input type="text" class="form-control" name="c_by" placeholder="Checked By" value="'.$row['checked_by'].'" disabled>
                                   </div>
                             </div>
                             <div class="col col-lg-6">
                             <div class="form-group">
                             <h6>Noted By:</h6>
-                                    <input type="text" class="form-control" name="n_by" placeholder="Noted By" value="'.$row['noted_by'].'" required>
+                                    <input type="text" class="form-control" name="n_by" placeholder="Noted By" value="'.$row['noted_by'].'" disabled>
                                   </div>
                             </div>
                                 <div class="col col-sm-6">
@@ -344,7 +353,7 @@ $acctype = $_SESSION['sess_type'];
                  
                     ';
                   
-                }
+                
               }else {
                   echo '
 
@@ -591,8 +600,7 @@ if(isset($_POST['updatejo'])){
   $c_name = $_POST['c_name'];
   $p_name = $_POST['p_name'];
   $d_date = $_POST['d_date'];
-  $c_by = $_POST['c_by'];
-  $n_by = $_POST['n_by'];
+ 
   $title = $_POST['title'];
   $quantity = $_POST['quantity'];
   $a_size = $_POST['a_size'];
@@ -614,7 +622,7 @@ if(isset($_POST['updatejo'])){
   $now = date("Y-m-d H:i:s");
 
  
-  $sql_jt = "UPDATE `job_ticket` SET `job_order_control_no`='$jo_no',`machine_name`='$mname',`delivery_date`='$d_date',`checked_by`='$c_by',`noted_by`='$n_by',`client_name`='$c_name',`proj_name`='$p_name',`title`='$title',`quantity`='$quantity',`actual_size`='$a_size',`pages`='$pages',`paper_cover`='$p_cover',`color`='$color',`binding`='$binding',`lamination`='$lamination',`remarks`='$remarks',`stock_size`='$s_size',`printing_size`='$p_size',`start`='$start',`finish`='$finish',`no_of_out`='$no_out',`no_of_sheet`='$no_sheet',`no_of_ream`='$no_ream',`status`='$status' WHERE ticket_no = '".$_SESSION['ticket_no']."'";
+  $sql_jt = "UPDATE `job_ticket` SET `job_order_control_no`='$jo_no',`machine_name`='$mname',`delivery_date`='$d_date',`client_name`='$c_name',`proj_name`='$p_name',`title`='$title',`quantity`='$quantity',`actual_size`='$a_size',`pages`='$pages',`paper_cover`='$p_cover',`color`='$color',`binding`='$binding',`lamination`='$lamination',`remarks`='$remarks',`stock_size`='$s_size',`printing_size`='$p_size',`start`='$start',`finish`='$finish',`no_of_out`='$no_out',`no_of_sheet`='$no_sheet',`no_of_ream`='$no_ream',`status`='$status' WHERE ticket_no = '".$_SESSION['ticket_no']."'";
                  mysqli_query($conn,$sql_jt);
                                
                                  echo '<script>alert("Successfully Updated!");</script>';

@@ -19,7 +19,7 @@ $acctype = $_SESSION['sess_type'];
         <div id="loginbox" style="margin-top:10px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
                 <div class="panel-heading">
-                    <div class="panel-title">Add Machine</div>
+                    <div class="panel-title">Add Material Estimation</div>
                 </div>     
 
                 <div style="padding-top:0px" class="panel-body" >
