@@ -59,7 +59,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="modal/prodass/index">
+        <a class="nav-link" href="modal/genservass/index">
           <i class="#"></i>
           <span>Calendar</span>
         </a>
@@ -75,7 +75,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="modal/prodass/addjobticket">
+        <a class="nav-link" href="modal/genservass/addmaterial">
           <i class="#"></i>
           <span>Add Material</span>
         </a>
@@ -83,9 +83,9 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="modal/prodass/addworkorder">
+        <a class="nav-link" href="modal/genservass/supplier">
           <i class="#"></i>
-          <span>Add Supplier</span></a>
+          <span>Supplier Info</span></a>
       </li>
      <!--  <li class="nav-item">
         <a class="nav-link" href="modal/prodass/addtransmittal">

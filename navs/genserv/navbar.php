@@ -42,20 +42,7 @@
           <span>Materials</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index_genservrep.php" data-toggle="collapse" data-target="#collapsePH" aria-expanded="true" aria-controls="collapsePH">
-          <i class="#"></i>
-          <span>Reports</span>
-        </a>
-        <div id="collapsePH" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Division:</h6>
-            <a class="collapse-item" href="reports/reports_prepress.php">Prepress</a>
-            <a class="collapse-item" href="reports/reports_press.php">Press</a>
-            <a class="collapse-item" href="reports/reports_postpress.php">Postpress</a>
-          </div>
-        </div>
-      </li>
+      
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -73,18 +60,10 @@
         Addons
       </div>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index_genservmat.php" data-toggle="collapse" data-target="#collapsePH" aria-expanded="true" aria-controls="collapsePH">
+        <a class="nav-link collapsed" href="modal/genserv/supplier">
           <i class="#"></i>
-          <span>Add Material</span>
+          <span>Supplier Info</span>
         </a>
-        <div id="collapsePH" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Category:</h6>
-            <a class="collapse-item" href="reports/reports_prepress.php">Paper</a>
-            <a class="collapse-item" href="reports/reports_press.php">Ink</a>
-            <a class="collapse-item" href="reports/reports_postpress.php">Chemicals</a>
-          </div>
-        </div>
       </li>
     </ul>
     <!-- End of Sidebar -->
