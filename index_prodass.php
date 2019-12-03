@@ -123,7 +123,7 @@ include 'config.php';
                     </tr>
                   </thead>
           <?php
-            $sql="SELECT * FROM job_ticket WHERE date_checked ='0000-00-00 00:00:00'";
+            $sql="SELECT * FROM job_ticket";
             $result = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_assoc($result)){
                 echo '
@@ -144,12 +144,24 @@ include 'config.php';
                                     </div>
                                     <div class="col col-lg-6">
           
-         
+          ';
+
+          if($row['date_checked'] != "0000-00-00 00:00:00"){
+           
+           echo '
                   <form method="POST" action="enable">   
                      <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
-                        <button name="checked" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Checked</button>
+                        <button name="checked" class="btn btn-primary" style="width:100%;"disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Checked</button>
                   </form>  
-          ';
+                  ';
+          }else {
+              echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                        <button name="checked" class="btn btn-primary" style="width:100%;" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Checked</button>
+                  </form>  
+                  ';
+          }
       
 
       echo '
@@ -337,7 +349,7 @@ echo '
                                     </form>
                                     </div>
                                   
-        </div></center>
+                                  </div></center>
 
                               </td>
                             </tr>

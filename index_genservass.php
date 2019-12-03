@@ -67,10 +67,10 @@ include 'config.php';
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-               <form method="POST" action="logout.php">
+               <form method="POST" action="logout">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
-                <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
+                <button type="submit" name="logout" style="background-color: white; border-radius:12px; margin-right: 10px; "><i class="fas fa-sign-out-alt">Log-out</i></button></form>
               
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -125,9 +125,9 @@ include 'config.php';
                     <tr>
                       <th width="2%"><center>Material ID</center></th>
                       <th><center>Item Name</center></th>
-                      <th><center>Quantity</center></th>
+                      <th width="8%"><center>Quantity</center></th>
                       <th width="20%"><center>Add</th>
-                        <th width="23%"><center>Release</th>
+                        <th width="22%"><center>Release</th>
                       <th><center>Status</center></th>
                       <th><center>Actions</center></th>
                     </tr> 
@@ -269,9 +269,168 @@ include 'config.php';
 
 
 
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Purchase Requisition</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="pr" width="99%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="8%"><center>Purchase Requisition No</center></th>
+                      <th width="15%"><center>Item Name</center></th>
+                      <th width="15%"><center>Item Description</th>
+                      <th width="10%"><center>Status</center></th>
+                      <th width="15%"><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+                     <tbody>
+                      <?php
+                         $sql = 'SELECT * FROM `purchase_requisition`';
+                        $stmt = mysqli_stmt_init($conn);
+                        mysqli_stmt_prepare($stmt, $sql);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+
+                        while($row = mysqli_fetch_assoc($result)){
+                          echo ' <tr>
+                                    <td><center>'.ucfirst($row['purchase_requisition_no']).'</td>
+                                    <td><center>'.ucfirst($row['item_name']).'</td>
+                                    <td><center>'.ucfirst($row['item_desc']).'</td>
+                                    <td><center>'.ucfirst($row['status']).'</td>
+                                    <td><center>
+                                    <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="modal/genservass/editpurchase">
+                       
+                          <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
+                          <button name="view_purchase" class="btn btn-success" style="width:100%;" ><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">';
+         
+      if($row['status'] == "Disabled"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
+                        <button name="enable_pr" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      } else{
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
+                        <button name="delete_pr" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+              }
+
+      echo '
+        </div>
+        </div>
+                                    </td>
+                                </tr>';
+                              }
+                      ?>
+                     
+                       
+                    </tbody>
+                     
+                    
+                   
+                  
+                 
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#pr').DataTable();  
+ });  
+ </script> 
 
 
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Material Request</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="mr" width="99%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="8%"><center>Job Order Control No</center></th>
+                      <th width="8%"><center>Kind of Paper</center></th>
+                      <th width="8%"><center>Quantity</th>
+                      <th width="10%"><center>Status</center></th>
+                      <th width="25%"><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+                     <tbody>
+                      <?php
+                         $sql = 'SELECT * FROM `material_request_form`';
+                        $stmt = mysqli_stmt_init($conn);
+                        mysqli_stmt_prepare($stmt, $sql);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
 
+                        while($row = mysqli_fetch_assoc($result)){
+                          echo ' <tr>
+                                    <td><center>'.ucfirst($row['job_order_control_no']).'</td>
+                                    <td><center>'.ucfirst($row['kind_of_paper']).'</td>
+                                    <td><center>'.ucfirst($row['quantity']).'</td>
+                                    <td><center>'.ucfirst($row['pending_status']).'</td>
+                                    <td><center>
+                                    <div class="row">
+                                    <div class="col col-lg-4">
+                                    <form method="POST" action="modal/genservass/editmaterialrequest">
+                       
+                          <input type="hidden" name="request_id" value="'.$row['request_id'].'">
+                          <button name="view_purchase" class="btn btn-success" style="width:100%;" ><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-4">
+         
+   
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="request_id" value="'.$row['request_id'].'">
+                        <button name="enable_pr" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
+                  </form>  
+      </div>
+      <div class="col col-lg-4">
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="request_id" value="'.$row['request_id'].'">
+                        <button name="delete_pr" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Reject</button>
+                  </form>  
+             
+    
+        </div>
+        </div>
+                                    </td>
+                                </tr>';
+                              }
+                      ?>
+                     
+                       
+                    </tbody>
+                     
+                    
+                   
+                  
+                 
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#mr').DataTable();  
+ });  
+ </script> 
 
 
 

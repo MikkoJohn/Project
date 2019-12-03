@@ -66,7 +66,7 @@ include 'config.php';
                <form method="POST" action="logout.php">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 large">Welcome!  <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
-                <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
+                <button type="submit" name="logout" style="background-color: white; border-radius:12px; margin-right: 10px; "><i class="fas fa-sign-out-alt">Log-out</i></button></form>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -99,7 +99,8 @@ include 'config.php';
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"></h1>
+            <iframe src="notif_wo.php" style="width: 30%; margin-left: 0px;top:20%;height: 50px;position: ;">
+            </iframe>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
             <div class="card shadow mb-4">
@@ -201,45 +202,95 @@ include 'config.php';
  </script>  
 
 
+
+ <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Purchase Requisition</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="pr" width="99%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="15%"><center>Purchase Requisition No</center></th>
+                      <th ><center>Item Name</center></th>
+                      <th><center>Item Description</th>
+                      <th width="10%"><center>Status</center></th>
+                      <th ><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+                     <tbody>
+                      <?php
+                         $sql = 'SELECT * FROM `purchase_requisition`';
+                        $stmt = mysqli_stmt_init($conn);
+                        mysqli_stmt_prepare($stmt, $sql);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+
+                        while($row = mysqli_fetch_assoc($result)){
+                          echo ' <tr>
+                                    <td><center>'.ucfirst($row['purchase_requisition_no']).'</td>
+                                    <td><center>'.ucfirst($row['item_name']).'</td>
+                                    <td><center>'.ucfirst($row['item_desc']).'</td>
+                                    <td><center>'.ucfirst($row['status']).'</td>
+                                    <td><center>
+                                    <div class="row">
+                                    <div class="col col-lg-4">
+                                    <form method="POST" action="modal/finance/editpurchase">
+                       
+                          <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
+                          <button name="view_purchase" class="btn btn-success" style="width:100%;" ><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-4">
+         
+     
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
+                        <button name="enable_prg" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disapprove</button>
+                  </form>  
+     </div>
+     <div class="col col-lg-4">
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
+                        <button name="delete_prg" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
+                  </form>  
+             
+
+
+        </div>
+        </div>
+                                    </td>
+                                </tr>';
+                              }
+                      ?>
+                     
+                       
+                    </tbody>
+                     
+                    
+                   
+                  
+                 
+                </table>
           </div>
         </div>
         </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#pr').DataTable();  
+ });  
+ </script> 
+
+
+
 
 
 
 <!--                             -->
 
- <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Purchase Request</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="prequest" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>J.O. No.</th>
-                      <th>Project Name</th>
-                      <th>Client Name</th>
-                      <th>Date Created</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  
-                </table>
-
-  <script>  
- $(document).ready(function(){  
-      $('#prequest').DataTable();  
- });  
- </script>  
-
-
-          </div>
-        </div>
-        </div>
-
+  </div>
 
 
       </div>

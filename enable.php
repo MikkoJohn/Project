@@ -194,9 +194,9 @@ $stmt = $conn->prepare("UPDATE `project_run_schedule` SET `pending_status` = ? W
 //   date_default_timezone_set("Asia/Manila");
 // $nows = date("Y-m-d H:i:s");
 // $stmt = $conn->prepare("DELETE FROM `machine` WHERE `machine_id` = ?");
-  $stmt = $conn->prepare("UPDATE `job_ticket` SET date_checked = ? WHERE `ticket_no` = ?");
+  $stmt = $conn->prepare("UPDATE `job_ticket` SET date_checked = ?, checked_by=? WHERE `ticket_no` = ?");
   
-                              $stmt->bind_param('ss',$now,$ticket_no);
+                              $stmt->bind_param('sss',$now,$accname,$ticket_no);
 
                               if($stmt->execute()){
                                
@@ -299,6 +299,48 @@ $stmt = $conn->prepare("UPDATE `project_run_schedule` SET `pending_status` = ? W
 
                               $stmt->close();
 
+}else if(isset($_POST['enable_pr'])){
+  $purchase_requisition_no = $_POST['purchase_requisition_no'];
+  $status = "Enabled";
+  // $stmt = $conn->prepare("DELETE FROM `job_ticket` WHERE `ticket_no` = ?");
+  $stmt = $conn->prepare("UPDATE `purchase_requisition` SET status=? WHERE `purchase_requisition_no` = ?");
+                              $stmt->bind_param('ss',$status,$purchase_requisition_no);
+
+                              if($stmt->execute()){
+                                echo'<script>swal("Successfully Deleted!","", "success");</script>';
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Enabled Job Ticket')";
+                              mysqli_query($conn,$sql1);
+                               echo"<script>alert('Data Enabled!')</script>";
+                                // header("Location: index_admin");
+                                echo "<script type='text/javascript'>location.href = 'index_genservass';</script>";
+                              } 
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
+}else if(isset($_POST['enable_prg'])){
+  $purchase_requisition_no = $_POST['purchase_requisition_no'];
+  $status = "Enabled";
+  // $stmt = $conn->prepare("DELETE FROM `job_ticket` WHERE `ticket_no` = ?");
+  $stmt = $conn->prepare("UPDATE `purchase_requisition` SET status=? WHERE `purchase_requisition_no` = ?");
+                              $stmt->bind_param('ss',$status,$purchase_requisition_no);
+
+                              if($stmt->execute()){
+                                echo'<script>swal("Successfully Deleted!","", "success");</script>';
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Enabled Job Ticket')";
+                              mysqli_query($conn,$sql1);
+                               echo"<script>alert('Data Enabled!')</script>";
+                                // header("Location: index_admin");
+                                echo "<script type='text/javascript'>location.href = 'index_genserv';</script>";
+                              } 
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
 }
 
 ?>
