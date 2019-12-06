@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2019 at 09:55 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Dec 01, 2019 at 11:22 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -184,8 +182,15 @@ CREATE TABLE `job_order` (
 --
 
 INSERT INTO `job_order` (`job_order_control_no`, `sales_number`, `client_name`, `item_desc_and_title`, `proj_name`, `date_created`, `costing_run`, `finishing_required`, `packaging_required`, `date_to_warehouse`, `requested_delivery`, `quantity`, `size`, `pages`, `paper`, `remarks`, `status`, `jo_status`) VALUES
-(1, 1, 'Mark', '1', '1', '2019-12-02 14:15:19', 'qwe', 'Perfect Bind', 'Perfect Bind', '2019-01-01', '2019-12-19', '1', '123123', '1', 'asdad', 'asdasd', 'Pending', 0),
-(2, 2, 'AAAA', 'qweqwe', 'qweqwe', '2019-12-02 14:16:03', 'lk', 'Perfect Bind', 'Perfect Bind', '2019-01-01', '2019-01-01', '1', '123123', '1', 'asdad', 'qweqwe', 'Pending', 0);
+(3, 1, 'lkj', 'lkj', 'lkj', '2019-10-09 01:23:41', 'lkjlkj', 'Debossing', 'jh', '2019-10-10', '2019-10-25', '123', '123', '123123', 'jhgjhg', 'asdkl', 'Disabled', 1),
+(4, 12, 'iuy', 'yi', 'iu', '2019-10-18 10:34:05', 'uy', 'Vertical Ringbind', 'yiuy', '2019-10-18', '2019-10-24', '76', 'qw', '7', 'iuy', 'qwe', 'Disabled', 1),
+(5, 11, 'Miks', 'kljh', 'asd', '2019-10-25 15:41:10', 'kjh', 'Saddle Stitch', 'Corrugated Boxes', '2019-10-23', '2019-10-16', '123', '12', '12', 'qwe', 'asdad', 'Acknowledged', 1),
+(6, 5, 'AAAA', 'assd', 'asd', '2019-11-02 17:19:42', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-11-01', '2019-11-22', '123', '123', '123', '12', 'asdas', 'Pending', 1),
+(7, 123, 'Miks', 'qwe', 'qwe', '2019-11-02 17:22:16', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-11-01', '2019-11-13', '123', '123', '123', '12', '123', 'Pending', 1),
+(8, 3, 'Miks', 'asd', 'asd', '2019-11-02 17:24:39', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-01', '123', '1', '13', 'Generator', '123', 'Pending', 1),
+(9, 4, 'Miks', 'asd', 'asd', '2019-11-02 17:28:49', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-02', '1', '1', '1', 'lk', 'asd', 'Pending', 1),
+(10, 9, 'Miks', 'aaa', 'aaa', '2019-11-04 20:40:46', 'lk', 'Perfect Bind', 'Corrugated Boxes', '2019-01-01', '2019-01-01', '9', '9', '9', 'lk', 'asd', 'Pending', 1),
+(13, 111111, 'Miks', 'qwe', 'qweqwe', '2019-11-22 08:13:38', 'jhjhg', 'Lamination', 'Corrugated Boxes', '2019-01-01', '2019-01-01', '123', '123123', '123', 'Lapis', '123', 'Acknowledged', 1);
 
 -- --------------------------------------------------------
 
@@ -230,8 +235,14 @@ CREATE TABLE `job_ticket` (
 --
 
 INSERT INTO `job_ticket` (`ticket_no`, `job_order_control_no`, `date_time_created`, `machine_name`, `delivery_date`, `checked_by`, `noted_by`, `client_name`, `proj_name`, `title`, `quantity`, `actual_size`, `pages`, `paper_cover`, `color`, `binding`, `lamination`, `remarks`, `stock_size`, `printing_size`, `start`, `finish`, `date_checked`, `date_noted`, `no_of_out`, `no_of_sheet`, `no_of_ream`, `status`, `jt_status`) VALUES
-(1, 1, '2019-12-02 14:24:02', 'qwe', '0000-00-00', 'Miks', 'Miks', 'Mark', '1', '1', '1', '', '1', '', '', 'Perfect Bind', '', '', 0, 0, '0000-00-00', '0000-00-00', '2019-12-02 16:52:20', '2019-12-02 16:43:09', 0, 0, 0, 'Pending', 0),
-(2, 2, '2019-12-02 15:04:28', 'lk', '0000-00-00', '', '', 'AAAA', 'qweqwe', 'qweqwe', '1', '', '1', '', '', 'Perfect Bind', '', '', 0, 0, '0000-00-00', '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 'Pending', 0);
+(1, 1, '2019-10-10 09:31:09', 'gen', '2019-10-11', 'khjk', 'jkh', 'jkh', 'qwertys', 'hj', '12', '12', 'kjh', 'kjh', '4 Color - Black, Yellow', 'Embossing', 'jkh', 'jkh', 123, 123, '2019-10-10', '2019-10-17', '0000-00-00 00:00:00', '2019-10-16 00:00:00', 21, 12, 12, 'Disabled', 1),
+(2, 3, '0000-00-00 00:00:00', 'qwe', '2019-11-14', 'asdas', 'dasdasd', 'lkj', 'lkj', 'asdasd', '123', '123', '123123', '123', '4 Color - Black, Yellow', 'Debossing', 'asd', 'asd', 123, 123, '2019-11-19', '2019-11-22', '2019-12-01 16:16:36', '2019-12-01 22:29:30', 12, 12, 12, 'Enabled', 1),
+(3, 4, '0000-00-00 00:00:00', '', '0000-00-00', '', '', 'iuy', 'iu', '', '76', '', '7', '', '3 Color - Black, Magenta', 'Vertical Ringbind', '', '', 0, 0, '0000-00-00', '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, '', 1),
+(4, 5, '0000-00-00 00:00:00', '', '0000-00-00', '', '', 'Miks', 'asd', '', '123', '', '12', '', '', 'Saddle Stitch', '', '', 0, 0, '0000-00-00', '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, '', 1),
+(5, 0, '2019-11-01 13:06:30', '$mname', '2019-01-01', '$c_by', '$n_by', 'asd', 'TRY', '$title', '123', '123', '$pages', '$p_cover', '$color', 'Lamination', '$lamination', '$remarks', 123, 123, '2019-11-25', '2019-11-29', '0000-00-00 00:00:00', '2019-01-01 00:00:00', 1, 1, 1, 'Pending', 1),
+(6, 13, '2019-11-22 08:17:36', 'jhjhg', '0000-00-00', '', '', 'Miks', 'qweqwe', '', '123', '', '123', '', '', 'Lamination', '', '', 0, 0, '0000-00-00', '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 'Pending', 1),
+(7, 6, '2019-11-30 11:11:25', 'lk', '0000-00-00', '', '', 'AAAA', 'asd', '', '123', '', '123', '', '', 'Perfect Bind', '', '', 0, 0, '0000-00-00', '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 'Pending', 1),
+(8, 7, '2019-11-30 11:11:52', 'lk', '0000-00-00', '', '', 'Miks', 'qwe', '', '123', '', '123', '', '', 'Perfect Bind', '', '', 0, 0, '0000-00-00', '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 'Pending', 1);
 
 -- --------------------------------------------------------
 
@@ -323,7 +334,7 @@ CREATE TABLE `materials` (
 --
 
 INSERT INTO `materials` (`material_id`, `item_name`, `item_desc`, `category`, `quantity`, `size`, `unit_of_measure`, `status`) VALUES
-(2, 'Inks', 'Soft', 'Ink', 3, '15', 'Liter', 0),
+(2, 'Ink', 'Soft', 'Ink', 3, '15', 'Liter', 0),
 (3, 'Inksssa', 'Soft', 'Ink', 1, '15', 'Liter', 0),
 (4, 'Lapis', 'asdad', 'Chemicals', 5, '', 'Kilogram', 0),
 (5, 'asdad', 'sdads', 'Paper', 4, '', 'Kilogram', 0);
@@ -774,7 +785,7 @@ CREATE TABLE `purchase_requisition` (
 --
 
 INSERT INTO `purchase_requisition` (`purchase_requisition_no`, `date`, `material_id`, `item_name`, `item_desc`, `quantity`, `unit`, `unit_price`, `total`, `tentative_delivery_date`, `actual_delivery_date`, `status`) VALUES
-(1, '2019-10-09 03:08:43', 0, 'jhgjhg', 'jhg', 12, 0, 1212, 12, '2019-10-16', '2019-10-09', 'Enabled');
+(1, '2019-10-09 03:08:43', 0, 'jhgjhg', 'jhg', 12, 0, 1212, 12, '2019-10-16', '2019-10-09', 'asdas');
 
 -- --------------------------------------------------------
 
@@ -895,8 +906,7 @@ INSERT INTO `tbl_useraccounts` (`ua_id`, `uname`, `pass`, `user_type`, `fname`, 
 (26, 'lk', 'lk', '3', 'lk', 'lk', 'lk', '', 0),
 (27, 'john', 'john', '2', 'Johnny', '', 'Johnny', '', 0),
 (28, 'jo', 'jo', '4', 'jo', '', 'joh', '', 0),
-(29, 'finance', 'finance', '10', 'FInance', '', 'Finance', '', 0),
-(30, 'genservass', 'genservass', '9', 'genservass', '', 'genservass', '', 0);
+(29, 'finance', 'finance', '10', 'FInance', '', 'Finance', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1279,26 +1289,7 @@ INSERT INTO `user_action` (`user_action_id`, `username`, `user_designation`, `ac
 (332, 'Miks', '2', '2019-12-01 22:19:53', 'Updated Job Ticket'),
 (333, 'Miks', '2', '2019-12-01 22:29:01', 'Noted Job Ticket'),
 (334, 'Miks', '2', '2019-12-01 22:29:30', 'Noted Job Ticket'),
-(335, 'Miks', '2', '2019-12-01 22:31:59', 'Add Quantity'),
-(336, 'Miks', '2', '2019-12-02 07:48:37', 'Add Account'),
-(337, 'genservass', '9', '2019-12-02 07:56:16', 'Disabled Material'),
-(338, 'genservass', '9', '2019-12-02 07:56:20', 'Enabled Material'),
-(339, 'genservass', '9', '2019-12-02 07:59:30', 'Add Quantity'),
-(340, 'genservass', '9', '2019-12-02 08:00:04', 'Release Materials Quantity(1)'),
-(341, 'genservass', '9', '2019-12-02 08:00:08', 'Add Quantity'),
-(342, 'genservass', '9', '2019-12-02 08:00:10', 'Release Materials Quantity(1)'),
-(343, 'genservass', '9', '2019-12-02 08:05:29', 'Updated Material'),
-(344, 'genservass', '9', '2019-12-02 12:44:05', 'Disabled Job Ticket'),
-(345, 'genservass', '9', '2019-12-02 12:44:30', 'Enabled Job Ticket'),
-(346, 'Miks', '1', '2019-12-02 14:12:11', 'Add Job Order'),
-(347, 'Miks', '1', '2019-12-02 14:15:19', 'Add Job Order'),
-(348, 'Miks', '1', '2019-12-02 14:16:03', 'Add Job Order'),
-(349, 'Miks', '1', '2019-12-02 14:24:03', 'Converted Job Order'),
-(350, 'Miks', '3', '2019-12-02 15:04:29', 'Converted Job Order'),
-(351, 'Miks', '3', '2019-12-02 15:29:05', 'Checked Job Ticket'),
-(352, 'Miks', '2', '2019-12-02 16:17:24', 'Noted Job Ticket'),
-(353, 'Miks', '2', '2019-12-02 16:43:09', 'Noted Job Ticket'),
-(354, 'Miks', '3', '2019-12-02 16:52:20', 'Checked Job Ticket');
+(335, 'Miks', '2', '2019-12-01 22:31:59', 'Add Quantity');
 
 -- --------------------------------------------------------
 
@@ -1478,128 +1469,101 @@ ALTER TABLE `work_order`
 --
 ALTER TABLE `client_info`
   MODIFY `client_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `job_order`
---
-ALTER TABLE `job_order`
-  MODIFY `job_order_control_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `job_ticket`
 --
 ALTER TABLE `job_ticket`
-  MODIFY `ticket_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `ticket_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `machine`
 --
 ALTER TABLE `machine`
   MODIFY `machine_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
 --
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
   MODIFY `material_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `material_estimation`
 --
 ALTER TABLE `material_estimation`
   MODIFY `estimation_id` int(50) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `material_request_form`
 --
 ALTER TABLE `material_request_form`
   MODIFY `request_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `operators`
 --
 ALTER TABLE `operators`
   MODIFY `operator_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `operator_schedule`
 --
 ALTER TABLE `operator_schedule`
   MODIFY `operator_id` int(10) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `post_press`
 --
 ALTER TABLE `post_press`
   MODIFY `div_no` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `press`
 --
 ALTER TABLE `press`
   MODIFY `div_no` int(25) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `pre_press`
 --
 ALTER TABLE `pre_press`
   MODIFY `div_id_no` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `project_run_schedule`
 --
 ALTER TABLE `project_run_schedule`
   MODIFY `project_run_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `purchase_requisition`
 --
 ALTER TABLE `purchase_requisition`
   MODIFY `purchase_requisition_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
   MODIFY `report_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `supplier_info`
 --
 ALTER TABLE `supplier_info`
   MODIFY `supplier_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `tbl_useraccounts`
 --
 ALTER TABLE `tbl_useraccounts`
-  MODIFY `ua_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
+  MODIFY `ua_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `trasmittal`
 --
 ALTER TABLE `trasmittal`
   MODIFY `transmittal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `user_action`
 --
 ALTER TABLE `user_action`
-  MODIFY `user_action_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=355;
-
+  MODIFY `user_action_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
 --
 -- AUTO_INCREMENT for table `work_order`
 --
 ALTER TABLE `work_order`
   MODIFY `work_order_no` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

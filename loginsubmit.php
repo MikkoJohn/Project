@@ -15,6 +15,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
       $dbpassword = $row['pass'];
       $dbusertype = $row['user_type'];  /* Check LEGENDS(ACCOUNTTYPE).txt */
       $acct_name = $row['fname'];
+      $acct_lastname = $row['lname'];
       $status = $row['status'];
                 if($uname == $dbusername && $pass == $dbpassword && $dbusertype == "1" && $status == "0")
                     {
@@ -22,6 +23,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                           $_SESSION['sess_user'] = $uname;
                           $_SESSION['sess_type'] = $dbusertype;
                           $_SESSION['acct_name'] = $acct_name;
+                          $_SESSION['acct_lastname'] = $acct_lastname;
                             /* Redirect browser */
                             echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
                             //exit();
@@ -33,6 +35,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                           $_SESSION['sess_user'] = $uname;
                           $_SESSION['sess_type'] = $dbusertype;
                           $_SESSION['acct_name'] = $acct_name;
+                          $_SESSION['acct_lastname'] = $acct_lastname;
                        // $_SESSION['sess_user'] = $uname;
                             /* Redirect browser */
                             echo "<script type='text/javascript'>location.href = 'index_prodhead';</script>";
@@ -44,6 +47,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_user'] = $uname;
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
+                         $_SESSION['acct_lastname'] = $acct_lastname;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_prodass';</script>";
                     }
@@ -54,6 +58,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                           $_SESSION['sess_user'] = $uname;
                           $_SESSION['sess_type'] = $dbusertype;
                           $_SESSION['acct_name'] = $acct_name;
+                          $_SESSION['acct_lastname'] = $acct_lastname;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_prodplan';</script>";
                     }
@@ -64,6 +69,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_user'] = $uname;
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
+                         $_SESSION['acct_lastname'] = $acct_lastname;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = '';</script>";
                     }
@@ -74,6 +80,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_user'] = $uname;
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
+                         $_SESSION['acct_lastname'] = $acct_lastname;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_sales';</script>";
                     }
@@ -84,6 +91,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_user'] = $uname;
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
+                         $_SESSION['acct_lastname'] = $acct_lastname;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_operators';</script>";
                     }
@@ -93,6 +101,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_user'] = $uname;
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
+                         $_SESSION['acct_lastname'] = $acct_lastname;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_genserv';</script>";
                     }
@@ -102,6 +111,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_user'] = $uname;
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
+                         $_SESSION['acct_lastname'] = $acct_lastname;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_genservass';</script>";
                     }
@@ -111,6 +121,7 @@ if(!empty($_POST['uname']) && !empty($_POST['pass'])) {
                          $_SESSION['sess_user'] = $uname;
                          $_SESSION['sess_type'] = $dbusertype;
                          $_SESSION['acct_name'] = $acct_name;
+                         $_SESSION['acct_lastname'] = $acct_lastname;
                            /* Redirect browser */
                           echo "<script type='text/javascript'>location.href = 'index_finance';</script>";
                     }

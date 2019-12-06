@@ -11,6 +11,10 @@ if(!isset($_SESSION["sess_user"])){
 } else {
   
 }
+
+// echo $q;
+
+// echo $_SESSION["acct_name"] ," ", $_SESSION["acct_lastname"];
 ?>
 <?php 
 include('navs/prodass/header.php'); 

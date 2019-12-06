@@ -247,13 +247,13 @@ include 'config.php';
      
                   <form method="POST" action="enable">   
                      <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
-                        <button name="enable_prg" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disapprove</button>
+                        <button name="enable_prg" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
                   </form>  
      </div>
      <div class="col col-lg-4">
                   <form method="POST" action="delete">   
                      <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
-                        <button name="delete_prg" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
+                        <button name="delete_prg" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disapprove</button>
                   </form>  
              
 
