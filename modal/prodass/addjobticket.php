@@ -177,7 +177,7 @@ $acctype = $_SESSION['sess_type'];
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
-                            <div class="form-group">
+                           <!--  <div class="form-group">
                               <h6>Checked By:</h6>
                                     <input type="text" class="form-control" name="c_by" placeholder="Checked By" required>
                                   </div>
@@ -187,7 +187,7 @@ $acctype = $_SESSION['sess_type'];
                               <h6>Noted By:</h6>
                                     <input type="text" class="form-control" name="n_by" placeholder="Noted By" required>
                                   </div>
-                            </div>
+                            </div> -->
                                <!--  <div class="col col-sm-6">
                                 <div class="form-group">
                                 <h5>Time Received:</h5>                          
@@ -249,8 +249,8 @@ $acctype = $_SESSION['sess_type'];
   $c_name = $_POST['c_name'];
   $p_name = $_POST['p_name'];
   $d_date = $_POST['d_date'];
-  $c_by = $_POST['c_by'];
-  $n_by = $_POST['n_by'];
+  // $c_by = $_POST['c_by'];
+  // $n_by = $_POST['n_by'];
   $title = $_POST['title'];
   $quantity = $_POST['quantity'];
   $a_size = $_POST['a_size'];
@@ -271,12 +271,12 @@ $acctype = $_SESSION['sess_type'];
   $no_ream = $_POST['no_ream'];
   $status = $_POST['status'];
   $now = date("Y-m-d H:i:s");
-  if(empty($jo_no) || empty($mname) || empty($c_name) || empty($c_name) || empty($d_date) || empty($c_by) || empty($n_by) || empty($pages) || empty($quantity) || empty($a_size) || empty($title) || empty($p_cover) || empty($color) || empty($binding) || empty($lamination) || empty($remarks) || empty($s_size) || empty($p_size) || empty($start) || empty($finish) || empty($no_out) || empty($no_sheet) || empty($no_ream) || empty($status)){
+  if(empty($jo_no) || empty($mname) || empty($c_name) || empty($c_name) || empty($d_date) || empty($pages) || empty($quantity) || empty($a_size) || empty($title) || empty($p_cover) || empty($color) || empty($binding) || empty($lamination) || empty($remarks) || empty($s_size) || empty($p_size) || empty($start) || empty($finish) || empty($no_out) || empty($no_sheet) || empty($no_ream) || empty($status)){
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  
-  $stmt = $conn->prepare("INSERT INTO `job_ticket`(`job_order_control_no`,`date_time_created`, `machine_name`,`proj_name` ,`delivery_date`, `checked_by`, `noted_by`, `client_name`, `title`, `quantity`, `actual_size`, `pages`, `paper_cover`, `color`, `binding`, `lamination`, `remarks`, `stock_size`, `printing_size`, `start`, `finish`, `no_of_out`, `no_of_sheet`, `no_of_ream`,`status`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                              $stmt->bind_param('sssssssssssssssssssssssss',$jo_no, $now,$mname,$p_name,$d_date,$c_by,$n_by,$c_name,$title,$quantity,$a_size,$pages,$p_cover,$color,$binding,$lamination,$remarks,$s_size,$p_size,$start,$finish,$no_out,$no_sheet,$no_ream,$status);
+  $stmt = $conn->prepare("INSERT INTO `job_ticket`(`job_order_control_no`,`date_time_created`, `machine_name`,`proj_name` ,`delivery_date`, `client_name`, `title`, `quantity`, `actual_size`, `pages`, `paper_cover`, `color`, `binding`, `lamination`, `remarks`, `stock_size`, `printing_size`, `start`, `finish`, `no_of_out`, `no_of_sheet`, `no_of_ream`,`status`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                              $stmt->bind_param('sssssssssssssssssssssss',$jo_no, $now,$mname,$p_name,$d_date,$c_name,$title,$quantity,$a_size,$pages,$p_cover,$color,$binding,$lamination,$remarks,$s_size,$p_size,$start,$finish,$no_out,$no_sheet,$no_ream,$status);
 
                               if($stmt->execute()){
                                 // echo'<script>swal("Successfully Added!","", "success");</script>';
