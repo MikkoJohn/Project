@@ -4,6 +4,7 @@
     include '../../includes/header.php';
     session_start();
     $accname = $_SESSION['acct_name'];
+    $acclname = $_SESSION['acct_lastname'];
 $acctype = $_SESSION['sess_type'];
   ?>
 
@@ -666,8 +667,8 @@ if(isset($_POST['updatejo'])){
 // $nows = date("Y-m-d H:i:s");
 // $stmt = $conn->prepare("DELETE FROM `machine` WHERE `machine_id` = ?");
   $stmt = $conn->prepare("UPDATE `job_ticket` SET `date_noted` = ?,`noted_by` = ?  WHERE `ticket_no` = ?");
-  
-                              $stmt->bind_param('sss',$now,$accname,$_SESSION['ticket_no']);
+  $namechecked = $_SESSION["acct_name"] ." ". $_SESSION["acct_lastname"];
+                              $stmt->bind_param('sss',$now,$namechecked,$_SESSION['ticket_no']);
 
                               if($stmt->execute()){
                                 // echo'<script>swal("Successfully Noted!","", "success");</script>';

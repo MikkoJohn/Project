@@ -42,7 +42,7 @@ $acctype = $_SESSION['sess_type'];
                              <div class="col col-sm-6">
                              <div class="form-group">
                               <label>No. of Reams</label>
-                                    <input type="number" class="form-control" name="no_reams" placeholder="No. of Reams" required>
+                                    <input type="text" class="form-control" name="no_reams" placeholder="No. of Reams" required>
                                   </div>
                                 </div>
                             <div class="col col-sm-6">
@@ -54,7 +54,19 @@ $acctype = $_SESSION['sess_type'];
                             <div class="col col-sm-12">
                             <div class="form-group">
                                <label>Kind of Paper</label>
-                                  <input type="text" class="form-control" name="k_paper" placeholder="Kind of Paper" required>
+                        <select  class="form-control" name="k_paper">
+                          <option value="NULL" selected disabled>SELECT KIND OF PAPER</option>
+                               <?php
+              $sql_material = "SELECT item_name FROM materials WHERE category = 'Paper'";
+              $result_material = mysqli_query($conn,$sql_material);
+              while($row_material = mysqli_fetch_assoc($result_material)){
+                    echo '
+                        <option value="'.$row_material['item_name'].'">'.$row_material['item_name'].'</option>
+                    ';
+              }
+                               ?>
+                               </select>
+                                  <!-- <input type="text" class="form-control" name="k_paper" placeholder="Kind of Paper" required> -->
                                   </div>
                             </div>
                             <div class="col col-sm-12">

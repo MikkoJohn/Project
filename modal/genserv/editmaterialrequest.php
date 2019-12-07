@@ -46,7 +46,7 @@ $acctype = $_SESSION['sess_type'];
                              <div class="col col-sm-6">
                              <div class="form-group">
                               <label>No. of Reams</label>
-                                    <input type="number" class="form-control" name="no_reams" value="'.$rows['no_of_reams'].'" placeholder="No. of Reams" disabled>
+                                    <input type="text" class="form-control" name="no_reams" value="'.$rows['no_of_reams'].'" placeholder="No. of Reams" disabled>
                                   </div>
                                 </div>
                             <div class="col col-sm-6">
