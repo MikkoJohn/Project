@@ -242,7 +242,7 @@ $acctype = $_SESSION['sess_type'];
                                 <div class="form-group"> 
                                 <h6>Printing Size:</h6>   
                                   ';
-                          if($row['stock_size'] =="0"){
+                          if($row['printing_size'] =="0"){
                             echo '              
                                     <input  type="text" class="form-control" placeholder="Printing Size" name="p_size" value="" required>
                             ';
