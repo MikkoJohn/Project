@@ -92,6 +92,11 @@
           <i class="#"></i>
           <span>Add Transmittal</span></a>
       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="modal/prodass/addmaterialrequest">
+          <i class="#"></i>
+          <span>Add Material Request</span></a>
+      </li>
 
     </ul>
     <!-- End of Sidebar -->

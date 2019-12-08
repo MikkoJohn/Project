@@ -323,7 +323,7 @@ $results = mysqli_query($conn,$sql_totaljo);
                                         <td><center>
                           <div class="row">
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="editmodal/editaccount.php">
+                                    <form method="POST" action="editmodal/editaccount">
                        
                           <input type="hidden" name="acc_id" value="'.$row['ua_id'].'">
                           <button name="view_account" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
@@ -413,7 +413,7 @@ $results = mysqli_query($conn,$sql_totaljo);
                                       <td><center>
                           <div class="row">
                                     <div class="col col-lg-4">
-                                    <form method="POST" action="editmodal/editjoborder.php">
+                                    <form method="POST" action="editmodal/editjoborder">
                        
                           <input type="hidden" name="jo_id" value="'.$row['job_order_control_no'].'">
                           <button name="view_jo" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
@@ -519,7 +519,7 @@ echo '
                       <td><center>
                       <div class="row">
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="editmodal/editjobticket.php">
+                                    <form method="POST" action="editmodal/editjobticket">
                   
                           <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
                           <button name="view_jticket" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
@@ -601,7 +601,7 @@ echo '
                                     <td><center>
                                     <div class="row">
                                     <div class="col col-lg-6">
-                                    <form method="POST" action="editmodal/editmachine.php">
+                                    <form method="POST" action="editmodal/editmachine">
                        
                           <input type="hidden" name="machine_id" value="'.$row['machine_id'].'">
                           <button name="view_machine" class="btn btn-success" style="width:100%;" ><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
@@ -664,7 +664,7 @@ echo '
                       <th><center>Item Name</center></th>
                       <th><center>Quantity</center></th>
                       <th width="20%"><center>Add</th>
-                        <th width="23%"><center>Release</th>
+                        <!-- <th width="23%"><center>Release</th> -->
                       <th><center>Status</center></th>
                       <th><center>Actions</center></th>
                     </tr> 
@@ -714,38 +714,7 @@ echo '
                     </div>
                     </div>
                    </center></td>
-              <td>
-              <div class="row">
-                   <div class="col col-sm-6">
-                  <form method="POST" action="releasequantity">
-                    <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
-
-              ';
-                  if($row['status'] == 1){
-                        echo '
-                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
-                            ';
-                    }else if($row['status'] == 0){
-                        echo '
-                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
-                            ';
-                    }
-                echo '
-                    </div>
-                    <div class="col col-sm-6">
-                    ';
-                    if($row['status'] == 1){
-                    echo '
-                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
-                      ';
-                    }else if($row['status'] == 0){
-                  echo '
-                          <button name="add_quantity" class="btn btn-danger" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Release</button>
-                      ';
-                    }
-            echo '
-                  </form>
-              </td>
+             
                   ';
             if($row['status'] == 1){
               echo '<td><center>Disabled</center></td>';

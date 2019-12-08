@@ -127,7 +127,7 @@ include 'config.php';
                       <th><center>Item Name</center></th>
                       <th width="8%"><center>Quantity</center></th>
                       <th width="20%"><center>Add</th>
-                        <th width="22%"><center>Release</th>
+                        <!-- <th width="22%"><center>Release</th> -->
                       <th><center>Status</center></th>
                       <th><center>Actions</center></th>
                     </tr> 
@@ -177,38 +177,7 @@ include 'config.php';
                     </div>
                     </div>
                    </center></td>
-              <td>
-              <div class="row">
-                   <div class="col col-sm-6">
-                  <form method="POST" action="releasequantity">
-                    <input type="hidden" name="material_id"  value="'.$row['material_id'].'">
-
-              ';
-                  if($row['status'] == 1){
-                        echo '
-                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" disabled>
-                            ';
-                    }else if($row['status'] == 0){
-                        echo '
-                            <input type="number" class="form-control" placeholder="Quantity" min="1" name="quantity" style="width:110px;">
-                            ';
-                    }
-                echo '
-                    </div>
-                    <div class="col col-sm-6">
-                    ';
-                    if($row['status'] == 1){
-                    echo '
-                          <button name="" class="btn btn-danger" style="width:%;" disabled> Disabled</button>
-                      ';
-                    }else if($row['status'] == 0){
-                  echo '
-                          <button name="release_quantity_genass" class="btn btn-danger" style="width:%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Release</button>
-                      ';
-                    }
-            echo '
-                  </form>
-              </td>
+              
                   ';
             if($row['status'] == 1){
               echo '<td><center>Disabled</center></td>';
@@ -280,7 +249,7 @@ include 'config.php';
                     <tr>
                       <th width="8%"><center>Purchase Requisition No</center></th>
                       <th width="15%"><center>Item Name</center></th>
-                      <th width="15%"><center>Item Description</th>
+                      <!-- <th width="15%"><center>Item Description</th> -->
                       <th width="10%"><center>Status</center></th>
                       <th width="15%"><center>Actions</center></th>
                     </tr> 
@@ -297,7 +266,7 @@ include 'config.php';
                           echo ' <tr>
                                     <td><center>'.ucfirst($row['purchase_requisition_no']).'</td>
                                     <td><center>'.ucfirst($row['item_name']).'</td>
-                                    <td><center>'.ucfirst($row['item_desc']).'</td>
+                                  
                                     <td><center>'.ucfirst($row['status']).'</td>
                                     <td><center>
                                     <div class="row">
@@ -395,15 +364,15 @@ include 'config.php';
                                     <div class="col col-lg-4">
          
    
-                  <form method="POST" action="enable">   
+                  <form method="POST" action="modal/genservass/approve">   
                      <input type="hidden" name="request_id" value="'.$row['request_id'].'">
-                        <button name="enable_pr" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
+                        <button name="approve_mr" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
                   </form>  
       </div>
       <div class="col col-lg-4">
-                  <form method="POST" action="delete">   
+                  <form method="POST" action="modal/genservass/approve">   
                      <input type="hidden" name="request_id" value="'.$row['request_id'].'">
-                        <button name="delete_pr" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Reject</button>
+                        <button name="disapprove_mr" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Reject</button>
                   </form>  
              
     

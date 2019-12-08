@@ -122,7 +122,7 @@ include 'config.php';
                     <tr>
                       <th width="8%"><center>Purchase Requisition No</center></th>
                       <th width="15%"><center>Item Name</center></th>
-                      <th width="15%"><center>Item Description</th>
+                      <!-- <th width="15%"><center>Item Description</th> -->
                       <th width="10%"><center>Status</center></th>
                       <th width="15%"><center>Actions</center></th>
                     </tr> 
@@ -139,7 +139,7 @@ include 'config.php';
                           echo ' <tr>
                                     <td><center>'.ucfirst($row['purchase_requisition_no']).'</td>
                                     <td><center>'.ucfirst($row['item_name']).'</td>
-                                    <td><center>'.ucfirst($row['item_desc']).'</td>
+                                 
                                     <td><center>'.ucfirst($row['status']).'</td>
                                     <td><center>
                                     <div class="row">

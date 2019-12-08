@@ -438,7 +438,84 @@ echo '
 
 
 
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Material Request</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="mr" width="99%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="8%"><center>Job Order Control No</center></th>
+                      <th width="8%"><center>Kind of Paper</center></th>
+                      <th width="8%"><center>Quantity</th>
+                      <th width="10%"><center>Status</center></th>
+                      <th width="25%"><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+                     <tbody>
+                      <?php
+                         $sql = 'SELECT * FROM `material_request_form`';
+                        $stmt = mysqli_stmt_init($conn);
+                        mysqli_stmt_prepare($stmt, $sql);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
 
+                        while($row = mysqli_fetch_assoc($result)){
+                          echo ' <tr>
+                                    <td><center>'.ucfirst($row['job_order_control_no']).'</td>
+                                    <td><center>'.ucfirst($row['kind_of_paper']).'</td>
+                                    <td><center>'.ucfirst($row['quantity']).'</td>
+                                    <td><center>'.ucfirst($row['pending_status']).'</td>
+                                    <td><center>
+                                    <div class="row">
+                                    <div class="col col-lg-4">
+                                    <form method="POST" action="modal/prodass/editmaterialrequest">
+                       
+                          <input type="hidden" name="request_id" value="'.$row['request_id'].'">
+                          <button name="view_purchase" class="btn btn-success" style="width:100%;" ><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-4">
+         
+   
+                  <form method="POST" action="modal/prodass/approve">   
+                     <input type="hidden" name="request_id" value="'.$row['request_id'].'">
+                        <button name="approve_mr" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
+                  </form>  
+      </div>
+      <div class="col col-lg-4">
+                  <form method="POST" action="modal/prodass/approve">   
+                     <input type="hidden" name="request_id" value="'.$row['request_id'].'">
+                        <button name="disapprove_mr" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Reject</button>
+                  </form>  
+             
+    
+        </div>
+        </div>
+                                    </td>
+                                </tr>';
+                              }
+                      ?>
+                     
+                       
+                    </tbody>
+                     
+                    
+                   
+                  
+                 
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#mr').DataTable();  
+ });  
+ </script> 
 
 
 

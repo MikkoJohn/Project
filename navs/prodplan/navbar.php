@@ -30,7 +30,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+     <!--  <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="#"></i>
           <span>Home</span>
@@ -41,7 +41,7 @@
           <i class="#"></i>
           <span>Operators</span>
         </a>
-      </li>
+      </li> -->
 
       <li class="nav-item">
         <a class="nav-link" href="modal/prodplan/addmachine.php">
@@ -50,7 +50,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="index_prodheadrep.php" data-toggle="collapse" data-target="#collapsePH" aria-expanded="true" aria-controls="collapsePH">
           <i class="#"></i>
           <span>Reports</span>
@@ -63,11 +63,11 @@
             <a class="collapse-item" href="reports/reports_postpress.php">Postpress</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="index_prodheadcal.php">
+        <a class="nav-link" href="modal/prodplan/index">
           <i class="#"></i>
           <span>Calendar</span>
         </a>
@@ -96,11 +96,11 @@
           <span>Add Machine</span></a>
       </li>
 
-      <li class="nav-item">
+     <!--  <li class="nav-item">
         <a class="nav-link" href="modal/prodplan/addmachine">
           <i class="#"></i>
           <span>Add Assignment</span></a>
-      </li>
+      </li> -->
 
     </ul>
     <!-- End of Sidebar -->

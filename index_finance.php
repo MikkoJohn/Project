@@ -140,10 +140,10 @@ include 'config.php';
                  
                   <td><center>
                     <div class="row">
-                                    <div class="col col-lg-4">
+                                    <div class="col col-lg-3">
                                     <form method="POST" action="modal/finance/editworkorder">
                                        <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
-                                      <button name="view_wo" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                      <button name="view_wo" class="btn btn-success" style="width:90%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
                                     </form>
                                     </div>
                         ';
@@ -152,16 +152,16 @@ include 'config.php';
           if($row['status'] == "1"){
             echo '
                                     <div class="col col-lg-4">
-                                    <form method="POST" action="modal/finance/editworkorder">
+                                    <form method="POST" action="modal/finance/approve">
                                        <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
-                                      <button name="view_wo" class="btn btn-primary" style="width:100%;" disabled>Approve</button>
+                                      <button name="approve_wo" class="btn btn-primary" style="width:100%;" disabled>Approve</button>
                                     </form>
                                     </div>
 
-                                     <div class="col col-lg-4">
+                                     <div class="col col-lg-5">
                                     <form method="POST" action="modal/finance/approve">
                                        <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
-                                      <button name="approve" class="btn btn-danger" style="width:100%;" disabled>Disapprove</button>
+                                      <button name="disapprove_wo" class="btn btn-danger" style="width:100%;" disabled>Disapprove</button>
                                     </form>
                                     </div>
                                    ';
@@ -170,15 +170,15 @@ include 'config.php';
                                     <div class="col col-lg-4">
                                     <form method="POST" action="modal/finance/approve">
                                        <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
-                                      <button name="approve" class="btn btn-primary" style="width:100%;">Approve</button>
+                                      <button name="approve_wo" class="btn btn-primary" style="width:100%;">Approve</button>
                                     </form>
                                     </div>
 
 
-                                      <div class="col col-lg-4">
+                                      <div class="col col-lg-5">
                                     <form method="POST" action="modal/finance/approve">
                                        <input type="hidden" name="wo_id" value="'.$row['work_order_no'].'">
-                                      <button name="disapprove" class="btn btn-danger" style="width:100%;">Disapprove</button>
+                                      <button name="disapprove_wo" class="btn btn-danger" style="width:100%;">Disapprove</button>
                                     </form>
                                     </div>
                                    ';
@@ -214,7 +214,7 @@ include 'config.php';
                     <tr>
                       <th width="15%"><center>Purchase Requisition No</center></th>
                       <th ><center>Item Name</center></th>
-                      <th><center>Item Description</th>
+                      <!-- <th><center>Item Description</th> -->
                       <th width="10%"><center>Status</center></th>
                       <th ><center>Actions</center></th>
                     </tr> 
@@ -231,11 +231,11 @@ include 'config.php';
                           echo ' <tr>
                                     <td><center>'.ucfirst($row['purchase_requisition_no']).'</td>
                                     <td><center>'.ucfirst($row['item_name']).'</td>
-                                    <td><center>'.ucfirst($row['item_desc']).'</td>
+                            
                                     <td><center>'.ucfirst($row['status']).'</td>
                                     <td><center>
                                     <div class="row">
-                                    <div class="col col-lg-4">
+                                    <div class="col col-lg-3">
                                     <form method="POST" action="modal/finance/editpurchase">
                        
                           <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
@@ -245,15 +245,15 @@ include 'config.php';
                                     <div class="col col-lg-4">
          
      
-                  <form method="POST" action="enable">   
+                  <form method="POST" action="modal/finance/approve">   
                      <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
-                        <button name="enable_prg" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
+                        <button name="approve_pr" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Approve</button>
                   </form>  
      </div>
-     <div class="col col-lg-4">
-                  <form method="POST" action="delete">   
+     <div class="col col-lg-5">
+                  <form method="POST" action="modal/finance/approve">   
                      <input type="hidden" name="purchase_requisition_no" value="'.$row['purchase_requisition_no'].'">
-                        <button name="delete_prg" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disapprove</button>
+                        <button name="disapprove_pr" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disapprove</button>
                   </form>  
              
 

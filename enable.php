@@ -342,6 +342,27 @@ $stmt = $conn->prepare("UPDATE `project_run_schedule` SET `pending_status` = ? W
                               //else { echo"<script>alert('ERROR')</script>"; }
 
                               $stmt->close();
+}else if(isset($_POST['enable_jticket_plan'])){
+  $ticket_no = $_POST['ticket_no'];
+  $status = "Enabled";
+  // $stmt = $conn->prepare("DELETE FROM `job_ticket` WHERE `ticket_no` = ?");
+  $stmt = $conn->prepare("UPDATE `job_ticket` SET status=? WHERE `ticket_no` = ?");
+                              $stmt->bind_param('ss',$status,$ticket_no);
+
+                              if($stmt->execute()){
+                                echo'<script>swal("Successfully Deleted!","", "success");</script>';
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Enabled Job Ticket')";
+                              mysqli_query($conn,$sql1);
+                               echo"<script>alert('Data Enabled!')</script>";
+                                // header("Location: index_admin");
+                                echo "<script type='text/javascript'>location.href = 'index_prodplan';</script>";
+                              } 
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
 }
 
 ?>

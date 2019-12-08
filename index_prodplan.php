@@ -15,10 +15,11 @@ if(!isset($_SESSION["sess_user"])){
 <?php 
 include('navs/prodplan/header.php'); 
 include('navs/prodplan/navbar.php');
-
+include 'config.php';
 ?>
 
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -64,7 +65,7 @@ include('navs/prodplan/navbar.php');
                <form method="POST" action="logout.php">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 large"> Welcome <i class="fa fa-user"></i>  <?php echo ucfirst($_SESSION['acct_name']);?> 
                 </span>
-                <button type="submit" name="logout" style="background-color: white; border-radius:12px; "><i class="fa fa-sign-out">Log-out</i></button></form>
+                <button type="submit" name="logout" style="background-color: white; border-radius:12px; margin-right: 10px; "><i class="fas fa-sign-out-alt">Log-out</i></button></form>
             
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -98,11 +99,95 @@ include('navs/prodplan/navbar.php');
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">THIS IS PRODUCTION PLANNER</h1>
+            <h1 class="h3 mb-0 text-gray-800"></h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
           
-     
+       <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Job Tickets</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="jtickets" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th><center>J.T. No.</center></th>
+                      <th><center>Project Name</center></th>
+                      <th><center>Client Name</center></th>
+                      <th><center>Date Created</center></th>
+                      <th><center>Status</center></th>
+                      <th><center>Actions</center></th>
+                    </tr>
+                  </thead>
+          <?php
+            $sql="SELECT * FROM job_ticket";
+            $result = mysqli_query($conn,$sql);
+            while($row = mysqli_fetch_assoc($result)){
+                echo '
+                  <tr>
+                      <td><center>'.$row['ticket_no'].'</center></td>
+                      <td><center>'.$row['proj_name'].'</center></td>
+                      <td><center>'.$row['client_name'].'</center></td>
+                      <td><center>'.$row['date_time_created'].'</center></td>
+                      <td><center>'.$row['status'].'</center></td>
+                      <td><center>
+                      <div class="row">
+                                    <div class="col col-lg-4">
+                                    <form method="POST" action="modal/prodplan/editjobticket">
+                          <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                          <button name="view_jticket" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+
+                            <div class="col col-lg-4">
+                                    <form method="POST" action="modal/prodplan/convert">
+                          <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                          <button name="convert_jticket" class="btn btn-info" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Convert</button>
+                                    </form>
+                                    </div>
+
+
+
+                                    <div class="col col-lg-4">';
+          
+           if($row['status'] == "Disabled"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                        <button name="enable_jticket_plan" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      }else {
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="ticket_no" value="'.$row['ticket_no'].'">
+                        <button name="delete_jticket_plan" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }
+      echo '
+        </div>
+        </div></center>
+                  </td>
+                  </tr>
+
+                ';
+
+
+            }
+          ?>
+                       
+                   
+                </table>
+          </div>
+        </div>
+      </div>
+    <script>  
+ $(document).ready(function(){  
+      $('#jtickets').DataTable();  
+ });  
+ </script>  
 
       </div>
         <!-- /.container-fluid -->
