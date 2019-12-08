@@ -613,7 +613,7 @@ echo '<script>alert("Successfully Updated!");</script>';
 //echo '<script>swal("Success","","succes");</script>';
 echo "<meta http-equiv='refresh' content='0'>";
 
- echo "<script type='text/javascript'>location.href = 'add_operator';</script>";
+ echo "<script type='text/javascript'>location.href = 'addoperator';</script>";
 } 
 
 

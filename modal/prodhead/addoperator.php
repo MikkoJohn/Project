@@ -85,6 +85,7 @@ $acctype = $_SESSION['sess_type'];
                               <th><center>Account ID No</center></th>
                               <th><center>Operator Name</center></th>
                               <th><center>Operator Schedule</center></th>
+                              <th><center>Status</center></th>
                               <th><center>Action</center></th>
                                </tr>  
                         </thead> 
@@ -98,17 +99,47 @@ $acctype = $_SESSION['sess_type'];
                               <td><center>'.$row['account_id_no'].'</center></td>
                               <td><center>'.$row['first_name'].'</center></td>
                               <td><center>'.$row['operator_schedule'].'</center></td>
+                ';
+                if($row['status'] == "1"){
+                  echo '
+                      <td><center>Disabled</center></td>
+                  ';
+                }else{
+                  echo '
+                      <td><center>Enabled</center></td>
+                  ';
+                }
+
+
+                echo '
                               <td>
                               <center>
                           <div class="row">
-                                    <div class="col col-lg-12">
+                                <div class="col col-lg-6">
                                     <form method="POST" action="editoperator">
-                       
                           <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
                           <button name="view_operator" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="modal" data-target="#viewModal"></span> View</button>
                                     </form>
                                     </div>
-                                    
+                                    <div class="col col-lg-6">
+                                   ';
+          if($row['status'] == "0"){ 
+                echo '
+                                    <form method="POST" action="delete">
+         <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
+                        <button name="delete_operator" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable</button>
+        </form>';
+      }else if($row['status'] == "1"){ 
+                echo '
+                                    <form method="POST" action="enable">
+         <input type="hidden" name="operator_id" value="'.$row['operator_id'].'">
+                        <button name="enable_operator" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Enable</button>
+        </form>';
+      }
+
+
+        echo '
+        </div>
         </div></center>
 
                               </td>
@@ -129,7 +160,7 @@ $acctype = $_SESSION['sess_type'];
 
 
   <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
@@ -151,7 +182,7 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Middle Name:</h6>
-                  <input type="text" name="mname" class="form-control" placeholder="Middle Name" onkeypress="return /[a-z]/i.test(event.key)" required>
+                  <input type="text" name="mname" class="form-control" placeholder="Middle Name" onkeypress="return /[a-z]/i.test(event.key)">
                 </div>
                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Last Name:</h6>
@@ -161,10 +192,54 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" placeholder="Contact No." required>
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
-                  <h6>Operator Schedule:</h6>
-                  <input type="text" name="o_sched" class="form-control" placeholder="Operator Schedule" required>
+                  <div class="col col-md-6" style="margin-bottom: 15px;">
+                  <h6>Division:</h6>
+                  <!-- <input type="text" name="o_sched" class="form-control" placeholder="Operator Schedule" required> -->
+                  <select name="o_div" class="form-control" required>
+                    <option value="NULL" selected="true" disabled>SELECT DIVISION</option>
+                    <option value="Pre-Press">Pre-Press</option>
+                    <option value="Press">Press</option>
+                    <option value="Post-Press">Post-Press</option>
+                  </select>
                 </div>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Schedule:</h6>
+                  <!-- <input type="text" name="o_sched" class="form-control" placeholder="Operator Schedule" required> -->
+                  <select name="o_sched" class="form-control"  required>
+                    <option value="NULL" selected="true" disabled>SELECT SCHEDULE</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                  </select>
+                </div>
+                <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Shift:</h6>
+                  <select name="o_shift" class="form-control" required>
+                    <option value="NULL" selected="true" disabled>SELECT SHIFT</option>
+                    <option value="8AM-5PM">8:00AM-5:00PM</option>
+                  </select>
+                  <!-- <input type="text" name="o_shift" class="form-control" placeholder="Operator Schedule" required> -->
+                </div>
+                  <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Overtime:</h6>
+                  <select name="o_ot" class="form-control" required>
+                    <option value="NULL" selected="true" disabled>SELECT OVERTIME</option>
+                    <option value="8-9 AM">8-9 AM</option>
+                    <option value="9-10 AM">9-10 AM</option>
+                    <option value="10-11 AM">10-11 AM</option>
+                    <option value="11-12 PM">11-12 PM</option>
+                    <option value="1-2 PM">1-2 PM</option>
+                    <option value="2-3 PM">2-3 PM</option>
+                    <option value="3-4 PM">3-4 PM</option>
+                    <option value="4-5 PM">4-5 PM</option>
+                  </select>
+                  <!-- <input type="text" name="o_shift" class="form-control" placeholder="Operator Schedule" required> -->
+                </div>
+
+
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Username:</h6>
                   <input type="text" name="uname" class="form-control" placeholder="Username" required>
@@ -186,10 +261,13 @@ $mname = $_POST['mname'];
 $lname = $_POST['lname'];
 $c_no = $_POST['c_no'];
 $o_sched = $_POST['o_sched'];
+$o_shift = $_POST['o_shift'];
+$o_ot = $_POST['o_ot'];
+$o_div = $_POST['o_div'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
-
-$sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`, `operator_schedule`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$o_sched')";
+$user_type = "7";
+$sql = "INSERT INTO `operators`(`account_id_no`, `first_name`, `middle_name`, `last_name`, `contact_no`, `username`, `password`, `operator_schedule`,`operator_shift`,`operator_ot`,`division`) VALUES ('$a_id','$fname','$mname','$lname','$c_no','$uname','$pass','$o_sched','$o_shift','$o_ot','$o_div')";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Add Operator')";

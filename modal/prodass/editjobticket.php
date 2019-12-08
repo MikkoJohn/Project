@@ -73,7 +73,20 @@ $acctype = $_SESSION['sess_type'];
                                <div class="col col-sm-3">
                              <div class="form-group">
                              <h6>Project Name:</h6>
-                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name" value="'.$row['proj_name'].'" required>
+                              <select class="form-control" name="p_name">
+                             <option value="'.$row['proj_name'].'">'.$row['proj_name'].'</option>
+                ';
+        $sql_proj = "SELECT proj_name FROM job_order WHERE proj_name != '".$row['proj_name']."'";
+        $result_proj = mysqli_query($conn,$sql_proj);
+        while($row_proj = mysqli_fetch_assoc($result_proj)){
+          echo '
+                <option value="'.$row_proj['proj_name'].'">'.$row_proj  ['proj_name'].'</option>
+          ';
+        }
+
+                echo '
+                             </select>
+                                   
                                   </div>
                                 </div>
                              <div class="col col-sm-12">
@@ -98,7 +111,7 @@ $acctype = $_SESSION['sess_type'];
                             <div class="col col-sm-4">
                              <div class="form-group">
                              <h6>Actual Size:</h6>
-                                    <input  type="number" class="form-control" name="a_size" placeholder="Actual Size" value="'.$row['actual_size'].'" required>
+                                    <input  type="text" class="form-control" name="a_size" placeholder="Actual Size" value="'.$row['actual_size'].'" required>
                                   </div>
                                 </div>
                              <div class="col col-sm-4">

@@ -173,7 +173,21 @@ echo '
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Sales Representative:</h6>
-                  <input type="text" name="s_rep" class="form-control"placeholder="Sales Representative" required>
+                  <select name="s_rep" class="form-control" required>
+                    <option value="NULL" disabled selected>SELECT SALES REPRESENTATIVE</option>
+        <?php
+      $sql_sales = "SELECT * FROM tbl_useraccounts WHERE user_type = 6";
+      $result_sales = mysqli_query($conn,$sql_sales);
+      while($row_sales = mysqli_fetch_assoc($result_sales)){
+              echo '
+                  <option value="'.ucfirst($row_sales['fname']).' '.ucfirst($row_sales['lname']).'">'.ucfirst($row_sales['fname']).' '.ucfirst($row_sales['lname']).'</option>
+                ';
+      }
+
+
+        ?>
+      </select>
+                  <!-- <input type="text" name="s_rep" class="form-control"placeholder="Sales Representative" required> -->
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company:</h6> 
@@ -198,7 +212,7 @@ echo '
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Postal Code:</h6>
-                  <input type="text" name="p_code" class="form-control" placeholder="Postal Code" required>
+                  <input type="text" name="p_code" class="form-control" placeholder="Postal Code" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" required>
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
                   <input type="submit" name="add_client" class="btn btn-primary form-control" value="ADD Client">

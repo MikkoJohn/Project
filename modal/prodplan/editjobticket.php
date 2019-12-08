@@ -1,13 +1,14 @@
   <?php  
-  session_start();
-    include_once '../../config.php';
-    include '../../includes/link.php';
+     include_once '../../config.php';
+  include '../../includes/link.php';
     include '../../includes/header.php';
-$accname = $_SESSION['acct_name'];
+    session_start();
+    $accname = $_SESSION['acct_name'];
+    $acclname = $_SESSION['acct_lastname'];
 $acctype = $_SESSION['sess_type'];
   ?>
 
-   <a href="../../index_sales" class="btn btn-primary" style="margin:2%">BACK</a>
+   <a href="../../index_prodplan" class="btn btn-primary" style="margin:2%">BACK</a>
         <div class="container" style="width: 100%;">    
         <div id="loginbox" style="margin-top:0px;" class="mainbox col-lg-12 col-lg-offset-2 col-lg-8">                    
             <div class="panel panel-info">
@@ -73,7 +74,20 @@ $acctype = $_SESSION['sess_type'];
                                <div class="col col-sm-3">
                              <div class="form-group">
                              <h6>Project Name:</h6>
-                                    <input type="text" class="form-control" name="p_name" placeholder="Project Name" value="'.$row['proj_name'].'" required>
+                     <select class="form-control" name="p_name">
+                             <option value="'.$row['proj_name'].'">'.$row['proj_name'].'</option>
+                ';
+        $sql_proj = "SELECT proj_name FROM job_order WHERE proj_name != '".$row['proj_name']."'";
+        $result_proj = mysqli_query($conn,$sql_proj);
+        while($row_proj = mysqli_fetch_assoc($result_proj)){
+          echo '
+                <option value="'.$row_proj['proj_name'].'">'.$row_proj  ['proj_name'].'</option>
+          ';
+        }
+
+                echo '
+                             </select>
+                                   
                                   </div>
                                 </div>
                              <div class="col col-sm-12">
@@ -116,7 +130,7 @@ $acctype = $_SESSION['sess_type'];
                               <div class="col col-sm-4">
                               <div class="form-group">
                               <h6>Color:</h6>
-                      <select class="form-control">
+                      <select class="form-control" name="color">
                             ';
                   if($row['color'] =="1 Color - Black"){
                     echo '
@@ -158,6 +172,15 @@ $acctype = $_SESSION['sess_type'];
                         <option value="4 Color - Black, Yellow">4 Color - "Black, Yellow"</option>
                         <option selected="true" value="5 Color - CMYK">5 Color - "CMYK"</option>
                     ';
+                  }else {
+                    echo '
+                    <option value="" selected="true" disabled>SELECT COLOR</option>
+                        <option value="1 Color - Black">1 Color - "Black"</option>
+                        <option value="2 Color - Black, Cyan">2 Color - "Black, Cyan"</option>
+                        <option value="3 Color - Black, Magenta">3 Color - "Black, Magenta"</option>
+                        <option value="4 Color - Black, Yellow">4 Color - "Black, Yellow"</option>
+                        <option  value="5 Color - CMYK">5 Color - "CMYK"</option>
+                    ';
                   }
 
                echo '
@@ -178,7 +201,7 @@ $acctype = $_SESSION['sess_type'];
                       <option value="'.$row_act['activity'].'">'.$row_act['activity'].'</option>
                     ';
 
-
+                  }
 
                                 echo '
 
@@ -262,24 +285,24 @@ $acctype = $_SESSION['sess_type'];
                                  <div class="col col-sm-6">
                             <div class="form-group">
                             <h6>Checked By:</h6>
-                                    <input type="text" class="form-control" name="c_by" placeholder="Checked By" value="'.$row['checked_by'].'" required>
+                                    <input type="text" class="form-control" name="c_by" placeholder="Checked By" value="'.$row['checked_by'].'" disabled>
                                   </div>
                             </div>
                             <div class="col col-lg-6">
                             <div class="form-group">
                             <h6>Noted By:</h6>
-                                    <input type="text" class="form-control" name="n_by" placeholder="Noted By" value="'.$row['noted_by'].'" required>
+                                    <input type="text" class="form-control" name="n_by" placeholder="Noted By" value="'.$row['noted_by'].'" disabled>
                                   </div>
                             </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                <h5>Time Received:</h5>                          
+                                <h5>Date Checked:</h5>                          
                                     <input  type="text" class="form-control" placeholder="" name="t_received" value="'.$row['date_checked'].'" disabled>
                                   </div>
                                 </div>
                                 <div class="col col-sm-6">
                                 <div class="form-group">
-                                <h5>Date Received:</h5>                          
+                                <h5>Date Noted:</h5>                          
                                     <input  type="text" class="form-control" placeholder="" name="d_received" value="'.$row['date_noted'].'" disabled>
                                   </div>
                                 </div>
@@ -335,16 +358,38 @@ $acctype = $_SESSION['sess_type'];
                                   </div>
                                 </div>
                                 
-                                  <div class="col col-sm-12">
+                          <div class="col col-sm-2">
                                     <div class="form-group">  
-                           <button name="updatejo" class="btn btn-warning btn-md" value="UPDATE" disabled><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>  
+                           <button name="updatejo" class="btn btn-warning btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update</button>  
                                 </div>
                               </div>
                             </form>  
-                 
+                            
+                    <div class="col col-sm-5">
+                    ';
+                    if($row['date_noted'] != "0000-00-00 00:00:00"){
+                    echo '
+                    <form method="POST">
+                      <div class="form-group">  
+                           <button name="checked" class="btn btn-info btn-md" value="UPDATE" disabled><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> NOTED</button>  
+                            </form>
+                             </div>
+                      ';
+                    }else {
+                      echo '
+                    <form method="POST">
+                      <div class="form-group">  
+                           <button name="checked" class="btn btn-info btn-md" value="UPDATE"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> NOTED</button>  
+                            </form>
+                             </div>
+                      ';
+                    }
+
+                    echo '
+                            </div>
                     ';
                   
-                }
+                
               }else {
                   echo '
 
@@ -415,7 +460,7 @@ $acctype = $_SESSION['sess_type'];
                               <div class="col col-sm-4">
                               <div class="form-group">
                               <h6>Color:</h6>
-                      <select class="form-control" disabled>
+                      <select class="form-control" name="color" disabled>
                       <option>'.$row['color'].'</option>
                       </select>
                       </div>
@@ -591,8 +636,8 @@ if(isset($_POST['updatejo'])){
   $c_name = $_POST['c_name'];
   $p_name = $_POST['p_name'];
   $d_date = $_POST['d_date'];
-  $c_by = $_POST['c_by'];
-  $n_by = $_POST['n_by'];
+  // $c_by = $_POST['c_by'];
+  // $n_by = $_POST['n_by'];
   $title = $_POST['title'];
   $quantity = $_POST['quantity'];
   $a_size = $_POST['a_size'];
@@ -606,8 +651,8 @@ if(isset($_POST['updatejo'])){
   $p_size = $_POST['p_size'];
   $start = $_POST['start'];
   $finish = $_POST['finish'];
-  $t_received = $_POST['t_received'];
-  $d_received = $_POST['d_received'];
+ 
+  // $d_received = $_POST['d_received'];
   $no_out = $_POST['no_out'];
   $no_sheet = $_POST['no_sheet'];
   $no_ream = $_POST['no_ream'];
@@ -615,7 +660,7 @@ if(isset($_POST['updatejo'])){
   $now = date("Y-m-d H:i:s");
 
  
-  $sql_jt = "UPDATE `job_ticket` SET `job_order_control_no`='$jo_no',`machine_name`='$mname',`delivery_date`='$d_date',`checked_by`='$c_by',`noted_by`='$n_by',`client_name`='$c_name',`proj_name`='$p_name',`title`='$title',`quantity`='$quantity',`actual_size`='$a_size',`pages`='$pages',`paper_cover`='$p_cover',`color`='$color',`binding`='$binding',`lamination`='$lamination',`remarks`='$remarks',`stock_size`='$s_size',`printing_size`='$p_size',`start`='$start',`finish`='$finish',`time_received`='$t_received',`date_received`='$d_received',`no_of_out`='$no_out',`no_of_sheet`='$no_sheet',`no_of_ream`='$no_ream',`status`='$status' WHERE ticket_no = '".$_SESSION['ticket_no']."'";
+  $sql_jt = "UPDATE `job_ticket` SET `job_order_control_no`='$jo_no',`machine_name`='$mname',`delivery_date`='$d_date',`client_name`='$c_name',`proj_name`='$p_name',`title`='$title',`quantity`='$quantity',`actual_size`='$a_size',`pages`='$pages',`paper_cover`='$p_cover',`color`='$color',`binding`='$binding',`lamination`='$lamination',`remarks`='$remarks',`stock_size`='$s_size',`printing_size`='$p_size',`start`='$start',`finish`='$finish',`no_of_out`='$no_out',`no_of_sheet`='$no_sheet',`no_of_ream`='$no_ream',`status`='$status' WHERE ticket_no = '".$_SESSION['ticket_no']."'";
                  mysqli_query($conn,$sql_jt);
                                
                                  echo '<script>alert("Successfully Updated!");</script>';
@@ -623,12 +668,34 @@ if(isset($_POST['updatejo'])){
                                  $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Job Ticket')";
                               mysqli_query($conn,$sql1);
                    
-                               echo "<script type='text/javascript'>location.href = '../index_admin';</script>";
+                               echo "<script type='text/javascript'>location.href = '../../index_prodhead';</script>";
                             
                     
                               
 
 
+}else if(isset($_POST['checked'])){
+  // $ticket_no = $_POST['ticket_no'];
+//   date_default_timezone_set("Asia/Manila");
+// $nows = date("Y-m-d H:i:s");
+// $stmt = $conn->prepare("DELETE FROM `machine` WHERE `machine_id` = ?");
+  $stmt = $conn->prepare("UPDATE `job_ticket` SET `date_noted` = ?,`noted_by` = ?  WHERE `ticket_no` = ?");
+  $namechecked = $_SESSION["acct_name"] ." ". $_SESSION["acct_lastname"];
+                              $stmt->bind_param('sss',$now,$namechecked,$_SESSION['ticket_no']);
+
+                              if($stmt->execute()){
+                                // echo'<script>swal("Successfully Noted!","", "success");</script>';
+                                $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Noted Job Ticket')";
+                              mysqli_query($conn,$sql1);
+                               echo"<script>alert('Job Ticket Noted!')</script>";
+                                 echo "<script type='text/javascript'>location.href = '../../index_prodplan';</script>";
+                              } 
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
 }
 
 

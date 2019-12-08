@@ -116,10 +116,10 @@ $acctype = $_SESSION['sess_type'];
                    
    
 <?php if(isset($_POST['addmaterial'])){
-error_reporting(0);
+// error_reporting(0);
  
   $i_name = $_POST['i_name'];
-  $i_desc = $_POST['i_desc'];
+  // $i_desc = $_POST['i_desc'];
   $quantity = $_POST['quantity'];
   $u_measure = $_POST['u_measure'];
   $u_price = $_POST['u_price'];
@@ -132,8 +132,8 @@ error_reporting(0);
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  
-  $stmt = $conn->prepare("INSERT INTO `purchase_requisition`(`date`, `item_name`, `item_desc`, `quantity`, `unit`, `unit_price`, `total`, `tentative_delivery_date`, `actual_delivery_date`, `status`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-                              $stmt->bind_param('ssssssssss', $now,$i_name,$i_desc,$quantity,$u_measure,$u_price,$total,$td_date,$ad_date,$status);
+  $stmt = $conn->prepare("INSERT INTO `purchase_requisition`(`date`, `item_name`, `quantity`, `unit`, `unit_price`, `total`, `tentative_delivery_date`, `actual_delivery_date`, `status`) VALUES (?,?,?,?,?,?,?,?,?)");
+                              $stmt->bind_param('sssssssss', $now,$i_name,$quantity,$u_measure,$u_price,$total,$td_date,$ad_date,$status);
 
                               if($stmt->execute()){
                                 // echo'<script>swal("Successfully Added!","", "success");</script>';

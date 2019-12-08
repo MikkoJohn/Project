@@ -93,7 +93,21 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Sales Representative:</h6>
-                  <input type="text" name="s_rep" class="form-control" value="'.$row['sales_representative'].'" placeholder="Sales Representative">
+                   <select name="s_rep" class="form-control">
+                  <option value="'.$row['sales_representative'].'">'.$row['sales_representative'].'</option>
+        ';
+ $sql_sales = "SELECT * FROM tbl_useraccounts WHERE user_type = 6";
+      $result_sales = mysqli_query($conn,$sql_sales);
+      while($row_sales = mysqli_fetch_assoc($result_sales)){
+              echo '
+                  <option value="'.ucfirst($row_sales['fname']).' '.ucfirst($row_sales['lname']).'">'.ucfirst($row_sales['fname']).' '.ucfirst($row_sales['lname']).'</option>
+                ';
+      }
+
+
+        echo '
+        </select>
+                  
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company:</h6>
@@ -105,7 +119,7 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>E-mail Address:</h6>
-                  <input type="text" name="e_add" class="form-control" value="'.$row['email_address'].'" placeholder="Email Address">
+                  <input type="email" name="e_add" class="form-control" value="'.$row['email_address'].'" placeholder="Email Address">
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Company Address:</h6>
@@ -117,7 +131,7 @@ $acctype = $_SESSION['sess_type'];
                 </div>
                 <div class="col col-md-6" style="margin-bottom: 15px;">
                   <h6>Postal Code:</h6>
-                  <input type="text" name="p_code" class="form-control" value="'.$row['postal_code'].'" placeholder="Postal Code">
+                  <input type="number" name="p_code" class="form-control" value="'.$row['postal_code'].'" placeholder="Postal Code" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;">
                 </div>
                 <div class="col col-md-12" style="margin-bottom: 15px;">
                   <input type="submit" name="edit_client" class="btn btn-success form-control" value="UPDATE Client">

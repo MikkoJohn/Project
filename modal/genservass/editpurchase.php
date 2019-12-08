@@ -33,7 +33,7 @@ if($row['status'] != "Disabled"){
                   echo '
                       <form method="POST" class="form-horizontal" role="form">         
                            <div class="row">
-                            <div class="col col-sm-4">
+                            <div class="col col-sm-6">
                              <div class="form-group">
                              <label>Item Name:</label>
                               <select class="form-control" name="i_name" required>
@@ -51,13 +51,8 @@ if($row['status'] != "Disabled"){
                                   
                                   </div>
                                 </div>
-                            <div class="col col-sm-4">
-                            <div class="form-group">
-                            <label>Item Description:</label>
-                                  <input type="text" class="form-control" name="i_desc" value="'.$row['item_desc'].'" required>
-                                  </div>
-                            </div>
-                            <div class="col col-sm-4">
+                            
+                            <div class="col col-sm-6">
                             <div class="form-group">
                             <label>Quantity:</label>
                                   <input type="number" class="form-control" name="quantity" value="'.$row['quantity'].'" required>
@@ -268,12 +263,7 @@ if($row['status'] != "Disabled"){
                                   
                                   </div>
                                 </div>
-                              <div class="col col-sm-6">
-                            <div class="form-group">
-                            <label>Item Description:</label>
-                                  <input type="text" class="form-control" name="i_desc" value="'.$row['item_desc'].'" disabled>
-                                  </div>
-                            </div>
+                             
                             <div class="col col-sm-6">
                             <div class="form-group">
                             <label>Quantity:</label>
@@ -468,7 +458,7 @@ if($row['status'] != "Disabled"){
 <?php if(isset($_POST['edit_purchase'])){
 error_reporting(0);
   $i_name = $_POST['i_name'];
-  $i_desc = $_POST['i_desc'];
+
   $quantity = $_POST['quantity'];
   $u_measure = $_POST['u_measure'];
   $u_price = $_POST['u_price'];
@@ -482,8 +472,8 @@ error_reporting(0);
     echo'<script>swal("Please fill blank fields!","", "warning");</script>';
   }else {
  
-  $stmt = $conn->prepare("UPDATE `purchase_requisition` SET `item_name`=?,`item_desc`=?,`quantity`=?,`unit`=?,`unit_price`=?,`total`=?,`tentative_delivery_date`=?,`actual_delivery_date`=?,`status`=? WHERE purchase_requisition_no = ?");
-                              $stmt->bind_param('ssssssssss',$i_name,$i_desc,$quantity,$u_measure,$u_price,$total,$td_date,$ad_date,$status,$_SESSION['purchase_requisition_no']);
+  $stmt = $conn->prepare("UPDATE `purchase_requisition` SET `item_name`=?,`quantity`=?,`unit`=?,`unit_price`=?,`total`=?,`tentative_delivery_date`=?,`actual_delivery_date`=?,`status`=? WHERE purchase_requisition_no = ?");
+                              $stmt->bind_param('sssssssss',$i_name,$quantity,$u_measure,$u_price,$total,$td_date,$ad_date,$status,$_SESSION['purchase_requisition_no']);
 
                               if($stmt->execute()){
                                 // echo'<script>swal("Successfully Updated!","", "success");</script>';
