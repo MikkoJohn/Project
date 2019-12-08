@@ -49,55 +49,55 @@ $acctype = $_SESSION['sess_type'];
                   <div class="col col-lg-6">
                                <div style="margin-bottom:;" class="">
                                  <h6>Start Date:</h6>
-                                   <input type="date" class="form-control" value="'.$row['start_date'].'" name="start" required>                                       
+                                   <input type="date" id="start" class="form-control" value="'.$row['start_date'].'" name="start" required>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-6">
                                <div style="margin-bottom:;" class="">
                                   <h6>End Date:</h6>
-                                   <input type="date" class="form-control" value="'.$row['end_date'].'" name="finish" required>                                       
+                                   <input type="date" id="finish" class="form-control" value="'.$row['end_date'].'" name="finish" required>                                       
                                     </div>
                           </div>
                            <div class="col col-lg-6">
                                <div style="margin-bottom:;" class="">
                                  <h6>Pre-Press Start Date:</h6>
-                                   <input type="date" class="form-control" value="'.$row['pre-press_start_date'].'" name="prs" required>                                       
+                                   <input type="date" id="pre_start" class="form-control" value="'.$row['pre-press_start_date'].'" name="prs" required>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-6">
                                <div style="margin-bottom:;" class="">
                                   <h6>Pre-Press End Date:</h6>
-                                   <input type="date" class="form-control" value="'.$row['pre-press_end_date'].'" name="prf" required>                                       
+                                   <input type="date" id="pre_finish" class="form-control" value="'.$row['pre-press_end_date'].'" name="prf" required>                                       
                                     </div>
                           </div>
                            <div class="col col-lg-6">
                                <div style="margin-bottom:;" class="">
                                  <h6>Press Start Date:</h6>
-                                   <input type="date" class="form-control" value="'.$row['press_start_date'].'" name="pf" required>                                       
+                                   <input type="date" id="press_start" class="form-control" value="'.$row['press_start_date'].'" name="pf" required>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-6">
                                <div style="margin-bottom:;" class="">
                                   <h6>Press End Date:</h6>
-                                   <input type="date" class="form-control" value="'.$row['press_end_date'].'" name="pe" required>                                       
+                                   <input type="date" id="press_finish" class="form-control" value="'.$row['press_end_date'].'" name="pe" required>                                       
                                     </div>
                           </div>
                            <div class="col col-lg-6">
                                <div style="margin-bottom:;" class="">
                                  <h6>Post-Press Start Date:</h6>
-                                   <input type="date" class="form-control" value="'.$row['post-press_start_date'].'" name="ppf" required>                                       
+                                   <input type="date" id="post_start" class="form-control" value="'.$row['post-press_start_date'].'" name="ppf" required>                                       
                                     </div>
                           </div>
                           <div class="col col-lg-6">
                                <div style="margin-bottom:;" class="">
                                   <h6>Post-Press End Date:</h6>
-                                   <input type="date" class="form-control" value="'.$row['post-press_end_date'].'" name="ppend" required>                                       
+                                   <input type="date" id="post_finish" class="form-control" value="'.$row['post-press_end_date'].'" name="ppend" required>                                       
                                     </div>
                           </div>
        <div class="col col-lg-6">
                <h6>Machine Code</h6>
         <select name="machine_code" class="form-control" >
-            <option value="'.$row['machine_id'].'">'.$row['machine_id'].'</option>
+            <option value="NULL"disabled selected>SELECT MACHINE NAME</option>
                       ';
           $sql_machine = "SELECT * FROM machine WHERE machine_name != '".$row['machine_id']."' ";
           $result = mysqli_query($conn,$sql_machine);
@@ -112,7 +112,7 @@ $acctype = $_SESSION['sess_type'];
 <div class="col col-lg-6">
                <h6>Operator Name</h6>
         <select name="o_name" class="form-control" >
-        <option value="'.$row['operator_name'].'">'.$row['operator_name'].'</option>
+        <option value="NULL" disabled selected>SELECT OPERATOR NAME</option>
         ';
 $sql_op = "SELECT * FROM operators WHERE first_name != '".$row['operator_name']."' ";
           $result = mysqli_query($conn,$sql_op);
@@ -146,6 +146,13 @@ $sql_op = "SELECT * FROM operators WHERE first_name != '".$row['operator_name'].
                     ';
             }else if($row['machine_status'] == "Under Maintenance"){
               echo '
+                  <option value="Available">Available</option>
+                  <option value="In Use">In Use</option>
+                  <option selected="true" value="Under Maintenance">Under Maintenance</option>
+                    ';
+            }else {
+               echo '
+                  <option value="NULL" disabled selected>SELECT MACHINE STATUS</option>
                   <option value="Available">Available</option>
                   <option value="In Use">In Use</option>
                   <option selected="true" value="Under Maintenance">Under Maintenance</option>
@@ -326,6 +333,70 @@ $status= $_POST['status'];
 
 ?>
 <script>
- 
+  $(document).ready(function(){
+   $('#start').change(function(){
+    document.getElementById('finish').setAttribute("min",$('#start').val());
+   });
+  });
 
+ $(document).ready(function(){
+   // $('#start').change(function(){
+    document.getElementById('pre_start').setAttribute("min",$('#start').val());
+    document.getElementById('pre_start').setAttribute("max",$('#finish').val());
+    document.getElementById('press_start').setAttribute("max",$('#finish').val());
+    document.getElementById('post_start').setAttribute("max",$('#finish').val());
+    document.getElementById('pre_finish').setAttribute("max",$('#finish').val());
+    document.getElementById('press_finish').setAttribute("max",$('#finish').val());
+    document.getElementById('post_finish').setAttribute("max",$('#finish').val());
+   });
+
+ $(document).ready(function(){
+   $('#pre_start').change(function(){
+    document.getElementById('pre_finish').setAttribute("min",$('#pre_start').val());
+   });
+  });
+
+ $(document).ready(function(){
+   $('#pre_finish').change(function(){
+    document.getElementById('press_start').setAttribute("min",$('#pre_finish').val());
+   });
+  });
+
+ $(document).ready(function(){
+   $('#press_start').change(function(){
+    document.getElementById('press_finish').setAttribute("min",$('#press_start').val());
+   });
+  });
+
+$(document).ready(function(){
+   $('#press_finish').change(function(){
+    document.getElementById('post_start').setAttribute("min",$('#press_finish').val());
+   });
+  });
+
+$(document).ready(function(){
+   $('#post_start').change(function(){
+    document.getElementById('post_finish').setAttribute("min",$('#post_start').val());
+   });
+  });
+
+  // });
+
+  // $(document).ready(function(){
+  //  $('#start').change(function(){
+  //   document.getElementById('finish').setAttribute("min",$('#start').val());
+  //  });
+  // });
+
+  //  $(document).ready(function(){
+  //  $('#start').change(function(){
+  //   document.getElementById('finish').setAttribute("min",$('#start').val());
+  //  });
+  // });
+
+  //   $(document).ready(function(){
+  //  $('#start').change(function(){
+  //   document.getElementById('finish').setAttribute("min",$('#start').val());
+  //  });
+  // });
 </script>    
