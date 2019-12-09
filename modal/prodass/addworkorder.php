@@ -23,18 +23,19 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                      <label>Job Order Control No.:</label>
+                      <label>Project Name:</label>
                         <select class="form-control" name="j_controlno" required>
-                  <?php
-              $sql_jo = "SELECT * FROM job_order";
-              $res = mysqli_query($conn,$sql_jo);
-              while($row_jo = mysqli_fetch_assoc($res)){
-                echo '
-    <option value="'.$row_jo['job_order_control_no'].'">'.$row_jo['job_order_control_no'].'</option>
-                ';
-              }
+                 <option value="NULL" selected="true" disabled>SELECT PROJECT NAME</option>
+                              <?php
+                    $sql_jono = "SELECT proj_name FROM job_ticket";
+                    $res_jono = mysqli_query($conn,$sql_jono);
+                    while($rows = mysqli_fetch_assoc($res_jono)){
+                      echo '
+                              <option value="'.$rows['proj_name'].'" >'.$rows['proj_name'].'</option>
+                      ';
+                    }
 
-                  ?>
+                              ?>
                         </select>
                                     <!-- <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required> -->
                                   </div>
@@ -97,7 +98,7 @@ $acctype = $_SESSION['sess_type'];
  
   //$sql= "INSERT INTO tbl_useraccounts ('uname','pass','user_type') VALUES ()";
 
-  $stmt = $conn->prepare("INSERT INTO `work_order`(`job_controlno`, `job_desc`,`s_name`, `instruction`,`date_created`, `status`) VALUES (?,?,?,?,?,?)");
+  $stmt = $conn->prepare("INSERT INTO `work_order`(`proj_name`, `job_desc`,`s_name`, `instruction`,`date_created`, `status`) VALUES (?,?,?,?,?,?)");
                               $stmt->bind_param('ssssss', $j_controlno,$j_desc,$s_name,$instruction,$now,$status);
 
                               if($stmt->execute()){

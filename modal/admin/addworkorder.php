@@ -23,14 +23,15 @@ $acctype = $_SESSION['sess_type'];
                             
                       <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
+                                 <label>Project Name:</label>
                               <select class="form-control" name="j_controlno" placeholder="" required>
-                                <option value="NULL" selected="true" disabled>SELECT JOB ORDER CONTROL NO.</option>
+                                <option value="NULL" selected="true" disabled>SELECT PROJECT NAME</option>
                               <?php
-                    $sql_jono = "SELECT job_order_control_no FROM job_order";
+                    $sql_jono = "SELECT proj_name FROM job_ticket";
                     $res_jono = mysqli_query($conn,$sql_jono);
                     while($rows = mysqli_fetch_assoc($res_jono)){
                       echo '
-                              <option value="'.$rows['job_order_control_no'].'" >'.$rows['job_order_control_no'].'</option>
+                              <option value="'.$rows['proj_name'].'" >'.$rows['proj_name'].'</option>
                       ';
                     }
 
@@ -39,13 +40,15 @@ $acctype = $_SESSION['sess_type'];
                                     <!-- <input type="text" class="form-control" name="j_controlno" placeholder="Job Order Control No." required> -->
                                   </div>
                              <div style="margin-top:10px" class="form-group">
+                                 <label>Job Description:</label>
                                     <input type="text" class="form-control" name="j_desc" placeholder="Job Description"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                                 <label>Supplier Name:</label>
                               <select class="form-control" name="s_name" required>
                               <option selected="true" value="NULL" disabled="true">SELECT SUPPLIER NAME</option>
                               <?php
-                              $sql = "SELECT supplier_name FROM supplier_info";
+                              $sql = "SELECT supplier_name FROM supplier_info WHERE form_of_business ='Outsource'";
                               $result = mysqli_query($conn,$sql);
                               while($row = mysqli_fetch_assoc($result)){
                                 echo '
@@ -57,6 +60,7 @@ $acctype = $_SESSION['sess_type'];
                                     <!-- <input type="text" class="form-control" name="s_name" placeholder="Supplier Name"required> -->
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                                 <label>Instruction:</label>
                                     <input type="text" class="form-control" name="instruction" placeholder="Instruction"required>
                                   </div>
 <!--                             <div style="margin-top:10px" class="form-group">
@@ -94,8 +98,8 @@ $acctype = $_SESSION['sess_type'];
  
   //$sql= "INSERT INTO tbl_useraccounts ('uname','pass','user_type') VALUES ()";
 
-  $stmt = $conn->prepare("INSERT INTO `work_order`(`job_controlno`, `job_desc`,`s_name`, `instruction`,`date_created`, `status`) VALUES (?,?,?,?,?,?)");
-                              $stmt->bind_param('ssssss', $j_controlno,$j_desc,$s_name,$instruction,$now,$status);
+  $stmt = $conn->prepare("INSERT INTO `work_order`(`proj_name`, `job_desc`,`s_name`, `instruction`,`date_created`, `status`) VALUES (?,?,?,?,?,?)");
+                              $stmt->bind_param('ssssss', $j_controlno,$j_desc,ucfirst($s_name),$instruction,$now,$status);
 
                               if($stmt->execute()){
                                 // echo'<script>swal("Successfully Added!","", "success");</script>';
