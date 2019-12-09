@@ -103,11 +103,11 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Last Name:</h6>
                   <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No.">
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
                   <select name="o_sched" class="form-control"  required>
                   ';
@@ -170,6 +170,12 @@ $acctype = $_SESSION['sess_type'];
                   echo '
                   </select>
                 </div>
+                   <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Assignment:</h6>
+                  <input type="text" name="o_assign" class="form-control" value="'.$row['operator_assignment'].'" placeholder="Operator Assignment" required>    
+                </div>
+
+
                  <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Shift:</h6>
                   <select name="o_shift" class="form-control" required>
@@ -355,11 +361,11 @@ $acctype = $_SESSION['sess_type'];
                   <h6>Last Name:</h6>
                   <input type="text" name="lname" class="form-control" value="'.$row['last_name'].'" placeholder="Last Name" disabled>
                 </div>
-                <div class="col col-md-6" style="margin-bottom: 15px;">
+                <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Contact No.:</h6>
                   <input type="text" name="c_no" class="form-control" value="'.$row['contact_no'].'" placeholder="Contact No." disabled>
                 </div>
-                 <div class="col col-md-6" style="margin-bottom: 15px;">
+                 <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Schedule:</h6>
                   <select name="o_sched" class="form-control"  disabled>
                   ';
@@ -421,6 +427,10 @@ $acctype = $_SESSION['sess_type'];
 
                   echo '
                   </select>
+                </div>
+                 <div class="col col-md-4" style="margin-bottom: 15px;">
+                  <h6>Operator Assignment:</h6>
+                  <input type="text" name="uname" class="form-control" value="'.$row['operator_assignment'].'" placeholder="Operator Assignment" disabled>
                 </div>
                  <div class="col col-md-4" style="margin-bottom: 15px;">
                   <h6>Operator Shift:</h6>
@@ -602,8 +612,9 @@ $o_ot = $_POST['o_ot'];
 $o_div = $_POST['o_div'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
+$o_assign = $_POST['o_assign'];
 
-$sql = "UPDATE `operators` SET `account_id_no`='$a_id',`first_name`='$fname',`middle_name`='$mname',`last_name`='$lname',`contact_no`='$c_no',`username`='$uname',`password`='$pass',`operator_schedule`='$o_sched',`operator_shift`='$o_shift',`operator_ot`='$o_ot',`division`='$o_div' WHERE operator_id = '".$_SESSION['operator_id']."'";
+$sql = "UPDATE `operators` SET `account_id_no`='$a_id',`first_name`='$fname',`middle_name`='$mname',`last_name`='$lname',`contact_no`='$c_no',`username`='$uname',`password`='$pass',`operator_schedule`='$o_sched',`operator_shift`='$o_shift',`operator_ot`='$o_ot',`division`='$o_div',`operator_assignment`='$o_assign' WHERE operator_id = '".$_SESSION['operator_id']."'";
 mysqli_query($conn,$sql);
 
 $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype','$now','Updated Operator')";
