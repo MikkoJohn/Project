@@ -29,17 +29,36 @@ $acctype = $_SESSION['sess_type'];
                         echo '
                        <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                    <input type="text" class="form-control" value="'.$row['job_controlno'].'" name="j_controlno" placeholder="Job Order Control No." required>
+                             <label>Project Name:</label>
+                              <select class="form-control" name="j_controlno" required>
+                              <option value="'.$row['proj_name'].'" selected="true">'.$row['proj_name'].'</option>
+                      ';
+
+                          
+                    $sql_jono = "SELECT proj_name FROM job_ticket WHERE proj_name != '".$row['proj_name']."'";
+                    $res_jono = mysqli_query($conn,$sql_jono);
+                    while($rows = mysqli_fetch_assoc($res_jono)){
+                      echo '
+                              <option value="'.$rows['proj_name'].'" >'.$rows['proj_name'].'</option>
+                      ';
+                    }
+
+
+                      echo '
+                      </select>
+                                   
                                   </div>
                              <div style="margin-top:10px" class="form-group">
+                                <label>Job Description:</label>
                                     <input type="text" class="form-control" name="j_desc" value="'.$row['job_desc'].'" placeholder="Job Description"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                               <label>Supplier Name:</label>
                               <select class="form-control" name="s_name" required>
                               <option selected="true" value="'.$row['s_name'].'">'.$row['s_name'].'</option>
                               
                               ';
-                              $sql3 = "SELECT supplier_name FROM supplier_info WHERE supplier_name !='".$row['s_name']."'";
+                              $sql3 = "SELECT supplier_name FROM supplier_info WHERE supplier_name !='".$row['s_name']."' AND form_of_business = 'Outsource'";
                               $result3 = mysqli_query($conn,$sql3);
                               while($rows = mysqli_fetch_assoc($result3)){
                                 echo '
@@ -51,9 +70,11 @@ $acctype = $_SESSION['sess_type'];
                                    
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                               <label>Instruction:</label>
                                     <input type="text" class="form-control" value="'.$row['instruction'].'" name="instruction" placeholder="Instruction"required>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                               <label>Status:</label>
                                 <select class="form-control" name="status" required>
                                   ';
                             if($row['status'] =="Pending"){
@@ -96,12 +117,15 @@ $acctype = $_SESSION['sess_type'];
                          echo '
                        <form method="POST" class="form-horizontal" role="form">         
                              <div style="margin-top:0px" class="form-group">
-                                  <input type="text" class="form-control" value="'.$row['job_controlno'].'"  placeholder="Job Order Control No." disabled>
+                                <label>Project Name:</label>
+                                  <input type="text" class="form-control" value="'.$row['proj_name'].'"  placeholder="Job Order Control No." disabled>
                              <div style="margin-top:10px" class="form-group">
+                                <label>Job Description:</label>
                                     <input type="text" class="form-control" value="'.$row['job_desc'].'" placeholder="Job Description" disabled>
                                   </div>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                               <label>Supplier Name:</label>
                               <select class="form-control" valaue="'.$row['s_name'].'"  name="s_name" disabled>
                               <option selected="true" value="'.$row['s_name'].'">'.$row['s_name'].'</option>
                               
@@ -118,10 +142,11 @@ $acctype = $_SESSION['sess_type'];
                                    
                                   </div>
                             <div style="margin-top:10px" class="form-group">
-                                 
+                                    <label>Instruction:</label>
                                     <input type="text" class="form-control" value="'.$row['instruction'].'" name="instruction" placeholder="Instruction" disabled>
                                   </div>
                             <div style="margin-top:10px" class="form-group">
+                               <label>Status:</label>
                                 <select class="form-control" name="status" disabled>
                                   ';
                             if($row['status'] =="Pending"){
@@ -190,7 +215,7 @@ $acctype = $_SESSION['sess_type'];
 
 //$uname = $_POST['uname'];
 
-  $stmt = "UPDATE `work_order` SET `job_controlno`='$j_controlno',`job_desc`='$j_desc',`s_name`='$s_name',`instruction`='$instruction',`status`='$status' WHERE work_order_no='".$_SESSION['wo_id']."'";
+  $stmt = "UPDATE `work_order` SET `proj_name`='$j_controlno',`job_desc`='$j_desc',`s_name`='$s_name',`instruction`='$instruction',`status`='$status' WHERE work_order_no='".$_SESSION['wo_id']."'";
        mysqli_query($conn,$stmt);                      
                           
           echo '<script>alert("Successfully Updated!");</script>';

@@ -22,12 +22,21 @@ $acctype = $_SESSION['sess_type'];
                 <?php
 
                 if(isset($_POST['view_jticket'])){
+
                    $_SESSION['ticket_no'] = $_POST['ticket_no'];
                   $ticket_no = $_POST['ticket_no'];
                   $_SESSION['ticket_no'] = $_POST['ticket_no'];
                   $sql = "SELECT * FROM job_ticket where ticket_no = '".$_SESSION['ticket_no']."'";
                   $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_assoc($result)){
+        $sql_date = "SELECT requested_delivery FROM job_order WHERE job_order_control_no ='".$row['job_order_control_no']."'";
+        $result_date = mysqli_query($conn, $sql_date);
+                  while($row_date = mysqli_fetch_assoc($result_date)){
+                    $_SESSION['date'] = $row_date['requested_delivery'];
+                    echo '<input type="hidden" id="req_date" value="'. $_SESSION['date'].'">';
+                  }
+
+
               if($row['status'] != "Disabled"){
                     echo '
                        
@@ -92,7 +101,7 @@ $acctype = $_SESSION['sess_type'];
                              <div class="col col-sm-12">
                             <div class="form-group">
                               <h5>Delivery Date:</h5>
-                                    <input type="date" class="form-control" name="d_date" placeholder="" value="'.$row['delivery_date'].'" required>
+                                    <input type="date" class="form-control" id="del_date" name="d_date" placeholder="" value="'.$row['delivery_date'].'" required>
                                   </div>
                             </div>
                            
@@ -665,5 +674,10 @@ $('#start').show();
    });
   });
 
-
+$(document).ready(function(){
+   // alert(end);
+  
+    document.getElementById('del_date').setAttribute("max",$('#req_date').val());
+  
+  });
 </script>    
