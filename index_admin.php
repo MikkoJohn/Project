@@ -1403,7 +1403,106 @@ echo '
  });  
  </script> 
 
+
+
+
+ <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Machine Loading</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="ml" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th><center>Machine Name</center></th>
+                      <th><center>Operator Name</center></th>
+                      <th><center>Project Name</th>
+                      <th><center>Status</center></th>
+                      <th><center>Actions</center></th>
+                    </tr> 
+                  </thead>
+        <?php
+          $sql = "SELECT * FROM machine_loading";
+          $result = mysqli_query($conn, $sql);
+          while ($row=mysqli_fetch_assoc($result)){
+            echo '
+              <tr>
+                  <td><center>'.$row['machine_name'].'</center></td>
+                  <td><center>'.$row['operator_name'].'</center></td>
+                  <td><center>'.$row['proj_name'].'</center></td>
+              ';
+                 if($row['status'] == "1"){
+                      echo '<td><center>Disabled</center></td>';
+                    }else if($row['status'] == "0"){
+                        echo '<td><center>Pending</center></td>';
+                    }else{
+                      echo '<td><center>'.$row['status'].'</center></td>';
+                    }
+              echo '
+                 
+                  <td><center>
+                    <div class="row">
+                                    <div class="col col-lg-6">
+                                    <form method="POST" action="editmodal/editmachineloading">
+                          <input type="hidden" name="ml_id" value="'.$row['machine_id'].'">
+                          <button name="view_ml" class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</button>
+                                    </form>
+                                    </div>
+                                    <div class="col col-lg-6">
+                                   ';
+    if($row['status'] == "1"){
+        echo '
+                  <form method="POST" action="enable">   
+                     <input type="hidden" name="ml_id" value="'.$row['machine_id'].'">
+                        <button name="enable_ml" class="btn btn-primary" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Enable</button>
+                  </form>  
+                ';
+      } else{
+           echo '
+                  <form method="POST" action="delete">   
+                     <input type="hidden" name="ml_id" value="'.$row['machine_id'].'">
+                        <button name="delete_ml" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Disable</button>
+                  </form>  
+                ';
+      }
+
+      echo '
+        </div>
+        </div></center>
+        </td>
+              </tr>
+            ';
+          }
+        ?>               
+                              
+                </table>
+          </div>
+        </div>
+        </div>
+
+   <script>  
+ $(document).ready(function(){  
+      $('#ml').DataTable();  
+ });  
+ </script> 
+
+
+
+
+
+
+
+
+
+
 <!--  -->
+
+
+
+
+
+
 
         </div>
         <!-- /.container-fluid -->

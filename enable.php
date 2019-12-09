@@ -363,6 +363,29 @@ $stmt = $conn->prepare("UPDATE `project_run_schedule` SET `pending_status` = ? W
                               //else { echo"<script>alert('ERROR')</script>"; }
 
                               $stmt->close();
+}else if(isset($_POST['enable_ml'])){
+  $ml_id = $_POST['ml_id'];
+  $status = 0;
+$stmt = $conn->prepare("UPDATE `machine_loading` SET `status` = ? WHERE `machine_id` = ?");
+  // $stmt = $conn->prepare("DELETE FROM `tbl_useraccounts` WHERE `ua_id` = ?");
+  
+                              $stmt->bind_param('ss',$status,$ml_id);
+
+                              if($stmt->execute()){
+                                echo'<script>swal("Successfully Deleted!","", "success");</script>';
+                              $sql1="INSERT INTO `user_action`(`username`, `user_designation`, `action_date`, `action_done`) VALUES ('$accname','$acctype',now(),'Enabled Machine Loading')";
+                              mysqli_query($conn,$sql1);
+                               echo"<script>alert('Data Enabled!')</script>";
+                               // header("Location: index_admin");
+                                echo "<script type='text/javascript'>location.href = 'index_admin';</script>";
+                              } 
+                              //header(location: )
+                              else {
+                                echo'<script>swal("Error!","Please fill blank fields" ,"warning");</script>';
+                              }
+                              //else { echo"<script>alert('ERROR')</script>"; }
+
+                              $stmt->close();
 }
 
 ?>
