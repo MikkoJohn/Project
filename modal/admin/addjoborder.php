@@ -79,7 +79,7 @@ $acctype = $_SESSION['sess_type'];
                                 <select class="form-control" name="f_required" required>
                                       <option selected="true" value="NULL" disabled>SELECT FINISHING REQUIRED</option>
                           <?php
-                $sql_finish = "SELECT activity FROM post_press";
+                $sql_finish = "SELECT activity FROM post_press WHERE type_of_act = 'Finishing'";
                 $res = mysqli_query($conn, $sql_finish);
                 while($rowf=mysqli_fetch_assoc($res)){
                   echo '
@@ -97,7 +97,7 @@ $acctype = $_SESSION['sess_type'];
                               <select class="form-control" name="p_required" required>
                                 <option selected="true" value="NULL" disabled>SELECT PACKAGING REQUIRED</option>
           <?php
-                $sql_finish = "SELECT activity FROM post_press";
+                $sql_finish = "SELECT activity FROM post_press WHERE type_of_act = 'Packaging'";
                 $res = mysqli_query($conn, $sql_finish);
                 while($rowf=mysqli_fetch_assoc($res)){
                   echo '

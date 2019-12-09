@@ -97,7 +97,7 @@ $acctype = $_SESSION['sess_type'];
 
                                 ';
           
-                $sql_finish = "SELECT * FROM post_press WHERE activity != '".$row['finishing_required']."'";
+                $sql_finish = "SELECT * FROM post_press WHERE activity != '".$row['finishing_required']."' AND type_of_act = 'Finishing'";
                 $result = mysqli_query($conn,$sql_finish);
                 while($rowas = mysqli_fetch_assoc($result)){
                   echo '
@@ -118,7 +118,7 @@ $acctype = $_SESSION['sess_type'];
                             <select class="form-control" name="p_required" disabled>
                       <option value="'.$row['packaging_required'].'" selected="true">'.$row['packaging_required'].'</option>
                             ';
- $sql_finish = "SELECT activity FROM post_press WHERE activity !='".$row['packaging_required']."'";
+ $sql_finish = "SELECT activity FROM post_press WHERE activity !='".$row['packaging_required']."' AND type_of_act = 'Packaging'";
                 $res = mysqli_query($conn, $sql_finish);
                 while($rowpr=mysqli_fetch_assoc($res)){
                   echo '
