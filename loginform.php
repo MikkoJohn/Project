@@ -30,6 +30,8 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block" name="submit">Login</button>
                     </form>
+                    <br>
+                    <a href="forgotpass"><p>Forgot Password?</p></a>
                     </div>
               </div>
             </div>
