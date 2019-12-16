@@ -35,6 +35,7 @@ include 'config.php';
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
@@ -134,7 +135,15 @@ include 'config.php';
 <div class="row">
     <div class="col col-lg-3">
         <div class="icon" style="background-color: blue;">
-           <i class="fas fa-list  " style="color:white;font-size: 50px;padding: 10px;"></i>
+           <i class="fas fa-list  " style="color:white;font-size: 50px;padding: 10px;">&nbsp;&nbsp;&nbsp;
+         <?php
+$sql_queuejo = 'SELECT COUNT(*)total FROM job_order WHERE DATE_FORMAT(date_created,"%Y") = "'.$curryear.'" AND status != "Completed"';
+$results = mysqli_query($conn,$sql_queuejo);
+                        while ($rows_queue = mysqli_fetch_assoc($results)){
+                          echo ''.$rows_queue['total'].'';
+                        }
+    ?>     
+           </i>
           </div>       
      <h4 class="font">Queue for Job Orders</h4>
    <?php
@@ -144,7 +153,15 @@ include 'config.php';
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: #ff0048;">
-           <i class="fas fa-tasks" style="color:white;font-size: 50px;padding: 10px;"></i>
+           <i class="fas fa-tasks" style="color:white;font-size: 50px;padding: 10px;">&nbsp;&nbsp;&nbsp;
+             <?php
+$sql_queuejo = 'SELECT COUNT(*)total FROM job_order WHERE DATE_FORMAT(date_created,"%M") = "'.$curryear.'" AND status = "Completed"';
+$results = mysqli_query($conn,$sql_queuejo);
+                        while ($rows_queue = mysqli_fetch_assoc($results)){
+                          echo ''.$rows_queue['total'].'';
+                        }
+    ?>     
+           </i>
           </div>       
                  <h4 class="font">Completed Job Order <?php echo $currmonth; ?></h4>
               <?php
@@ -153,7 +170,7 @@ include 'config.php';
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: #44f733;">
-         <i class="fas fa-chart-area" style="color:white;font-size: 50px;padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="fas fa-chart-area" style="color:white;font-size: 50px;padding: 10px;">&nbsp;&nbsp;&nbsp;
   <?php
 $sql_totaljo = 'SELECT COUNT(*)total FROM job_order WHERE DATE_FORMAT(date_created,"%Y") = "'.$curryear.'"';
 $results = mysqli_query($conn,$sql_totaljo);
@@ -168,7 +185,15 @@ $results = mysqli_query($conn,$sql_totaljo);
     </div>
     <div class="col col-lg-3">
         <div class="icon" style="background-color: orange;">
-        <i class="far fa-calendar-check" style="color:white;font-size: 50px;padding: 10px;"></i>
+        <i class="far fa-calendar-check" style="color:white;font-size: 50px;padding: 10px;">
+           <?php
+$sql_totaljo = 'SELECT COUNT(*)total FROM job_order WHERE DATE_FORMAT(date_created,"%Y") = "'.$curryear.'" AND status = "Completed"';
+$results = mysqli_query($conn,$sql_totaljo);
+                        while ($rows = mysqli_fetch_assoc($results)){
+                          echo ''.$rows['total'].'';
+                        }
+    ?>
+        </i>
           </div>    
            <h4 class="font">Total Completed Job Order for <?php echo $curryear; ?></h4>   
 <?php

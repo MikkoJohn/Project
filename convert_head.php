@@ -37,12 +37,12 @@ if($resulta->num_rows >= 1) {
     echo "<script type='text/javascript'>location.href = 'index_prodhead';</script>";
 } else {
 
-  $stmt = $conn->prepare("INSERT INTO job_ticket (delivery_date,client_name, title, machine_name, date_time_created, quantity,job_order_control_no,proj_name,pages,binding,status) VALUES (?,?,?,?,?,?,?,?,?,?,?) ");
+  $stmt = $conn->prepare("INSERT INTO job_ticket (actual_size,delivery_date,client_name, title, machine_name, date_time_created, quantity,job_order_control_no,proj_name,pages,binding,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ");
   //$status= "Disabled";
   // $stmt = $conn->prepare("DELETE FROM `job_order` WHERE `job_order_control_no` = ?");
   //$stmt = $conn->prepare("UPDATE `job_order` SET status=? WHERE `job_order_control_no` = ?");
   
-                              $stmt->bind_param('sssssssssss',$size,$requested_delivery,$client_name,$title,$machine,$now,$quantity,$job_no,$proj_name,$no_pages,$f_required,$status);
+                              $stmt->bind_param('ssssssssssss',$size,$requested_delivery,$client_name,$title,$machine,$now,$quantity,$job_no,$proj_name,$no_pages,$f_required,$status);
 
                               if($stmt->execute()){
                                // echo'<script>swal("Successfully Deleted!","", "success");</script>';
