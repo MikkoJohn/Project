@@ -229,6 +229,13 @@
                //include ('modal/admin/addoperator.php');
               ?>
       </li>
+       <li class="nav-item">
+        <a type="button"  href="modal/admin/addmachineloading" style="background: #4a89ff; width: 100%; color: black; text-decoration: none;">
+          <span><center>Machine Loading</center></span></a>
+              <?php 
+               //include ('modal/admin/addoperator.php');
+              ?>
+      </li>
     </ul>
     <!-- End of Sidebar -->
 
