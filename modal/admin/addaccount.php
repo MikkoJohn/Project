@@ -48,10 +48,23 @@ $acctype = $_SESSION['sess_type'];
                                    <input id="uname" type="text" class="form-control" name="uname" value="" placeholder="Username" required>                                       
                                     </div>
                             </div>
+
                              <div class="col col-md-12">
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <input id="pass" type="password" class="form-control" name="pass" placeholder="Password" required>
+                                    </div>
+                                  </div>
+                              <div class="col col-md-12">
+                             <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input id="cpass" type="password" class="form-control" name="cpass" placeholder="Confirm Password" required>
+                                    </div>
+                                  </div> 
+                         <div class="col col-md-12">
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input id="" type="email" class="form-control" name="email" placeholder="E-mail" required>
                                     </div>
                                   </div>
                               <div class="col col-md-6">
@@ -122,6 +135,8 @@ if(isset($_POST['addaccount'])){
 //error_reporting(0);
  $uname = $_POST['uname'];
   $pass = $_POST['pass'];
+  $cpass = $_POST['cpass'];
+   $email = $_POST['email'];
   $acc = $_POST['acc'];
 $fname = $_POST['fname'];
 $mname = $_POST['mname'];
@@ -139,14 +154,15 @@ $div = $_POST['div'];
 
    } else {
 
+if($pass == $cpass){
 $sqls = "SELECT * FROM `tbl_useraccounts` WHERE `uname`='".$uname."'";
 $resulta = $conn->query($sqls);
 if($resulta->num_rows >= 1) {
     echo'<script>alert("Username already exist!");</script>';
 } else {
 
-  $stmt = $conn->prepare("INSERT INTO `tbl_useraccounts`(`uname`, `pass`, `user_type`, `fname`, `mname`, `lname`, `division`,`status`) VALUES (?,?,?,?,?,?,?,?)");
-                              $stmt->bind_param('ssssssss', $uname,$pass,$acc,$fname,$mname,$lname,$div,$status);
+  $stmt = $conn->prepare("INSERT INTO `tbl_useraccounts`(`uname`, `pass`,`email` ,`user_type`, `fname`, `mname`, `lname`, `division`,`status`) VALUES (?,?,?,?,?,?,?,?,?)");
+                              $stmt->bind_param('sssssssss', $uname,$pass,$email,$acc,$fname,$mname,$lname,$div,$status);
 
                               if($stmt->execute()){
                                 echo '<script>alert("Successfully Added!");</script>';
@@ -164,7 +180,9 @@ if($resulta->num_rows >= 1) {
                               $stmt->close();
                               
 }
-
+}else {
+  echo'<script>swal("Error!","Password Not Matched!" ,"warning");</script>';
+}
 }
 // header("Location:../../index_admin");
 }
